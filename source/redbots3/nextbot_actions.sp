@@ -1,8 +1,9 @@
 #define TANK_ATTACK_RANGE_MELEE	1.0
 #define TANK_ATTACK_RANGE_SPLASH	400.0
 #define TANK_ATTACK_RANGE_DEFAULT	100.0
+#define BOMB_TOO_CLOSE_RANGE	1000.0
 
-char g_strHealthAndAmmoEntities[][] = 
+static char g_strHealthAndAmmoEntities[][] = 
 {
 	"func_regenerate",
 	"item_ammopack*",
@@ -27,7 +28,7 @@ static float m_flNextMarkTime[MAXPLAYERS + 1];
 static int m_iCurrencyPack[MAXPLAYERS + 1];
 static int m_iStation[MAXPLAYERS + 1];
 static JSONArray CTFPlayerUpgrades[MAXPLAYERS + 1];
-static float g_flNextUpgrade[MAXPLAYERS + 1];
+static float m_flNextUpgrade[MAXPLAYERS + 1];
 static int m_nPurchasedUpgrades[MAXPLAYERS + 1];
 static int m_iAmmoPack[MAXPLAYERS + 1];
 static float m_vecGoalArea[MAXPLAYERS + 1][3];
@@ -66,7 +67,7 @@ void ResetNextBot(int client)
 	m_flNextMarkTime[client] = 0.0;
 	m_iCurrencyPack[client] = -1;
 	m_iStation[client] = -1;
-	g_flNextUpgrade[client] = 0.0;
+	m_flNextUpgrade[client] = 0.0;
 	m_nPurchasedUpgrades[client] = 0;
 	m_iAmmoPack[client] = -1;
 	m_vecGoalArea[client] = NULL_VECTOR;
@@ -161,24 +162,29 @@ public void OnActionCreated(BehaviorAction action, int actor, const char[] name)
 
 public Action CTFBotTacticalMonitor_Update(BehaviorAction action, int actor, float interval, ActionResult result)
 {
-	if (g_bIsDefenderBot[actor] && GameRules_GetRoundState() == RoundState_RoundRunning)
+	if (g_bIsDefenderBot[actor])
 	{
-		bool low_health = false;
+		MonitorKnownEntities(actor, CBaseNPC_GetNextBotOfEntity(actor).GetVisionInterface());
 		
-		float health_ratio = view_as<float>(GetClientHealth(actor)) / view_as<float>(BaseEntity_GetMaxHealth(actor));
-		
-		if ((GetTimeSinceWeaponFired(actor) > 2.0 || TF2_GetPlayerClass(actor) == TFClass_Sniper) && health_ratio < tf_bot_health_critical_ratio.FloatValue)
-			low_health = true;
-		else if (health_ratio < tf_bot_health_ok_ratio.FloatValue)
-			low_health = true;
-		
-		if (low_health && CTFBotGetHealth_IsPossible(actor) && !TF2_IsInvulnerable(actor))
-			return action.SuspendFor(CTFBotGetHealth(), "Getting health");
-		else if (IsAmmoLow(actor) && CTFBotGetAmmo_IsPossible(actor))
-			return action.SuspendFor(CTFBotGetAmmo(), "Getting ammo");
-		
-		OpportunisticallyUseWeaponAbilities(actor);
-		//TODO: use canteens
+		if (GameRules_GetRoundState() == RoundState_RoundRunning)
+		{
+			bool low_health = false;
+			
+			float health_ratio = view_as<float>(GetClientHealth(actor)) / view_as<float>(BaseEntity_GetMaxHealth(actor));
+			
+			if ((GetTimeSinceWeaponFired(actor) > 2.0 || TF2_GetPlayerClass(actor) == TFClass_Sniper) && health_ratio < tf_bot_health_critical_ratio.FloatValue)
+				low_health = true;
+			else if (health_ratio < tf_bot_health_ok_ratio.FloatValue)
+				low_health = true;
+			
+			if (low_health && CTFBotGetHealth_IsPossible(actor) && !TF2_IsInvulnerable(actor))
+				return action.SuspendFor(CTFBotGetHealth(), "Getting health");
+			else if (IsAmmoLow(actor) && CTFBotGetAmmo_IsPossible(actor))
+				return action.SuspendFor(CTFBotGetAmmo(), "Getting ammo");
+			
+			OpportunisticallyUseWeaponAbilities(actor);
+			//TODO: use canteens
+		}
 	}
 	
 	return Plugin_Continue;
@@ -346,6 +352,7 @@ BehaviorAction CTFBotDefenderAttack()
 	action.OnStart = CTFBotDefenderAttack_OnStart;
 	action.Update = CTFBotDefenderAttack_Update;
 	action.OnEnd = CTFBotDefenderAttack_OnEnd;
+	action.SelectMoreDangerousThreat = CTFBotDefenderAttack_SelectMoreDangerousThreat;
 	
 	return action;
 }
@@ -368,7 +375,10 @@ public Action CTFBotDefenderAttack_OnStart(BehaviorAction action, int actor, Beh
 
 public Action CTFBotDefenderAttack_Update(BehaviorAction action, int actor, float interval, ActionResult result)
 {
-	if (!IsValidClientIndex(m_iAttackTarget[actor]) || !IsPlayerAlive(m_iAttackTarget[actor]) || TF2_GetClientTeam(m_iAttackTarget[actor]) != GetEnemyTeamOfPlayer(actor))
+	if (!IsValidClientIndex(m_iAttackTarget[actor])
+	|| !IsPlayerAlive(m_iAttackTarget[actor])
+	|| TF2_GetClientTeam(m_iAttackTarget[actor]) != GetEnemyTeamOfPlayer(actor)
+	|| !IsPathToEntityPossible(actor, m_iAttackTarget[actor]))
 	{
 		return action.Done("Target is not valid");
 	}
@@ -389,9 +399,12 @@ public Action CTFBotDefenderAttack_Update(BehaviorAction action, int actor, floa
 		}
 	}
 	
+	if (ShouldCampBomb(actor))
+		return action.ChangeTo(CTFBotCampBomb(), "Camp bomb");
+	
 	//TODO: Other classes should go for money, but only when there isn't a threat around
 	
-	int closesttoh = TF2_FindBotNearestToBombNearestToHatch(actor);
+	int closesttoh = FindBotNearestToBombNearestToHatch(actor);
 	
 	if (closesttoh > 0)
 		m_iAttackTarget[actor] = closesttoh;
@@ -409,9 +422,6 @@ public Action CTFBotDefenderAttack_Update(BehaviorAction action, int actor, floa
 		EquipBestWeaponForThreat(actor, threat);
 	}
 	
-	//Make sure we're aware of our target
-	myVision.AddKnownEntity(m_iAttackTarget[actor]);
-	
 	//Path if out of range or cannot see target
 	if (myBot.IsRangeGreaterThanEx(threatOrigin, GetDesiredAttackRange(actor)) || !TF2_IsLineOfFireClear(actor, myEyePos, threatOrigin))
 	{
@@ -419,7 +429,7 @@ public Action CTFBotDefenderAttack_Update(BehaviorAction action, int actor, floa
 		
 		if (m_flRepathTime[actor] <= GetGameTime())
 		{
-			m_flRepathTime[actor] = GetGameTime() + GetRandomFloat(1.0, 3.0);
+			m_flRepathTime[actor] = GetGameTime() + GetRandomFloat(0.5, 1.0);
 			m_pPath[actor].ComputeToTarget(myBot, m_iAttackTarget[actor]);
 		}
 	}
@@ -430,6 +440,37 @@ public Action CTFBotDefenderAttack_Update(BehaviorAction action, int actor, floa
 public void CTFBotDefenderAttack_OnEnd(BehaviorAction action, int actor, BehaviorAction priorAction, ActionResult result)
 {
 	m_iAttackTarget[actor] = -1;
+}
+
+public Action CTFBotDefenderAttack_SelectMoreDangerousThreat(BehaviorAction action, Address nextbot, int entity, Address threat1, Address threat2, Address& knownEntity)
+{
+	int me = action.Actor;
+	
+	CKnownEntity knownThreat1 = view_as<CKnownEntity>(threat1);
+	int iThreat1 = knownThreat1.GetEntity();
+	
+	if (BaseEntity_IsPlayer(iThreat1) && iThreat1 == m_iAttackTarget[me] && knownThreat1.IsVisibleInFOVNow())
+	{
+		//Our own current chase target is a high priority, unless they're being healed by a medic
+		knownEntity = view_as<Address>(GetHealerOfThreat(view_as<INextBot>(nextbot), view_as<CKnownEntity>(threat1)));
+		
+		return Plugin_Changed;
+	}
+	
+	CKnownEntity knownThreat2 = view_as<CKnownEntity>(threat2);
+	int iThreat2 = knownThreat2.GetEntity();
+	
+	if (BaseEntity_IsPlayer(iThreat2) && iThreat2 == m_iAttackTarget[me] && knownThreat2.IsVisibleInFOVNow())
+	{
+		knownEntity = view_as<Address>(GetHealerOfThreat(view_as<INextBot>(nextbot), view_as<CKnownEntity>(threat2)));
+		
+		return Plugin_Changed;
+	}
+	
+	//Use standard threat selection
+	knownEntity = Address_Null;
+	
+	return Plugin_Changed;
 }
 
 BehaviorAction CTFBotMarkGiant()
@@ -613,13 +654,13 @@ public Action CTFBotGotoUpgrade_OnStart(BehaviorAction action, int actor, Behavi
 
 public Action CTFBotGotoUpgrade_Update(BehaviorAction action, int actor, float interval, ActionResult result)
 {
+	if (TF2_IsInUpgradeZone(actor)) 
+		return action.ChangeTo(CTFBotUpgrade(), "Reached upgrade station; buying upgrades");
+	
 	int station = m_iStation[actor];
 	
 	// if (!IsValidEntity(station))
 		// return action.Done("Upgrade station is invalid");
-	
-	if (TF2_IsInUpgradeZone(actor)) 
-		return action.ChangeTo(CTFBotUpgrade(), "Reached upgrade station; buying upgrades");
 	
 	//Moved from OnStart for technical reasons
 	float center[3];
@@ -680,7 +721,7 @@ public Action CTFBotUpgrade_OnStart(BehaviorAction action, int actor, BehaviorAc
 	
 	KV_MvM_UpgradesBegin(actor);
 	
-	g_flNextUpgrade[actor] = GetGameTime() + GetUpgradeInterval();
+	m_flNextUpgrade[actor] = GetGameTime() + GetUpgradeInterval();
 	
 	// UpdateLookAroundForEnemies(actor, false);
 	
@@ -695,11 +736,11 @@ public Action CTFBotUpgrade_Update(BehaviorAction action, int actor, float inter
 	if (!TF2_IsInUpgradeZone(actor)) 
 		return action.ChangeTo(CTFBotGotoUpgrade(), "Not standing at an upgrade station!");
 	
-	float flNextTime = g_flNextUpgrade[actor] - GetGameTime();
+	float flNextTime = m_flNextUpgrade[actor] - GetGameTime();
 	
 	if (flNextTime <= 0.0)
 	{
-		g_flNextUpgrade[actor] = GetGameTime() + GetUpgradeInterval();
+		m_flNextUpgrade[actor] = GetGameTime() + GetUpgradeInterval();
 		
 		JSONObject info = CTFBotPurchaseUpgrades_ChooseUpgrade(actor);
 		
@@ -728,6 +769,24 @@ public Action CTFBotUpgrade_Update(BehaviorAction action, int actor, float inter
 		}
 		
 		delete info;
+	}
+	
+	if (TF2_GetPlayerClass(actor) == TFClass_Medic)
+	{
+		int secondary = GetPlayerWeaponSlot(actor, TFWeaponSlot_Secondary);
+		
+		if (secondary != -1 && TF2Util_GetWeaponID(secondary) == TF_WEAPON_MEDIGUN && GetEntPropEnt(secondary, Prop_Send, "m_hHealingTarget") == -1)
+		{
+			int teammate = GerNearestTeammate(actor, WEAPON_MEDIGUN_RANGE);
+			
+			if (teammate != -1)
+			{
+				//Heal a nearby teammate so we build up uber
+				TF2Util_SetPlayerActiveWeapon(actor, secondary);
+				SnapViewToPosition(actor, WorldSpaceCenter(teammate));
+				VS_PressFireButton(actor);
+			}
+		}
 	}
 	
 	return action.Continue();
@@ -952,7 +1011,7 @@ public Action CTFBotMoveToFront_Update(BehaviorAction action, int actor, float i
 	
 	if (m_flRepathTime[actor] <= GetGameTime())
 	{
-		m_flRepathTime[actor] = GetGameTime() + GetRandomFloat(1.0, 2.0);
+		m_flRepathTime[actor] = GetGameTime() + GetRandomFloat(3.0, 4.0);
 		m_pPath[actor].ComputeToPos(myBot, m_vecGoalArea[actor]);
 	}
 	
@@ -1040,7 +1099,7 @@ public Action CTFBotGetHealth_Update(BehaviorAction action, int actor, float int
 		return action.Done("Health is not valid");
 	
 	//Drop our building or we cant defend ourselves
-	if (GetEntProp(actor, Prop_Send, "m_bCarryingObject"))
+	if (TF2_IsCarryingObject(actor))
 	{
 		VS_PressFireButton(actor);
 	}
@@ -1148,7 +1207,7 @@ public Action CTFBotEngineerIdle_Update(BehaviorAction action, int actor, float 
 		
 		UpdateLookAroundForEnemies(actor, false);
 		
-		if (!GetEntProp(actor, Prop_Send, "m_bCarryingObject"))
+		if (!TF2_IsCarryingObject(actor))
 		{
 			float flDistanceToBuilding = GetVectorDistance(GetAbsOrigin(actor), GetAbsOrigin(building));
 			
@@ -1156,7 +1215,11 @@ public Action CTFBotEngineerIdle_Update(BehaviorAction action, int actor, float 
 			{
 				EquipWeaponSlot(actor, TFWeaponSlot_Melee);
 				
-				myLoco.FaceTowards(WorldSpaceCenter(building));
+				//TODO: replace both of these with IBody AimHeadTowards, whenever it gets exposed that is
+				//Do it for all usage of FaceTowards
+				// myLoco.FaceTowards(WorldSpaceCenter(building));
+				SnapViewToPosition(actor, WorldSpaceCenter(building));
+				
 				VS_PressAltFireButton(actor);
 				
 				//PrintToServer("Grab");
@@ -1182,7 +1245,7 @@ public Action CTFBotEngineerIdle_Update(BehaviorAction action, int actor, float 
 					if (flDistanceToGoal < 70.0)
 					{
 						//Try placing building when closer than 70 hu
-						int objBeingBuilt = GetEntPropEnt(actor, Prop_Send, "m_hCarriedObject");
+						int objBeingBuilt = TF2_GetCarriedObject(actor);
 						
 						if (!IsValidEntity(objBeingBuilt))
 							return action.Continue();
@@ -1241,8 +1304,8 @@ public Action CTFBotEngineerIdle_Update(BehaviorAction action, int actor, float 
 		if (sentry != INVALID_ENT_REFERENCE)
 		{
 			if (GetEntProp(sentry, Prop_Send, "m_iHealth") >= GetEntProp(sentry, Prop_Send, "m_iMaxHealth") 
-			&& !GetEntProp(sentry, Prop_Send, "m_bBuilding")
-			&& GetEntProp(sentry, Prop_Send, "m_iUpgradeLevel") >= 3
+			&& !TF2_IsBuilding(sentry)
+			&& TF2_GetUpgradeLevel(sentry) >= 3
 			&& GetEntProp(sentry, Prop_Send, "m_iAmmoShells") > 0)
 			{
 				m_ctSentrySafe[actor] = GetGameTime() + 3.0;
@@ -1291,7 +1354,7 @@ public Action CTFBotEngineerIdle_Update(BehaviorAction action, int actor, float 
 	
 	if (dispenser != INVALID_ENT_REFERENCE && m_ctSentrySafe[actor] > GetGameTime())
 	{
-		if (GetEntProp(dispenser, Prop_Send, "m_iUpgradeLevel") < 3 || GetEntProp(dispenser, Prop_Send, "m_iHealth") < GetEntProp(dispenser, Prop_Send, "m_iMaxHealth"))
+		if (TF2_GetUpgradeLevel(dispenser) < 3 || GetEntProp(dispenser, Prop_Send, "m_iHealth") < GetEntProp(dispenser, Prop_Send, "m_iMaxHealth"))
 		{
 			float dist = GetVectorDistance(GetAbsOrigin(actor), GetAbsOrigin(dispenser));
 			
@@ -1331,7 +1394,8 @@ public Action CTFBotEngineerIdle_Update(BehaviorAction action, int actor, float 
 				
 				UpdateLookAroundForEnemies(actor, false);
 				
-				myLoco.FaceTowards(WorldSpaceCenter(dispenser));
+				// myLoco.FaceTowards(WorldSpaceCenter(dispenser));
+				SnapViewToPosition(actor, WorldSpaceCenter(dispenser));
 				VS_PressFireButton(actor);				
 			}
 			
@@ -1378,7 +1442,8 @@ public Action CTFBotEngineerIdle_Update(BehaviorAction action, int actor, float 
 			
 			UpdateLookAroundForEnemies(actor, false);
 			
-			myLoco.FaceTowards(WorldSpaceCenter(sentry));
+			// myLoco.FaceTowards(WorldSpaceCenter(sentry));
+			SnapViewToPosition(actor, WorldSpaceCenter(sentry));
 			VS_PressFireButton(actor);
 		}
 	}
@@ -1444,7 +1509,8 @@ public Action CTFBotBuildSentrygun_Update(BehaviorAction action, int actor, floa
 			g_iAdditionalButtons[actor] |= IN_DUCK;
 		}
 		
-		myLoco.FaceTowards(areaCenter);
+		// myLoco.FaceTowards(areaCenter);
+		SnapViewToPosition(actor, areaCenter);
 	}
 	
 	if (range_to_hint > 70.0)
@@ -1650,7 +1716,7 @@ public Action CTFBotAttackTank_Update(BehaviorAction action, int actor, float in
 			if (CTFBotCollectMoney_IsPossible(actor))
 				return action.ChangeTo(CTFBotCollectMoney(), "Get credits");
 		}
-		case TFClass_Heavy:
+		case TFClass_Heavy, TFClass_Sniper:
 		{
 			//We're more useful against the robots than the tank
 			if (CTFBotDefenderAttack_IsPossible(actor))
@@ -1693,24 +1759,51 @@ public void CTFBotAttackTank_OnEnd(BehaviorAction action, int actor, BehaviorAct
 
 public Action CTFBotAttackTank_SelectMoreDangerousThreat(BehaviorAction action, Address nextbot, int entity, Address threat1, Address threat2, Address& knownEntity)
 {
-	//Our most dangerous threat should be the tank, always unless we're not aware of it anymore
+	int me = action.Actor;
 	
 	int iThreat1 = view_as<CKnownEntity>(threat1).GetEntity();
+	int iThreat2 = view_as<CKnownEntity>(threat2).GetEntity();
+	float myOrigin[3]; GetClientAbsOrigin(me, myOrigin);
+	float threatOrigin[3];
+	const float notSafeRange = 200.0;
 	
-	if (IsBaseBoss(iThreat1))
+	if (BaseEntity_IsPlayer(iThreat1))
+	{
+		GetClientAbsOrigin(iThreat1, threatOrigin);
+		
+		if (GetVectorDistance(myOrigin, threatOrigin) <= notSafeRange)
+		{
+			//This threat is too close, prioritize it!
+			knownEntity = threat1;
+			return Plugin_Changed;
+		}
+	}
+	
+	if (BaseEntity_IsPlayer(iThreat2))
+	{
+		GetClientAbsOrigin(iThreat2, threatOrigin);
+		
+		if (GetVectorDistance(myOrigin, threatOrigin) <= notSafeRange)
+		{
+			knownEntity = threat2;
+			return Plugin_Changed;
+		}
+	}
+	
+	//Our most dangerous threat should be the tank
+	if (iThreat1 == m_iAttackTarget[me] && TF2_IsLineOfFireClear4(me, iThreat1))
 	{
 		knownEntity = threat1;
 		return Plugin_Changed;
 	}
 	
-	int iThreat2 = view_as<CKnownEntity>(threat2).GetEntity();
-	
-	if (IsBaseBoss(iThreat2))
+	if (iThreat2 == m_iAttackTarget[me] && TF2_IsLineOfFireClear4(me, iThreat2))
 	{
 		knownEntity = threat2;
 		return Plugin_Changed;
 	}
 	
+	//We probably can't see it right now
 	knownEntity = Address_Null;
 	
 	return Plugin_Changed;
@@ -1747,6 +1840,56 @@ public void CTFBotSpyLurkMvM_OnEnd(BehaviorAction action, int actor, BehaviorAct
 	m_iAttackTarget[actor] = -1;
 }
 
+BehaviorAction CTFBotCampBomb()
+{
+	BehaviorAction action = ActionsManager.Create("DefenderCampBomb");
+	
+	action.OnStart = CTFBotCampBomb_OnStart;
+	action.Update = CTFBotCampBomb_Update;
+	
+	return action;
+}
+
+public Action CTFBotCampBomb_OnStart(BehaviorAction action, int actor, BehaviorAction priorAction, ActionResult result)
+{
+	m_pPath[actor].SetMinLookAheadDistance(GetDesiredPathLookAheadRange(actor));
+	
+	return action.Continue();
+}
+
+public Action CTFBotCampBomb_Update(BehaviorAction action, int actor, float interval, ActionResult result)
+{
+	int bomb = FindBombNearestToHatch();
+	
+	if (bomb == -1)
+		return action.Done("No bomb");
+	
+	if (BaseEntity_GetOwnerEntity(bomb) != -1)
+	{
+		//Someone picked up the bomb!
+		return action.ChangeTo(CTFBotDefenderAttack(), "Bomb is taken");
+	}
+	
+	float myOrigin[3]; GetClientAbsOrigin(actor, myOrigin);
+	float bombPosition[3]; bombPosition = WorldSpaceCenter(bomb);
+	
+	//Move towards the bomb's current area if we're too far or can't see it
+	if (GetVectorDistance(myOrigin, bombPosition) > 500.0 || !TF2_IsLineOfFireClear2(actor, bombPosition))
+	{
+		INextBot myBot = CBaseNPC_GetNextBotOfEntity(actor);
+		
+		if (m_flRepathTime[actor] <= GetGameTime())
+		{
+			m_flRepathTime[actor] = GetGameTime() + GetRandomFloat(1.0, 2.0);
+			m_pPath[actor].ComputeToPos(myBot, bombPosition);
+		}
+		
+		m_pPath[actor].Update(myBot);
+	}
+	
+	return action.Continue();
+}
+
 Action GetDesiredBotAction(int client, BehaviorAction action)
 {
 	RoundState state = GameRules_GetRoundState();
@@ -1754,9 +1897,22 @@ Action GetDesiredBotAction(int client, BehaviorAction action)
 	if (state == RoundState_BetweenRounds)
 	{
 		if (CTFBotCollectMoney_IsPossible(client))
+		{
+			//Collect any leftover money that my team didn't collect
 			return action.SuspendFor(CTFBotCollectMoney(), "Is possible");
-		else if (redbots_manager_bot_use_upgrades.BoolValue && !TF2_IsInUpgradeZone(client) && !IsPlayerReady(client) && ActionsManager.GetAction(client, "DefenderMoveToFront") == INVALID_ACTION)
-			return action.SuspendFor(CTFBotGotoUpgrade(), "!IsInUpgradeZone && RoundState_BetweenRounds");
+		}
+		else if (!TF2_IsInUpgradeZone(client) && !IsPlayerReady(client) && ActionsManager.GetAction(client, "DefenderMoveToFront") == INVALID_ACTION)
+		{
+			if (redbots_manager_bot_use_upgrades.BoolValue)
+			{
+				return action.SuspendFor(CTFBotGotoUpgrade(), "!IsInUpgradeZone && RoundState_BetweenRounds");
+			}
+			else
+			{
+				FakeClientCommand(client, "tournament_player_readystate 1");
+				return action.SuspendFor(CTFBotMoveToFront(), "Skip upgrading");
+			}
+		}
 	}
 	else if (state == RoundState_RoundRunning)
 	{
@@ -1861,45 +2017,6 @@ float GetDesiredPathLookAheadRange(int client)
 bool CTFBotDefenderAttack_IsPossible(int actor)
 {
 	return SelectRandomReachableEnemy(actor) != -1;
-}
-
-int SelectRandomReachableEnemy(int actor)
-{
-	TFTeam opposingTFTeam = GetEnemyTeamOfPlayer(actor);
-	
-	int playerarray[MAXPLAYERS+1];
-	int playercount;
-	
-	for (int i = 1; i <= MaxClients; i++)
-	{
-		if (i == actor)
-			continue;
-		
-		if (!IsClientInGame(i))
-			continue;
-		
-		if (!IsPlayerAlive(i))
-			continue;
-		
-		if (TF2_GetClientTeam(i) != opposingTFTeam)
-			continue;
-		
-		if (TF2Util_IsPointInRespawnRoom(WorldSpaceCenter(i)))
-			continue;
-		
-		if (IsSentryBusterRobot(i))
-			continue;
-		
-		playerarray[playercount] = i;
-		playercount++;
-	}
-	
-	if (playercount > 0)
-	{
-		return playerarray[GetRandomInt(0, playercount-1)];
-	}
-	
-	return -1;
 }
 
 int GetMarkForDeathWeapon(int player)
@@ -2035,19 +2152,19 @@ bool CTFBotCollectMoney_IsPossible(int actor)
 
 int FindClosestUpgradeStation(int actor)
 {
-	int stations[MAXPLAYERS+1];
+	int stations[MAXPLAYERS + 1];
 	int stationcount;
 	
 	int i = -1;
 	while ((i = FindEntityByClassname(i, "func_upgradestation")) != -1)
 	{
-		if (GetEntProp(i, Prop_Data, "m_bDisabled"))
+		if (GetEntProp(i, Prop_Data, "m_bDisabled") == 1)
 			continue;
 		
 		CNavArea area = TheNavMesh.GetNearestNavArea(WorldSpaceCenter(i), true, 8000.0, false, false, TEAM_ANY);
 		
 		if (area == NULL_AREA)
-			return false;
+			continue;
 		
 		float center[3]; area.GetCenter(center);
 		
@@ -2126,7 +2243,8 @@ void CollectUpgrades(int client)
 	CTFPlayerUpgrades[client] = new JSONArray();
 	
 	ArrayList iArraySlots = new ArrayList();
-	iArraySlots.Push(-1);	//Always buy player upgrades
+	
+	iArraySlots.Push(-1); //Always buy player upgrades
 	
 	bool bDemoKnight = (!IsCombatWeapon(GetPlayerWeaponSlot(client, TFWeaponSlot_Primary)));
 	bool bEngineer = (TF2_GetPlayerClass(client) == TFClass_Engineer);
@@ -2142,6 +2260,17 @@ void CollectUpgrades(int client)
 		if (TF2_GetPlayerClass(client) == TFClass_Sniper)
 		{
 			iArraySlots.Push(TF_LOADOUT_SLOT_PRIMARY);
+			iArraySlots.Push(TF_LOADOUT_SLOT_MELEE);
+		}
+		else if (TF2_GetPlayerClass(client) == TFClass_Medic)
+		{
+			//Buy upgrades for our medigun
+			iArraySlots.Push(TF_LOADOUT_SLOT_SECONDARY);
+		}
+		else if (TF2_GetPlayerClass(client) == TFClass_Spy)
+		{
+			//Buy upgrades for our sapper and knife
+			iArraySlots.Push(TF_LOADOUT_SLOT_SECONDARY);
 			iArraySlots.Push(TF_LOADOUT_SLOT_MELEE);
 		}
 
@@ -2367,16 +2496,16 @@ void KV_MvM_UpgradesBegin(int client)
 
 float GetUpgradeInterval()
 {
-	if (redbots_manager_mode.IntValue == MANAGER_MODE_AUTO_BOTS)
-	{
-		//Since we're joining in the middle of a round, we want to upgrade fast
-		return GetRandomFloat(0.3, 1.0);
-	}
-	
 	float customInterval = redbots_manager_bot_upgrade_interval.FloatValue;
 	
 	if (customInterval >= 0.0)
 		return customInterval;
+	
+	if (redbots_manager_mode.IntValue == MANAGER_MODE_AUTO_BOTS)
+	{
+		//Since we're joining in the middle of a round, we want to upgrade fast
+		return GetRandomFloat(0.3, 0.75);
+	}
 	
 	const float interval = 1.25;
 	const float variance = 0.3;
@@ -2386,7 +2515,7 @@ float GetUpgradeInterval()
 
 JSONObject CTFBotPurchaseUpgrades_ChooseUpgrade(int actor)
 {
-	int currency = GetEntProp(actor, Prop_Send, "m_nCurrency");
+	int currency = TF2_GetCurrency(actor);
 	
 	CollectUpgrades(actor);
 	
@@ -2482,16 +2611,16 @@ void ComputeHealthAndAmmoVectors(int client, JSONArray array, float max_range)
 			if (GetVectorDistance(WorldSpaceCenter(client), WorldSpaceCenter(ammo)) > max_range)
 				continue;
 			
-			if (HasEntProp(ammo, Prop_Send, "m_bBuilding"))
+			if (BaseEntity_IsBaseObject(ammo))
 			{
 				//Can't get anything from still building buildings.
-				if (GetEntProp(ammo, Prop_Send, "m_bBuilding"))
+				if (TF2_IsBuilding(ammo))
 					continue;
 				
 				if (TF2_GetObjectType(ammo) == TFObject_Dispenser)
 				{
 					//Skip empty dispenser.
-					if(GetEntProp(ammo, Prop_Send, "m_iAmmoMetal") <= 0)
+					if (GetEntProp(ammo, Prop_Send, "m_iAmmoMetal") <= 0)
 						continue;
 				}
 			}
@@ -2522,6 +2651,23 @@ bool IsPathToVectorPossible(int bot_entidx, const float vec[3], float &length = 
 	PathFollower temp_path = PathFollower(_, Path_FilterIgnoreActors, Path_FilterOnlyActors);
 	
 	bool success = temp_path.ComputeToPos(CBaseNPC_GetNextBotOfEntity(bot_entidx), vec);
+	
+	length = temp_path.GetLength();
+	
+	temp_path.Destroy();
+	
+	return success;
+}
+
+bool IsPathToEntityPossible(int bot_entidx, int goal_entidx, float &length = -1.0)
+{
+	CBaseCombatCharacter(bot_entidx).UpdateLastKnownArea();
+	
+	CBaseCombatCharacter(goal_entidx).UpdateLastKnownArea();
+	
+	PathFollower temp_path = PathFollower(_, Path_FilterIgnoreActors, Path_FilterOnlyActors);
+	
+	bool success = temp_path.ComputeToTarget(CBaseNPC_GetNextBotOfEntity(bot_entidx), goal_entidx);
 	
 	length = temp_path.GetLength();
 	
@@ -2801,14 +2947,17 @@ CNavArea PickBuildArea(int client, float SentryRange = 1300.0)
 		}
 	}
 	
-	if (redbots_manager_debug_actions.BoolValue)
+	if (redbots_manager_debug.BoolValue)
 		PrintToServer("PickBuildArea %i ForwardVisibleAreas | %i ForwardAreas | %i VisibleAreasAroundBomb", ForwardVisibleAreas.Length, ForwardAreas.Length, VisibleAreasAround.Length);
 	
 	CNavArea randomArea = NULL_AREA;
 	
-	if (ForwardVisibleAreas.Length     > 0) randomArea = ForwardVisibleAreas.Get(GetRandomInt(0, ForwardVisibleAreas.Length - 1));
-	else if (ForwardAreas.Length       > 0) randomArea =        ForwardAreas.Get(GetRandomInt(0, ForwardAreas.Length        - 1));
-	else if (VisibleAreasAround.Length > 0) randomArea =  VisibleAreasAround.Get(GetRandomInt(0, VisibleAreasAround.Length  - 1));
+	if (ForwardVisibleAreas.Length > 0)
+		randomArea = ForwardVisibleAreas.Get(GetRandomInt(0, ForwardVisibleAreas.Length - 1));
+	else if (ForwardAreas.Length > 0)
+		randomArea = ForwardAreas.Get(GetRandomInt(0, ForwardAreas.Length - 1));
+	else if (VisibleAreasAround.Length > 0)
+		randomArea = VisibleAreasAround.Get(GetRandomInt(0, VisibleAreasAround.Length - 1));
 	
 	delete ForwardVisibleAreas;
 	delete ForwardAreas;
@@ -2822,7 +2971,7 @@ CNavArea PickBuildArea(int client, float SentryRange = 1300.0)
 CNavArea PickBuildAreaPreRound(int client, float SentryRange = 1300.0)
 {
 	int iAreaCount = TheNavMesh.GetNavAreaCount();
-
+	
 	//Check that this map has any nav areas
 	if (iAreaCount <= 0)
 		return NULL_AREA;
@@ -2865,10 +3014,10 @@ CNavArea PickBuildAreaPreRound(int client, float SentryRange = 1300.0)
 		CNavArea bestConnection = NULL_AREA;
 		
 		//Check spawn exit connections 
-		for (NavDirType dir = NORTH; dir < NUM_DIRECTIONS; ++dir)
-		{			
+		for (NavDirType dir = NORTH; dir < NUM_DIRECTIONS; dir++)
+		{
 			//Only connections with BOMB_DROP attribute are considered good.
-			for (int iConnection = 0; iConnection < area.GetAdjacentCount(dir); ++iConnection)
+			for (int iConnection = 0; iConnection < area.GetAdjacentCount(dir); iConnection++)
 			{			
 				CTFNavArea adjArea = view_as<CTFNavArea>(area.GetAdjacentArea(dir, iConnection));
 				
@@ -2912,10 +3061,11 @@ CNavArea PickBuildAreaPreRound(int client, float SentryRange = 1300.0)
 	RandomEnemySpawnExit.GetCenter(vecExitCenter);
 	vecExitCenter[2] += 45.0;
 	
-	//PrintToServer("%f %f %f", vecExitCenter[0], vecExitCenter[1], vecExitCenter[2]);
-
-	ArrayList AreasCloser                  = new ArrayList();	//Not necessarily visible but still <= 3000.0
-	ArrayList VisibleAreas                 = new ArrayList();
+	if (redbots_manager_debug.BoolValue)
+		PrintToServer("%f %f %f", vecExitCenter[0], vecExitCenter[1], vecExitCenter[2]);
+	
+	ArrayList AreasCloser = new ArrayList();	//Not necessarily visible but still <= 3000.0
+	ArrayList VisibleAreas = new ArrayList();
 	ArrayList VisibleAreasAfterSentryRange = new ArrayList();	//>= SentryRange
 	
 	for (int i = 0; i < iAreaCount; i++)
@@ -2955,14 +3105,17 @@ CNavArea PickBuildAreaPreRound(int client, float SentryRange = 1300.0)
 		VisibleAreas.Push(area);
 	}
 	
-	if (redbots_manager_debug_actions.BoolValue)
+	if (redbots_manager_debug.BoolValue)
 		PrintToServer("PickBuildAreaPreRound %i VisibleAreas | %i VisibleAreasAfterSentryRange | %i AreasCloser", VisibleAreas.Length, VisibleAreasAfterSentryRange.Length, AreasCloser.Length);
 	
 	CNavArea bestArea = NULL_AREA;
 	
-	if (VisibleAreasAfterSentryRange.Length > 0) bestArea = VisibleAreasAfterSentryRange.Get(GetRandomInt(0, VisibleAreasAfterSentryRange.Length - 1));
-	else if (VisibleAreas.Length > 0)            bestArea =                 VisibleAreas.Get(GetRandomInt(0, VisibleAreas.Length                 - 1));
-	else if (AreasCloser.Length > 0)             bestArea =                  AreasCloser.Get(GetRandomInt(0, AreasCloser.Length                  - 1));
+	if (VisibleAreasAfterSentryRange.Length > 0)
+		bestArea = VisibleAreasAfterSentryRange.Get(GetRandomInt(0, VisibleAreasAfterSentryRange.Length - 1));
+	else if (VisibleAreas.Length > 0)
+		bestArea = VisibleAreas.Get(GetRandomInt(0, VisibleAreas.Length - 1));
+	else if (AreasCloser.Length > 0)
+		bestArea = AreasCloser.Get(GetRandomInt(0, AreasCloser.Length - 1));
 	
 	delete AreasCloser;
 	delete VisibleAreas;
@@ -3288,7 +3441,7 @@ float GetIdealTankAttackRange(int client)
 			return TANK_ATTACK_RANGE_MELEE;
 		}
 		
-		switch(TF2Util_GetWeaponID(weapon))
+		switch (TF2Util_GetWeaponID(weapon))
 		{
 			case TF_WEAPON_ROCKETLAUNCHER, TF_WEAPON_GRENADELAUNCHER, TF_WEAPON_FLAREGUN, TF_WEAPON_DIRECTHIT, TF_WEAPON_PARTICLE_CANNON, TF_WEAPON_CANNON:
 			{
@@ -3310,12 +3463,13 @@ float GetIdealTankAttackRange(int client)
 			vis.ForgetEntity(i);
 } */
 
+//Extension of the original function
 bool OpportunisticallyUseWeaponAbilities(int client)
 {
 	//The Hitmans Heatmaker
 	if (HasSniperRifle(client) && TF2_IsPlayerInCondition(client, TFCond_Slowed))
 	{
-		if (GetEntPropFloat(client, Prop_Send, "m_flRageMeter") >= 0.0 && GetEntProp(client, Prop_Send, "m_bRageDraining") == 0)
+		if (TF2_GetRageMeter(client) >= 0.0 && !TF2_IsRageDraining(client))
 		{
 			g_iAdditionalButtons[client] |= IN_RELOAD;
 			return true;
@@ -3325,7 +3479,7 @@ bool OpportunisticallyUseWeaponAbilities(int client)
 	//Phlogistinator
 	if (IsWeapon(client, TF_WEAPON_FLAMETHROWER))
 	{
-		if (GetEntPropFloat(client, Prop_Send, "m_flRageMeter") >= 100.0 && GetEntProp(client, Prop_Send, "m_bRageDraining") == 0)
+		if (TF2_GetRageMeter(client) >= 100.0 && !TF2_IsRageDraining(client))
 		{
 			VS_PressAltFireButton(client);
 			return true;
@@ -3792,4 +3946,88 @@ CKnownEntity GetHealerOfThreat(INextBot bot, const CKnownEntity threat)
 	}
 	
 	return threat;
+}
+
+void MonitorKnownEntities(int client, IVision vision)
+{
+	for (int i = 1; i <= MaxClients; i++)
+	{
+		if (i == client)
+			continue;
+		
+		if (!IsClientInGame(i))
+			continue;
+		
+		if (GetClientTeam(i) == GetClientTeam(client))
+			continue;
+		
+		if (!IsPlayerAlive(i))
+			continue;
+		
+		if (TF2_IsLineOfFireClear4(client, i))
+		{
+			//If the threat is within our visible sightline, we will know about it
+			vision.AddKnownEntity(i);
+		}
+	}
+}
+
+bool ShouldCampBomb(int client)
+{
+	int bomb = FindBombNearestToHatch();
+	
+	if (bomb == -1)
+		return false;
+	
+	float hatchPosition[3]; hatchPosition = GetBombHatchPosition();
+	float bombPosition[3]; bombPosition = WorldSpaceCenter(bomb);
+	
+	if (GetVectorDistance(hatchPosition, bombPosition) > BOMB_TOO_CLOSE_RANGE)
+	{
+		//The bomb is stil pretty far from the hatch
+		return false;
+	}
+	
+	int iEnt = -1;
+	
+	while ((iEnt = FindEntityByClassname(iEnt, "obj_sentrygun")) != -1)
+	{
+		if (BaseEntity_GetTeamNumber(iEnt) != GetClientTeam(client))
+			continue;
+		
+		const float maxWatchRadius = 1000.0;
+		
+		if (GetVectorDistance(bombPosition, WorldSpaceCenter(iEnt)) <= maxWatchRadius)
+		{
+			//There;s a sentry watching the bomb
+			return false;
+		}
+	}
+	
+	if (GetBombCamperCount() > 0)
+	{
+		//There;s too many of us doing this behavior
+		return false;
+	}
+	
+	return true;
+}
+
+int GetBombCamperCount()
+{
+	int count = 0;
+	
+	for (int i = 1; i <= MaxClients; i++)
+	{
+		if (!IsClientInGame(i))
+			continue;
+		
+		if (!g_bIsDefenderBot[i])
+			continue;
+		
+		if (ActionsManager.GetAction(i, "DefenderCampBomb") != INVALID_ACTION)
+			count++;
+	}
+	
+	return count;
 }

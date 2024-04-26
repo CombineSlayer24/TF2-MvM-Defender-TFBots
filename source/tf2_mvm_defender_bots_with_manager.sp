@@ -37,7 +37,10 @@ static float m_flNextCommand[MAXPLAYERS + 1];
 static float m_flLastReadyInputTime[MAXPLAYERS + 1];
 
 //Config
-ArrayList adtBotNames;
+static ArrayList m_adtBotNames;
+
+//Global entities
+int g_iPopulationManager = -1;
 
 ConVar redbots_manager_debug;
 ConVar redbots_manager_debug_actions;
@@ -77,7 +80,7 @@ public Plugin myinfo =
 	name = "[TF2] TFBots (MVM) with Manager",
 	author = "Officer Spy",
 	description = "Bot Management",
-	version = "1.0.0",
+	version = "1.0.1",
 	url = ""
 };
 
@@ -152,7 +155,7 @@ public void OnPluginStart()
 	LoadLoadoutFunctions();
 	LoadPreferencesData();
 	
-	adtBotNames = new ArrayList(MAX_NAME_LENGTH);
+	m_adtBotNames = new ArrayList(MAX_NAME_LENGTH);
 	
 	InitNextBotPathing();
 }
@@ -186,6 +189,9 @@ public void OnClientPutInServer(int client)
 
 public void OnEntityCreated(int entity, const char[] classname)
 {
+	if (StrEqual(classname, "info_populator"))
+		g_iPopulationManager = entity;
+	
 	DHooks_OnEntityCreated(entity, classname);
 }
 
@@ -433,7 +439,7 @@ public Action Listener_TournamentPlayerReadystate(int client, const char[] comma
 				if (m_flLastReadyInputTime[client] <= GetGameTime())
 				{
 					m_flLastReadyInputTime[client] = GetGameTime() + 3.0;
-					PrintToChat(client, "Press ready again to start the bots.");
+					PrintToChat(client, "%s Press ready again to start the bots.", PLUGIN_PREFIX);
 					
 					return Plugin_Handled;
 				}
@@ -458,7 +464,7 @@ public Action Timer_CheckBotImbalance(Handle timer)
 	
 	switch (redbots_manager_mode.IntValue)
 	{
-		case MANAGER_MODE_MANUAL_BOTS:
+		case MANAGER_MODE_MANUAL_BOTS, MANAGER_MODE_READY_BOTS:
 		{
 			//Bots are added pre-round, don't monitor them during the round
 			if (GameRules_GetRoundState() != RoundState_BetweenRounds)
@@ -556,7 +562,13 @@ void SetRandomNameOnBot(int client)
 
 void GetRandomDefenderBotName(char[] buffer, int maxlen)
 {
-	char botName[MAX_NAME_LENGTH]; adtBotNames.GetString(GetRandomInt(0, adtBotNames.Length - 1), botName, sizeof(botName));
+	if (m_adtBotNames.Length == 0)
+	{
+		LogError("GetRandomDefenderBotName: No bot names were ever parsed!");
+		return;
+	}
+	
+	char botName[MAX_NAME_LENGTH]; m_adtBotNames.GetString(GetRandomInt(0, m_adtBotNames.Length - 1), botName, sizeof(botName));
 	
 	strcopy(buffer, maxlen, botName);
 }
@@ -664,14 +676,14 @@ void Config_LoadBotNames()
 		return;
 	}
 	
-	adtBotNames.Clear();
+	m_adtBotNames.Clear();
 	
 	while (ReadFileLine(hConfigFile, currentLine, sizeof(currentLine)))
 	{
 		TrimString(currentLine);
 		
 		if (strlen(currentLine) > 0)
-			adtBotNames.PushString(currentLine);
+			m_adtBotNames.PushString(currentLine);
 	}
 	
 	delete hConfigFile;
