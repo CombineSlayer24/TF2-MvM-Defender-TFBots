@@ -241,14 +241,14 @@ stock int TF2_CreateHat(int client, int index, int level, int quality, int unusu
 		else
 			SetEntProp( item, Prop_Send, "m_iEntityLevel", GetRandomInt( 1, 100 ) );
 
-		if (GetRandomInt( 1, 10 ) == 1)
+		if ( GetRandomInt( 1, 10 ) == 1 )
 		{
 			if ( quality == 3 || quality == 1 || quality == 13 || quality == 5 )
 				TF2Attrib_RemoveByDefIndex( item, 214 );
 			else
 			{
 				//Set to strange
-				if (GetRandomInt( 1, 4 ) == 1 )
+				if ( GetRandomInt( 1, 4 ) == 1 )
 				{
 					SetEntData( item, FindSendPropInfo( netClass, "m_iEntityQuality" ), 11 );
 					TF2Attrib_SetByDefIndex( item, 214, view_as<float>( GetRandomInt( 0, 9000 ) ) );
@@ -261,10 +261,10 @@ stock int TF2_CreateHat(int client, int index, int level, int quality, int unusu
 
 		if ( unusual == 1 )
 		{
-			if (GetRandomInt( 1, 4 ) == 1 )
+			if ( GetRandomInt( 1, 4 ) == 1 )
 			{
 				//Set the hat as unusual
-				SetEntData( item, FindSendPropInfo(netClass, "m_iEntityQuality"), 5 );
+				SetEntData( item, FindSendPropInfo( netClass, "m_iEntityQuality" ), 5 );
 				TF2Attrib_SetByDefIndex( item, 134, GetRandomInt( 1, 174 ) + 0.0 );
 			}
 		}
@@ -301,25 +301,12 @@ stock int TF2_CreateHat(int client, int index, int level, int quality, int unusu
 		}
 		
 		TF2Util_EquipPlayerWearable( client, item );
-		SetEntProp( item, Prop_Send, "m_bValidatedAttachedEntity", 1 );
+		//SetEntProp( item, Prop_Send, "m_bValidatedAttachedEntity", 1 );
 	}
 	else
 		LogError( "TF2_CreateHat: Failed to create entity." );
 	
 	return item;
-}
-
-stock void RemoveAllWearables( int client )
-{
-	for ( int i = 0; i < TF2Util_GetPlayerWearableCount( client ); i++ )
-	{
-		int item = TF2Util_GetPlayerWearable( client, i );
-		
-		if ( item == -1 )
-			continue;
-		
-		TF2_RemoveWearable( client, item );
-	}
 }
 
 stock void SetItemID(int item, int value)

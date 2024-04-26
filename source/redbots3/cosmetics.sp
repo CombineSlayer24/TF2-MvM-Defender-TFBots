@@ -54,12 +54,22 @@ public const int ALLCLASS_FEET[] = {
 //SCOUT
 //---------------------------------------------------------------------------------------------------------
 
-
-public Action Timer_GiveRandomCosmetics(Handle timer, int client)
+public Action Timer_ApplyCosmetics(Handle timer, int client)
 {
 	if ( !IsClientInGame( client ) )
 		return Plugin_Stop;
 
-	
+	ApplyRandomCosmetics( client );
+
+	PrintToChatAll("Called: Timer_ApplyCosmetics");
+
 	return Plugin_Stop;
+}
+
+void ApplyRandomCosmetics(int client)
+{
+	GiveItemToPlayer( client,"tf_wearable", 30740, 10, 6 );	
+	GiveItemToPlayer( client,"tf_wearable", 30309, 10, 6 );
+
+	PrintToChatAll("Called: ApplyRandomCosmetics");
 }
