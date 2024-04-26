@@ -232,19 +232,22 @@ stock int TF2_CreateHat(int client, int index, int level, int quality, int unusu
 		char netClass[ 64 ]; GetEntityNetClass( item, netClass, sizeof( netClass ) );
 		SetEntData( item, FindSendPropInfo( netClass, "m_iEntityQuality" ), quality );
 		SetEntData( item, FindSendPropInfo( netClass, "m_iEntityLevel" ), level );
-		
-		SetItemID( item, GetRandomInt( 1, 2048 ) );		
-		DispatchSpawn( item );
 
 		if ( level != 10 )
+		{
 			SetEntProp( item, Prop_Send, "m_iEntityLevel", level );
+		}
 		else
+		{
 			SetEntProp( item, Prop_Send, "m_iEntityLevel", GetRandomInt( 1, 100 ) );
+		}
 
 		if ( GetRandomInt( 1, 10 ) == 1 )
 		{
 			if ( quality == 3 || quality == 1 || quality == 13 || quality == 5 )
+			{
 				TF2Attrib_RemoveByDefIndex( item, 214 );
+			}
 			else
 			{
 				//Set to strange
@@ -256,8 +259,11 @@ stock int TF2_CreateHat(int client, int index, int level, int quality, int unusu
 			}
 		}	
 
-		if ( unusual == 0 )
+		// This causes a crash. Why the fuck? too bad!!!!
+/* 		if ( unusual == 0 )
+		{
 			TF2Attrib_RemoveByDefIndex( item, 134 );
+		}
 
 		if ( unusual == 1 )
 		{
@@ -269,12 +275,12 @@ stock int TF2_CreateHat(int client, int index, int level, int quality, int unusu
 			}
 		}
 
-		if ( unusual > 1 )
+ 		if ( unusual > 1 )
 		{
 			SetEntProp( item, Prop_Send, "m_iEntityQuality", 5 );
 			TF2Attrib_SetByDefIndex( item, 134, unusual + 0.0 );
-		}	
-		
+		} */
+
 		//Special Hats always unususl
 		if( index == 1158 || index == 1173 )
 		{
@@ -293,42 +299,23 @@ stock int TF2_CreateHat(int client, int index, int level, int quality, int unusu
 			}
 		}
 
-		if ( GetRandomInt( 1, 4 ) == 1 )
+		// This causes a crash. too bad
+/* 		if ( GetRandomInt( 1, 4 ) == 1 )
 		{
 			int randomPaint = GetRandomInt( 0, 28 ); // Manually specify the length of the array
 			TF2Attrib_SetByDefIndex( item, 142, g_paintValues[ randomPaint ][ 0 ] );
 			TF2Attrib_SetByDefIndex( item, 261, g_paintValues[ randomPaint ][ 1 ] );
-		}
+		} */
 		
-		TF2Util_EquipPlayerWearable( client, item );
+		EconItemSpawnGiveTo(item, client);
 		//SetEntProp( item, Prop_Send, "m_bValidatedAttachedEntity", 1 );
 	}
 	else
-		LogError( "TF2_CreateHat: Failed to create entity." );
-	
-	return item;
-}
-
-stock void SetItemID(int item, int value)
-{
-	char netClass[32]; GetEntityNetClass(item, netClass, sizeof(netClass));
-	int offset = FindSendPropInfo(netClass, "m_iItemIDHigh");
-	
-	if (offset <= 0)
 	{
-		PrintToChatAll("[SetItemID] OFFSET ERROR: %s %d", netClass, offset);
-		LogError("SetItemID: OFFSET ERROR: %s %d", netClass, offset);
-		return;
+		LogError( "TF2_CreateHat: Failed to create entity." );
 	}
 	
-	SetEntData(item, offset - 8, value);	// m_iItemID
-	SetEntData(item, offset - 4, value);	// m_iItemID
-	SetEntData(item, offset, value);		// m_iItemIDHigh
-	SetEntData(item, offset + 4, value);	// m_iItemIDLow
-	
-#if defined TESTING_ONLY
-	PrintToChatAll("[SetItemID] %s %i.", netClass, value);
-#endif
+	return item;
 }
 
 //Call this when you're ready to spawn it

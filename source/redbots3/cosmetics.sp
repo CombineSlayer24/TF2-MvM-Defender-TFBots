@@ -68,8 +68,8 @@ public Action Timer_ApplyCosmetics(Handle timer, int client)
 
 void ApplyRandomCosmetics(int client)
 {
-	GiveItemToPlayer( client,"tf_wearable", 30740, 10, 6 );	
-	GiveItemToPlayer( client,"tf_wearable", 30309, 10, 6 );
+	TF2_CreateHat( client, 30740, 10, 6, 0 );	
+	TF2_CreateHat( client, 30309, 10, 6, 0 );
 
 	PrintToChatAll("Called: ApplyRandomCosmetics");
 }
