@@ -46,6 +46,7 @@ ConVar redbots_manager_debug;
 ConVar redbots_manager_debug_actions;
 ConVar redbots_manager_mode;
 ConVar redbots_manager_use_custom_loadouts;
+ConVar redbots_manager_use_cosmetics;
 ConVar redbots_manager_kick_bots;
 ConVar redbots_manager_min_players;
 ConVar redbots_manager_defender_team_size;
@@ -96,7 +97,8 @@ public void OnPluginStart()
 	redbots_manager_debug = CreateConVar("sm_redbots_manager_debug", "0", _, FCVAR_NONE);
 	redbots_manager_debug_actions = CreateConVar("sm_redbots_manager_debug_actions", "0", _, FCVAR_NONE);
 	redbots_manager_mode = CreateConVar("sm_redbots_manager_mode", "0", "What mode of the mod the use.", FCVAR_NOTIFY);
-	redbots_manager_use_custom_loadouts = CreateConVar("sm_redbots_manager_use_custom_loadouts", "0", "Let's bots use different weapons.", FCVAR_NOTIFY);
+	redbots_manager_use_custom_loadouts = CreateConVar("sm_redbots_manager_use_custom_loadouts", "0", "Allow bots to equip random weapons.", FCVAR_NOTIFY);
+	redbots_manager_use_cosmetics = CreateConVar("sm_redbots_manager_use_cosmetics", "0", "Allow bots to equip random cosmetics.", FCVAR_NOTIFY);
 	redbots_manager_kick_bots = CreateConVar("sm_redbots_manager_kick_bots", "1", "Kick bots on wave failure/completion.", FCVAR_NOTIFY);
 	redbots_manager_min_players = CreateConVar("sm_redbots_manager_min_players", "3", "Minimum players for normal missions. Other difficulties are adjusted based on this value. Set to -1 to disable entirely.", FCVAR_NOTIFY, true, -1.0, true, float(MAXPLAYERS));
 	redbots_manager_defender_team_size = CreateConVar("sm_redbots_manager_defender_team_size", "6", _, FCVAR_NOTIFY);
