@@ -30,12 +30,31 @@ static void Event_MvmWaveFailed(Event event, const char[] name, bool dontBroadca
 		//Global cooldown before players can ready up again
 		g_flNextReadyTime = GetGameTime() + redbots_manager_ready_cooldown.FloatValue;
 	}
+	
+	if (IsPluginMvMCreditsLoaded())
+		for (int i = 1; i <= MaxClients; i++)
+			if (IsClientInGame(i) && g_bIsDefenderBot[i])
+				FakeClientCommand(i, "sm_requestcredits");
 }
 
 public void Event_MvmWaveComplete(Event event, const char[] name, bool dontBroadcast)
 {
 	if (redbots_manager_kick_bots.BoolValue)
 		RemoveAllDefenderBots("BotManager3: Wave complete!", IsFinalWave());
+	
+	bool bRequestCredits = IsPluginMvMCreditsLoaded();
+	
+	for (int i = 1; i <= MaxClients; i++)
+	{
+		if (IsClientInGame(i) && g_bIsDefenderBot[i])
+		{
+			//Wave complete, rethink what we should do
+			ResetIntentionInterface(i);
+			
+			if (bRequestCredits)
+				FakeClientCommand(i, "sm_requestcredits");
+		}
+	}
 }
 
 public void Event_RevivePlayerNotify(Event event, const char[] name, bool dontBroadcast)

@@ -28,10 +28,12 @@ enum
 
 bool g_bAreBotsEnabled;
 float g_flNextReadyTime;
+int g_iDetonatingPlayer = -1;
 
 bool g_bIsDefenderBot[MAXPLAYERS + 1];
 bool g_bIsBeingRevived[MAXPLAYERS + 1];
 int g_iAdditionalButtons[MAXPLAYERS + 1];
+int g_iSubtractiveButtons[MAXPLAYERS + 1];
 
 static float m_flNextCommand[MAXPLAYERS + 1];
 static float m_flLastReadyInputTime[MAXPLAYERS + 1];
@@ -60,6 +62,7 @@ ConVar tf_bot_health_ok_ratio;
 ConVar tf_bot_ammo_search_range;
 ConVar tf_bot_health_search_far_range;
 ConVar tf_bot_health_search_near_range;
+ConVar tf_bot_suicide_bomb_range;
 
 #if defined METHOD_MVM_UPGRADES
 Address g_pMannVsMachineUpgrades;
@@ -82,7 +85,7 @@ public Plugin myinfo =
 	name = "[TF2] TFBots (MVM) with Manager",
 	author = "Officer Spy",
 	description = "Bot Management",
-	version = "1.0.2",
+	version = "1.0.4",
 	url = ""
 };
 
@@ -182,6 +185,7 @@ public void OnClientDisconnect(int client)
 public void OnClientPutInServer(int client)
 {
 	g_iAdditionalButtons[client] = 0;
+	g_iSubtractiveButtons[client] = 0;
 	m_flNextCommand[client] = GetGameTime();
 	m_flLastReadyInputTime[client] = 0.0;
 	
@@ -206,6 +210,7 @@ public void OnConfigsExecuted()
 	tf_bot_ammo_search_range = FindConVar("tf_bot_ammo_search_range");
 	tf_bot_health_search_far_range = FindConVar("tf_bot_health_search_far_range");
 	tf_bot_health_search_near_range = FindConVar("tf_bot_health_search_near_range");
+	tf_bot_suicide_bomb_range = FindConVar("tf_bot_suicide_bomb_range");
 }
 
 public Action OnPlayerRunCmd(int client, int &buttons, int &impulse, float vel[3], float angles[3], int &weapon, int &subtype, int &cmdnum, int &tickcount, int &seed, int mouse[2])
@@ -221,10 +226,37 @@ public Action OnPlayerRunCmd(int client, int &buttons, int &impulse, float vel[3
 			g_iAdditionalButtons[client] = 0;
 		}
 		
+		if (g_iSubtractiveButtons[client] != 0)
+		{
+			buttons &= ~g_iSubtractiveButtons[client];
+			g_iSubtractiveButtons[client] = 0;
+		}
+		
 		PluginBot_SimulateFrame(client);
+		
+		if (buttons & IN_ATTACK)
+		{
+			int currentWeapon = BaseCombatCharacter_GetActiveWeapon(client);
+			
+			if (currentWeapon != -1 && TF2Util_GetWeaponID(currentWeapon) == TF_WEAPON_MINIGUN && !HasAmmo(currentWeapon))
+			{
+				//Don't keep spinning the minigun if it ran out of ammo
+				buttons &= ~IN_ATTACK;
+			}
+		}
 	}
 	
 	return Plugin_Continue;
+}
+
+public void TF2_OnConditionAdded(int client, TFCond condition)
+{
+	if (condition == TFCond_Taunting && TF2_GetClientTeam(client) == TFTeam_Blue && IsSentryBusterRobot(client))
+	{
+		//Keep track of the player that is detonating
+		g_iDetonatingPlayer = client;
+		CreateTimer(2.0, Timer_ForgetDetonatingPlayer, client);
+	}
 }
 
 public Action Command_Votebots(int client, int args)
@@ -496,6 +528,18 @@ public Action Timer_CheckBotImbalance(Handle timer)
 	return Plugin_Continue;
 }
 
+public Action Timer_ForgetDetonatingPlayer(Handle timer, any data)
+{
+	//They should have detonated by now
+	
+	//Another player might have started detonating
+	//Don't forget the newest one so soon
+	if (g_iDetonatingPlayer == data)
+		g_iDetonatingPlayer = -1;
+	
+	return Plugin_Stop;
+}
+
 public Action DefenderBot_Touch(int entity, int other)
 {
 	if (BaseEntity_IsPlayer(other) && CBaseNPC_GetNextBotOfEntity(entity).IsEnemy(other))
@@ -634,23 +678,21 @@ eMissionDifficulty GetMissionDifficulty()
 	ReplaceString(missionName, sizeof(missionName), "scripts/population/", "");
 	ReplaceString(missionName, sizeof(missionName), ".pop", "");
 	
-	eMissionDifficulty type;
-	
-	type = Config_GetMissionDifficultyFromName(missionName);
+	eMissionDifficulty type = Config_GetMissionDifficultyFromName(missionName);
 	
 	//No config file specified a difficulty, search for one ourselves
 	if (type == MISSION_UNKNOWN)
 	{
 		char mapName[PLATFORM_MAX_PATH]; GetCurrentMap(mapName, sizeof(mapName));
 		
-		if (StrEqual(missionName, mapName))
+		//Searching by prefix or suffix
+		if (StrEqual(missionName, mapName) || StrContains(missionName, "_norm_", false) != -1)
 		{
 			//If the mission name is the same as the map's name, it's typically a normal mission
 			type = MISSION_NORMAL;
 		}
 		else if (StrContains(missionName, "_intermediate", false) != -1 || StrContains(missionName, "_int_", false) != -1)
 		{
-			//Searching by prefix or suffix
 			type = MISSION_INTERMEDIATE;
 		}
 		else if (StrContains(missionName, "_advanced", false) != -1 || StrContains(missionName, "_adv_", false) != -1)
