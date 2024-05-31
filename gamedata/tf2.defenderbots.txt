@@ -6,16 +6,20 @@
 		{
 			"MannVsMachineUpgrades"
 			{
+				"windows"
+				{
+					"signature"	"CTFGameRules::SetCustomUpgradesFile"
+					"read"	"50"
+				}
 				"linux"
 				{
-					"signature" "g_MannVsMachineUpgrades"
-					"read" "0"
+					"signature"	"g_MannVsMachineUpgrades"
 				}
 			}
 		}
 		"Keys"
 		{
-			"CTFPlayer_BaseOffset"
+			"CTFBot_BaseOffset"
 			{
 				"windows"	"m_iPlayerSkinOverride"
 				"linux"		"m_iPlayerSkinOverride"
@@ -25,12 +29,20 @@
 				"windows"	"m_vecOrigin"
 				"linux"		"m_vecOrigin"
 			}
+			"CTFBuffItem_BaseOffset"
+			{
+				"windows"	"m_nInspectStage"
+				"linux"		"m_nInspectStage"
+			}
 		}
 		"Signatures"
 		{
+			"CTFGameRules::SetCustomUpgradesFile" //Only used to get g_MannVsMachineUpgrades address
+			{
+				"windows"	"\x55\x8B\xEC\x57\x8B\x3D\x2A\x2A\x2A\x2A\x85\xFF\x74\x2A\x8B\x4D\x2A\x83\xC1\x08\x56\x83\x79\x2A\x02\x75\x2A\x8B\x01\xBE\x2A\x2A\x2A\x2A\x85\xC0\x0F\x45\xF0\xEB\x2A\xE8\x2A\x2A\x2A\x2A\x8B\xF0\x56\xB9\x2A\x2A\x2A\x2A"
+			}
 			"g_MannVsMachineUpgrades"
 			{
-				"library"	"server"
 				"linux"		"@g_MannVsMachineUpgrades"
 			}
 			"CTFPlayer::PostInventoryApplication"
@@ -61,7 +73,7 @@
 			"CEconItemSchema::GetAttributeDefinitionByName"
 			{
 				"windows"	"\x55\x8B\xEC\x83\xEC\x1C\x83\x7D\x2A\x00"
-				"linux"		"@2_ZNK15CEconItemSchema28GetAttributeDefinitionByNameEPKc"
+				"linux"		"@_ZN15CEconItemSchema28GetAttributeDefinitionByNameEPKc"
 			}
 			"CTFGameRules::CanUpgradeWithAttrib"
 			{
@@ -83,7 +95,7 @@
 				"windows"	"\x55\x8B\xEC\x81\xEC\xD4\x01\x00\x00\x83\x7D\x2A\x00"
 				"linux"		"@_ZN12CTFGameRules20IsUpgradeTierEnabledEP9CTFPlayerii"
 			}
-			"CMannVsMachineUpgradeManager::LoadUpgradesFile"
+			"CMannVsMachineUpgradeManager::LoadUpgradesFile" //Only used for detour if g_MannVsMachineUpgrades address lookup failed
 			{
 				"windows"	"\xA1\x2A\x2A\x2A\x2A\x53\x8B\xD9\x56\x8D\x90\xA4\x0C\x00\x00"
 				"linux"		"@_ZN28CMannVsMachineUpgradeManager16LoadUpgradesFileEv"
@@ -96,6 +108,7 @@
 		}
 		"Offsets"
 		{
+			//These are virtual function offsets
 			"CBaseCombatWeapon::HasAmmo"
 			{
 				"windows"	"239"
@@ -131,21 +144,73 @@
 				"windows"	"63"
 				"linux"		"64"
 			}
-			//NOTE: variable offsets are calculated based on these values with the base netprop offset in the Keys section
-			"CTFPlayer::m_isLookingAroundForEnemies" //Property on class CTFBot
+			"CTFWeaponBase::Clip1"
+			{
+				"windows"	"344"
+				"linux"		"350"
+			}
+			//These numbers are used to calculate the actual offset based on the base netprop offset in the Keys section
+			//The calculation formula is base offset + this number
+			"CTFBot::m_isLookingAroundForEnemies"
 			{
 				"windows"	"612" //build 8835751: 10336
-				"linux"		"612" //build 8835751: 10332
+				"linux"		"604" //build 8835751: 10332
 			}
 			"CPopulationManager::m_nStartingCurrency"
 			{
 				"windows"	"628" //build 8835751: 1460
 				"linux"		"628" //build 8835751: 1484
 			}
-			"CTFPlayer::m_mission" //Property on class CTFBot
+			"CTFBot::m_mission"
 			{
 				"windows"	"664" //build 8835751: 10388
-				"linux"		"664" //build 8835751: 10384
+				"linux"		"656" //build 8835751: 10384
+			}
+			"CTFBuffItem::m_bPlayingHorn"
+			{
+				"windows"	"40" //build 8835751: 2080
+				"linux"		"40" //build 8835751: 2092
+			}
+			//These numbers are raw offsets and are not used for any calculations
+			"CMannVsMachineUpgrades::szAttrib"
+			{
+				"windows"	"0"
+				"linux"		"0"
+			}
+			"CMannVsMachineUpgrades::szIcon"
+			{
+				"windows"	"128"
+				"linux"		"64"
+			}
+			"CMannVsMachineUpgrades::flIncrement"
+			{
+				"windows"	"388"
+				"linux"		"324"
+			}
+			"CMannVsMachineUpgrades::flCap"
+			{
+				"windows"	"392"
+				"linux"		"328"
+			}
+			"CMannVsMachineUpgrades::nCost"
+			{
+				"windows"	"396"
+				"linux"		"332"
+			}
+			"CMannVsMachineUpgrades::nUIGroup"
+			{
+				"windows"	"400"
+				"linux"		"336"
+			}
+			"CMannVsMachineUpgrades::nQuality"
+			{
+				"windows"	"404"
+				"linux"		"340"
+			}
+			"CMannVsMachineUpgrades::nTier"
+			{
+				"windows"	"408"
+				"linux"		"344"
 			}
 		}
 		"Functions"

@@ -5,23 +5,35 @@ void InitGameEventHooks()
 	HookEvent("mvm_wave_complete", Event_MvmWaveComplete);
 	HookEvent("revive_player_notify", Event_RevivePlayerNotify);
 	HookEvent("mvm_begin_wave", Event_MvmWaveBegin);
+	HookEvent("player_team", Event_PlayerTeam);
 }
 
 static void Event_PlayerSpawn(Event event, const char[] name, bool dontBroadcast)
 {
 	int client = GetClientOfUserId(event.GetInt("userid"));
 	
-	//We're not being revived if we spawned in
-	g_bIsBeingRevived[client] = false;
-	
 	if (TF2_GetClientTeam(client) == TFTeam_Red && IsTFBotPlayer(client))
 		CreateTimer(0.2, Timer_PlayerSpawn, client, TIMER_FLAG_NO_MAPCHANGE);
+	
+	if (g_bIsDefenderBot[client])
+	{
+		g_bIsBeingRevived[client] = false;
+		g_iBuyUpgradesNumber[client] = CanBuyUpgradesNow(client) ? GetRandomInt(1, 100) : 0;
+		
+		if (redbots_manager_debug.BoolValue)
+			PrintToChatAll("[Event_PlayerSpawn] g_iBuyUpgradesNumber[%d] = %d", client, g_iBuyUpgradesNumber[client]);
+	}
 }
 
 static void Event_MvmWaveFailed(Event event, const char[] name, bool dontBroadcast)
 {
 	if (redbots_manager_kick_bots.BoolValue)
+	{
 		RemoveAllDefenderBots("BotManager3: Wave failed!");
+		ManageDefenderBots(false);
+		UpdateChosenBotTeamComposition();
+		PrintToChatAll("%s Use command !viewbotlineup to view the next bot team composition", PLUGIN_PREFIX);
+	}
 	
 	SetupSniperSpotHints();
 	
@@ -31,18 +43,22 @@ static void Event_MvmWaveFailed(Event event, const char[] name, bool dontBroadca
 		g_flNextReadyTime = GetGameTime() + redbots_manager_ready_cooldown.FloatValue;
 	}
 	
-	if (IsPluginMvMCreditsLoaded())
-		for (int i = 1; i <= MaxClients; i++)
-			if (IsClientInGame(i) && g_bIsDefenderBot[i])
-				FakeClientCommand(i, "sm_requestcredits");
+	CreateTimer(0.1, Timer_WaveFailure, _, TIMER_FLAG_NO_MAPCHANGE);
 }
 
 public void Event_MvmWaveComplete(Event event, const char[] name, bool dontBroadcast)
 {
 	if (redbots_manager_kick_bots.BoolValue)
+	{
 		RemoveAllDefenderBots("BotManager3: Wave complete!", IsFinalWave());
+		ManageDefenderBots(false);
+		UpdateChosenBotTeamComposition();
+		PrintToChatAll("%s Use command !viewbotlineup to view the next bot team composition", PLUGIN_PREFIX);
+	}
 	
-	bool bRequestCredits = IsPluginMvMCreditsLoaded();
+#if defined MOD_REQUEST_CREDITS
+	bool bRequestCredits = redbots_manager_bot_request_credits.BoolValue;
+#endif
 	
 	for (int i = 1; i <= MaxClients; i++)
 	{
@@ -51,8 +67,10 @@ public void Event_MvmWaveComplete(Event event, const char[] name, bool dontBroad
 			//Wave complete, rethink what we should do
 			ResetIntentionInterface(i);
 			
+#if defined MOD_REQUEST_CREDITS
 			if (bRequestCredits)
 				FakeClientCommand(i, "sm_requestcredits");
+#endif
 		}
 	}
 }
@@ -77,9 +95,24 @@ public void Event_MvmWaveBegin(Event event, const char[] name, bool dontBroadcas
 	}
 	
 	if (redbots_manager_mode.IntValue == MANAGER_MODE_AUTO_BOTS)
+		ManageDefenderBots(true);
+}
+
+public void Event_PlayerTeam(Event event, const char[] name, bool dontBroadcast)
+{
+	int client = GetClientOfUserId(event.GetInt("userid"));
+	TFTeam team = view_as<TFTeam>(event.GetInt("team"));
+	TFTeam oldTeam = view_as<TFTeam>(event.GetInt("oldteam"));
+	bool isDisconnect = event.GetBool("disconnect");
+	
+	if (!IsFakeClient(client))
 	{
-		CreateTimer(0.1, Timer_CheckBotImbalance, _, TIMER_FLAG_NO_MAPCHANGE | TIMER_REPEAT);
-		g_bAreBotsEnabled = true;
+		/* When changing teams, update bot team composition for
+		- red player disconnected
+		- player joined red
+		- player left red */
+		if ((isDisconnect && oldTeam == TFTeam_Red) || team == TFTeam_Red || oldTeam == TFTeam_Red)
+			UpdateChosenBotTeamComposition();
 	}
 }
 
@@ -90,8 +123,14 @@ static Action Timer_PlayerSpawn(Handle timer, any data)
 	
 	if (g_bIsDefenderBot[data])
 	{
+#if defined MOD_REQUEST_CREDITS
+		//Mainly for wave failures, try to request credits again
+		if (redbots_manager_bot_request_credits.BoolValue && GameRules_GetRoundState() == RoundState_BetweenRounds)
+			FakeClientCommand(data, "sm_requestcredits");
+#endif
+		
 		if (redbots_manager_debug.BoolValue)
-			PrintToChatAll("Timer_PlayerSpawn: Currency for %d is %d", data, TF2_GetCurrency(data));
+			PrintToChatAll("[Timer_PlayerSpawn] %N's currency: %d", data, TF2_GetCurrency(data));
 		
 		//We already made this guy into our bot, so do nothing
 		return Plugin_Stop;
@@ -128,11 +167,43 @@ static Action Timer_PlayerSpawn(Handle timer, any data)
 		//Let medic bots use their shields
 		VS_AddBotAttribute(data, CTFBot_PROJECTILE_SHIELD);
 		
-		//Set the credits we should have at this time
+		//Bots don't get their credits set when joining red because CTFGameRules::GetTeamAssignmentOverride ignores bot players
+		//Set their credits manually to what they should have like human players
 		TF2_SetCurrency(data, GetStartingCurrency(g_iPopulationManager) + GetAcquiredCreditsOfAllWaves());
 		
-		if (IsPluginMvMCreditsLoaded())
+#if defined MOD_REQUEST_CREDITS
+		if (redbots_manager_bot_request_credits.BoolValue)
 			FakeClientCommand(data, "sm_requestcredits");
+#endif
+		
+#if defined MOD_CUSTOM_ATTRIBUTES
+		TF2Attrib_SetByName(data, "cannot be sapped", 1.0);
+#endif
+	}
+	
+	return Plugin_Stop;
+}
+
+public Action Timer_WaveFailure(Handle timer)
+{
+	if (GameRules_GetRoundState() != RoundState_BetweenRounds)
+		return Plugin_Stop;
+	
+	for (int i = 1; i <= MaxClients; i++)
+	{
+		if (IsClientInGame(i) && g_bIsDefenderBot[i])
+		{
+			/* NOTE: this isn't actually necessary, but the reason why I'm doing this is so we
+			or the population manager forgets about the bots' upgrades so they can 
+			just go and buy upgrades again in their upgrade behavior, though this is really 
+			just for the bots that failed a wave but were not kicked */
+			if (g_bHasUpgraded[i])
+			{
+				g_bHasBoughtUpgrades[i] = false;
+				RefundPlayerUpgrades(i);
+				g_bHasUpgraded[i] = false;
+			}
+		}
 	}
 	
 	return Plugin_Stop;

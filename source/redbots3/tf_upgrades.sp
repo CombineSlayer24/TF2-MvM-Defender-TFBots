@@ -1,6 +1,16 @@
 #if defined METHOD_MVM_UPGRADES
 
-#define MAX_UPGRADES 59	//FAKE NEWS
+//Amount of upgrades parsed in mvm_upgrades.txt
+#define MAX_UPGRADES	62
+
+//Size of attribute string
+#define MAX_ATTRIBUTE_DESCRIPTION_LENGTH	128
+
+enum //CEconItemAttributeDefinition
+{
+	m_pKVAttribute = 0,
+	m_nDefIndex = 4
+};
 
 methodmap CEconItemAttributeDefinition
 {
@@ -11,10 +21,10 @@ methodmap CEconItemAttributeDefinition
 
 	public int GetIndex()
 	{
-		int iAttribIndex = LoadFromAddress(this.Address + view_as<Address>(4), NumberType_Int32);
+		int iAttribIndex = LoadFromAddress(this.Address + view_as<Address>(m_nDefIndex), NumberType_Int32);
 		
 		if (iAttribIndex > 3018 || iAttribIndex < 0)
-			iAttribIndex = LoadFromAddress(this.Address - view_as<Address>(4), NumberType_Int32); 
+			iAttribIndex = LoadFromAddress(this.Address - view_as<Address>(m_nDefIndex), NumberType_Int32); 
 	
 		return iAttribIndex;
 	}
@@ -30,26 +40,23 @@ public CEconItemAttributeDefinition CEIAD_GetAttributeDefinitionByName(const cha
 	return view_as<CEconItemAttributeDefinition>(GetAttributeDefinitionByName(CEconItemSchema, szAttribute));
 }
 
+//CMannVsMachineUpgrades
+// static int offset_szAttribute;
+// static int offset_szIcon;
+// static int offset_flIncrement;
+static int offset_flCap;
+// static int offset_nCost;
+static int offset_nUIGroup;
+// static int offset_nQuality;
+static int offset_nTier;
+static int CMannVsMachineUpgrades_Size;
+
 enum //CMannVsMachineUpgradeManager
 {
 	m_Upgrades = 12, //0x000C
 	
 	CMannVsMachineUpgradeManager_Size = 28
 }; //Size=0x001C
-
-enum //CMannVsMachineUpgrades
-{
-	m_szAttribute = 0,   //0x0000
-	m_szIcon = 128,      //0x0080
-	m_flIncrement = 388, //0x0184
-	m_flCap = 392,       //0x0188
-	m_nCost = 396,       //0x018C
-	m_iUIGroup = 400,    //0x0190
-	m_iQuality = 404,    //0x0194
-	m_iTier = 408,       //0x0198
-	
-	CMannVsMachineUpgrades_Size = 412
-}; //Size=0x019C
 
 methodmap CMannVsMachineUpgrades
 {
@@ -63,22 +70,22 @@ methodmap CMannVsMachineUpgrades
 	
 	public char[] m_szAttribute()
 	{
-		char attribute[128];
+		char attribute[MAX_ATTRIBUTE_DESCRIPTION_LENGTH];
 		
 		for (int i = 0; i < sizeof(attribute); i++)
-			attribute[i] = (LoadFromAddress(this.Address + view_as<Address>(i), NumberType_Int32));
+			attribute[i] = LoadFromAddress(this.Address + view_as<Address>(i), NumberType_Int32);
 		
 		return attribute;
 	}
 	
 	public float m_flCap()
 	{
-		return float(LoadFromAddress(this.Address + view_as<Address>(m_flCap), NumberType_Int32));
+		return float(LoadFromAddress(this.Address + view_as<Address>(offset_flCap), NumberType_Int32));
 	}
 	
 	public int m_iUIGroup()
 	{
-		return (LoadFromAddress(this.Address + view_as<Address>(m_iUIGroup), NumberType_Int32));
+		return LoadFromAddress(this.Address + view_as<Address>(offset_nUIGroup), NumberType_Int32);
 	}
 }
 
@@ -91,10 +98,35 @@ methodmap CMannVsMachineUpgradeManager < CMannVsMachineUpgrades
 	
 	public CMannVsMachineUpgrades GetUpgradeByIndex(int index)
 	{
-		Address Upgrades = ((this.Address) + view_as<Address>(m_Upgrades));
+		Address Upgrades = this.Address + view_as<Address>(m_Upgrades);
 		Address pUpgrades = view_as<Address>(LoadFromAddress(Upgrades, NumberType_Int32));
 		
 		return view_as<CMannVsMachineUpgrades>(pUpgrades + view_as<Address>(index * CMannVsMachineUpgrades_Size));
 	}
+}
+
+void InitMvMUpgrades(GameData hGamedata)
+{
+	// offset_szAttribute = hGamedata.GetOffset("CMannVsMachineUpgrades::szAttrib");
+	// offset_szIcon = hGamedata.GetOffset("CMannVsMachineUpgrades::szIcon");
+	// offset_flIncrement = hGamedata.GetOffset("CMannVsMachineUpgrades::flIncrement");
+	offset_flCap = hGamedata.GetOffset("CMannVsMachineUpgrades::flCap");
+	// offset_nCost = hGamedata.GetOffset("CMannVsMachineUpgrades::nCost");
+	offset_nUIGroup = hGamedata.GetOffset("CMannVsMachineUpgrades::nUIGroup");
+	// offset_nQuality = hGamedata.GetOffset("CMannVsMachineUpgrades::nQuality");
+	offset_nTier = hGamedata.GetOffset("CMannVsMachineUpgrades::nTier");
+	CMannVsMachineUpgrades_Size = offset_nTier + 4;
+	
+#if defined TESTING_ONLY
+	// LogMessage("CMannVsMachineUpgrades->szAttrib = %d", offset_szAttribute);
+	// LogMessage("CMannVsMachineUpgrades->szIcon = %d", offset_szIcon);
+	// LogMessage("CMannVsMachineUpgrades->flIncrement = %d", offset_flIncrement);
+	LogMessage("InitMvMUpgrades: CMannVsMachineUpgrades->flCap = %d", offset_flCap);
+	// LogMessage("CMannVsMachineUpgrades->nCost = %d", offset_nCost);
+	LogMessage("InitMvMUpgrades: CMannVsMachineUpgrades->nUIGroup = %d", offset_nUIGroup);
+	// LogMessage("CMannVsMachineUpgrades->nQuality = %d", offset_nQuality);
+	LogMessage("InitMvMUpgrades: CMannVsMachineUpgrades->nTier = %d", offset_nTier);
+	LogMessage("InitMvMUpgrades: Size of CMannVsMachineUpgrades = %d", CMannVsMachineUpgrades_Size);
+#endif
 }
 #endif

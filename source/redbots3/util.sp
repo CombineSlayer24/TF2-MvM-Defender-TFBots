@@ -73,7 +73,7 @@ char g_sPlayerUseMyNameResponse[][] =
 	"You totally stole my name."
 };
 
-//Make sure this matches with the eMissionDifficulty enum size
+//NOTE: Make sure this matches with the eMissionDifficulty enum size
 char g_sMissionDifficultyFilePaths[][] =
 {
 	"",
@@ -82,6 +82,13 @@ char g_sMissionDifficultyFilePaths[][] =
 	"configs/defender_bots_manager/mission_advanced.txt",
 	"configs/defender_bots_manager/mission_expert.txt",
 	"configs/defender_bots_manager/mission_nightmare.txt"
+};
+
+char g_sBotTeamCompositions[][][] =
+{
+	{"scout", "soldier", "demoman", "heavyweapons", "engineer", "medic"},
+	{"scout", "heavyweapons", "heavyweapons", "heavyweapons", "engineer", "sniper"},
+	{"scout", "heavyweapons", "heavyweapons", "pyro", "engineer", "demoman"}
 };
 
 char g_sRawPlayerClassNames[][] =
@@ -134,6 +141,17 @@ public const float g_paintValues[ 29 ][ 2 ] =
 	{ 8400928.0, 2452877.0 },
 	{ 11049612.0, 8626083.0 }
 };
+
+void RefundPlayerUpgrades(int client)
+{
+	KeyValues kv = new KeyValues("MVM_Respec");
+	
+	TF2_SetInUpgradeZone(client, true);
+	FakeClientCommandKeyValues(client, kv);
+	TF2_SetInUpgradeZone(client, false);
+	
+	delete kv;
+}
 
 bool IsTFBotPlayer(int client)
 {
@@ -387,9 +405,13 @@ int GetResistType(int client)
 
 int GetLastDamageType(int client)
 {
-	int m_LastDamageType = FindSendPropInfo("CTFPlayer", "m_flMvMLastDamageTime") + 20;
+	static int offset = -1;
 	
-	return ReadInt(GetEntityAddress(client) + view_as<Address>(m_LastDamageType));
+	if (offset == -1)
+		offset = FindSendPropInfo("CTFPlayer", "m_flMvMLastDamageTime") + 20; //m_LastDamageType
+	
+	// return ReadInt(GetEntityAddress(client) + view_as<Address>(offset));
+	return GetEntData(client, offset);
 }
 
 float[] WorldSpaceCenter(int entity)
@@ -529,6 +551,9 @@ int FindBotNearestToBombNearestToHatch(int client)
 		if (TF2_GetClientTeam(i) != GetEnemyTeamOfPlayer(client))
 			continue;
 		
+		if (TF2Util_IsPointInRespawnRoom(WorldSpaceCenter(i)))
+			continue;
+		
 		if (IsSentryBusterRobot(i))
 			continue;
 		
@@ -616,9 +641,7 @@ int SelectRandomReachableEnemy(int actor)
 	}
 	
 	if (playercount > 0)
-	{
 		return playerarray[GetRandomInt(0, playercount-1)];
-	}
 	
 	return -1;
 }
@@ -738,15 +761,76 @@ int GetNearestReviveMarker(int client, const float max_distance)
 	return bestEntity;
 }
 
-stock void RefundPlayerUpgrades(int client)
+/* void PowerupBottle_Reset(int bottle)
 {
-	KeyValues kv = new KeyValues("MVM_Respec");
+	SetEntProp(bottle, Prop_Send, "m_bActive", false);
+} */
+
+int PowerupBottle_GetType(int bottle)
+{
+	if (TF2Attrib_HookValueInt(0, "critboost", bottle))
+		return POWERUP_BOTTLE_CRITBOOST;
 	
-	SetEntProp(client, Prop_Send, "m_bInUpgradeZone", 1);	
-	FakeClientCommandKeyValues(client, kv);
-	SetEntProp(client, Prop_Send, "m_bInUpgradeZone", 0);
+	if (TF2Attrib_HookValueInt(0, "ubercharge", bottle))
+		return POWERUP_BOTTLE_UBERCHARGE;
 	
-	delete kv;
+	if (TF2Attrib_HookValueInt(0, "recall", bottle))
+		return POWERUP_BOTTLE_RECALL;
+	
+	if (TF2Attrib_HookValueInt(0, "refill_ammo", bottle))
+		return POWERUP_BOTTLE_REFILL_AMMO;
+	
+	if (TF2Attrib_HookValueInt(0, "building_instant_upgrade", bottle))
+		return POWERUP_BOTTLE_BUILDINGS_INSTANT_UPGRADE;
+	
+	return POWERUP_BOTTLE_NONE;
+}
+
+/* void PowerupBottle_SetNumCharges(int bottle, int numCharges)
+{
+	SetEntProp(bottle, Prop_Send, "m_usNumCharges", numCharges);
+	
+	TF2Attrib_SetByName(bottle, "powerup charges", float(numCharges));
+} */
+
+int PowerupBottle_GetNumCharges(int bottle)
+{
+	return GetEntProp(bottle, Prop_Send, "m_usNumCharges");
+}
+
+int PowerupBottle_GetMaxNumCharges(int bottle)
+{
+	return TF2Attrib_HookValueInt(0, "powerup_max_charges", bottle);
+}
+
+/* int GetCostOfCanteenType(PowerupBottleType_t type)
+{
+	switch (type)
+	{
+		case POWERUP_BOTTLE_CRITBOOST:	return 100;
+		case POWERUP_BOTTLE_UBERCHARGE:	return 75;
+		case POWERUP_BOTTLE_RECALL:	return 10;
+		case POWERUP_BOTTLE_REFILL_AMMO:	return 25;
+		case POWERUP_BOTTLE_BUILDINGS_INSTANT_UPGRADE:	return 50;
+	}
+} */
+
+int GetPowerupBottle(int client)
+{
+	int ent = -1;
+	
+	while ((ent = FindEntityByClassname(ent, "tf_powerup_bottle")) != -1)
+	{
+		if (BaseEntity_GetOwnerEntity(ent) == client)
+			break;
+	}
+	
+	return ent;
+}
+
+bool CanWeaponAirblast(int weapon)
+{
+	return TF2Attrib_HookValueInt(0, "airblast_disabled", weapon) == 0;
 }
 
 stock bool DoesAnyPlayerUseThisName(const char[] name)
@@ -760,14 +844,12 @@ stock bool DoesAnyPlayerUseThisName(const char[] name)
 	return false;
 }
 
-stock int ReadInt(Address pAddr)		
-{		
-    if (pAddr == Address_Null)		
-    {
-        return -1;		
-    }
-    		
-    return LoadFromAddress(pAddr, NumberType_Int32);		
+stock int ReadInt(Address pAddr)
+{
+	if (pAddr == Address_Null)
+		return -1;
+	
+	return LoadFromAddress(pAddr, NumberType_Int32);
 }
 
 //Somewhat borrowed from [L4D2] Survivor Bot AI Improver
@@ -813,6 +895,7 @@ stock bool IsPlayerReady(int client)
 
 stock bool IsMeleeWeapon(int entity)
 {
+	//THINKFUNC Smack
 	return HasEntProp(entity, Prop_Data, "CTFWeaponBaseMeleeSmack");
 }
 
@@ -836,4 +919,27 @@ stock bool IsPluginRTDLoaded()
 {
 	//rtd
 	return FindConVar("sm_rtd2_version") != null;
+}
+
+stock void UseActionSlotItem(int client)
+{
+	KeyValues kv = new KeyValues("use_action_slot_item_server");
+	FakeClientCommandKeyValues(client, kv);
+	delete kv;
+}
+
+stock void PlayerBuyback(int client)
+{
+	FakeClientCommand(client, "td_buyback");
+}
+
+stock int GetTeamHumanClientCount(int team)
+{
+	int count = 0;
+	
+	for (int i = 1; i <= MaxClients; i++)
+		if (IsClientInGame(i) && !IsFakeClient(i) && GetClientTeam(i) == team)
+			count++;
+	
+	return count;
 }

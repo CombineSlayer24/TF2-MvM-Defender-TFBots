@@ -24,34 +24,19 @@ bool InitDHooks(GameData hGamedata)
 		failCount++;
 	
 	if (!RegisterHook(hGamedata, m_hMyTouch, "CItem::MyTouch"))
-	{
-		LogError("Failed to setup DynamicHook for CItem::MyTouch!");
 		failCount++;
-	}
 	
 	if (!RegisterHook(hGamedata, m_hIsBot, "CBasePlayer::IsBot"))
-	{
-		LogError("Failed to setup DynamicHook for CBasePlayer::IsBot!");
 		failCount++;
-	}
 	
 	if (!RegisterHook(hGamedata, m_hEventKilled, "CBaseEntity::Event_Killed"))
-	{
-		LogError("Failed to setup DynamicHook for CBaseEntity::Event_Killed!");
 		failCount++;
-	}
 	
 	if (!RegisterHook(hGamedata, m_hIsVisibleEntityNoticed, "IVision::IsVisibleEntityNoticed"))
-	{
-		LogError("Failed to setup DynamicHook for IVision::IsVisibleEntityNoticed!");
 		failCount++;
-	}
 	
 	if (!RegisterHook(hGamedata, m_hIsIgnored, "IVision::IsIgnored"))
-	{
-		LogError("Failed to setup DynamicHook for IVision::IsIgnored!");
 		failCount++;
-	}
 	
 	if (failCount > 0)
 	{
@@ -97,7 +82,10 @@ static MRESReturn DHookCallback_LoadUpgradesFile_Post(Address pThis)
 	if (!g_pMannVsMachineUpgrades)
 	{
 		g_pMannVsMachineUpgrades = pThis;
+		
+#if defined TESTING_ONLY
 		LogMessage("DHookCallback_LoadUpgradesFile_Post: Found \"g_MannVsMachineUpgrades\" @ 0x%X", g_pMannVsMachineUpgrades);
+#endif
 	}
 	
 	return MRES_Ignored;
@@ -152,7 +140,7 @@ static MRESReturn DHookCallback_ManageRegularWeapons_Post(int pThis)
 }
 
 // VIRTUAL HOOKS
-// Only hooked on certain entities, which in this case should only be our bots
+// Only hooked on certain entities or data, which in this case should mostly be related to our bots
 
 static MRESReturn DHookCallback_MyTouch_Pre(int pThis, DHookReturn hReturn, DHookParam hParams)
 {
@@ -247,8 +235,9 @@ static MRESReturn DHookCallback_IsIgnored_Pre(Address pThis, DHookReturn hReturn
 {
 	int subject = hParams.Get(1);
 	int myself = view_as<IVision>(pThis).GetBot().GetEntity();
+	int myTeam = GetClientTeam(myself);
 	
-	if (BaseEntity_IsPlayer(subject) && TF2_GetClientTeam(subject) != TFTeam_Red)
+	if (BaseEntity_IsPlayer(subject) && GetClientTeam(subject) != myTeam)
 	{
 		if (IsSentryBusterRobot(subject))
 		{
@@ -274,7 +263,7 @@ static MRESReturn DHookCallback_IsIgnored_Pre(Address pThis, DHookReturn hReturn
 			{
 				switch (TF2Util_GetWeaponID(myWeapon))
 				{
-					case TF_WEAPON_ROCKETLAUNCHER, TF_WEAPON_GRENADELAUNCHER, TF_WEAPON_PIPEBOMBLAUNCHER, TF_WEAPON_DIRECTHIT, TF_WEAPON_FLAMETHROWER:
+					case TF_WEAPON_ROCKETLAUNCHER, TF_WEAPON_GRENADELAUNCHER, TF_WEAPON_PIPEBOMBLAUNCHER, TF_WEAPON_DIRECTHIT, TF_WEAPON_FLAMETHROWER, TF_WEAPON_FLAME_BALL:
 					{
 						//Don't ignore when using these, as they have knockback potential
 					}
@@ -287,6 +276,16 @@ static MRESReturn DHookCallback_IsIgnored_Pre(Address pThis, DHookReturn hReturn
 					}
 				}
 			}
+		}
+	}
+	else if (BaseEntity_IsBaseObject(subject) && BaseEntity_GetTeamNumber(subject) != myTeam)
+	{
+		if (TF2_HasSapper(subject))
+		{
+			//NOTE: these are ignored outside of mvm mode
+			hReturn.Value = true;
+			
+			return MRES_Supercede;
 		}
 	}
 	
@@ -323,5 +322,11 @@ static bool RegisterHook(GameData gd, DynamicHook &hook, const char[] fnName)
 {
 	hook = DynamicHook.FromConf(gd, fnName);
 	
-	return hook != null;
+	if (hook == null)
+	{
+		LogError("Failed to setup DynamicHook for \"%s\"!", fnName);
+		return false;
+	}
+	
+	return true;
 }
