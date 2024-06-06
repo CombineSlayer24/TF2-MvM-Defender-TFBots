@@ -103,7 +103,7 @@ public Plugin myinfo =
 	name = "[TF2] TFBots (MVM) with Manager",
 	author = "Officer Spy",
 	description = "Bot Management",
-	version = "1.1.3",
+	version = "1.1.6",
 	url = ""
 };
 
@@ -504,9 +504,13 @@ public Action Command_JoinBluePlayWithBots(int client, int args)
 #if defined TESTING_ONLY
 public Action Command_BotsReadyNow(int client, int args)
 {
-	for (int i = 1; i <= MaxClients; i++)
+	/* for (int i = 1; i <= MaxClients; i++)
 		if (g_bIsDefenderBot[i] && !IsPlayerReady(i))
-			FakeClientCommand(i, "tournament_player_readystate 1");
+			FakeClientCommand(i, "tournament_player_readystate 1"); */
+	
+	int target = GetClientAimTarget(client);
+	
+	SpawnSapper(client, target);
 	
 	return Plugin_Handled;
 }
@@ -703,22 +707,11 @@ public Action Timer_ForgetDetonatingPlayer(Handle timer, any data)
 
 public Action DefenderBot_Touch(int entity, int other)
 {
-	if (BaseEntity_IsPlayer(other) && CBaseNPC_GetNextBotOfEntity(entity).IsEnemy(other))
-	{
-		//Use default behavior to realize they are a spy on contact
-		GameRules_SetProp("m_bPlayingMannVsMachine", false);
-	}
+	//Call out enemy spies upon contact
+	if (BaseEntity_IsPlayer(other) && CBaseNPC_GetNextBotOfEntity(entity).IsEnemy(other) && TF2_IsPlayerInCondition(other, TFCond_Disguised))
+		RealizeSpy(entity, other);
 	
 	return Plugin_Continue;
-}
-
-public void DefenderBot_TouchPost(int entity, int other)
-{
-	if (BaseEntity_IsPlayer(other) && CBaseNPC_GetNextBotOfEntity(entity).IsEnemy(other))
-	{
-		//Revert cause we are still playing mvm
-		GameRules_SetProp("m_bPlayingMannVsMachine", true);
-	}
 }
 
 bool FakeClientCommandThrottled(int client, const char[] command)
@@ -895,7 +888,8 @@ void UpdateChosenBotTeamComposition()
 	else
 	{
 		//No prefernces, the lineup is random
-		g_adtChosenBotClasses.PushString(g_sRawPlayerClassNames[GetRandomInt(1, 9)]);
+		for (int i = 1; i <= newBotsToAdd; i++)
+			g_adtChosenBotClasses.PushString(g_sRawPlayerClassNames[GetRandomInt(1, 9)]);
 	}
 	
 	delete adtClassPref;

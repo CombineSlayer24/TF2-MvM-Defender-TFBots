@@ -1,10 +1,12 @@
 static Handle m_hPostInventoryApplication;
 static Handle m_hSetMission;
-static Handle m_hHasAmmo;
 static Handle m_hGetMaxAmmo;
-static Handle m_hGetAmmoCount;
 static Handle m_hGetNextThink;
+static Handle m_hRealizeSpy;
+static Handle m_hHasAmmo;
+static Handle m_hGetAmmoCount;
 static Handle m_hClip1;
+static Handle m_hFinishedBuilding;
 
 #if defined METHOD_MVM_UPGRADES
 static Handle m_hGEconItemSchema;
@@ -38,15 +40,6 @@ bool InitSDKCalls(GameData hGamedata)
 		failCount++;
 	}
 	
-	StartPrepSDKCall(SDKCall_Entity);
-	PrepSDKCall_SetFromConf(hGamedata, SDKConf_Virtual, "CBaseCombatWeapon::HasAmmo");
-	PrepSDKCall_SetReturnInfo(SDKType_Bool, SDKPass_ByValue);
-	if ((m_hHasAmmo = EndPrepSDKCall()) == null)
-	{
-		LogError("Failed to create SDKCall for CBaseCombatWeapon::HasAmmo!");
-		failCount++;
-	}
-	
 	StartPrepSDKCall(SDKCall_Player);
 	PrepSDKCall_SetFromConf(hGamedata, SDKConf_Signature, "CTFPlayer::GetMaxAmmo");
 	PrepSDKCall_AddParameter(SDKType_PlainOldData, SDKPass_Plain);
@@ -55,6 +48,34 @@ bool InitSDKCalls(GameData hGamedata)
 	if ((m_hGetMaxAmmo = EndPrepSDKCall()) == null)
 	{
 		LogError("Failed to create SDKCall for CTFPlayer::GetMaxAmmo!");
+		failCount++;
+	}
+	
+	StartPrepSDKCall(SDKCall_Entity);
+	PrepSDKCall_SetFromConf(hGamedata, SDKConf_Signature, "CBaseEntity::GetNextThink");
+	PrepSDKCall_AddParameter(SDKType_String, SDKPass_Pointer);
+	PrepSDKCall_SetReturnInfo(SDKType_Float, SDKPass_Plain);
+	if ((m_hGetNextThink = EndPrepSDKCall()) == null)
+	{
+		LogError("Failed to create SDKCall for CBaseEntity::GetNextThink!");
+		failCount++;
+	}
+	
+	StartPrepSDKCall(SDKCall_Player);
+	PrepSDKCall_SetFromConf(hGamedata, SDKConf_Signature, "CTFBot::RealizeSpy");
+	PrepSDKCall_AddParameter(SDKType_CBasePlayer, SDKPass_Pointer);
+	if ((m_hRealizeSpy = EndPrepSDKCall()) == null)
+	{
+		LogError("Failed to create SDKCall for CTFBot::RealizeSpy!");
+		failCount++;
+	}
+	
+	StartPrepSDKCall(SDKCall_Entity);
+	PrepSDKCall_SetFromConf(hGamedata, SDKConf_Virtual, "CBaseCombatWeapon::HasAmmo");
+	PrepSDKCall_SetReturnInfo(SDKType_Bool, SDKPass_ByValue);
+	if ((m_hHasAmmo = EndPrepSDKCall()) == null)
+	{
+		LogError("Failed to create SDKCall for CBaseCombatWeapon::HasAmmo!");
 		failCount++;
 	}
 	
@@ -69,21 +90,19 @@ bool InitSDKCalls(GameData hGamedata)
 	}
 	
 	StartPrepSDKCall(SDKCall_Entity);
-	PrepSDKCall_SetFromConf(hGamedata, SDKConf_Signature, "CBaseEntity::GetNextThink");
-	PrepSDKCall_AddParameter(SDKType_String, SDKPass_Pointer);
-	PrepSDKCall_SetReturnInfo(SDKType_Float, SDKPass_Plain);
-	if ((m_hGetNextThink = EndPrepSDKCall()) == null)
-	{
-		LogError("Failed to create SDKCall for CBaseEntity::GetNextThink!");
-		failCount++;
-	}
-	
-	StartPrepSDKCall(SDKCall_Entity);
 	PrepSDKCall_SetFromConf(hGamedata, SDKConf_Virtual, "CTFWeaponBase::Clip1");
 	PrepSDKCall_SetReturnInfo(SDKType_PlainOldData, SDKPass_Plain);
 	if ((m_hClip1 = EndPrepSDKCall()) == null)
 	{
 		LogError("Failed to create SDKCall for CTFWeaponBase::Clip1!");
+		failCount++;
+	}
+	
+	StartPrepSDKCall(SDKCall_Entity);
+	PrepSDKCall_SetFromConf(hGamedata, SDKConf_Virtual, "CBaseObject::FinishedBuilding");
+	if ((m_hFinishedBuilding = EndPrepSDKCall()) == null)
+	{
+		LogError("Failed to create SDKCall for CBaseObject::FinishedBuilding!");
 		failCount++;
 	}
 	
@@ -175,19 +194,9 @@ void SetMission(int client, MissionType mission, bool resetBehaviorSystem = true
 	SDKCall(m_hSetMission, client, mission, resetBehaviorSystem);
 }
 
-bool HasAmmo(int weapon)
-{
-	return SDKCall(m_hHasAmmo, weapon);
-}
-
 int GetMaxAmmo(int client, int iAmmoIndex, int iClassIndex = -1)
 {
 	return SDKCall(m_hGetMaxAmmo, client, iAmmoIndex, iClassIndex);
-}
-
-int GetAmmoCount(int client, int iAmmoIndex)
-{
-	return SDKCall(m_hGetAmmoCount, client, iAmmoIndex);
 }
 
 float GetNextThink(int entity, const char[] szContext = "")
@@ -195,9 +204,29 @@ float GetNextThink(int entity, const char[] szContext = "")
 	return SDKCall(m_hGetNextThink, entity, szContext);
 }
 
+void RealizeSpy(int client, int pPlayer)
+{
+	SDKCall(m_hRealizeSpy, client, pPlayer);
+}
+
+bool HasAmmo(int weapon)
+{
+	return SDKCall(m_hHasAmmo, weapon);
+}
+
+int GetAmmoCount(int client, int iAmmoIndex)
+{
+	return SDKCall(m_hGetAmmoCount, client, iAmmoIndex);
+}
+
 int Clip1(int weapon)
 {
 	return SDKCall(m_hClip1, weapon);
+}
+
+void FinishedBuilding(int baseObject)
+{
+	SDKCall(m_hFinishedBuilding, baseObject);
 }
 
 #if defined METHOD_MVM_UPGRADES

@@ -833,6 +833,116 @@ bool CanWeaponAirblast(int weapon)
 	return TF2Attrib_HookValueInt(0, "airblast_disabled", weapon) == 0;
 }
 
+int FindBotNearestToMe(int client, float max_distance, bool bGiantsOnly = false)
+{
+	float origin[3]; origin = WorldSpaceCenter(client);
+	
+	float bestDistance = 999999.0;
+	int bestEntity = -1;
+	
+	for (int i = 1; i <= MaxClients; i++)
+	{
+		if (i == client)
+			continue;
+		
+		if (!IsClientInGame(i))
+			continue;
+		
+		if (!IsPlayerAlive(i))
+			continue;
+		
+		if (TF2_GetClientTeam(i) != GetEnemyTeamOfPlayer(client))
+			continue;
+		
+		if (IsSentryBusterRobot(i))
+			continue;
+		
+		if (bGiantsOnly && !TF2_IsMiniBoss(i))
+			continue;
+		
+		float distance = GetVectorDistance(WorldSpaceCenter(i), origin);
+		
+		if (distance <= bestDistance && distance <= max_distance)
+		{
+			bestDistance = distance;
+			bestEntity = i;
+		}
+	}
+	
+	return bestEntity;
+}
+
+int GetBestTargetForSpy(int client, float max_distance)
+{
+	//Find the closest giant near us
+	int target = FindBotNearestToMe(client, max_distance, true);
+	
+	//No giant, just target the one near us then
+	if (target == -1)
+		target = FindBotNearestToMe(client, max_distance);
+	
+	//Target their healer first, if they have one
+	if (target != -1)
+	{
+		int myTeam = GetClientTeam(client);
+		
+		for (int i = 0; i < TF2_GetNumHealers(target); i++)
+		{
+			int healer = TF2_GetHealerByIndex(target, i);
+			
+			if (healer != -1 && BaseEntity_IsPlayer(healer) && GetClientTeam(healer) != myTeam)
+			{
+				target = healer;
+				break;
+			}
+		}
+	}
+	
+	return target;
+}
+
+/* To trigger the robo sapper, you need to do several things
+- set a builder
+- set the object mode to MODE_SAPPER_ANTI_ROBOT or MODE_SAPPER_ANTI_ROBOT_RADIUS
+- parent the sapper to some entity
+- set the entity the sapper is being built on
+- then fire input Enable to call CObjectSapper::OnGoActive */
+int SpawnSapper(int owner, int entity, int weapon = -1)
+{
+	int sapper = CreateEntityByName("obj_attachment_sapper");
+	
+	if (sapper != -1)
+	{
+		AcceptEntityInput(sapper, "SetBuilder", owner);
+		
+		if (weapon > 0)
+			TF2_SetObjectMode(sapper, TF2Attrib_HookValueInt(0, "robo_sapper", weapon) ? MODE_SAPPER_ANTI_ROBOT_RADIUS : MODE_SAPPER_ANTI_ROBOT);
+		
+		DispatchSpawn(sapper);
+		ParentEntity(entity, sapper, BaseEntity_IsPlayer(entity) ? "head" : "weapon_bone");
+		SetEntPropEnt(sapper, Prop_Send, "m_hBuiltOnEntity", entity);
+		RemoveEffects(sapper, EF_NODRAW);
+		
+		// SetEntProp(sapper, Prop_Send, "m_bDisabled", 1);
+		// AcceptEntityInput(sapper, "Enable");
+		
+		//Finish construction to properly have the sapper run its think function
+		FinishedBuilding(sapper);
+	}
+	
+	return sapper;
+}
+
+void RemoveEffects(int entity, int nEffects)
+{
+	SetEntProp(entity, Prop_Send, "m_fEffects", GetEntProp(entity, Prop_Send, "m_fEffects") & ~nEffects);
+	
+	if (nEffects & EF_NODRAW)
+	{
+		CBaseEntity(entity).DispatchUpdateTransmitState();
+	}
+}
+
 stock bool DoesAnyPlayerUseThisName(const char[] name)
 {
 	char playerName[MAX_NAME_LENGTH];
@@ -942,4 +1052,18 @@ stock int GetTeamHumanClientCount(int team)
 			count++;
 	
 	return count;
+}
+
+//From stocksoup/entity_tools.inc
+stock bool ParentEntity(int parent, int attachment, const char[] attachPoint = "",
+		bool maintainOffset = false) {
+	SetVariantString("!activator");
+	AcceptEntityInput(attachment, "SetParent", parent, attachment, 0);
+	
+	if (strlen(attachPoint) > 0) {
+		SetVariantString(attachPoint);
+		AcceptEntityInput(attachment,
+				maintainOffset? "SetParentAttachmentMaintainOffset" : "SetParentAttachment",
+				parent, parent);
+	}
 }
