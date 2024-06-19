@@ -5,9 +5,12 @@
 #include <tf_econ_data>
 #include <tf2utils>
 #include <cbasenpc>
-#include <inc_mod_compatibility/actions&cbasenpc>
 #include <cbasenpc/tf/nav>
 #include <ripext>
+
+#define _disable_actions_query_result_type
+#define _disable_actions_event_result_priority_type
+#include <actions>
 
 #pragma semicolon 1
 #pragma newdecls required
@@ -103,7 +106,7 @@ public Plugin myinfo =
 	name = "[TF2] TFBots (MVM) with Manager",
 	author = "Officer Spy",
 	description = "Bot Management",
-	version = "1.1.6",
+	version = "1.2.2",
 	url = ""
 };
 
@@ -127,7 +130,7 @@ public void OnPluginStart()
 	redbots_manager_ready_cooldown = CreateConVar("sm_redbots_manager_ready_cooldown", "30.0", _, FCVAR_NOTIFY, true, 0.0);
 	redbots_manager_bot_upgrade_interval = CreateConVar("sm_redbots_manager_bot_upgrade_interval", "-1", _, FCVAR_NOTIFY);
 	redbots_manager_bot_use_upgrades = CreateConVar("sm_redbots_manager_bot_use_upgrades", "1", "Enable bots to buy upgrades.", FCVAR_NOTIFY);
-	redbots_manager_bot_buyback_chance = CreateConVar("sm_redbots_manager_bot_buyback_chance", "1", "Chance for bots to buyback into the game.", FCVAR_NOTIFY);
+	redbots_manager_bot_buyback_chance = CreateConVar("sm_redbots_manager_bot_buyback_chance", "5", "Chance for bots to buyback into the game.", FCVAR_NOTIFY);
 	redbots_manager_bot_buy_upgrades_chance = CreateConVar("sm_redbots_manager_bot_buy_upgrades_chance", "50", "Chance for bots to buy upgrades in the middle of a game.", FCVAR_NOTIFY);
 	
 #if defined MOD_REQUEST_CREDITS
@@ -509,7 +512,6 @@ public Action Command_BotsReadyNow(int client, int args)
 			FakeClientCommand(i, "tournament_player_readystate 1"); */
 	
 	int target = GetClientAimTarget(client);
-	
 	SpawnSapper(client, target);
 	
 	return Plugin_Handled;
@@ -705,13 +707,11 @@ public Action Timer_ForgetDetonatingPlayer(Handle timer, any data)
 	return Plugin_Stop;
 }
 
-public Action DefenderBot_Touch(int entity, int other)
+public void DefenderBot_TouchPost(int entity, int other)
 {
 	//Call out enemy spies upon contact
-	if (BaseEntity_IsPlayer(other) && CBaseNPC_GetNextBotOfEntity(entity).IsEnemy(other) && TF2_IsPlayerInCondition(other, TFCond_Disguised))
+	if (BaseEntity_IsPlayer(other) && GetClientTeam(other) != GetClientTeam(entity) && TF2_IsPlayerInCondition(other, TFCond_Disguised))
 		RealizeSpy(entity, other);
-	
-	return Plugin_Continue;
 }
 
 bool FakeClientCommandThrottled(int client, const char[] command)

@@ -112,9 +112,8 @@ public Action Command_BoughtUpgrades(int client, int args)
 		}
 	}
 	
-#if defined TESTING_ONLY
-	PrintToChatAll("[Command_BoughtUpgrades] SAVED WEAPON STATS FOR %N", client);
-#endif
+	if (redbots_manager_debug.BoolValue)
+		PrintToChatAll("[Command_BoughtUpgrades] SAVED WEAPON STATS FOR %N", client);
 	
 	g_bHasBoughtUpgrades[client] = true;
 	
@@ -132,10 +131,10 @@ public Action Timer_GiveCustomLoadout(Handle timer, int client)
 	
 	char itemClassname[35];
 	
-	TF2_RemoveWeaponSlot(client, TFWeaponSlot_Primary);
-	
 	if (m_iWeaponPrimary[client] > ITEMDEF_DEFAULT)
 	{
+		TF2_RemoveWeaponSlot(client, TFWeaponSlot_Primary);
+		
 		if (TF2Econ_GetItemClassName(m_iWeaponPrimary[client], itemClassname, sizeof(itemClassname)))
 		{
 			TF2Econ_TranslateWeaponEntForClass(itemClassname, sizeof(itemClassname), TF2_GetPlayerClass(client));
@@ -156,17 +155,17 @@ public Action Timer_GiveCustomLoadout(Handle timer, int client)
 		}
 	}
 	
-	TF2_RemoveWeaponSlot(client, TFWeaponSlot_Secondary);
-	
 	if (m_iWeaponSecondary[client] > ITEMDEF_DEFAULT && !TF2_IsShieldEquipped(client))
 	{
+		TF2_RemoveWeaponSlot(client, TFWeaponSlot_Secondary);
+		
 		if (TF2Econ_GetItemClassName(m_iWeaponSecondary[client], itemClassname, sizeof(itemClassname)))
 		{
 			TF2Econ_TranslateWeaponEntForClass(itemClassname, sizeof(itemClassname), TF2_GetPlayerClass(client));
 			secondary = GiveItemToPlayer(client, itemClassname, m_iWeaponSecondary[client], 1, 6);
 			
 			if (g_bHasBoughtUpgrades[client] == false && StrEqual(itemClassname, "tf_weapon_pipebomblauncher"))
-				TF2Attrib_SetByName(secondary, "stickybomb charge rate", 0.1); //Instant fire stickies
+				TF2Attrib_SetByName(secondary, "stickybomb charge rate", 0.0); //Instant fire stickies
 		}
 		else
 		{
@@ -174,10 +173,10 @@ public Action Timer_GiveCustomLoadout(Handle timer, int client)
 		}
 	}
 	
-	TF2_RemoveWeaponSlot(client, TFWeaponSlot_Melee);
-	
 	if (m_iWeaponMelee[client] > ITEMDEF_DEFAULT)
 	{
+		TF2_RemoveWeaponSlot(client, TFWeaponSlot_Melee);
+		
 		if (TF2Econ_GetItemClassName(m_iWeaponMelee[client], itemClassname, sizeof(itemClassname)))
 		{
 			TF2Econ_TranslateWeaponEntForClass(itemClassname, sizeof(itemClassname), TF2_GetPlayerClass(client));
@@ -201,6 +200,8 @@ public Action Timer_GiveCustomLoadout(Handle timer, int client)
 	
 	if (m_iWeaponPDA2[client] > ITEMDEF_DEFAULT)
 	{
+		TF2_RemoveWeaponSlot(client, TFWeaponSlot_Building);
+		
 		if (TF2Econ_GetItemClassName(m_iWeaponPDA2[client], itemClassname, sizeof(itemClassname)))
 			GiveItemToPlayer(client, itemClassname, m_iWeaponPDA2[client], 1, 6);
 		else
@@ -210,9 +211,21 @@ public Action Timer_GiveCustomLoadout(Handle timer, int client)
 	if (g_bHasBoughtUpgrades[client])
 		ReapplyItemUpgrades(client, primary, secondary, melee);
 	
+	/* Certain weapons or upgrades may have changed our health and ammo
+	so we must refill them completely to the max, though health
+	may get reduced if max health was lowered by a weapon's attribute */
+	int maxHealth = TF2Util_GetEntityMaxHealth(client);
+	
+	if (GetClientHealth(client) != maxHealth)
+		BaseEntity_SetHealth(client, maxHealth);
+	
+	for (int i = TF_AMMO_PRIMARY; i < TF_AMMO_COUNT; i++)
+		GivePlayerAmmo(client, 1000, i, true);
+	
 	PostInventoryApplication(client);
 	
-	//TODO: set proper health and ammo here because weapon or upgrades may change them
+	if (redbots_manager_debug.BoolValue)
+		PrintToChatAll("[Timer_GiveCustomLoadout] %N's ammo: %d/%d", client, GetAmmoCount(client, TF_AMMO_PRIMARY), GetMaxAmmo(client, TF_AMMO_PRIMARY));
 	
 	return Plugin_Stop;
 }
