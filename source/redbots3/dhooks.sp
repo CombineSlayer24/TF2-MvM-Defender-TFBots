@@ -136,8 +136,9 @@ static MRESReturn DHookCallback_ManageRegularWeapons_Post(int pThis)
 	}
 
 	// test cosmetics
-	if (g_bIsDefenderBot[ pThis ] && IsPlayerAlive( pThis ) && !TF2_IsInUpgradeZone( pThis ) )
-		CreateTimer( 0.1, Timer_ApplyCosmetics, pThis, TIMER_FLAG_NO_MAPCHANGE );
+	if ( redbots_manager_use_cosmetics.BoolValue )
+		if ( g_bIsDefenderBot[ pThis ] && IsPlayerAlive( pThis ) && !TF2_IsInUpgradeZone( pThis ) )
+			CreateTimer( 0.1, Timer_ApplyCosmetics, pThis, TIMER_FLAG_NO_MAPCHANGE );
 	
 	return MRES_Ignored;
 }

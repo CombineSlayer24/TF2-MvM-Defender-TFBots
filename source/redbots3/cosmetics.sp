@@ -31,12 +31,13 @@ public const float g_paintValues[ 29 ][ 2 ] = {
 	{ 11049612.0, 8626083.0 }
 };
 
-//---------------------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------
 // ALL CLASS
-//---------------------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------
 // Rename these names again
 public const int ALLCLASS_HATS[] = {
 	139, 	//Modest pile of hat
+	137,	//Noble Amassment of Hats
 	30066, 	//Brotherhood of Arms
 	30413, 	//Merc Mohawk
 	1186, 	//Monstrous Memento
@@ -48,8 +49,17 @@ public const int ALLCLASS_HATS[] = {
 	30646,	//Captain Space Mann
 	30740,	//Arkham Cowl
 	471,	//Proof of Purchase
+	420,	//Aperture Labs Hardhat
 	30974,	//Caribou Companion
-	1185	//Saxton
+	1185,	//Saxton
+	666,	//The B.M.O.C.
+	341,	//Rather Festive Tree
+	30746,	//Well Wrapped Hat
+	31152,	//Hallow's Hat
+	30928,	//Balloonihoodie
+	31183,	//Ballooniphones
+	30768,	//bedouin Bandana
+	126,	// Bills Hat
 };
 
 public const int ALLCLASS_GLASSES[] = {
@@ -65,6 +75,11 @@ public const int ALLCLASS_MEDAL[] = {
 	164,	//Grizzled Veteran
 	165,	//Soldier of Fortune
 	166,	//Mercenary
+	868,	//The Heroic Companion Badge
+	242,	//Duel Medal Bronze
+	243,	//Duel Medal Silver
+	244,	//Duel Medal Gold
+	245,	//Duel Medal Plat
 };
 
 public const int ALLCLASS_TORSO[] = {
@@ -84,41 +99,43 @@ public const int ALLCLASS_FEET[] = {
 	30975,	//Robin Walkers
 };
 
-//---------------------------------------------------------------------------------------------------------
+//public const int ALLCLASS_FLOATING[] = {};
+
+//-----------------------------------------------------------------
 // SCOUT
-//---------------------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------
 
-//---------------------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------
 // SOLDIER
-//---------------------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------
 
-//---------------------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------
 // PYRO
-//---------------------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------
 
-//---------------------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------
 // DEMO
-//---------------------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------
 
-//---------------------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------
 // HEAVYWEAPONSGUY
-//---------------------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------
 
-//---------------------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------
 // ENGINEER
-//---------------------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------
 
-//---------------------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------
 // MEDIC
-//---------------------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------
 
-//---------------------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------
 // SNIPER
-//---------------------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------
 
-//---------------------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------
 // SPY
-//---------------------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 public Action Timer_ApplyCosmetics( Handle timer, int client )
 {
@@ -137,8 +154,12 @@ public Action Timer_ApplyCosmetics( Handle timer, int client )
 void ApplyRandomCosmetics( int client )
 {
 	// test hats
-	//TF2_CreateHat( client, 30740, 10, 6, 0 );	
-	//TF2_CreateHat( client, 30309, 10, 6, 0 );
+	TF2_CreateHat( client, 126, 10, 6, 1 );	
+	TF2_CreateHat( client, 30104, 10, 6, 0 );
+	TF2_CreateHat( client, 30309, 10, 6, 0 );
+
+
+
 
 	PrintToChatAll( "Called: Timer_ApplyCosmetics" );
 }
@@ -163,12 +184,12 @@ void ApplyRandomCosmetics( int client )
 // Haunted = 13
 // Collectors = 14
 // Paintkitweapon = 15
-stock int TF2_CreateHat( int iClient, int iIndex, int iLevel, int iiQuality, int iUnusual )
+stock int TF2_CreateHat( int iClient, int iIndex, int iLevel, int iQuality, int iUnusual )
 {
 	int iHat = CreateEntityByName( "tf_wearable" );
 	if ( iHat != -1 )
 	{
-		SetEntProp( iHat, Prop_Send, "m_iiHatDefinitionIndex", iIndex );
+		SetEntProp( iHat, Prop_Send, "m_iItemDefinitionIndex", iIndex );
 		SetEntProp( iHat, Prop_Send, "m_bInitialized", 1 );
 		
 		//SetEntProp doesn't work here...
@@ -203,7 +224,7 @@ stock int TF2_CreateHat( int iClient, int iIndex, int iLevel, int iiQuality, int
 		}	
 
 		// This causes a crash. Why the fuck? too bad!!!!
-		/* if ( iUnusual == 0 )
+		if ( iUnusual == 0 )
 		{
 			TF2Attrib_RemoveByDefIndex( iHat, 134 );
 		}
@@ -222,7 +243,7 @@ stock int TF2_CreateHat( int iClient, int iIndex, int iLevel, int iiQuality, int
 		{
 			SetEntProp( iHat, Prop_Send, "m_iEntityQuality", 5 );
 			TF2Attrib_SetByDefIndex( iHat, 134, iUnusual + 0.0 );
-		} */
+		}
 
 		// Special Hats always unususl
 		if( iIndex == 1158 || iIndex == 1173 )
@@ -243,14 +264,15 @@ stock int TF2_CreateHat( int iClient, int iIndex, int iLevel, int iiQuality, int
 		}
 
 		// This causes a crash, but how!
-		/* if ( GetRandomInt( 1, 4 ) == 1 )
+		if ( GetRandomInt( 1, 4 ) == 1 )
 		{
 			int randomPaint = GetRandomInt( 0, 28 ); // Manually specify the length of the array
 			TF2Attrib_SetByDefIndex( iHat, 142, g_paintValues[ randomPaint ][ 0 ] );
 			TF2Attrib_SetByDefIndex( iHat, 261, g_paintValues[ randomPaint ][ 1 ] );
-		} */
+		}
 		
-		EconiItemSpawnGiveTo( iHat, iClient );
+		EconItemSpawnGiveTo( iHat, iClient );
+		EconItemView_SetItemID( iHat, GetRandomInt( 1, 2048 ) );
 	}
 	else
 	{
