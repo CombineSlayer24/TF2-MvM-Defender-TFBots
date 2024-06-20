@@ -65,7 +65,7 @@ public const int ALLCLASS_HATS[] = {
 public const int ALLCLASS_GLASSES[] = {
 	30104, 	//Greybanns
 	30397, 	//Bruisers Bandana
-	30085, 	//Macho Mann
+	//30085, 	//Macho Mann
 	743,	//Pyrovision Goggles
 	486,	//Summer Shades
 };
@@ -137,6 +137,7 @@ public const int ALLCLASS_FEET[] = {
 // SPY
 //-----------------------------------------------------------------
 
+
 public Action Timer_ApplyCosmetics( Handle timer, int client )
 {
 	if ( !IsClientInGame( client ) || !IsPlayerAlive( client ) )
@@ -149,8 +150,6 @@ public Action Timer_ApplyCosmetics( Handle timer, int client )
 	return Plugin_Stop;
 }
 
-
-
 void ApplyRandomCosmetics( int client )
 {
 	// test hats
@@ -158,11 +157,132 @@ void ApplyRandomCosmetics( int client )
 	TF2_CreateHat( client, 30104, 10, 6, 0 );
 	TF2_CreateHat( client, 30309, 10, 6, 0 );
 
+/* 	int iCosmeticType = GetRandomInt( 1, 4 );
 
+	// If 1, Use specific class cosmetics
+	if ( iCosmeticType == 1 )
+	{
+		GiveBotCosmetics( client, false, true );
+	}
+	else // use All Class Cosmetic generation
+	{
+		GiveBotCosmetics( client, false, false );
+	} */
 
+	GiveBotCosmetics( client );
 
 	PrintToChatAll( "Called: Timer_ApplyCosmetics" );
 }
+
+// Sets up the random cosmetics for the bots to spawn with.
+void GiveBotCosmetics( int iClient )
+{
+	// 65% chance to pick Randomized Cosmetic Sets
+	if ( GetRandomInt( 0, 100 ) <= 65 )
+	{
+		switch ( TF2_GetPlayerClass( iClient ) )
+		{
+			case TFClass_Scout:
+			{
+				if ( GetRandomInt( 0, 100 ) <= 40 )
+				{
+					//TODO: Add All Class here
+
+					// Somewhat cooking? But not really, we need something better than this.
+					int iRandomHat = ALLCLASS_HATS[ GetRandomInt( 0, sizeof( ALLCLASS_HATS ) - 1 ) ];
+					int iRandomGlasses = ALLCLASS_GLASSES[ GetRandomInt( 0, sizeof( ALLCLASS_GLASSES ) - 1 ) ];
+					TF2_CreateHat( iClient, iRandomHat, 10, 6, 1 );	
+					TF2_CreateHat( iClient, iRandomGlasses, 10, 6, 0 );
+				}
+				else
+				{
+					//TODO: Add Class Specifics here
+				}
+			}
+		}
+	}
+	else // Pick Premade sets
+	{
+		// I DON't LIKE DOING THIS, BUT THIS IS TEMPORARY
+		// HOLY FUCK! Just don't look at me
+		switch ( TF2_GetPlayerClass( iClient ) )
+		{
+			case TFClass_Scout:
+			{
+				int iRandom = GetRandomInt( 1, 2 );
+				switch( iRandom )
+				{
+					case 1:
+					{
+						TF2_CreateHat( iClient, 126, 10, 6, 1 );	
+						TF2_CreateHat( iClient, 30104, 10, 6, 0 );
+						TF2_CreateHat( iClient, 30309, 10, 6, 0 );
+					}
+					case 2:
+					{
+						TF2_CreateHat( iClient, 30362, 10, 6, 1 );	
+						TF2_CreateHat( iClient, 30085, 10, 6, 0 );
+						TF2_CreateHat( iClient, 165, 10, 6, 0 );
+					}
+				}
+			}
+		}
+	}
+}
+/* void GiveBotCosmetics( int iClient, bool bIsCosmeticSet, bool bSetType )
+{
+	// Is not cosmetic sets, will randomize cosmetics
+	if ( !bIsCosmeticSet )
+	{
+		switch ( TF2_GetPlayerClass( iClient ) )
+		{
+			case TFClass_Scout:
+			{
+				if ( bSetType )
+				{
+					//TODO: Add All Class here
+
+					// Somewhat cooking? But not really, we need something better than this.
+					int iRandomHat = ALLCLASS_HATS[ GetRandomInt( 0, sizeof( ALLCLASS_HATS ) - 1 ) ];
+					int iRandomGlasses = ALLCLASS_GLASSES[ GetRandomInt( 0, sizeof( ALLCLASS_GLASSES ) - 1 ) ];
+					TF2_CreateHat( iClient, iRandomHat, 10, 6, 1 );	
+					TF2_CreateHat( iClient, iRandomGlasses, 10, 6, 0 );
+				}
+				else
+				{
+					//TODO: Add Class Specifics here
+				}
+			}
+		}
+	}
+	else
+	{
+		// I DON't LIKE DOING THIS, BUT THIS IS TEMPORARY
+		// HOLY FUCK! Just don't look at me
+		switch ( TF2_GetPlayerClass( iClient ) )
+		{
+			case TFClass_Scout:
+			{
+				int iRandom = GetRandomInt( 1, 2 );
+				switch( iRandom )
+				{
+					case 1:
+					{
+						TF2_CreateHat( iClient, 126, 10, 6, 1 );	
+						TF2_CreateHat( iClient, 30104, 10, 6, 0 );
+						TF2_CreateHat( iClient, 30309, 10, 6, 0 );
+					}
+					case 2:
+					{
+						TF2_CreateHat( iClient, 30362, 10, 6, 1 );	
+						TF2_CreateHat( iClient, 30085, 10, 6, 0 );
+						TF2_CreateHat( iClient, 165, 10, 6, 0 );
+					}
+				}
+			}
+		}
+	}
+} */
 
 
 
@@ -184,7 +304,86 @@ void ApplyRandomCosmetics( int client )
 // Haunted = 13
 // Collectors = 14
 // Paintkitweapon = 15
-stock int TF2_CreateHat( int iClient, int iIndex, int iLevel, int iQuality, int iUnusual )
+int TF2_CreateHat( int iClient, int iIndex, int iLevel, int iQuality, int iUnusual )
+{
+	int iHat = CreateEntityByName( "tf_wearable" );
+	if ( iHat != -1 )
+	{
+		SetEntProp( iHat, Prop_Send, "m_iItemDefinitionIndex", iIndex );
+		SetEntProp( iHat, Prop_Send, "m_bInitialized", 1 );
+		
+		char netClass[ 64 ]; GetEntityNetClass( iHat, netClass, sizeof( netClass ) );
+		int iPropInfoQuality = FindSendPropInfo( netClass, "m_iEntityQuality" );
+		int iPropInfoLevel = FindSendPropInfo( netClass, "m_iEntityLevel" );
+
+		SetEntData( iHat, iPropInfoQuality, iQuality );
+		SetEntData( iHat, iPropInfoLevel, iLevel == 10 ? GetRandomInt( 1, 100 ) : iLevel );
+
+		if ( GetRandomInt( 1, 10 ) == 1 )
+		{
+			if ( iQuality == 3 || iQuality == 1 || iQuality == 13 || iQuality == 5 )
+			{
+				TF2Attrib_RemoveByDefIndex( iHat, 214 );
+			}
+			else if ( GetRandomInt( 1, 4 ) == 1 )
+			{
+				// Set item to strange
+				SetEntData( iHat, iPropInfoQuality, 11 );
+				TF2Attrib_SetByDefIndex( iHat, 214, view_as<float>( GetRandomInt( 0, 9000 ) ) );
+			}
+		}	
+
+		if ( iQuality != 5 && iQuality != 11 )
+		{
+			int iStrangeRnd = GetRandomInt( 1, 4 );
+			int iQualityValue = iStrangeRnd == 1 ? 1 : ( iStrangeRnd == 2 ? 3 : 7 );
+			SetEntData( iHat, iPropInfoQuality, iQualityValue );
+		}
+
+		if ( iUnusual == 0 )
+		{
+			TF2Attrib_RemoveByDefIndex( iHat, 134 );
+		}
+		else if ( iUnusual == 1 && GetRandomInt( 1, 4 ) == 1 )
+		{
+			// Set the hat as unusual
+			SetEntData( iHat, iPropInfoQuality, 5 );
+			TF2Attrib_SetByDefIndex( iHat, 134, GetRandomInt( 1, 174 ) + 0.0 );
+		}
+		else if ( iUnusual > 1 )
+		{
+			SetEntProp( iHat, Prop_Send, "m_iEntityQuality", 5 );
+			TF2Attrib_SetByDefIndex( iHat, 134, iUnusual + 0.0 );
+		}
+
+		// Certain Hats always unususl
+		if( iIndex == 1158 || iIndex == 1173 )
+		{
+			SetEntProp( iHat, Prop_Send, "m_iEntityQuality", 5 );
+			TF2Attrib_SetByDefIndex( iHat, 134, GetRandomInt( 1, 174 ) + 0.0 );
+		}
+
+		if ( GetRandomInt( 1, 4 ) == 1 )
+		{
+			int randomPaint = GetRandomInt( 0, 28 );
+			TF2Attrib_SetByDefIndex( iHat, 142, g_paintValues[ randomPaint ][ 0 ] );
+			TF2Attrib_SetByDefIndex( iHat, 261, g_paintValues[ randomPaint ][ 1 ] );
+		}
+		
+		EconItemSpawnGiveTo( iHat, iClient );
+		EconItemView_SetItemID( iHat, GetRandomInt( 1, 2048 ) );
+	}
+	else
+	{
+		LogError( "TF2_CreateHat: Failed to create entity." );
+	}
+	
+	return iHat;
+}
+
+
+/* OLD OLD OLD OLD
+int TF2_CreateHat( int iClient, int iIndex, int iLevel, int iQuality, int iUnusual )
 {
 	int iHat = CreateEntityByName( "tf_wearable" );
 	if ( iHat != -1 )
@@ -223,7 +422,17 @@ stock int TF2_CreateHat( int iClient, int iIndex, int iLevel, int iQuality, int 
 			}
 		}	
 
-		// This causes a crash. Why the fuck? too bad!!!!
+		if ( iQuality != 5 && iQuality != 11 )
+		{
+			int strangeRnd = GetRandomInt( 1, 4 );
+			switch ( strangeRnd )
+			{
+				case 1: SetEntData( iHat, FindSendPropInfo( netClass, "m_iEntityQuality" ), 1 );
+				case 2: SetEntData( iHat, FindSendPropInfo( netClass, "m_iEntityQuality" ), 3 );
+				case 3: SetEntData( iHat, FindSendPropInfo( netClass, "m_iEntityQuality" ), 7 );
+			}
+		}
+
 		if ( iUnusual == 0 )
 		{
 			TF2Attrib_RemoveByDefIndex( iHat, 134 );
@@ -252,18 +461,6 @@ stock int TF2_CreateHat( int iClient, int iIndex, int iLevel, int iQuality, int 
 			TF2Attrib_SetByDefIndex( iHat, 134, GetRandomInt( 1, 174 ) + 0.0 );
 		}
 
-		if ( iQuality != 5 && iQuality != 11 )
-		{
-			int strangeRnd = GetRandomInt( 1, 4 );
-			switch ( strangeRnd )
-			{
-				case 1: SetEntData( iHat, FindSendPropInfo( netClass, "m_iEntityQuality" ), 1 );
-				case 2: SetEntData( iHat, FindSendPropInfo( netClass, "m_iEntityQuality" ), 3 );
-				case 3: SetEntData( iHat, FindSendPropInfo( netClass, "m_iEntityQuality" ), 7 );
-			}
-		}
-
-		// This causes a crash, but how!
 		if ( GetRandomInt( 1, 4 ) == 1 )
 		{
 			int randomPaint = GetRandomInt( 0, 28 ); // Manually specify the length of the array
@@ -281,3 +478,4 @@ stock int TF2_CreateHat( int iClient, int iIndex, int iLevel, int iQuality, int 
 	
 	return iHat;
 }
+*/
