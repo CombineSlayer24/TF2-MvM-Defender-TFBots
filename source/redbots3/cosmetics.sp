@@ -152,39 +152,40 @@ public Action Timer_ApplyCosmetics( Handle timer, int client )
 
 void ApplyRandomCosmetics( int client )
 {
-	// test hats
-	TF2_CreateHat( client, 126, 10, 6, 1 );	
-	TF2_CreateHat( client, 30104, 10, 6, 0 );
-	TF2_CreateHat( client, 30309, 10, 6, 0 );
-
-/* 	int iCosmeticType = GetRandomInt( 1, 4 );
-
-	// If 1, Use specific class cosmetics
-	if ( iCosmeticType == 1 )
-	{
-		GiveBotCosmetics( client, false, true );
-	}
-	else // use All Class Cosmetic generation
-	{
-		GiveBotCosmetics( client, false, false );
-	} */
-
 	GiveBotCosmetics( client );
-
-	PrintToChatAll( "Called: Timer_ApplyCosmetics" );
+	PrintToChatAll( "Called: ApplyRandomCosmetics" );
 }
 
 // Sets up the random cosmetics for the bots to spawn with.
 void GiveBotCosmetics( int iClient )
 {
+	int iRandom = GetRandomInt( 0, 100 );
+
 	// 65% chance to pick Randomized Cosmetic Sets
-	if ( GetRandomInt( 0, 100 ) <= 65 )
+	if ( iRandom <= 65 )
 	{
 		switch ( TF2_GetPlayerClass( iClient ) )
 		{
 			case TFClass_Scout:
 			{
-				if ( GetRandomInt( 0, 100 ) <= 40 )
+				if ( iRandom <= 40 )
+				{
+					//TODO: Add All Class here
+
+					// Somewhat cooking? But not really, we need something better than this.
+					int iRandomHat = ALLCLASS_HATS[ GetRandomInt( 0, sizeof( ALLCLASS_HATS ) - 1 ) ];
+					int iRandomGlasses = ALLCLASS_GLASSES[ GetRandomInt( 0, sizeof( ALLCLASS_GLASSES ) - 1 ) ];
+					TF2_CreateHat( iClient, iRandomHat, 10, 6, 1 );	
+					TF2_CreateHat( iClient, iRandomGlasses, 10, 6, 0 );
+				}
+				else
+				{
+					//TODO: Add Class Specifics here
+				}
+			}
+			case TFClass_Soldier:
+			{
+				if ( iRandom <= 40 )
 				{
 					//TODO: Add All Class here
 
@@ -203,32 +204,48 @@ void GiveBotCosmetics( int iClient )
 	}
 	else // Pick Premade sets
 	{
-		// I DON't LIKE DOING THIS, BUT THIS IS TEMPORARY
-		// HOLY FUCK! Just don't look at me
 		switch ( TF2_GetPlayerClass( iClient ) )
 		{
-			case TFClass_Scout:
+			case TFClass_Scout: 	GetRandomCosSetForClass( "Scout", iClient );
+			case TFClass_Soldier: 	GetRandomCosSetForClass( "Soldier", iClient );
+			case TFClass_Pyro: 		GetRandomCosSetForClass( "Pyro", iClient );
+			case TFClass_DemoMan: 	GetRandomCosSetForClass( "Demoman", iClient );
+			case TFClass_Heavy: 	GetRandomCosSetForClass( "HeavyWeapons", iClient );
+			case TFClass_Engineer: 	GetRandomCosSetForClass( "Engineer", iClient );
+			case TFClass_Medic: 	GetRandomCosSetForClass( "Medic", iClient );
+			case TFClass_Sniper: 	GetRandomCosSetForClass( "Sniper", iClient );
+			case TFClass_Spy: 		GetRandomCosSetForClass( "Spy", iClient );
+		}
+	}
+}
+
+void GetRandomCosSetForClass( char[] iClass, int iClient )
+{
+	if ( StrEqual( iClass, "Scout", false ) )
+	{
+		// I DON't LIKE DOING THIS, BUT THIS IS TEMPORARY
+		// HOLY FUCK! Just don't look at me
+		int iRandom = GetRandomInt( 1, 2 );
+		switch( iRandom )
+		{
+			case 1:
 			{
-				int iRandom = GetRandomInt( 1, 2 );
-				switch( iRandom )
-				{
-					case 1:
-					{
-						TF2_CreateHat( iClient, 126, 10, 6, 1 );	
-						TF2_CreateHat( iClient, 30104, 10, 6, 0 );
-						TF2_CreateHat( iClient, 30309, 10, 6, 0 );
-					}
-					case 2:
-					{
-						TF2_CreateHat( iClient, 30362, 10, 6, 1 );	
-						TF2_CreateHat( iClient, 30085, 10, 6, 0 );
-						TF2_CreateHat( iClient, 165, 10, 6, 0 );
-					}
-				}
+				TF2_CreateHat( iClient, 126, 10, 6, 1 );	
+				TF2_CreateHat( iClient, 30104, 10, 6, 0 );
+				TF2_CreateHat( iClient, 30309, 10, 6, 0 );
+			}
+
+			case 2:
+			{
+				TF2_CreateHat( iClient, 30362, 10, 6, 1 );	
+				TF2_CreateHat( iClient, 30085, 10, 6, 0 );
+				TF2_CreateHat( iClient, 165, 10, 6, 0 );
 			}
 		}
 	}
 }
+
+
 /* void GiveBotCosmetics( int iClient, bool bIsCosmeticSet, bool bSetType )
 {
 	// Is not cosmetic sets, will randomize cosmetics
