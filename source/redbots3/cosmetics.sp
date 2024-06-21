@@ -206,20 +206,20 @@ void GiveBotCosmetics( int iClient )
 	{
 		switch ( TF2_GetPlayerClass( iClient ) )
 		{
-			case TFClass_Scout: 	GetRandomCosSetForClass( "Scout", iClient );
-			case TFClass_Soldier: 	GetRandomCosSetForClass( "Soldier", iClient );
-			case TFClass_Pyro: 		GetRandomCosSetForClass( "Pyro", iClient );
-			case TFClass_DemoMan: 	GetRandomCosSetForClass( "Demoman", iClient );
-			case TFClass_Heavy: 	GetRandomCosSetForClass( "HeavyWeapons", iClient );
-			case TFClass_Engineer: 	GetRandomCosSetForClass( "Engineer", iClient );
-			case TFClass_Medic: 	GetRandomCosSetForClass( "Medic", iClient );
-			case TFClass_Sniper: 	GetRandomCosSetForClass( "Sniper", iClient );
-			case TFClass_Spy: 		GetRandomCosSetForClass( "Spy", iClient );
+			case TFClass_Scout: 	GetRandomCosSetForClass( iClient, "Scout" );
+			case TFClass_Soldier: 	GetRandomCosSetForClass( iClient, "Soldier" );
+			case TFClass_Pyro: 		GetRandomCosSetForClass( iClient, "Pyro" );
+			case TFClass_DemoMan: 	GetRandomCosSetForClass( iClient, "Demoman" );
+			case TFClass_Heavy: 	GetRandomCosSetForClass( iClient, "HeavyWeapons" );
+			case TFClass_Engineer: 	GetRandomCosSetForClass( iClient, "Engineer" );
+			case TFClass_Medic: 	GetRandomCosSetForClass( iClient, "Medic" );
+			case TFClass_Sniper: 	GetRandomCosSetForClass( iClient, "Sniper" );
+			case TFClass_Spy: 		GetRandomCosSetForClass( iClient, "Spy" );
 		}
 	}
 }
 
-void GetRandomCosSetForClass( char[] iClass, int iClient )
+void GetRandomCosSetForClass( int iClient, char[] iClass )
 {
 	if ( StrEqual( iClass, "Scout", false ) )
 	{
