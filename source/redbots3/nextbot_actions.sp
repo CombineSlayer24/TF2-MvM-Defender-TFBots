@@ -10,6 +10,7 @@
 #define FLAMETHROWER_REACH_RANGE	350.0
 #define FLAMEBALL_REACH_RANGE	526.0
 #define BOMB_GUARD_RADIUS	400.0
+#define DEFEND_POINT_DURATION	60.0
 
 static char g_strHealthAndAmmoEntities[][] = 
 {
@@ -45,11 +46,12 @@ static float m_vecGoalArea[MAXPLAYERS + 1][3];
 static float m_ctMoveTimeout[MAXPLAYERS + 1];
 static int m_iHealthPack[MAXPLAYERS + 1];
 static float m_vecNestArea[MAXPLAYERS + 1][3];
-static int m_iTankTarget[MAXPLAYERS + 1];
 static int m_iSapTarget[MAXPLAYERS + 1];
-static int m_iTeleporterTarget[MAXPLAYERS + 1];
 static int m_iPlayerSapTarget[MAXPLAYERS + 1];
 static float m_flSapperCooldown[MAXPLAYERS + 1];
+static int m_iTankTarget[MAXPLAYERS + 1];
+static int m_iTeleporterTarget[MAXPLAYERS + 1];
+static float m_vecPointDefendArea[MAXPLAYERS + 1][3];
 
 #if defined EXTRA_PLUGINBOT
 //Replicate behavior of PathFollower's PluginBot
@@ -88,11 +90,12 @@ void ResetNextBot(int client)
 	m_ctMoveTimeout[client] = 0.0;
 	m_iHealthPack[client] = -1;
 	m_vecNestArea[client] = NULL_VECTOR;
-	m_iTankTarget[client] = -1;
 	m_iSapTarget[client] = -1;
-	m_iTeleporterTarget[client] = -1;
 	m_iPlayerSapTarget[client] = -1;
 	m_flSapperCooldown[client] = 0.0;
+	m_iTankTarget[client] = -1;
+	m_iTeleporterTarget[client] = -1;
+	m_vecPointDefendArea[client] = NULL_VECTOR;
 	
 #if defined EXTRA_PLUGINBOT
 	pb_bPath[client] = false;
@@ -464,6 +467,12 @@ public Action CTFBotDefenderAttack_OnStart(BehaviorAction action, int actor, Beh
 
 public Action CTFBotDefenderAttack_Update(BehaviorAction action, int actor, float interval, ActionResult result)
 {
+	if (CTFBotCampBomb_IsPossible(actor))
+		return action.ChangeTo(CTFBotCampBomb(), "Camp bomb");
+	
+	if (CTFBotGuardPoint_IsPossible(actor))
+		return action.ChangeTo(CTFBotGuardPoint(), "Defending a point");
+	
 	if (GetTeleporterKillerCount() < 1 && CTFBotDestroyTeleporter_SelectTarget(actor))
 		return action.SuspendFor(CTFBotDestroyTeleporter(), "Get teleporter");
 	
@@ -517,9 +526,6 @@ public Action CTFBotDefenderAttack_Update(BehaviorAction action, int actor, floa
 		}
 	}
 	
-	if (CTFBotCampBomb_IsPossible(actor))
-		return action.ChangeTo(CTFBotCampBomb(), "Camp bomb");
-	
 	//TODO: Other classes should go for money, but only when there isn't a threat around
 	
 	CTFBotDefenderAttack_SelectTarget(actor, true);
@@ -533,7 +539,7 @@ public Action CTFBotDefenderAttack_Update(BehaviorAction action, int actor, floa
 	{
 		if (m_flRepathTime[actor] <= GetGameTime())
 		{
-			m_flRepathTime[actor] = GetGameTime() + GetRandomFloat(0.5, 1.0);
+			m_flRepathTime[actor] = GetGameTime() + GetRandomFloat(0.3, 0.4);
 			m_pPath[actor].ComputeToTarget(myBot, m_iAttackTarget[actor]);
 		}
 		
@@ -1063,11 +1069,22 @@ public Action CTFBotGetAmmo_ShouldAttack(BehaviorAction action, INextBot nextbot
 {
 	int me = action.Actor;
 	
-	if (TF2_GetPlayerClass(me) == TFClass_Spy && GetNearestEnemyCount(me, 1000.0) > 1)
+	if (TF2_GetPlayerClass(me) == TFClass_Spy)
 	{
-		//There's too many enemies nearby, let's just redisguise so they'll forget about us
-		result = ANSWER_NO;
-		return Plugin_Changed;
+		int iThreat = knownEntity.GetEntity();
+		
+		if (BaseEntity_IsPlayer(iThreat) && GetClientHealth(iThreat) > 360 && !TF2_IsCritBoosted(me))
+		{
+			//Don't attack if we can't possibly kill them with our revolver (360 from 6 shots with max damage)
+			result = ANSWER_NO;
+			return Plugin_Changed;
+		}
+		else if (GetNearestEnemyCount(me, 1000.0) > 1)
+		{
+			//There's too many enemies nearby, it'd be better to redisguise so they'll forget about us
+			result = ANSWER_NO;
+			return Plugin_Changed;
+		}
 	}
 	
 	result = ANSWER_UNDEFINED;
@@ -1318,10 +1335,22 @@ public Action CTFBotGetHealth_ShouldAttack(BehaviorAction action, INextBot nextb
 {
 	int me = action.Actor;
 	
-	if (TF2_GetPlayerClass(me) == TFClass_Spy && GetNearestEnemyCount(me, 1000.0) > 1)
+	if (TF2_GetPlayerClass(me) == TFClass_Spy)
 	{
-		result = ANSWER_NO;
-		return Plugin_Changed;
+		int iThreat = knownEntity.GetEntity();
+		
+		if (BaseEntity_IsPlayer(iThreat) && GetClientHealth(iThreat) > 360 && !TF2_IsCritBoosted(me))
+		{
+			//Don't attack if we can't possibly kill them with our revolver (360 from 6 shots with max damage)
+			result = ANSWER_NO;
+			return Plugin_Changed;
+		}
+		else if (GetNearestEnemyCount(me, 1000.0) > 1)
+		{
+			//There's too many enemies nearby, it'd be better to redisguise so they'll forget about us
+			result = ANSWER_NO;
+			return Plugin_Changed;
+		}
 	}
 	
 	result = ANSWER_UNDEFINED;
@@ -1677,6 +1706,359 @@ public void CTFBotBuildDispenser_OnEnd(BehaviorAction action, int actor, Behavio
 	
 }
 
+BehaviorAction CTFBotSpyLurkMvM()
+{
+	BehaviorAction action = ActionsManager.Create("DefenderSpyLurk");
+	
+	action.OnStart = CTFBotSpyLurkMvM_OnStart;
+	action.Update = CTFBotSpyLurkMvM_Update;
+	action.ShouldAttack = CTFBotSpyLurkMvM_ShouldAttack;
+	action.IsHindrance = CTFBotSpyLurkMvM_IsHindrance;
+	// action.SelectMoreDangerousThreat = CTFBotSpyLurkMvM_SelectMoreDangerousThreat;
+	
+	return action;
+}
+
+public Action CTFBotSpyLurkMvM_OnStart(BehaviorAction action, int actor, BehaviorAction priorAction, ActionResult result)
+{
+	m_pPath[actor].SetMinLookAheadDistance(GetDesiredPathLookAheadRange(actor));
+	m_pChasePath[actor].SetMinLookAheadDistance(GetDesiredPathLookAheadRange(actor));
+	
+	//Track current target for IsHindrance
+	m_iAttackTarget[actor] = -1;
+	
+	return action.Continue();
+}
+
+public Action CTFBotSpyLurkMvM_Update(BehaviorAction action, int actor, float interval, ActionResult result)
+{
+	if (CTFBotSpySapPlayers_SelectTarget(actor))
+		return action.SuspendFor(CTFBotSpySapPlayers(), "Sapping player");
+	
+	if (CTFBotSpySap_SelectTarget(actor))
+		return action.SuspendFor(CTFBotSpySap(), "Sapping building");
+	
+	INextBot myBot = CBaseNPC_GetNextBotOfEntity(actor);
+	int target = GetBestTargetForSpy(actor, 2000.0);
+	
+	if (target != -1)
+	{
+		if (TF2_IsStealthed(actor) || TF2_IsFeignDeathReady(actor))
+			VS_PressAltFireButton(actor);
+		
+		int melee = GetPlayerWeaponSlot(actor, TFWeaponSlot_Melee);
+		
+		if (melee != -1)
+			TF2Util_SetPlayerActiveWeapon(actor, melee);
+		
+		float playerThreatForward[3]; BasePlayer_EyeVectors(target, playerThreatForward);
+		float toPlayerThreat[3]; GetClientAbsOrigin(target, toPlayerThreat);
+		float myOrigin[3]; GetClientAbsOrigin(actor, myOrigin);
+		
+		SubtractVectors(toPlayerThreat, myOrigin, toPlayerThreat);
+		
+		float threatRange = NormalizeVector(toPlayerThreat, toPlayerThreat);
+		
+		const float behindTolerance = 0.0;
+		
+		bool isBehindVictim = GetVectorDotProduct(playerThreatForward, toPlayerThreat) > behindTolerance;
+		
+		if (TF2_IsLineOfFireClear4(actor, target))
+		{
+			const float circleStrafeRange = 250.0;
+			
+			if (threatRange < circleStrafeRange)
+			{
+				SnapViewToPosition(actor, WorldSpaceCenter(target));
+				
+				if (!isBehindVictim)
+				{
+					//Try to circle around the enemy
+					float myForward[3]; BasePlayer_EyeVectors(actor, myForward);
+					float cross[3]; GetVectorCrossProduct(playerThreatForward, myForward, cross);
+					
+					if (cross[2] < 0.0)
+						g_iAdditionalButtons[actor] |= IN_MOVERIGHT;
+					else
+						g_iAdditionalButtons[actor] |= IN_MOVELEFT;
+				}
+			}
+			
+			if (threatRange < GetDesiredAttackRange(actor))
+			{
+				if (TF2_IsPlayerInCondition(actor, TFCond_Disguised))
+				{
+					//Attack if we think we can land a backstab
+					if (isBehindVictim || HasBackstabPotential(target))
+						VS_PressFireButton(actor);
+				}
+				else
+				{
+					//We're exposed anyways, attack!
+					VS_PressFireButton(actor);
+				}
+			}
+		}
+		
+		m_pChasePath[actor].Update(myBot, target);
+	}
+	else
+	{
+		//Can't find anyone near me, just wander around the bomb
+		int flag = FindBombNearestToHatch();
+		
+		if (flag != -1)
+		{
+			float bombPosition[3]; bombPosition = GetAbsOrigin(flag);
+			
+			if (myBot.IsRangeGreaterThanEx(bombPosition, 200.0))
+			{
+				if (m_flRepathTime[actor] <= GetGameTime())
+				{
+					m_flRepathTime[actor] = GetGameTime() + GetRandomFloat(0.9, 1.0);
+					m_pPath[actor].ComputeToPos(myBot, bombPosition);
+				}
+				
+				m_pPath[actor].Update(myBot);
+			}
+		}
+	}
+	
+	m_iAttackTarget[actor] = target;
+	
+	return action.Continue();
+}
+
+public Action CTFBotSpyLurkMvM_ShouldAttack(BehaviorAction action, INextBot nextbot, CKnownEntity knownEntity, QueryResultType& result)
+{
+	//Don't as we will just make ourselves look stupid
+	result = ANSWER_NO;
+	return Plugin_Changed;
+}
+
+public Action CTFBotSpyLurkMvM_IsHindrance(BehaviorAction action, INextBot nextbot, int entity, QueryResultType& result)
+{
+	int me = action.Actor;
+	
+	if (m_iAttackTarget[me] != -1 && nextbot.IsRangeLessThan(m_iAttackTarget[me], 300.0))
+	{
+		//Don't avoid anyone as we get closer to our target
+		result = ANSWER_NO;
+		return Plugin_Changed;
+	}
+	
+	result = ANSWER_UNDEFINED;
+	return Plugin_Changed;
+}
+
+/* public Action CTFBotSpyLurkMvM_SelectMoreDangerousThreat(BehaviorAction action, Address nextbot, int entity, Address threat1, Address threat2, Address& knownEntity)
+{
+	int iThreat1 = view_as<CKnownEntity>(threat1).GetEntity();
+	
+	if (BaseEntity_IsPlayer(iThreat1) && TF2_IsMiniBoss(iThreat1))
+	{
+		//Giants are high priority, and consequently their medics are too
+		knownEntity = view_as<Address>(GetHealerOfThreat(view_as<INextBot>(nextbot), view_as<CKnownEntity>(threat1)));
+		
+		return Plugin_Changed;
+	}
+	
+	int iThreat2 = view_as<CKnownEntity>(threat2).GetEntity();
+	
+	if (BaseEntity_IsPlayer(iThreat2) && TF2_IsMiniBoss(iThreat2))
+	{
+		knownEntity = view_as<Address>(GetHealerOfThreat(view_as<INextBot>(nextbot), view_as<CKnownEntity>(threat2)));
+		
+		return Plugin_Changed;
+	}
+	
+	//Use default targeting, which prioritizes closer threats first
+	return Plugin_Continue;
+} */
+
+BehaviorAction CTFBotSpySap()
+{
+	BehaviorAction action = ActionsManager.Create("DefenderSpySap");
+	
+	action.OnStart = CTFBotSpySap_OnStart;
+	action.Update = CTFBotSpySap_Update;
+	action.OnEnd = CTFBotSpySap_OnEnd;
+	action.OnSuspend = CTFBotSpySap_OnSuspend;
+	action.OnResume = CTFBotSpySap_OnResume;
+	action.ShouldAttack = CTFBotSpySap_ShouldAttack;
+	action.IsHindrance = CTFBotSpySap_IsHindrance;
+	
+	return action;
+}
+
+public Action CTFBotSpySap_OnStart(BehaviorAction action, int actor, BehaviorAction priorAction, ActionResult result)
+{
+	m_pPath[actor].SetMinLookAheadDistance(GetDesiredPathLookAheadRange(actor));
+	
+	UpdateLookAroundForEnemies(actor, false);
+	
+	return action.Continue();
+}
+
+public Action CTFBotSpySap_Update(BehaviorAction action, int actor, float interval, ActionResult result)
+{
+	if (!IsValidEntity(m_iSapTarget[actor]) || TF2_HasSapper(m_iSapTarget[actor]))
+		if (!CTFBotSpySap_SelectTarget(actor))
+			return action.Done("No sap target");
+	
+	INextBot myBot = CBaseNPC_GetNextBotOfEntity(actor);
+	const float sapRange = 40.0;
+	
+	if (myBot.IsRangeLessThan(m_iSapTarget[actor], 2.0 * sapRange))
+	{
+		int mySapper = GetPlayerWeaponSlot(actor, TFWeaponSlot_Secondary);
+		
+		if (mySapper != -1)
+			TF2Util_SetPlayerActiveWeapon(actor, mySapper);
+		
+		if (TF2_IsStealthed(actor) || TF2_IsFeignDeathReady(actor))
+			VS_PressAltFireButton(actor);
+		
+		SnapViewToPosition(actor, WorldSpaceCenter(m_iSapTarget[actor]));
+		VS_PressFireButton(actor);
+	}
+	
+	if (m_flRepathTime[actor] <= GetGameTime())
+	{
+		CBaseCombatCharacter(m_iSapTarget[actor]).UpdateLastKnownArea();
+		
+		m_flRepathTime[actor] = GetGameTime() + GetRandomFloat(1.0, 2.0);
+		m_pPath[actor].ComputeToTarget(myBot, m_iSapTarget[actor]);
+	}
+	
+	m_pPath[actor].Update(myBot);
+	
+	return action.Continue();
+}
+
+public void CTFBotSpySap_OnEnd(BehaviorAction action, int actor, BehaviorAction priorAction, ActionResult result)
+{
+	UpdateLookAroundForEnemies(actor, true);
+}
+
+public Action CTFBotSpySap_OnSuspend(BehaviorAction action, int actor, BehaviorAction priorAction, ActionResult result)
+{
+	UpdateLookAroundForEnemies(actor, true);
+	
+	return action.Continue();
+}
+
+public Action CTFBotSpySap_OnResume(BehaviorAction action, int actor, BehaviorAction priorAction, ActionResult result)
+{
+	UpdateLookAroundForEnemies(actor, false);
+	
+	return action.Continue();
+}
+
+public Action CTFBotSpySap_ShouldAttack(BehaviorAction action, INextBot nextbot, CKnownEntity knownEntity, QueryResultType& result)
+{
+	result = ANSWER_NO;
+	return Plugin_Changed;
+}
+
+public Action CTFBotSpySap_IsHindrance(BehaviorAction action, INextBot nextbot, int entity, QueryResultType& result)
+{
+	int me = action.Actor;
+	
+	if (m_iSapTarget[me] != -1 && nextbot.IsRangeLessThan(m_iSapTarget[me], 300.0))
+	{
+		result = ANSWER_NO;
+		return Plugin_Changed;
+	}
+	
+	result = ANSWER_UNDEFINED;
+	return Plugin_Changed;
+}
+
+BehaviorAction CTFBotSpySapPlayers()
+{
+	BehaviorAction action = ActionsManager.Create("DefenderSpySapPlayer");
+	
+	action.OnStart = CTFBotSpySapPlayers_OnStart;
+	action.Update = CTFBotSpySapPlayers_Update;
+	action.ShouldAttack = CTFBotSpySapPlayers_ShouldAttack;
+	action.IsHindrance = CTFBotSpySapPlayers_IsHindrance;
+	
+	return action;
+}
+
+public Action CTFBotSpySapPlayers_OnStart(BehaviorAction action, int actor, BehaviorAction priorAction, ActionResult result)
+{
+	m_pPath[actor].SetMinLookAheadDistance(GetDesiredPathLookAheadRange(actor));
+	
+	return action.Continue();
+}
+
+public Action CTFBotSpySapPlayers_Update(BehaviorAction action, int actor, float interval, ActionResult result)
+{
+	if (!IsValidClientIndex(m_iPlayerSapTarget[actor])
+	|| !IsPlayerAlive(m_iPlayerSapTarget[actor])
+	|| TF2_GetClientTeam(m_iPlayerSapTarget[actor]) != GetEnemyTeamOfPlayer(actor)
+	|| !IsPlayerSappable(m_iPlayerSapTarget[actor]))
+	{
+		return action.Done("No player to sap");
+	}
+	
+	int mySapper = GetPlayerWeaponSlot(actor, TFWeaponSlot_Secondary);
+	
+	if (mySapper == -1)
+		return action.Done("No sapper");
+	
+	TF2Util_SetPlayerActiveWeapon(actor, mySapper);
+	
+	if (TF2_IsStealthed(actor) || TF2_IsFeignDeathReady(actor))
+	{
+		//Can't use place a sapper while cloaked, uncloak
+		VS_PressAltFireButton(actor);
+	}
+	else
+	{
+		float origin[3]; GetClientAbsOrigin(m_iPlayerSapTarget[actor], origin);
+		float myOrigin[3]; GetClientAbsOrigin(actor, myOrigin);
+		
+		SubtractVectors(origin, myOrigin, origin);
+		
+		//If we're close enough, build a sapper on them
+		if (GetVectorLength(origin) <= SAPPER_PLAYER_BUILD_ON_RANGE)
+		{
+			SpawnSapper(actor, m_iPlayerSapTarget[actor], mySapper);
+			SetSapperCooldown(actor, SAPPER_RECHARGE_TIME);
+			
+			return action.Done("Sapped player");
+		}
+	}
+	
+	INextBot myBot = CBaseNPC_GetNextBotOfEntity(actor);
+	
+	if (m_flRepathTime[actor] <= GetGameTime())
+	{
+		m_flRepathTime[actor] = GetGameTime() + GetRandomFloat(0.3, 0.4);
+		m_pPath[actor].ComputeToTarget(myBot, m_iPlayerSapTarget[actor]);
+	}
+	
+	m_pPath[actor].Update(myBot);
+	
+	return action.Continue();
+}
+
+public Action CTFBotSpySapPlayers_ShouldAttack(BehaviorAction action, INextBot nextbot, CKnownEntity knownEntity, QueryResultType& result)
+{
+	result = ANSWER_NO;
+	return Plugin_Changed;
+}
+
+public Action CTFBotSpySapPlayers_IsHindrance(BehaviorAction action, INextBot nextbot, int entity, QueryResultType& result)
+{
+	//Avoid no one
+	result = ANSWER_NO;
+	return Plugin_Changed;
+}
+
 BehaviorAction CTFBotAttackTank()
 {
 	BehaviorAction action = ActionsManager.Create("DefenderAttackTank");
@@ -1799,350 +2181,6 @@ public Action CTFBotAttackTank_SelectMoreDangerousThreat(BehaviorAction action, 
 	return Plugin_Changed;
 }
 
-BehaviorAction CTFBotSpyLurkMvM()
-{
-	BehaviorAction action = ActionsManager.Create("DefenderSpyLurk");
-	
-	action.OnStart = CTFBotSpyLurkMvM_OnStart;
-	action.Update = CTFBotSpyLurkMvM_Update;
-	action.ShouldAttack = CTFBotSpyLurkMvM_ShouldAttack;
-	action.IsHindrance = CTFBotSpyLurkMvM_IsHindrance;
-	// action.SelectMoreDangerousThreat = CTFBotSpyLurkMvM_SelectMoreDangerousThreat;
-	
-	return action;
-}
-
-public Action CTFBotSpyLurkMvM_OnStart(BehaviorAction action, int actor, BehaviorAction priorAction, ActionResult result)
-{
-	m_pPath[actor].SetMinLookAheadDistance(GetDesiredPathLookAheadRange(actor));
-	m_pChasePath[actor].SetMinLookAheadDistance(GetDesiredPathLookAheadRange(actor));
-	
-	//Track current target for IsHindrance
-	m_iAttackTarget[actor] = -1;
-	
-	return action.Continue();
-}
-
-public Action CTFBotSpyLurkMvM_Update(BehaviorAction action, int actor, float interval, ActionResult result)
-{
-	if (CTFBotSpySapPlayers_SelectTarget(actor))
-		return action.SuspendFor(CTFBotSpySapPlayers(), "Sapping player");
-	
-	if (CTFBotSpySap_SelectTarget(actor))
-		return action.SuspendFor(CTFBotSpySap(), "Sapping building");
-	
-	INextBot myBot = CBaseNPC_GetNextBotOfEntity(actor);
-	int target = GetBestTargetForSpy(actor, 2000.0);
-	
-	if (target != -1)
-	{
-		if (TF2_IsStealthed(actor))
-			VS_PressAltFireButton(actor);
-		
-		int melee = GetPlayerWeaponSlot(actor, TFWeaponSlot_Melee);
-		
-		if (melee != -1)
-			TF2Util_SetPlayerActiveWeapon(actor, melee);
-		
-		float playerThreatForward[3]; BasePlayer_EyeVectors(target, playerThreatForward);
-		float toPlayerThreat[3]; GetClientAbsOrigin(target, toPlayerThreat);
-		float myOrigin[3]; GetClientAbsOrigin(actor, myOrigin);
-		
-		SubtractVectors(toPlayerThreat, myOrigin, toPlayerThreat);
-		
-		float threatRange = NormalizeVector(toPlayerThreat, toPlayerThreat);
-		
-		const float behindTolerance = 0.0;
-		
-		bool isBehindVictim = GetVectorDotProduct(playerThreatForward, toPlayerThreat) > behindTolerance;
-		
-		if (TF2_IsLineOfFireClear4(actor, target))
-		{
-			const float circleStrafeRange = 250.0;
-			
-			if (threatRange < circleStrafeRange)
-			{
-				SnapViewToPosition(actor, WorldSpaceCenter(target));
-				
-				if (!isBehindVictim)
-				{
-					//Try to circle around the enemy
-					float myForward[3]; BasePlayer_EyeVectors(actor, myForward);
-					float cross[3]; GetVectorCrossProduct(playerThreatForward, myForward, cross);
-					
-					if (cross[2] < 0.0)
-						g_iAdditionalButtons[actor] |= IN_MOVERIGHT;
-					else
-						g_iAdditionalButtons[actor] |= IN_MOVELEFT;
-				}
-			}
-			
-			if (threatRange < GetDesiredAttackRange(actor))
-			{
-				if (TF2_IsPlayerInCondition(actor, TFCond_Disguised))
-				{
-					//They are stabable
-					if (isBehindVictim || TF2_IsPlayerInCondition(target, TFCond_MVMBotRadiowave) || (TF2_IsPlayerInCondition(target, TFCond_Sapped) && !TF2_IsMiniBoss(target)))
-						VS_PressFireButton(actor);
-				}
-				else
-				{
-					VS_PressFireButton(actor);
-				}
-			}
-		}
-		
-		m_pChasePath[actor].Update(myBot, target);
-	}
-	else
-	{
-		//Can't find anyone near me, just wander around the bomb
-		int flag = FindBombNearestToHatch();
-		
-		if (flag != -1)
-		{
-			float bombPosition[3]; bombPosition = GetAbsOrigin(flag);
-			
-			if (myBot.IsRangeGreaterThanEx(bombPosition, 200.0))
-			{
-				if (m_flRepathTime[actor] <= GetGameTime())
-				{
-					m_flRepathTime[actor] = GetGameTime() + GetRandomFloat(0.9, 1.0);
-					m_pPath[actor].ComputeToPos(myBot, bombPosition);
-				}
-				
-				m_pPath[actor].Update(myBot);
-			}
-		}
-	}
-	
-	m_iAttackTarget[actor] = target;
-	
-	return action.Continue();
-}
-
-public Action CTFBotSpyLurkMvM_ShouldAttack(BehaviorAction action, INextBot nextbot, CKnownEntity knownEntity, QueryResultType& result)
-{
-	//Don't as we will just make ourselves look stupid
-	result = ANSWER_NO;
-	return Plugin_Changed;
-}
-
-public Action CTFBotSpyLurkMvM_IsHindrance(BehaviorAction action, INextBot nextbot, int entity, QueryResultType& result)
-{
-	int me = action.Actor;
-	
-	if (m_iAttackTarget[me] != -1 && nextbot.IsRangeLessThan(m_iAttackTarget[me], 300.0))
-	{
-		//Don't avoid anyone as we get closer to our target
-		result = ANSWER_NO;
-		return Plugin_Changed;
-	}
-	
-	result = ANSWER_UNDEFINED;
-	return Plugin_Changed;
-}
-
-/* public Action CTFBotSpyLurkMvM_SelectMoreDangerousThreat(BehaviorAction action, Address nextbot, int entity, Address threat1, Address threat2, Address& knownEntity)
-{
-	int iThreat1 = view_as<CKnownEntity>(threat1).GetEntity();
-	
-	if (BaseEntity_IsPlayer(iThreat1) && TF2_IsMiniBoss(iThreat1))
-	{
-		//Giants are high priority, and consequently their medics are too
-		knownEntity = view_as<Address>(GetHealerOfThreat(view_as<INextBot>(nextbot), view_as<CKnownEntity>(threat1)));
-		
-		return Plugin_Changed;
-	}
-	
-	int iThreat2 = view_as<CKnownEntity>(threat2).GetEntity();
-	
-	if (BaseEntity_IsPlayer(iThreat2) && TF2_IsMiniBoss(iThreat2))
-	{
-		knownEntity = view_as<Address>(GetHealerOfThreat(view_as<INextBot>(nextbot), view_as<CKnownEntity>(threat2)));
-		
-		return Plugin_Changed;
-	}
-	
-	//Use default targeting, which prioritizes closer threats first
-	return Plugin_Continue;
-} */
-
-BehaviorAction CTFBotSpySap()
-{
-	BehaviorAction action = ActionsManager.Create("DefenderSpySap");
-	
-	action.OnStart = CTFBotSpySap_OnStart;
-	action.Update = CTFBotSpySap_Update;
-	action.OnEnd = CTFBotSpySap_OnEnd;
-	action.OnSuspend = CTFBotSpySap_OnSuspend;
-	action.OnResume = CTFBotSpySap_OnResume;
-	action.ShouldAttack = CTFBotSpySap_ShouldAttack;
-	action.IsHindrance = CTFBotSpySap_IsHindrance;
-	
-	return action;
-}
-
-public Action CTFBotSpySap_OnStart(BehaviorAction action, int actor, BehaviorAction priorAction, ActionResult result)
-{
-	m_pPath[actor].SetMinLookAheadDistance(GetDesiredPathLookAheadRange(actor));
-	
-	UpdateLookAroundForEnemies(actor, false);
-	
-	return action.Continue();
-}
-
-public Action CTFBotSpySap_Update(BehaviorAction action, int actor, float interval, ActionResult result)
-{
-	if (!IsValidEntity(m_iSapTarget[actor]) || TF2_HasSapper(m_iSapTarget[actor]))
-		if (!CTFBotSpySap_SelectTarget(actor))
-			return action.Done("No sap target");
-	
-	INextBot myBot = CBaseNPC_GetNextBotOfEntity(actor);
-	const float sapRange = 40.0;
-	
-	if (myBot.IsRangeLessThan(m_iSapTarget[actor], 2.0 * sapRange))
-	{
-		int mySapper = GetPlayerWeaponSlot(actor, TFWeaponSlot_Secondary);
-		
-		if (mySapper != -1)
-			TF2Util_SetPlayerActiveWeapon(actor, mySapper);
-		
-		if (TF2_IsStealthed(actor))
-			VS_PressAltFireButton(actor);
-		
-		SnapViewToPosition(actor, WorldSpaceCenter(m_iSapTarget[actor]));
-		VS_PressFireButton(actor);
-	}
-	
-	if (m_flRepathTime[actor] <= GetGameTime())
-	{
-		CBaseCombatCharacter(m_iSapTarget[actor]).UpdateLastKnownArea();
-		
-		m_flRepathTime[actor] = GetGameTime() + GetRandomFloat(1.0, 2.0);
-		m_pPath[actor].ComputeToTarget(myBot, m_iSapTarget[actor]);
-	}
-	
-	m_pPath[actor].Update(myBot);
-	
-	return action.Continue();
-}
-
-public void CTFBotSpySap_OnEnd(BehaviorAction action, int actor, BehaviorAction priorAction, ActionResult result)
-{
-	UpdateLookAroundForEnemies(actor, true);
-}
-
-public Action CTFBotSpySap_OnSuspend(BehaviorAction action, int actor, BehaviorAction priorAction, ActionResult result)
-{
-	UpdateLookAroundForEnemies(actor, true);
-	
-	return action.Continue();
-}
-
-public Action CTFBotSpySap_OnResume(BehaviorAction action, int actor, BehaviorAction priorAction, ActionResult result)
-{
-	UpdateLookAroundForEnemies(actor, false);
-	
-	return action.Continue();
-}
-
-public Action CTFBotSpySap_ShouldAttack(BehaviorAction action, INextBot nextbot, CKnownEntity knownEntity, QueryResultType& result)
-{
-	result = ANSWER_NO;
-	return Plugin_Changed;
-}
-
-public Action CTFBotSpySap_IsHindrance(BehaviorAction action, INextBot nextbot, int entity, QueryResultType& result)
-{
-	int me = action.Actor;
-	
-	if (m_iSapTarget[me] != -1 && nextbot.IsRangeLessThan(m_iSapTarget[me], 300.0))
-	{
-		result = ANSWER_NO;
-		return Plugin_Changed;
-	}
-	
-	result = ANSWER_UNDEFINED;
-	return Plugin_Changed;
-}
-
-BehaviorAction CTFBotSpySapPlayers()
-{
-	BehaviorAction action = ActionsManager.Create("DefenderSpySapPlayer");
-	
-	action.OnStart = CTFBotSpySapPlayers_OnStart;
-	action.Update = CTFBotSpySapPlayers_Update;
-	action.ShouldAttack = CTFBotSpySapPlayers_ShouldAttack;
-	action.IsHindrance = CTFBotSpySapPlayers_IsHindrance;
-	
-	return action;
-}
-
-public Action CTFBotSpySapPlayers_OnStart(BehaviorAction action, int actor, BehaviorAction priorAction, ActionResult result)
-{
-	m_pPath[actor].SetMinLookAheadDistance(GetDesiredPathLookAheadRange(actor));
-	
-	return action.Continue();
-}
-
-public Action CTFBotSpySapPlayers_Update(BehaviorAction action, int actor, float interval, ActionResult result)
-{
-	if (!IsValidClientIndex(m_iPlayerSapTarget[actor])
-	|| !IsPlayerAlive(m_iPlayerSapTarget[actor])
-	|| TF2_GetClientTeam(m_iPlayerSapTarget[actor]) != GetEnemyTeamOfPlayer(actor)
-	|| !IsPlayerSappable(m_iPlayerSapTarget[actor]))
-	{
-		return action.Done("No player to sap");
-	}
-	
-	int mySapper = GetPlayerWeaponSlot(actor, TFWeaponSlot_Secondary);
-	
-	if (mySapper == -1)
-		return action.Done("No sapper");
-	
-	TF2Util_SetPlayerActiveWeapon(actor, mySapper);
-	
-	float origin[3]; GetClientAbsOrigin(m_iPlayerSapTarget[actor], origin);
-	float myOrigin[3]; GetClientAbsOrigin(actor, myOrigin);
-	
-	SubtractVectors(origin, myOrigin, origin);
-	
-	//If we're close enough, build a sapper on them
-	if (GetVectorLength(origin) <= SAPPER_PLAYER_BUILD_ON_RANGE)
-	{
-		SpawnSapper(actor, m_iPlayerSapTarget[actor], mySapper);
-		SetSapperCooldown(actor, SAPPER_RECHARGE_TIME);
-		
-		return action.Done("Sapped player");
-	}
-	
-	INextBot myBot = CBaseNPC_GetNextBotOfEntity(actor);
-	
-	if (m_flRepathTime[actor] <= GetGameTime())
-	{
-		m_flRepathTime[actor] = GetGameTime() + GetRandomFloat(0.3, 0.4);
-		m_pPath[actor].ComputeToTarget(myBot, m_iPlayerSapTarget[actor]);
-	}
-	
-	m_pPath[actor].Update(myBot);
-	
-	return action.Continue();
-}
-
-public Action CTFBotSpySapPlayers_ShouldAttack(BehaviorAction action, INextBot nextbot, CKnownEntity knownEntity, QueryResultType& result)
-{
-	result = ANSWER_NO;
-	return Plugin_Changed;
-}
-
-public Action CTFBotSpySapPlayers_IsHindrance(BehaviorAction action, INextBot nextbot, int entity, QueryResultType& result)
-{
-	//Avoid no one
-	result = ANSWER_NO;
-	return Plugin_Changed;
-}
-
 BehaviorAction CTFBotMedicRevive()
 {
 	BehaviorAction action = ActionsManager.Create("DefenderMedicRevive");
@@ -2150,6 +2188,7 @@ BehaviorAction CTFBotMedicRevive()
 	action.OnStart = CTFBotMedicRevive_OnStart;
 	action.Update = CTFBotMedicRevive_Update;
 	// action.OnEnd = CTFBotMedicRevive_OnEnd;
+	action.OnInjured = CTFBotMedicRevive_OnInjured;
 	
 	return action;
 }
@@ -2182,7 +2221,7 @@ public Action CTFBotMedicRevive_Update(BehaviorAction action, int actor, float i
 		
 		if (healTarget != -1 && healTarget != marker)
 		{
-			// g_iSubtractiveButtons[actor] |= IN_ATTACK;
+			//We're healing something that's not the revive marker, stop holding the attack button
 		}
 		else
 		{
@@ -2214,6 +2253,17 @@ public Action CTFBotMedicRevive_Update(BehaviorAction action, int actor, float i
 {
 	CBaseNPC_GetNextBotOfEntity(actor).GetBodyInterface().ClearPendingAimReply();
 } */
+
+public Action CTFBotMedicRevive_OnInjured(BehaviorAction action, int actor, Address takedamageinfo, ActionDesiredResult result)
+{
+	int weapon = BaseCombatCharacter_GetActiveWeapon(actor);
+	
+	//Someone hit me while I'm trying to revive someone, let's pop uber now if possible
+	if (weapon != -1 && TF2Util_GetWeaponID(weapon) == TF_WEAPON_MEDIGUN)
+		VS_PressAltFireButton(actor);
+	
+	return action.Continue();
+}
 
 BehaviorAction CTFBotEvadeBuster()
 {
@@ -2385,7 +2435,7 @@ public Action CTFBotDestroyTeleporter_OnStart(BehaviorAction action, int actor, 
 {
 	m_pPath[actor].SetMinLookAheadDistance(GetDesiredPathLookAheadRange(actor));
 	
-	BaseMultiplayerPlayer_SpeakConceptIfAllowed(actor, MP_CONCEPT_PLAYER_JEERS);
+	BaseMultiplayerPlayer_SpeakConceptIfAllowed(actor, MP_CONCEPT_PLAYER_NEGATIVE);
 	
 	return action.Continue();
 }
@@ -2453,6 +2503,128 @@ public Action CTFBotDestroyTeleporter_SelectMoreDangerousThreat(BehaviorAction a
 	knownEntity = NULL_KNOWN_ENTITY;
 	
 	return Plugin_Changed;
+}
+
+BehaviorAction CTFBotGuardPoint()
+{
+	BehaviorAction action = ActionsManager.Create("DefenderGuardPoint");
+	
+	action.OnStart = CTFBotGuardPoint_OnStart;
+	action.Update = CTFBotGuardPoint_Update;
+	action.OnEnd = CTFBotGuardPoint_OnEnd;
+	action.OnTerritoryContested = CTFBotGuardPoint_OnTerritoryContested;
+	action.OnTerritoryLost = CTFBotGuardPoint_OnTerritoryLost;
+	
+	return action;
+}
+
+public Action CTFBotGuardPoint_OnStart(BehaviorAction action, int actor, BehaviorAction priorAction, ActionResult result)
+{
+	m_pPath[actor].SetMinLookAheadDistance(GetDesiredPathLookAheadRange(actor));
+	
+	int point = GetDefendablePointTriggerDoor(actor);
+	
+	if (point == -1)
+		return action.ChangeTo(CTFBotDefenderAttack(), "No point found");
+	
+	AreasCollector hAreas = TheNavMesh.CollectAreasInRadius(GetAbsOrigin(point), 300.0);
+	float center[3];
+	
+	for (int i = 0; i < hAreas.Count(); i++)
+	{
+		CTFNavArea area = view_as<CTFNavArea>(hAreas.Get(i));
+		
+		//Don't go in spawn room
+		if (area.HasAttributeTF(RED_SPAWN_ROOM) || area.HasAttributeTF(BLUE_SPAWN_ROOM))
+			continue;
+		
+		area.GetCenter(center);
+		
+		if (!IsPathToVectorPossible(actor, center))
+			continue;
+		
+		m_vecPointDefendArea[actor] = center;
+		break;
+	}
+	
+	delete hAreas;
+	
+	if (IsZeroVector(m_vecPointDefendArea[actor]))
+		return action.ChangeTo(CTFBotDefenderAttack(), "NULL defense area");
+	
+	BaseMultiplayerPlayer_SpeakConceptIfAllowed(actor, MP_CONCEPT_PLAYER_JEERS);
+	
+	return action.Continue();
+}
+
+public Action CTFBotGuardPoint_Update(BehaviorAction action, int actor, float interval, ActionResult result)
+{
+	// if (IsZeroVector(m_vecPointDefendArea[actor]))
+		// return action.ChangeTo(CTFBotDefenderAttack(), "Defend area is NULL");
+	
+	INextBot myBot = CBaseNPC_GetNextBotOfEntity(actor);
+	CKnownEntity threat = myBot.GetVisionInterface().GetPrimaryKnownThreat(false);
+	
+	if (threat)
+		EquipBestWeaponForThreat(actor, threat);
+	
+	int myWeapon = BaseCombatCharacter_GetActiveWeapon(actor);
+	
+	//If we're close-range only, chase after them to defend the point
+	if (myWeapon != -1 && (TF2Util_GetWeaponID(myWeapon) == TF_WEAPON_FLAMETHROWER || IsMeleeWeapon(myWeapon)))
+	{
+		int nearest = GetEnemyPlayerNearestToPosition(actor, m_vecPointDefendArea[actor], 1000.0);
+		
+		if (nearest != -1)
+		{
+			if (m_flRepathTime[actor] <= GetGameTime())
+			{
+				m_flRepathTime[actor] = GetGameTime() + GetRandomFloat(0.5, 1.0);
+				m_pPath[actor].ComputeToTarget(myBot, nearest);
+			}
+			
+			m_pPath[actor].Update(myBot);
+			
+			return action.Continue();
+		}
+	}
+	
+	//Stay near the point to defend it
+	if (myBot.IsRangeGreaterThanEx(m_vecPointDefendArea[actor], 200.0))
+	{
+		if (m_flRepathTime[actor] <= GetGameTime())
+		{
+			m_flRepathTime[actor] = GetGameTime() + GetRandomFloat(1.0, 2.0);
+			m_pPath[actor].ComputeToPos(myBot, m_vecPointDefendArea[actor]);
+		}
+		
+		m_pPath[actor].Update(myBot);
+	}
+	
+	return action.Continue();
+}
+
+public void CTFBotGuardPoint_OnEnd(BehaviorAction action, int actor, BehaviorAction priorAction, ActionResult result)
+{
+	m_vecPointDefendArea[actor] = NULL_VECTOR;
+}
+
+public Action CTFBotGuardPoint_OnTerritoryContested(BehaviorAction action, int actor, int territory)
+{
+	if (redbots_manager_debug_actions.BoolValue)
+		PrintToChatAll("[OnTerritoryContested] Losing CP %d", GetControlPointByID(territory));
+	
+	//Someone tried to capture it, keep defending
+	return action.TryToSustain();
+}
+
+public Action CTFBotGuardPoint_OnTerritoryLost(BehaviorAction action, int actor, int territory)
+{
+	if (redbots_manager_debug_actions.BoolValue)
+		PrintToChatAll("[OnTerritoryLost] Lost CP %d!", GetControlPointByID(territory));
+	
+	//We lost the point, give up
+	return action.TryChangeTo(CTFBotDefenderAttack(), RESULT_CRITICAL, "Point lost");
 }
 
 Action GetDesiredBotAction(int client, BehaviorAction action)
@@ -3852,7 +4024,7 @@ bool OpportunisticallyUsePowerupBottle(int client, int activeWeapon, INextBot bo
 				if our threat is giant and has a lot of health, they're probably a boss
 				if we're close to failing and they have a lot of health left, we want to kill them fast
 				i really want this to be done better, but we probably need people that actually know what the optimal use of this canteen is */
-				if ((TF2_IsMiniBoss(iThreat) && GetClientHealth(iThreat) > 5000) || (IsFailureImminent(client) && GetClientHealth(iThreat) > 900))
+				if ((TF2_IsMiniBoss(iThreat) && GetClientHealth(iThreat) > 5000) || (IsFailureImminent(client) && GetClientHealth(iThreat) > 2000))
 				{
 					UseActionSlotItem(client);
 					return true;
@@ -4454,9 +4626,9 @@ CKnownEntity SelectCloserThreat(INextBot bot, const CKnownEntity threat1, const 
 
 void MonitorKnownEntities(int client, IVision vision)
 {
-	static int maxEntCount = 0;
+	static int maxEntCount = -1;
 	
-	if (maxEntCount == 0)
+	if (maxEntCount == -1)
 		maxEntCount = GetMaxEntities();
 	
 	int myTeam = GetClientTeam(client);
@@ -4493,7 +4665,7 @@ bool CTFBotSpySap_SelectTarget(int actor)
 
 bool CTFBotSpySapPlayers_SelectTarget(int actor)
 {
-	if (!CanUseSapper(actor))
+	if (!CanBuildSapper(actor))
 		return false;
 	
 	m_iPlayerSapTarget[actor] = GetNearestSappablePlayer(actor, 1000.0, true, 230.0);
@@ -4515,8 +4687,9 @@ bool CTFBotSpySapPlayers_SelectTarget(int actor)
 	return m_iPlayerSapTarget[actor] != -1;
 }
 
-bool CanUseSapper(int client)
+bool CanBuildSapper(int client)
 {
+	//Recently sapped a player
 	if (m_flSapperCooldown[client] > GetGameTime())
 		return false;
 	
@@ -4772,7 +4945,7 @@ void PurchaseAffordableCanteens(int client, int count = 3)
 	m_nCurrentPowerupBottle[client] = PowerupBottle_GetType(bottle);
 	
 	if (redbots_manager_debug.BoolValue)
-		PrintToChatAll("PurchaseAffordableCanteens: %N purchased %d charges (upgrade %d) and wanted %d charges", client, purchaseAmount, selectedUpgradeIndex, count);
+		PrintToChatAll("[PurchaseAffordableCanteens] %N purchased %d charges (upgrade %d) and wanted %d charges", client, purchaseAmount, selectedUpgradeIndex, count);
 }
 
 void UpgradeMidRoundPostActivity(int client)
@@ -4883,4 +5056,36 @@ int GetTeleporterKillerCount()
 			count++;
 	
 	return count;
+}
+
+int GetPointGuardCount()
+{
+	int count = 0;
+	
+	for (int i = 1; i <= MaxClients; i++)
+		if (IsClientInGame(i) && g_bIsDefenderBot[i] && ActionsManager.GetAction(i, "DefenderGuardPoint") != INVALID_ACTION)
+			count++;
+	
+	return count;
+}
+
+bool CTFBotGuardPoint_IsPossible(int client)
+{
+	//There are better things for scout to do than this
+	if (TF2_GetPlayerClass(client) == TFClass_Scout)
+		return false;
+	
+	//One of us is already watching the point
+	if (GetPointGuardCount() > 0)
+		return false;
+	
+	//Nothing to defend
+	if (GetDefendablePointTriggerDoor(client) == -1)
+		return false;
+	
+	//I'd rather lose the point than lose the wave!
+	if (IsFailureImminent(client))
+		return false;
+	
+	return true;
 }
