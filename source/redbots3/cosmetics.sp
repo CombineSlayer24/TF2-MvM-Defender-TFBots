@@ -1,39 +1,47 @@
+enum struct CosmeticSet
+{
+	int iHat;			// Reserved as the Head/Hat cosmetic (For unusual effects)
+	int iCosmetic1;
+	int iCosmetic2;
+}
+
 // idk how to name this...
 public const float g_paintValues[ 29 ][ 2 ] = {
-	{ 3100495.0, 3100495.0 },
-	{ 8208497.0, 8208497.0 },
-	{ 1315860.0, 1315860.0 },
-	{ 12377523.0, 12377523.0 },
-	{ 2960676.0, 2960676.0 },
-	{ 8289918.0, 8289918.0 },
-	{ 15132390.0, 15132390.0 },
-	{ 15185211.0, 15185211.0 },
-	{ 14204632.0, 14204632.0 },
-	{ 15308410.0, 15308410.0 },
-	{ 8421376.0, 8421376.0 },
-	{ 7511618.0, 7511618.0 },
-	{ 13595446.0, 13595446.0 },
-	{ 10843461.0, 10843461.0 },
-	{ 5322826.0, 5322826.0 },
-	{ 12955537.0, 12955537.0 },
-	{ 16738740.0, 16738740.0 },
-	{ 6901050.0, 6901050.0 },
-	{ 3329330.0, 3329330.0 },
-	{ 15787660.0, 15787660.0 },
-	{ 8154199.0, 8154199.0 },
-	{ 4345659.0, 4345659.0 },
-	{ 6637376.0, 2636109.0 },
-	{ 3874595.0, 1581885.0 },
-	{ 12807213.0, 12091445.0 },
-	{ 4732984.0, 3686984.0 },
-	{ 12073019.0, 5801378.0 },
-	{ 8400928.0, 2452877.0 },
-	{ 11049612.0, 8626083.0 }
+	{ 7511618.0, 7511618.0 },	// Indubitably Green
+	{ 4345659.0, 4345659.0 },	// Zepheniah's Greed
+	{ 5322826.0, 5322826.0 },	// Noble Hatter's Violet
+	{ 14204632.0, 14204632.0 }, // Color No. 216-190-216
+	{ 8208497.0, 8208497.0 },	// A Deep Commitment to Purple
+	{ 13595446.0, 13595446.0 },	// Mann Co. Orange
+	{ 10843461.0, 10843461.0 },	// Muskelmannbraun
+	{ 12955537.0, 12955537.0 },	// Peculiarly Drab Tincture
+	{ 6901050.0, 6901050.0 },	// Radigan Conagher Brown
+	{ 8154199.0, 8154199.0 },	// Ye Olde Rustic Colour
+	{ 15185211.0, 15185211.0 },	// Australium Gold
+	{ 8289918.0, 8289918.0 },	// Aged Moustache Grey
+	{ 15132390.0, 15132390.0 },	// An Extraordinary Abundance of Tinge
+	{ 1315860.0, 1315860.0 },	// A Distinctive Lack of Hue
+	{ 16738740.0, 16738740.0 },	// Pink as Hell
+	{ 3100495.0, 3100495.0 },	// A Color Similar to Slate
+	{ 8421376.0, 8421376.0 },	// Drably Olive
+	{ 3329330.0, 3329330.0 },	// The Bitter Taste of Defeat and Lime
+	{ 15787660.0, 15787660.0 },	// The Color of a Gentlemann's Business Pants
+	{ 15308410.0, 15308410.0 },	// Dark Salmon Injustice
+	{ 12377523.0, 12377523.0 },	// A Mann's Mint
+	{ 2960676.0, 2960676.0 },	// After Eight
+	// Team Color Paints below
+	{ 12073019.0, 5801378.0 },	// Team Spirit
+	{ 4732984.0, 3686984.0 },	// Operator's Overalls
+	{ 11049612.0, 8626083.0 },	// Waterlogged Lab Coat
+	{ 3874595.0, 1581885.0 },	// Balaclavas Are Forever
+	{ 6637376.0, 2636109.0 },	// An Air of Debonair
+	{ 8400928.0, 2452877.0 },	// The Value of Teamwork
+	{ 12807213.0, 12091445.0 },	// Cream Spirit
 };
 
-//-----------------------------------------------------------------
+//-----------------------------------------------
 // ALL CLASS
-//-----------------------------------------------------------------
+//-----------------------------------------------
 // Rename these names again
 public const int ALLCLASS_HATS[] = {
 	139, 	//Modest pile of hat
@@ -59,13 +67,13 @@ public const int ALLCLASS_HATS[] = {
 	30928,	//Balloonihoodie
 	31183,	//Ballooniphones
 	30768,	//bedouin Bandana
-	126,	// Bills Hat
+	126,	//Bills Hat
 };
 
 public const int ALLCLASS_GLASSES[] = {
 	30104, 	//Greybanns
 	30397, 	//Bruisers Bandana
-	//30085, 	//Macho Mann
+	343,	//Professor Speks
 	743,	//Pyrovision Goggles
 	486,	//Summer Shades
 };
@@ -101,41 +109,66 @@ public const int ALLCLASS_FEET[] = {
 
 //public const int ALLCLASS_FLOATING[] = {};
 
-//-----------------------------------------------------------------
+// When setting up presets, make sure the hat
+// is the first entry (iHat). It will be makred
+// as a unusual cosmetic spot
+public const CosmeticSet CS_PRESET_SCOUT[] = {
+	{ -1, 30888, 30889 },		// Nothing, Jungle Jersey, Transparent Trousers
+	{ 126, 30104, 30309 },		// Bill Hat, Graybanns, Dead of Night
+	{ 30362, 30085, 296 },		// THe Law, The Macho Mann, License to maim
+	{ 324, 31217, 31302 },		// Flipped Trilby, Goalkeeper, Imp's Imprint
+	{ 31168, 987, 31022 },		// Towering Pillar of Beanies, Merc's Muffler, Juvenile's Jumper
+	{ 30636, 30637, 30889 },	// Fortnate Son, Flak Jack,  Transparent Trousers
+	{ 30686, 30737, 30873 },	// Death Racer's Helmet, Crook Combantant, Airborne Attire
+	{ 30993, 31367, 30551 },	// Punk's Pomp, Prohibition Opposition, Brooklyn Booties
+	{ 31406, 31339, 31118 },	// Last Laugh, Motley Sleeves, Poolside Polo
+	{ 30573, 13570, 31407 },	// Mountebanks Masque, OP Firmware Frenzy SS 2023, Jumping Jester
+	{ 30686, 30685, 30890 },	// Death Racer Helmet, Thrilling Tracksuit, Forest Footwear
+	{ 30884, 492, 486 },		// Aloha Apparel, Summer Hat, Summer Shades
+	{ 30801, 924, 925 },		// Spooktacles, Spooky Shoes, Spooky Sleeves
+	{ 617, 30076, 707 }			// Backwards Ballcap ,Bigg Mann on Campus ,oston Boom-Bringer
+};
+
+//-----------------------------------------------
 // SCOUT
-//-----------------------------------------------------------------
-
-//-----------------------------------------------------------------
+//-----------------------------------------------
+public const int SPECIFIC_SCOUT_HATS[] = {};
+public const int SPECIFIC_SCOUT_GLASSES[] = {};
+public const int SPECIFIC_SCOUT_TOROS[] = {};
+public const int SPECIFIC_SCOUT_BELT[] = {};
+public const int SPECIFIC_SCOUT_PANTS[] = {};
+public const int SPECIFIC_SCOUT_FEET[] = {};
+//-----------------------------------------------
 // SOLDIER
-//-----------------------------------------------------------------
+//-----------------------------------------------
 
-//-----------------------------------------------------------------
+//-----------------------------------------------
 // PYRO
-//-----------------------------------------------------------------
+//-----------------------------------------------
 
-//-----------------------------------------------------------------
+//-----------------------------------------------
 // DEMO
-//-----------------------------------------------------------------
+//-----------------------------------------------
 
-//-----------------------------------------------------------------
+//-----------------------------------------------
 // HEAVYWEAPONSGUY
-//-----------------------------------------------------------------
+//-----------------------------------------------
 
-//-----------------------------------------------------------------
+//-----------------------------------------------
 // ENGINEER
-//-----------------------------------------------------------------
+//-----------------------------------------------
 
-//-----------------------------------------------------------------
+//-----------------------------------------------
 // MEDIC
-//-----------------------------------------------------------------
+//-----------------------------------------------
 
-//-----------------------------------------------------------------
+//-----------------------------------------------
 // SNIPER
-//-----------------------------------------------------------------
+//-----------------------------------------------
 
-//-----------------------------------------------------------------
+//-----------------------------------------------
 // SPY
-//-----------------------------------------------------------------
+//-----------------------------------------------
 
 
 public Action Timer_ApplyCosmetics( Handle timer, int client )
@@ -143,61 +176,46 @@ public Action Timer_ApplyCosmetics( Handle timer, int client )
 	if ( !IsClientInGame( client ) || !IsPlayerAlive( client ) )
 		return Plugin_Stop;
 
-	ApplyRandomCosmetics( client );
-
+	GiveBotCosmetics( client );
 	PrintToChatAll( "Called: Timer_ApplyCosmetics" );
 
 	return Plugin_Stop;
 }
 
-void ApplyRandomCosmetics( int client )
-{
-	GiveBotCosmetics( client );
-	PrintToChatAll( "Called: ApplyRandomCosmetics" );
-}
-
 // Sets up the random cosmetics for the bots to spawn with.
 void GiveBotCosmetics( int iClient )
 {
-	int iRandom = GetRandomInt( 0, 100 );
+	int iRandom = GetRandomInt( 1, 100 );
 
 	// 65% chance to pick Randomized Cosmetic Sets
 	if ( iRandom <= 65 )
 	{
-		switch ( TF2_GetPlayerClass( iClient ) )
+		TFClassType classType = TF2_GetPlayerClass( iClient );
+
+		if ( classType == TFClass_Scout || classType == TFClass_Soldier || classType == TFClass_Pyro 
+		|| classType == TFClass_DemoMan || classType == TFClass_Heavy || classType == TFClass_Engineer
+		|| classType == TFClass_Medic || classType == TFClass_Sniper || classType == TFClass_Spy )
 		{
-			case TFClass_Scout:
+			if ( iRandom <= 40 )
 			{
-				if ( iRandom <= 40 )
-				{
-					//TODO: Add All Class here
+				//TODO: Add All Class here
 
-					// Somewhat cooking? But not really, we need something better than this.
-					int iRandomHat = ALLCLASS_HATS[ GetRandomInt( 0, sizeof( ALLCLASS_HATS ) - 1 ) ];
-					int iRandomGlasses = ALLCLASS_GLASSES[ GetRandomInt( 0, sizeof( ALLCLASS_GLASSES ) - 1 ) ];
-					TF2_CreateHat( iClient, iRandomHat, 10, 6, 1 );	
-					TF2_CreateHat( iClient, iRandomGlasses, 10, 6, 0 );
-				}
-				else
-				{
-					//TODO: Add Class Specifics here
-				}
+				// Somewhat cooking? But not really, we need something better than this.
+				int iRandHat = ALLCLASS_HATS[ GetRandomInt( 0, sizeof( ALLCLASS_HATS ) - 1 ) ];
+				int iRandGlasses = ALLCLASS_GLASSES[ GetRandomInt( 0, sizeof( ALLCLASS_GLASSES ) - 1 ) ];
+				int iRandMedal = ALLCLASS_MEDAL[ GetRandomInt( 0, sizeof( ALLCLASS_MEDAL ) - 1 ) ];
+				int iRandTorso = ALLCLASS_TORSO[ GetRandomInt( 0, sizeof( ALLCLASS_TORSO ) - 1 ) ];
+				int iRandBelt = ALLCLASS_BELT[ GetRandomInt( 0, sizeof( ALLCLASS_BELT ) - 1 ) ];
+				int iRandPants = ALLCLASS_PANTS[ GetRandomInt( 0, sizeof( ALLCLASS_PANTS ) - 1 ) ];
+				int iRandFeet = ALLCLASS_FEET[ GetRandomInt( 0, sizeof( ALLCLASS_FEET ) - 1 ) ];
+				TF2_CreateHat( iClient, iRandHat, 6, true );	
+				TF2_CreateHat( iClient, iRandGlasses, 6 );
 			}
-			case TFClass_Soldier:
+			else
 			{
-				if ( iRandom <= 40 )
+				//TODO: Add Class Specifics here IE exclusive cosmetics
+				if ( classType == TFClass_Scout )
 				{
-					//TODO: Add All Class here
-
-					// Somewhat cooking? But not really, we need something better than this.
-					int iRandomHat = ALLCLASS_HATS[ GetRandomInt( 0, sizeof( ALLCLASS_HATS ) - 1 ) ];
-					int iRandomGlasses = ALLCLASS_GLASSES[ GetRandomInt( 0, sizeof( ALLCLASS_GLASSES ) - 1 ) ];
-					TF2_CreateHat( iClient, iRandomHat, 10, 6, 1 );	
-					TF2_CreateHat( iClient, iRandomGlasses, 10, 6, 0 );
-				}
-				else
-				{
-					//TODO: Add Class Specifics here
 				}
 			}
 		}
@@ -206,112 +224,62 @@ void GiveBotCosmetics( int iClient )
 	{
 		switch ( TF2_GetPlayerClass( iClient ) )
 		{
-			case TFClass_Scout: 	GetRandomCosSetForClass( iClient, "Scout" );
-			case TFClass_Soldier: 	GetRandomCosSetForClass( iClient, "Soldier" );
-			case TFClass_Pyro: 		GetRandomCosSetForClass( iClient, "Pyro" );
-			case TFClass_DemoMan: 	GetRandomCosSetForClass( iClient, "Demoman" );
-			case TFClass_Heavy: 	GetRandomCosSetForClass( iClient, "HeavyWeapons" );
-			case TFClass_Engineer: 	GetRandomCosSetForClass( iClient, "Engineer" );
-			case TFClass_Medic: 	GetRandomCosSetForClass( iClient, "Medic" );
-			case TFClass_Sniper: 	GetRandomCosSetForClass( iClient, "Sniper" );
-			case TFClass_Spy: 		GetRandomCosSetForClass( iClient, "Spy" );
+			case TFClass_Scout: 	PresetCosmeticSet( iClient, "Scout" );
+			case TFClass_Soldier: 	PresetCosmeticSet( iClient, "Soldier" );
+			case TFClass_Pyro: 		PresetCosmeticSet( iClient, "Pyro" );
+			case TFClass_DemoMan: 	PresetCosmeticSet( iClient, "Demoman" );
+			case TFClass_Heavy: 	PresetCosmeticSet( iClient, "HeavyWeapons" );
+			case TFClass_Engineer: 	PresetCosmeticSet( iClient, "Engineer" );
+			case TFClass_Medic: 	PresetCosmeticSet( iClient, "Medic" );
+			case TFClass_Sniper: 	PresetCosmeticSet( iClient, "Sniper" );
+			case TFClass_Spy: 		PresetCosmeticSet( iClient, "Spy" );
 		}
 	}
 }
 
-void GetRandomCosSetForClass( int iClient, char[] iClass )
+void PresetCosmeticSet(int iClient, char[] iClass) 
 {
-	if ( StrEqual( iClass, "Scout", false ) )
+	if ( StrEqual( iClass, "Scout", false ) ) 
 	{
-		// I DON't LIKE DOING THIS, BUT THIS IS TEMPORARY
-		// HOLY FUCK! Just don't look at me
-		int iRandom = GetRandomInt( 1, 2 );
-		switch( iRandom )
-		{
-			case 1:
-			{
-				TF2_CreateHat( iClient, 126, 10, 6, 1 );	
-				TF2_CreateHat( iClient, 30104, 10, 6, 0 );
-				TF2_CreateHat( iClient, 30309, 10, 6, 0 );
-			}
+		int iRandom = GetRandomInt( 0, sizeof( CS_PRESET_SCOUT ) / sizeof( CosmeticSet ) - 1 );
 
-			case 2:
+		// Add the add if the id is not -1
+		if ( CS_PRESET_SCOUT[ iRandom ].iHat != -1 )
+		{
+			TF2_CreateHat( iClient, CS_PRESET_SCOUT[ iRandom ].iHat, 6, true ); // Hats always unusual chance
+		}
+
+		// garbage
+		/* if ( CS_PRESET_SCOUT[ iRandom ].iCosmetic1 != -1 )
+		{
+			TF2_CreateHat( iClient, CS_PRESET_SCOUT[ iRandom ].iCosmetic1, 6 );
+		}
+		if ( CS_PRESET_SCOUT[ iRandom ].iCosmetic2 != -1 )
+		{
+			TF2_CreateHat( iClient, CS_PRESET_SCOUT[ iRandom ].iCosmetic2, 6 );
+		} */
+
+		// Loops between iCosmetic1 and iCosmetic2
+		// and add it if it's not -1
+		for ( int i = 0; i < 2; ++i )
+		{
+			int iCosmeticID = ( i == 0 ) ? CS_PRESET_SCOUT[ iRandom ].iCosmetic1 : CS_PRESET_SCOUT[ iRandom ].iCosmetic2;
+			if ( iCosmeticID != -1 )
 			{
-				TF2_CreateHat( iClient, 30362, 10, 6, 1 );	
-				TF2_CreateHat( iClient, 30085, 10, 6, 0 );
-				TF2_CreateHat( iClient, 165, 10, 6, 0 );
+				TF2_CreateHat( iClient, iCosmeticID, 6 );
 			}
 		}
 	}
 }
-
-
-/* void GiveBotCosmetics( int iClient, bool bIsCosmeticSet, bool bSetType )
-{
-	// Is not cosmetic sets, will randomize cosmetics
-	if ( !bIsCosmeticSet )
-	{
-		switch ( TF2_GetPlayerClass( iClient ) )
-		{
-			case TFClass_Scout:
-			{
-				if ( bSetType )
-				{
-					//TODO: Add All Class here
-
-					// Somewhat cooking? But not really, we need something better than this.
-					int iRandomHat = ALLCLASS_HATS[ GetRandomInt( 0, sizeof( ALLCLASS_HATS ) - 1 ) ];
-					int iRandomGlasses = ALLCLASS_GLASSES[ GetRandomInt( 0, sizeof( ALLCLASS_GLASSES ) - 1 ) ];
-					TF2_CreateHat( iClient, iRandomHat, 10, 6, 1 );	
-					TF2_CreateHat( iClient, iRandomGlasses, 10, 6, 0 );
-				}
-				else
-				{
-					//TODO: Add Class Specifics here
-				}
-			}
-		}
-	}
-	else
-	{
-		// I DON't LIKE DOING THIS, BUT THIS IS TEMPORARY
-		// HOLY FUCK! Just don't look at me
-		switch ( TF2_GetPlayerClass( iClient ) )
-		{
-			case TFClass_Scout:
-			{
-				int iRandom = GetRandomInt( 1, 2 );
-				switch( iRandom )
-				{
-					case 1:
-					{
-						TF2_CreateHat( iClient, 126, 10, 6, 1 );	
-						TF2_CreateHat( iClient, 30104, 10, 6, 0 );
-						TF2_CreateHat( iClient, 30309, 10, 6, 0 );
-					}
-					case 2:
-					{
-						TF2_CreateHat( iClient, 30362, 10, 6, 1 );	
-						TF2_CreateHat( iClient, 30085, 10, 6, 0 );
-						TF2_CreateHat( iClient, 165, 10, 6, 0 );
-					}
-				}
-			}
-		}
-	}
-} */
-
-
-
 
 //	Qualities //
 // Normal = 0
-// Unique = 6
-// Rarity1 = 1 
-// Rarity2 = 2
-// Rarity3 = 4
-// Rarity4 = 5
+// Rarity1 = 1 (Genuine)
+// Rarity2 = 2 (Customized)
 // Vintage = 3
+// Rarity3 = 4 (Well-Designed)
+// Rarity4 = 5 (Unusual)
+// Unique = 6
 // Community = 7
 // Developer = 8
 // Selfmade = 9
@@ -321,7 +289,8 @@ void GetRandomCosSetForClass( int iClient, char[] iClass )
 // Haunted = 13
 // Collectors = 14
 // Paintkitweapon = 15
-int TF2_CreateHat( int iClient, int iIndex, int iLevel, int iQuality, int iUnusual )
+
+int TF2_CreateHat( int iClient, int iIndex, int iQuality = 6, bool bIsUnusual = false)
 {
 	int iHat = CreateEntityByName( "tf_wearable" );
 	if ( iHat != -1 )
@@ -332,9 +301,10 @@ int TF2_CreateHat( int iClient, int iIndex, int iLevel, int iQuality, int iUnusu
 		char netClass[ 64 ]; GetEntityNetClass( iHat, netClass, sizeof( netClass ) );
 		int iPropInfoQuality = FindSendPropInfo( netClass, "m_iEntityQuality" );
 		int iPropInfoLevel = FindSendPropInfo( netClass, "m_iEntityLevel" );
+		bool bCantBeRandUnusual = false;
 
 		SetEntData( iHat, iPropInfoQuality, iQuality );
-		SetEntData( iHat, iPropInfoLevel, iLevel == 10 ? GetRandomInt( 1, 100 ) : iLevel );
+		SetEntData( iHat, iPropInfoLevel, GetRandomInt( 1, 100 ) );	// Randomize Hat Level
 
 		if ( GetRandomInt( 1, 10 ) == 1 )
 		{
@@ -350,14 +320,42 @@ int TF2_CreateHat( int iClient, int iIndex, int iLevel, int iQuality, int iUnusu
 			}
 		}	
 
-		if ( iQuality != 5 && iQuality != 11 )
+/* 		if ( iQuality != 5 && iQuality != 11 )
 		{
 			int iStrangeRnd = GetRandomInt( 1, 4 );
 			int iQualityValue = iStrangeRnd == 1 ? 1 : ( iStrangeRnd == 2 ? 3 : 7 );
 			SetEntData( iHat, iPropInfoQuality, iQualityValue );
+		} */
+
+		if ( iQuality != 5 && iQuality != 11 )
+		{
+			int iRandom = GetRandomInt( 1, 60 );
+			
+
+			if ( iRandom <= 40 )
+			{
+				SetEntData( iHat, iPropInfoQuality, 1 );
+			}
+			else if ( iRandom <= 27 )
+			{
+				SetEntData( iHat, iPropInfoQuality, 3 );
+				bCantBeRandUnusual = true;
+			}
+			else if ( iRandom <= 12 )
+			{
+				// Community Sparkle
+				SetEntData( iHat, iPropInfoQuality, 7 );
+				TF2Attrib_SetByDefIndex( iHat, 134, 4.0 );
+				bCantBeRandUnusual = true;
+			}
+			else if ( iRandom <= 6 )
+			{
+				SetEntData( iHat, iPropInfoQuality, 14 );
+				bCantBeRandUnusual = true;
+			}
 		}
 
-		if ( iUnusual == 0 )
+/* 		if ( iUnusual == 0 )
 		{
 			TF2Attrib_RemoveByDefIndex( iHat, 134 );
 		}
@@ -371,20 +369,31 @@ int TF2_CreateHat( int iClient, int iIndex, int iLevel, int iQuality, int iUnusu
 		{
 			SetEntProp( iHat, Prop_Send, "m_iEntityQuality", 5 );
 			TF2Attrib_SetByDefIndex( iHat, 134, iUnusual + 0.0 );
+		} */
+
+		if ( bIsUnusual && !bCantBeRandUnusual && GetRandomInt( 1, 4 ) == 1 )
+		{
+			// Set the hat as unusual
+			SetEntData( iHat, iPropInfoQuality, 5 );
+			TF2Attrib_SetByDefIndex( iHat, 134, GetRandomInt( 1, 325 ) + 0.0 );
+		}
+		else
+		{
+			TF2Attrib_RemoveByDefIndex( iHat, 134 );
 		}
 
 		// Certain Hats always unususl
-		if( iIndex == 1158 || iIndex == 1173 )
+		if ( iIndex == 1158 || iIndex == 1173 )
 		{
 			SetEntProp( iHat, Prop_Send, "m_iEntityQuality", 5 );
-			TF2Attrib_SetByDefIndex( iHat, 134, GetRandomInt( 1, 174 ) + 0.0 );
+			TF2Attrib_SetByDefIndex( iHat, 134, GetRandomInt( 1, 325 ) + 0.0 );
 		}
 
 		if ( GetRandomInt( 1, 4 ) == 1 )
 		{
 			int randomPaint = GetRandomInt( 0, 28 );
-			TF2Attrib_SetByDefIndex( iHat, 142, g_paintValues[ randomPaint ][ 0 ] );
-			TF2Attrib_SetByDefIndex( iHat, 261, g_paintValues[ randomPaint ][ 1 ] );
+			TF2Attrib_SetByDefIndex( iHat, 142, g_paintValues[ randomPaint ][ 0 ] );	// Primary
+			TF2Attrib_SetByDefIndex( iHat, 261, g_paintValues[ randomPaint ][ 1 ] );	// Secondary
 		}
 		
 		EconItemSpawnGiveTo( iHat, iClient );
