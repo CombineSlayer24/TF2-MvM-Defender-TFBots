@@ -286,8 +286,9 @@ void PresetCosmeticSet(int iClient, char[] iClass)
 	{
 		if ( CS_PRESET_SOLDIER[ iSoldierRand ].iHat != -1 )
 		{
-			TF2_CreateHat( iClient, CS_PRESET_SOLDIER[ iSoldierRand ].iHat, 6, true ); // Hats always unusual chance
+			TF2_CreateHat( iClient, CS_PRESET_SOLDIER[ iSoldierRand ].iHat, 6, true );
 		}
+
 		for ( int i = 0; i < 2; ++i )
 		{
 			int iCosmeticID = ( i == 0 ) ? CS_PRESET_SOLDIER[ iSoldierRand ].iCosmetic1 : CS_PRESET_SOLDIER[ iSoldierRand ].iCosmetic2;
@@ -361,42 +362,29 @@ int TF2_CreateHat( int iClient, int iIndex, int iQuality = 6, bool bIsUnusual = 
 
 			if ( iRandom <= 40 )
 			{
+				// Genuine quality
 				SetEntData( iHat, iPropInfoQuality, 1 );
 			}
 			else if ( iRandom <= 27 )
 			{
+				// Vintage quality
 				SetEntData( iHat, iPropInfoQuality, 3 );
 				bCantBeRandUnusual = true;
 			}
 			else if ( iRandom <= 12 )
 			{
-				// Community Sparkle
+				// Community Sparkle quality
 				SetEntData( iHat, iPropInfoQuality, 7 );
 				TF2Attrib_SetByDefIndex( iHat, 134, 4.0 );
 				bCantBeRandUnusual = true;
 			}
 			else if ( iRandom <= 6 )
 			{
+				// Collectors quality
 				SetEntData( iHat, iPropInfoQuality, 14 );
 				bCantBeRandUnusual = true;
 			}
 		}
-
-/* 		if ( iUnusual == 0 )
-		{
-			TF2Attrib_RemoveByDefIndex( iHat, 134 );
-		}
-		else if ( iUnusual == 1 && GetRandomInt( 1, 4 ) == 1 )
-		{
-			// Set the hat as unusual
-			SetEntData( iHat, iPropInfoQuality, 5 );
-			TF2Attrib_SetByDefIndex( iHat, 134, GetRandomInt( 1, 174 ) + 0.0 );
-		}
-		else if ( iUnusual > 1 )
-		{
-			SetEntProp( iHat, Prop_Send, "m_iEntityQuality", 5 );
-			TF2Attrib_SetByDefIndex( iHat, 134, iUnusual + 0.0 );
-		} */
 
 		if ( bIsUnusual && !bCantBeRandUnusual && GetRandomInt( 1, 4 ) == 1 )
 		{
@@ -430,6 +418,8 @@ int TF2_CreateHat( int iClient, int iIndex, int iQuality = 6, bool bIsUnusual = 
 
 		// TODO: Random Style Overrides for cosmetics.
 		// How the fuck are we going to do this????
+		// Cosmetics have a variety of styles,
+		// ranging from 1 to 5...
 		
 		EconItemSpawnGiveTo( iHat, iClient );
 		EconItemView_SetItemID( iHat, GetRandomInt( 1, 2048 ) );
