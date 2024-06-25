@@ -118,15 +118,36 @@ public const CosmeticSet CS_PRESET_SCOUT[] = {
 	{ 30362, 30085, 296 },		// THe Law, The Macho Mann, License to maim
 	{ 324, 31217, 31302 },		// Flipped Trilby, Goalkeeper, Imp's Imprint
 	{ 31168, 987, 31022 },		// Towering Pillar of Beanies, Merc's Muffler, Juvenile's Jumper
+	{ 765, 30185, 30068 },		// Cross-Comm Express, FlapJack, Breakneck Baggies
 	{ 30636, 30637, 30889 },	// Fortnate Son, Flak Jack,  Transparent Trousers
 	{ 30686, 30737, 30873 },	// Death Racer's Helmet, Crook Combantant, Airborne Attire
 	{ 30993, 31367, 30551 },	// Punk's Pomp, Prohibition Opposition, Brooklyn Booties
 	{ 31406, 31339, 31118 },	// Last Laugh, Motley Sleeves, Poolside Polo
-	{ 30573, 13570, 31407 },	// Mountebanks Masque, OP Firmware Frenzy SS 2023, Jumping Jester
+	{ 30573, 13570, 31407 },	// Mountebanks Masque, OP-Firmware Frenzy SS 2023, Jumping Jester
 	{ 30686, 30685, 30890 },	// Death Racer Helmet, Thrilling Tracksuit, Forest Footwear
+	{ 30576, 30873, 31184 },	// Co-Pilot, Airborne Attire, Manndatory Attire
+	{ 31437, 30751, 31436 },	// Bonk Beanie, Bonk Batter's Backup, Isotopic Insulator
+	{ 31042, 30076, 31116 },	// Bottle Cap, Bigg Mann on Campus, Soda Specs
 	{ 30884, 492, 486 },		// Aloha Apparel, Summer Hat, Summer Shades
 	{ 30801, 924, 925 },		// Spooktacles, Spooky Shoes, Spooky Sleeves
-	{ 617, 30076, 707 }			// Backwards Ballcap ,Bigg Mann on Campus ,oston Boom-Bringer
+	{ 106, 30751, 827 },		// Bonk Helm, Bonk Batter's Backup, Track Terrorizer
+	{ 617, 30076, 707 },		// Backwards Ballcap, Bigg Mann on Campus, Boston Boom-Bringer
+	{ 760, 722, 983 },			// Front Runner, Fast Learner, Digit Divulger
+	{ 261, 743, 166 },			// Mann Co. Cap, Pyrovision Goggles, Mercenary
+	{ 940, 743, 166 },			// Ghostly Gibus, Pyrovision Goggles, Mercenary
+	{ 150, 722, 1016 },			// Troublemaker's Tossle Cap, Fast Learner, Buck Turner All-Stars
+};
+
+public const CosmeticSet CS_PRESET_SOLDIER[] = {
+	{ 445, 30388, 30392 },		// Armored Authority, Classified Coif, Man in Slacks
+	{ 31325, 30331, 641 },		// Colonel Kringle, Antarctic Parka, Ornament Armament
+	{ 30897, 30853, 30558 },	// Shellmet, Flakcatcher, Coldfront Curbstompers
+	{ 30897, 30896, 30339 },	// Shellmet, Attack Packs, Killer's kit
+	{ 31025, 30601, 30558 },	// Climbing Commander, Cold Snap Coat, Coldfront Curbstompers
+	{ 30390, 30388, 30392 },	// Spook Specs, Classified Coif, Man in Slacks
+	{ 31378, 13494, 31379 },	// Close Quarters Cover, OP-GG Bejeweled Bounty 2023, Stealth Bomber
+	{ 261, 743, 166 },			// Mann Co. Cap, Pyrovision Goggles, Mercenary
+	{ 940, 743, 166 },			// Ghostly Gibus, Pyrovision Goggles, Mercenary
 };
 
 //-----------------------------------------------
@@ -239,37 +260,43 @@ void GiveBotCosmetics( int iClient )
 
 void PresetCosmeticSet(int iClient, char[] iClass) 
 {
+	int iScoutRand = GetRandomInt( 0, sizeof( CS_PRESET_SCOUT ) / sizeof( CosmeticSet ) - 1 );
+	int iSoldierRand = GetRandomInt( 0, sizeof( CS_PRESET_SOLDIER ) / sizeof( CosmeticSet ) - 1 );
 	if ( StrEqual( iClass, "Scout", false ) ) 
 	{
-		int iRandom = GetRandomInt( 0, sizeof( CS_PRESET_SCOUT ) / sizeof( CosmeticSet ) - 1 );
-
 		// Add the add if the id is not -1
-		if ( CS_PRESET_SCOUT[ iRandom ].iHat != -1 )
+		if ( CS_PRESET_SCOUT[ iScoutRand ].iHat != -1 )
 		{
-			TF2_CreateHat( iClient, CS_PRESET_SCOUT[ iRandom ].iHat, 6, true ); // Hats always unusual chance
+			TF2_CreateHat( iClient, CS_PRESET_SCOUT[ iScoutRand ].iHat, 6, true ); // Hats always unusual chance
 		}
-
-		// garbage
-		/* if ( CS_PRESET_SCOUT[ iRandom ].iCosmetic1 != -1 )
-		{
-			TF2_CreateHat( iClient, CS_PRESET_SCOUT[ iRandom ].iCosmetic1, 6 );
-		}
-		if ( CS_PRESET_SCOUT[ iRandom ].iCosmetic2 != -1 )
-		{
-			TF2_CreateHat( iClient, CS_PRESET_SCOUT[ iRandom ].iCosmetic2, 6 );
-		} */
 
 		// Loops between iCosmetic1 and iCosmetic2
 		// and add it if it's not -1
 		for ( int i = 0; i < 2; ++i )
 		{
-			int iCosmeticID = ( i == 0 ) ? CS_PRESET_SCOUT[ iRandom ].iCosmetic1 : CS_PRESET_SCOUT[ iRandom ].iCosmetic2;
+			int iCosmeticID = ( i == 0 ) ? CS_PRESET_SCOUT[ iScoutRand ].iCosmetic1 : CS_PRESET_SCOUT[ iScoutRand ].iCosmetic2;
 			if ( iCosmeticID != -1 )
 			{
 				TF2_CreateHat( iClient, iCosmeticID, 6 );
 			}
 		}
 	}
+
+	if ( StrEqual( iClass, "Soldier", false ) ) 
+	{
+		if ( CS_PRESET_SOLDIER[ iSoldierRand ].iHat != -1 )
+		{
+			TF2_CreateHat( iClient, CS_PRESET_SOLDIER[ iSoldierRand ].iHat, 6, true ); // Hats always unusual chance
+		}
+		for ( int i = 0; i < 2; ++i )
+		{
+			int iCosmeticID = ( i == 0 ) ? CS_PRESET_SOLDIER[ iSoldierRand ].iCosmetic1 : CS_PRESET_SOLDIER[ iSoldierRand ].iCosmetic2;
+			if ( iCosmeticID != -1 )
+			{
+				TF2_CreateHat( iClient, iCosmeticID, 6 );
+			}
+		}
+	}	
 }
 
 //	Qualities //
@@ -388,6 +415,11 @@ int TF2_CreateHat( int iClient, int iIndex, int iQuality = 6, bool bIsUnusual = 
 			SetEntProp( iHat, Prop_Send, "m_iEntityQuality", 5 );
 			TF2Attrib_SetByDefIndex( iHat, 134, GetRandomInt( 1, 325 ) + 0.0 );
 		}
+		// Never give these hats unusuals
+		else if ( iIndex == 261 || iIndex == 940 )
+		{
+			TF2Attrib_RemoveByDefIndex( iHat, 134 );
+		}
 
 		if ( GetRandomInt( 1, 4 ) == 1 )
 		{
@@ -395,6 +427,9 @@ int TF2_CreateHat( int iClient, int iIndex, int iQuality = 6, bool bIsUnusual = 
 			TF2Attrib_SetByDefIndex( iHat, 142, g_paintValues[ randomPaint ][ 0 ] );	// Primary
 			TF2Attrib_SetByDefIndex( iHat, 261, g_paintValues[ randomPaint ][ 1 ] );	// Secondary
 		}
+
+		// TODO: Random Style Overrides for cosmetics.
+		// How the fuck are we going to do this????
 		
 		EconItemSpawnGiveTo( iHat, iClient );
 		EconItemView_SetItemID( iHat, GetRandomInt( 1, 2048 ) );
