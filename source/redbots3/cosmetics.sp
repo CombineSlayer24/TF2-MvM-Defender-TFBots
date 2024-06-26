@@ -1,3 +1,4 @@
+// For Presets
 enum struct CosmeticSet
 {
 	int iHat;			// Reserved as the Head/Hat cosmetic (For unusual effects)
@@ -5,7 +6,6 @@ enum struct CosmeticSet
 	int iCosmetic2;
 }
 
-// idk how to name this...
 public const float g_paintValues[ 29 ][ 2 ] = {
 	{ 7511618.0, 7511618.0 },	// Indubitably Green
 	{ 4345659.0, 4345659.0 },	// Zepheniah's Greed
@@ -143,6 +143,19 @@ public const CosmeticSet CS_PRESET_SCOUT[] = {
 	{ 150, 722, 1016 },			// Troublemaker's Tossle Cap, Fast Learner, Buck Turner All-Stars
 };
 
+public const CosmeticSet CS_PRESET_SOLDIER[] = {
+	{ 445, 30388, 30392 },		// Armored Authority, Classified Coif, Man in Slacks
+	{ 31325, 30331, 641 },		// Colonel Kringle, Antarctic Parka, Ornament Armament
+	{ 30897, 30853, 30558 },	// Shellmet, Flakcatcher, Coldfront Curbstompers
+	{ 30897, 30896, 30339 },	// Shellmet, Attack Packs, Killer's kit
+	{ 31025, 30601, 30558 },	// Climbing Commander, Cold Snap Coat, Coldfront Curbstompers
+	{ 30390, 30388, 30392 },	// Spook Specs, Classified Coif, Man in Slacks
+	{ 31378, 13494, 31379 },	// Close Quarters Cover, OP-GG Bejeweled Bounty 2023, Stealth Bomber
+	{ 261, 743, 166 },			// Mann Co. Cap, Pyrovision Goggles, Mercenary
+	{ 940, 743, 166 },			// Ghostly Gibus, Pyrovision Goggles, Mercenary
+};
+
+// Returns the ellgible cosmetics that has multiple styles
 int TF2_GetCosmeticStyles( int iEntity )
 {
 	int iIndex = GetEntProp( iEntity, Prop_Send, "m_iItemDefinitionIndex" );
@@ -166,13 +179,22 @@ int TF2_GetCosmeticStyles( int iEntity )
 		case 451:	return 1;	// Bonk Boy
 		case 653:	return 1;	// Bootie Time
 		case 31042:	return 1;	// Bottle Cap
+		case 853:	return 1;	// Crafty Hair
+		case 30189:	return 1;	// Frenchman's Formals
+		case 30078:	return 1;	// Greased Lightning
+		case 858:	return 1;	// Hanger-On Hood
+		case 453:	return 1;	// Hero's Tail
+		case 31406:	return 1;	// Last Laugh
+		case 31303:	return 1;	// Masked Fiend
 
 		case 30104:	return 2;	// Graybanns
 		case 30397:	return 2;	// Bruiser's Bandanna
 		case 868:	return 2;	// Heroic Companion Badge
 		case 31022:	return 2;	// Juvenile's Jumper
 		case 31184:	return 2;	// Manndatory Attire
-		case 52:	return 2;	// batter's helmet
+		case 52:	return 2;	// Batter's Helmet
+		case 30083:	return 2;	// Caffeine Cooler
+		case 31081:	return 2;	// Fuel Injector
 
 		case 30309:	return 3;	// Dead of Night
 		case 31217:	return 3;	// Goalkeeper
@@ -186,7 +208,8 @@ int TF2_GetCosmeticStyles( int iEntity )
 	return iEntity;
 }
 
-int TF2_GetPaintableCosmetic( int iEntity )
+// Returns the ellgible cosmetics that can be painted
+int TF2_GetPaintableCosmetics( int iEntity )
 {
 	int iIndex = GetEntProp( iEntity, Prop_Send, "m_iItemDefinitionIndex" );
 	switch ( iIndex )
@@ -206,7 +229,6 @@ int TF2_GetPaintableCosmetic( int iEntity )
 		case 30977:	return true;	// Antarctic Eyewear
 		case 30991:	return true;	// Blizzard Britches
 		case 30027:	return true;	// Bolt Boy
-
 		case 249:	return true;	// Bombing Run
 		case 30751:	return true;	// Batter's Backup
 		case 31437:	return true;	// Bonk Beanie
@@ -215,26 +237,69 @@ int TF2_GetPaintableCosmetic( int iEntity )
 		case 30030:	return true;	// Bonk Leadwear
 		case 653:	return true;	// Bootie Time
 		case 31042:	return true;	// Bottle Cap
+		case 31366:	return true;	// Brimmed Bootlegger
+		case 30551:	return true;	// Brooklyn Booties
+		case 1016:	return true;	// Buck Turner All-Stars
+		case 30661:	return true;	// Cadet Visor
+		case 30083:	return true;	// Caffeine Cooler
+		case 31117:	return true;	// California Cap
+		case 815:	return true;	// Champ Stamp
+		case 30060:	return true;	// Cheet Sheet
+		case 30077:	return true;	// Cool Cat Cardigan
+		case 30574:	return true;	// Courtier's Collar
+		case 853:	return true;	// Crafty Hair
+		case 30737:	return true;	// Crook Combatant
+		case 765:	return true;	// Cross-Comm Express
+		case 30686:	return true;	// Death Racer's Helmet
+		case 30134:	return true;	// Delinquent's Down Ves
+		case 983:	return true;	// Digital Divulger
+		case 781:	return true;	// Dillinger's Duffel
+		case 539:	return true;	// Ele Jefe
+		case 30824:	return true;	// Electric Twanger
+		case 31195:	return true;	// Fast Food
+		case 722:	return true;	// Fast Learner
+		case 780:	return true;	// Fed-Fightin' Fedora
+		case 30185:	return true;	// Flapjack
+		case 490:	return true;	// Scout Flip-Flops
+		case 324:	return true;	// Flipped Trilby
+		case 30890:	return true;	// Forest Footwear
+		case 30189:	return true;	// Frenchman's Formals
+		case 31197:	return true;	// Fried Batter
+		case 30394:	return true;	// Frickin' Sweet Ninja Hood
+		case 760:	return true;	// Front Runner
+		case 31081:	return true;	// Fuel Injector
+		case 30078:	return true;	// Greased Lightning
+		case 30084:	return true;	// Half-Pipe Hurdler
+		case 30575:	return true;	// Harlequin's Hooves
+		case 31000:	return true;	// Hephaistos' Handcraft
+		case 30769:	return true;	// Herald's Helm
+		case 633:	return true;	// Hermes
+		case 453:	return true;	// Hero's Tail
+		case 30754:	return true;	// Hot Heels
+		case 31302:	return true;	// Imp's Imprint
+		case 31436:	return true;	// Isotopic Insulator
+		case 31407:	return true;	// Jumping Jester
+		case 30888:	return true;	// Jungle Jersey
+		case 31022:	return true;	// Juvenile's Jumper
+		case 31406:	return true;	// Last Laugh
+		case 30867:	return true;	// Lightning Lid
+		case 30325:	return true;	// Little Drummer Man
+		case 491:	return true;	// lucky no. 42
+		case 30085:	return true;	// Macho Mann
+		case 31303:	return true;	// Masked Fiend
 	}
 
 	return false;
 }
 
-public const CosmeticSet CS_PRESET_SOLDIER[] = {
-	{ 445, 30388, 30392 },		// Armored Authority, Classified Coif, Man in Slacks
-	{ 31325, 30331, 641 },		// Colonel Kringle, Antarctic Parka, Ornament Armament
-	{ 30897, 30853, 30558 },	// Shellmet, Flakcatcher, Coldfront Curbstompers
-	{ 30897, 30896, 30339 },	// Shellmet, Attack Packs, Killer's kit
-	{ 31025, 30601, 30558 },	// Climbing Commander, Cold Snap Coat, Coldfront Curbstompers
-	{ 30390, 30388, 30392 },	// Spook Specs, Classified Coif, Man in Slacks
-	{ 31378, 13494, 31379 },	// Close Quarters Cover, OP-GG Bejeweled Bounty 2023, Stealth Bomber
-	{ 261, 743, 166 },			// Mann Co. Cap, Pyrovision Goggles, Mercenary
-	{ 940, 743, 166 },			// Ghostly Gibus, Pyrovision Goggles, Mercenary
-};
-
 //-----------------------------------------------
 // SCOUT
 //-----------------------------------------------
+public const int SPECIFIC_SCOUT_HEAD[] = {
+	31406,	// Last Laught
+	30867,	// Lightning Lid
+
+};
 public const int SPECIFIC_SCOUT_HATS[] = {
 	52,		// batter's helmet
 	30767,	// AirDog
@@ -250,35 +315,83 @@ public const int SPECIFIC_SCOUT_HATS[] = {
 	30030,	// Bonk Leadwear
 	31284,	// Boston Brain Bucket
 	31042,	// Bottle Cap
+	31366,	// Brimmed Bootlegger
+	31117,	// California Cap
+	853,	// Craft Hair
+	765,	// Cross-Comm Express
+	30686,	// Death Racer's Helmet
+	539,	// El Jefe
+	780,	// Fed-Fightin' Fedora
+	30636,	// Fortunate Son
+	31197,	// Fried Batter
+	760,	// Front Runner
+	30078,	// Greased Lighting
+	858,	// Hanger-On Hood
+	31000,	// Hephaistos' Handcraft
+	30769,	// Herald's Helm
+	633,	// Hermes
+	453,	// Hero's Tail
 };
 public const int SPECIFIC_SCOUT_GLASSES[] = {
 	30027,	// Bolt Boy
 	451,	// Bonk Boy
+	30661,	// Cadet Visor
+	30085,	// Macho Mann
+	31303,	// Masked Fiend
 };
 public const int SPECIFIC_SCOUT_BEARD[] = {
-	30027,	// Bolt Boy
+	31081,	// Fuel Injector
 };
 public const int SPECIFIC_SCOUT_TORSO[] = {
 	30736,	// Bat Backup
 	30076,	// Bigg Mann on Campus
 	30884,	// Aloha Apparel
 	30873,	// Airborne Attire
+	30077,	// Cool Cat Cardigan
+	30770,	// Courtly Cuirass
+	30134,	// Delinquent's Down Ves
+	722,	// Fast Learner
+	30637,	// Flak Jack
+	30185,	// Flapjack
+	30189,	// Frenchman's Formals
+	31302,	// Imp's Imprint
+	31436,	// Isotopic Insulator
+	30888,	// Jungle Jersey
+	31022,	// Juvenile's Jumper
+	30325,	// Little Drummer Mann
 };
 public const int SPECIFIC_SCOUT_BACK[] = {
 	30751,	// Batter's Backup
 	707,	// Boston Boom-Bringer
+	30083,	// Caffeine Cooler
+	781,	// Dillinger's Duffel
+	30824,	// Electric Twanger
+	31195,	// Fast Food
+	30084,	// Half-Pipe Hurdler
+	491,	// lucky no. 42
+	//859,	// flight of the monarch
 };
 public const int SPECIFIC_SCOUT_BELT[] = {
 	30167,	// Beep Boy
+	30728,	// Buttler
 };
 public const int SPECIFIC_SCOUT_PANTS[] = {
 	30991,	// Blizzard Britches
 	30719,	// B'aaarrgh-n-Britches
+	30060,	// Cheet Sheet
 };
 public const int SPECIFIC_SCOUT_FEET[] = {
 	540,	// Argyle
 	30561,	// Bootenkhamuns
 	653,	// Bootie Time
+	30551,	// Brooklyn Booties
+	1016,	// Buck Turner All-Stars
+	490,	// Scout Flip-Flops
+	30890,	// Forest Footwear
+	30575,	// Harlequin's Hooves
+	30754,	// Hot Heels
+	1032,	// Long fall loaders
+	//857,	// Flunkyware
 };
 //-----------------------------------------------
 // SOLDIER
@@ -328,6 +441,7 @@ void GiveBotCosmetics( int iClient )
 {
 	int iRandom = GetRandomInt( 1, 100 );
 
+	// ALL CLASS
 	int iRandHat = ALLCLASS_HATS[ GetRandomInt( 0, sizeof( ALLCLASS_HATS ) - 1 ) ];
 	int iRandGlasses = ALLCLASS_GLASSES[ GetRandomInt( 0, sizeof( ALLCLASS_GLASSES ) - 1 ) ];
 	int iRandBeard = ALLCLASS_BEARD[ GetRandomInt( 0, sizeof( ALLCLASS_BEARD ) - 1 ) ];
@@ -337,6 +451,8 @@ void GiveBotCosmetics( int iClient )
 	int iRandPants = ALLCLASS_PANTS[ GetRandomInt( 0, sizeof( ALLCLASS_PANTS ) - 1 ) ];
 	int iRandFeet = ALLCLASS_FEET[ GetRandomInt( 0, sizeof( ALLCLASS_FEET ) - 1 ) ];
 
+	// SCOUT
+	int iRandScout_Head = SPECIFIC_SCOUT_HEAD[ GetRandomInt( 0, sizeof( SPECIFIC_SCOUT_HEAD ) - 1 ) ];
 	int iRandScout_Hats = SPECIFIC_SCOUT_HATS[ GetRandomInt( 0, sizeof( SPECIFIC_SCOUT_HATS ) - 1 ) ];
 	int iRandScout_Glasses = SPECIFIC_SCOUT_GLASSES[ GetRandomInt( 0, sizeof( SPECIFIC_SCOUT_GLASSES ) - 1 ) ];
 	int iRandScout_Beard = SPECIFIC_SCOUT_BEARD[ GetRandomInt( 0, sizeof( SPECIFIC_SCOUT_BEARD ) - 1 ) ];
@@ -347,8 +463,8 @@ void GiveBotCosmetics( int iClient )
 	int iRandScout_Feet = SPECIFIC_SCOUT_FEET[ GetRandomInt( 0, sizeof( SPECIFIC_SCOUT_FEET ) - 1 ) ];
 
 	int selectedCosmetics[3];
-	int allCosmetics[ 9 ];
-	int scoutCosmetics[ 10 ];
+	int allCosmetics[ 9 ];		// All class
+	int scoutCosmetics[ 11 ];
 
 	TFClassType classType = TF2_GetPlayerClass( iClient );
 
@@ -392,25 +508,40 @@ void GiveBotCosmetics( int iClient )
 				//TODO: Add Class Specifics here IE exclusive cosmetics
 				if ( classType == TFClass_Scout )
 				{
-					int indices[ 9 ] = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+
+					int indices[ 10 ] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
 					ShuffleArray( indices, sizeof( indices ) );
 
-					scoutCosmetics[ 1 ] = ( GetRandomInt( 1, 100 ) <= 50 ) ? iRandScout_Hats : iRandHat;
-					scoutCosmetics[ 2 ] = ( GetRandomInt( 1, 100 ) <= 50 ) ? iRandScout_Glasses : iRandGlasses;
-					scoutCosmetics[ 3 ] = ( GetRandomInt( 1, 100 ) <= 50 ) ? iRandScout_Beard: iRandBeard;
-					scoutCosmetics[ 4 ] = iRandMedal;
-					scoutCosmetics[ 5 ] = ( GetRandomInt( 1, 100 ) <= 50 ) ? iRandScout_Torso : iRandTorso;
-					scoutCosmetics[ 6 ] = iRandScout_Back;
-					scoutCosmetics[ 7 ] = ( GetRandomInt( 1, 100 ) <= 50 ) ? iRandScout_Belt : iRandBelt;
-					scoutCosmetics[ 8 ] = ( GetRandomInt( 1, 100 ) <= 50 ) ? iRandScout_Pants : iRandPants;
-					scoutCosmetics[ 9 ] = ( GetRandomInt( 1, 100 ) <= 50 ) ? iRandScout_Feet : iRandFeet;
+					scoutCosmetics[ 1 ] = iRandScout_Head;
+					scoutCosmetics[ 2 ] = ( GetRandomInt( 1, 100 ) <= 50 ) ? iRandScout_Hats : iRandHat;
+					scoutCosmetics[ 3 ] = ( GetRandomInt( 1, 100 ) <= 50 ) ? iRandScout_Glasses : iRandGlasses;
+					scoutCosmetics[ 4 ] = ( GetRandomInt( 1, 100 ) <= 50 ) ? iRandScout_Beard: iRandBeard;
+					scoutCosmetics[ 5 ] = iRandMedal;
+					scoutCosmetics[ 6 ] = ( GetRandomInt( 1, 100 ) <= 50 ) ? iRandScout_Torso : iRandTorso;
+					scoutCosmetics[ 7 ] = iRandScout_Back;
+					scoutCosmetics[ 8 ] = ( GetRandomInt( 1, 100 ) <= 50 ) ? iRandScout_Belt : iRandBelt;
+					scoutCosmetics[ 9 ] = ( GetRandomInt( 1, 100 ) <= 50 ) ? iRandScout_Pants : iRandPants;
+					scoutCosmetics[ 10 ] = ( GetRandomInt( 1, 100 ) <= 50 ) ? iRandScout_Feet : iRandFeet;
 
 					for ( int i = 0; i < 3; ++i )
 					{
 						selectedCosmetics[ i ] = scoutCosmetics[ indices[ i ] ];
 						if ( selectedCosmetics[ i ] != 1 )
 						{
-							TF2_CreateHat( iClient, selectedCosmetics[ i ], 6, indices[ i ] == 1 );
+							// Check if head is selected, then don't select hat, glasses, or beard
+							if ( indices[ i ] == 1 ) 
+							{
+								scoutCosmetics[ 2 ] = 0;
+								scoutCosmetics[ 3 ] = 0;
+								scoutCosmetics[ 4 ] = 0;
+							}
+							// Check if hat, glasses, or beard is selected, then don't select head
+							else if ( indices[ i ] == 2 || indices[ i ] == 3 || indices[ i ] == 4 ) 
+							{
+								scoutCosmetics[ 1 ] = 0;
+							}
+
+							TF2_CreateHat( iClient, selectedCosmetics[ i ], 6, indices[ i ] == 2 );
 						}
 					}
 
@@ -517,6 +648,8 @@ int TF2_CreateHat( int iClient, int iIndex, int iQuality = 6, bool bIsUnusual = 
 		char netClass[ 64 ]; GetEntityNetClass( iHat, netClass, sizeof( netClass ) );
 		int iPropInfoQuality = FindSendPropInfo( netClass, "m_iEntityQuality" );
 		int iPropInfoLevel = FindSendPropInfo( netClass, "m_iEntityLevel" );
+		int iPaintable = TF2_GetPaintableCosmetics( iHat );
+		int iNumStyles = TF2_GetCosmeticStyles( iHat );
 		bool bCantBeRandUnusual = false;
 
 		SetEntData( iHat, iPropInfoQuality, iQuality );
@@ -591,10 +724,10 @@ int TF2_CreateHat( int iClient, int iIndex, int iQuality = 6, bool bIsUnusual = 
 		}
 
 		// Random Chance to color cosmetics
-		if ( GetRandomInt( 1, 4 ) == 1 )
+		if ( iPaintable == 1 )
 		{
-			int iPaintable = TF2_GetPaintableCosmetic( iHat );
-			if ( iPaintable == 1 )
+			// Random Chance to color cosmetics
+			if ( GetRandomInt( 1, 4 ) == 1 )
 			{
 				int randomPaint = GetRandomInt( 0, 28 );
 				TF2Attrib_SetByDefIndex( iHat, 142, g_paintValues[ randomPaint ][ 0 ] );	// Primary
@@ -603,10 +736,9 @@ int TF2_CreateHat( int iClient, int iIndex, int iQuality = 6, bool bIsUnusual = 
 		}
 
 		// Randomly select a style
-		if ( GetRandomInt( 1, 4 ) == 1 )
+		if ( iNumStyles > 1 )
 		{
-			int iNumStyles = TF2_GetCosmeticStyles( iHat );
-			if ( iNumStyles > 1 )
+			if ( GetRandomInt( 1, 4 ) == 1 )
 			{
 				int iRandomStyle = GetRandomInt( 1, iNumStyles );
 				TF2Attrib_SetByDefIndex( iHat, 542, float( iRandomStyle ) );
