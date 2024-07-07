@@ -1,3 +1,15 @@
+public const int QUALITY_GENUINE = 1;
+public const int QUALITY_VINTAGE = 3;
+public const int QUALITY_UNUSUAL = 5;
+public const int QUALITY_UNIQUE = 6;
+public const int QUALITY_COMMUNITY = 7;
+public const int QUALITY_SELFMADE = 9;
+public const int QUALITY_STRANGE = 11;
+public const int QUALITY_HAUNTED = 13;
+public const int QUALITY_COLLECTORS = 14;
+
+public const int MAX_UNUSUAL_EFFECTS = 325;
+
 // For Presets
 enum struct CosmeticSet
 {
@@ -51,6 +63,7 @@ public const int ALLCLASS_HATMISC[] = {
 	31416,	// Cozy Cover-Up
 	30997,	// Deadbeats
 	143,	// OSX Item
+	31172,	// Festive Fascinator
 };
 
 // Don't equip with GLASSES, BEARD, HATS
@@ -61,6 +74,7 @@ public const int ALLCLASS_HEAD[] = {
 	30646,	// Captain Space Mann
 	31091,	// Citizen Cane
 	30357,	// Dark Falkirk Helm
+	263,	// Ellis Hat
 };
 
 public const int ALLCLASS_HATS[] = {
@@ -119,11 +133,20 @@ public const int ALLCLASS_HATS[] = {
 	711,	// Daily Duel Winner Reward Hat
 	675,	// Ebenezer
 	31241,	// Fiestibrero
+	921,	// Executioner
+	30119,	// Federal Casemaker
+	31327,	// Festive Rack
+	1158,	// Finder's Fee
+	302,	// Camera Helm
 };
 
 public const int ALLCLASS_GLASSES[] = {
 	31060,	// Binoculus
 	522,	// Deus Specs
+	30414,	// Eye-Catcher
+	31134,	// Eye-See-You
+	31213,	// Eyequarium
+	31252,	// Festive Frames
 };
 
 // Don't equip with GLASSES, BEARD
@@ -136,6 +159,7 @@ public const int ALLCLASS_BEARD[] = {
 	31062,	// Bread Biter
 	30397,	// Bruiser's Bandanna
 	30306,	// Dictator
+	31260,	// Elf-Made Bandanna
 };
 
 public const int ALLCLASS_MEDAL[] = {
@@ -194,9 +218,19 @@ public const int ALLCLASS_MEDAL[] = {
 	1024,	// Croft's Crest
 	//625,	// Clan Pride
 	//9297,	// Duncan's Kindhearted Kisser
+	//30000,	// Electric Badge-aloo
 	592,	// Dr. Grordbort's Copper Crest
 	443,	// Dr. Grordbort's Crest
 	636,	// Dr. Grordbort's Silver Crest
+	30559,	// End of the Line Community Update Medal
+	956,	// Faerie Solitaire Pin
+	8583,	// Florida LAN Medal 2014
+	8674,	// Florida LAN Medal 2015
+	9230,	// Florida LAN Medal 2016
+	9830,	// Florida LAN 2018 Donator Medal
+	9831,	// Florida LAN 2018 Participant Medal
+	9832,	// Florida LAN 2018 Contributor Medal
+	864,	// Friends Forever Companion Square Badge
 /* 	10511,	// Australian Hightower Highjinx Champion 2019
 	10512,	// Australian Hightower Highjinx Participant 2019
 	10513,	// Australian Hightower Highjinx Donar 2019
@@ -215,6 +249,7 @@ public const int ALLCLASS_TORSO[] = {
 public const int ALLCLASS_BELT[] = {
 	30738,	// Batbelt
 	30706,	// Catastrophic Companions
+	1025,	// Fortune Hunter
 	//31208,	// Creepy Crawlers	 (right shoulder equip region) 
 	//30881,	// Croaking Hazard	(left shoulder equip region)
 };
@@ -224,10 +259,14 @@ public const int ALLCLASS_PANTS[] = {
 };
 
 public const int ALLCLASS_FEET[] = {
-
+	31167,	// Festive Flip-Thwomps
+	30551,	// Flashdance Footies
 };
 
 //public const int ALLCLASS_FLOATING[] = {};
+public const int ALLCLASS_BASEMISC[] = {
+	619,	// flair!
+};
 
 // When setting up presets, make sure the hat
 // is the first entry (iHat). It will be makred
@@ -353,6 +392,9 @@ int GetCosmeticStyles( int iEntity )
 		case 31417:	return 1;	// Dapper Dickens
 		case 30357:	return 1;	// Dark Falkirk Helm
 		case 30997:	return 1;	// deadbeats
+		case 31134:	return 1;	// Eye-See-You
+		case 31172:	return 1;	// Festive Fascinator
+		case 31327:	return 1;	// Festive Rack
 		case IDGOESHERE:	return 1;	// 
 
 		case 30104:	return 2;	// Graybanns
@@ -378,6 +420,8 @@ int GetCosmeticStyles( int iEntity )
 		case 31056:	return 3;	// Speedy Scoundrel
 		case 927:	return 3;	// Boo Balloon
 		case 30309:	return 3;	// Dead of Night
+		case 31213:	return 3;	// Eyequarium
+		case 31252:	return 3;	// Festive Frames
 		case IDGOESHERE:	return 3;	// 
 
 		case 31284:	return 4;	// Boston Brain Bucket
@@ -401,6 +445,19 @@ int GetPaintableCosmetics( int iEntity )
 	switch ( iIndex )
 	{
 		case IDGOESHERE:	return true;	// 
+		case 1025:	return true;	// Fortune Hunter
+		case 9830:	return true;	// Florida LAN 2018 Donator Medal
+		case 9831:	return true;	// Florida LAN 2018 Participant Medal
+		case 9832:	return true;	// Florida LAN 2018 Contributor Medal
+		case 30551:	return true;	// Flashdance Footies
+		case 31327:	return true;	// Festive Rack
+		case 31252:	return true;	// Festive Frames
+		case 31167:	return true;	// Festive Flip-Thwomps
+		case 30119:	return true;	// Federal Casemaker
+		case 30414:	return true;	// Eye-Catcher
+		case 921:	return true;	// Executioner
+		case 263:	return true;	// Ellis Hat
+		case 31260:	return true;	// Elf-Made Bandanna
 		case 31241:	return true;	// Fiestibrero
 		case 675:	return true;	// Ebenezer
 		case 711:	return true;	// Daily Duel Winner Reward Hat
@@ -594,6 +651,7 @@ int GetPaintableCosmetics( int iEntity )
 
 	return false;
 }
+
 //-----------------------------------------------
 // SCOUT
 //-----------------------------------------------
@@ -861,7 +919,7 @@ void GiveBotCosmetics( int iClient )
 					iSelectedCosmetics[ i ] = iAllCosmetics[ iIndex[ i ] ];
 					if ( iSelectedCosmetics[ i ] && iAllCosmetics[ i ] != 1 ) // Make sure it's not invalid
 					{
-						TF2_CreateHat( iClient, iSelectedCosmetics[ i ], 6, iIndex[ i ] == 1 );
+						TF2_CreateHat( iClient, iSelectedCosmetics[ i ], QUALITY_UNIQUE, iIndex[ i ] == 1 );
 					}
 				}
 
@@ -871,7 +929,6 @@ void GiveBotCosmetics( int iClient )
 			}
 			else
 			{
-				//TODO: Add Class Specifics here IE exclusive cosmetics
 				if ( TFClass == TFClass_Scout )
 				{
 					iScoutCosmetics[ 1 ] = iRandScout_Head;
@@ -911,7 +968,7 @@ void GiveBotCosmetics( int iClient )
 								iScoutCosmetics[ 1 ] = 0;
 							}
 
-							TF2_CreateHat( iClient, iSelectedCosmetics[ i ], 6, iIndex[ i ] == 2 );
+							TF2_CreateHat( iClient, iSelectedCosmetics[ i ], QUALITY_UNIQUE, iIndex[ i ] == 2 );
 						}
 					}
 
@@ -957,7 +1014,7 @@ void PresetCosmeticSet( int iClient, char[] iClass )
 		// Add the add if the id is not -1
 		if ( CS_PRESET_SCOUT[ iScoutRand ].iHat != -1 )
 		{
-			TF2_CreateHat( iClient, CS_PRESET_SCOUT[ iScoutRand ].iHat, 6, true ); // Hats always unusual chance
+			TF2_CreateHat( iClient, CS_PRESET_SCOUT[ iScoutRand ].iHat, QUALITY_UNIQUE, true ); // Hats always unusual chance
 		}
 
 		// Loops between iCosmetic1 and iCosmetic2
@@ -967,7 +1024,7 @@ void PresetCosmeticSet( int iClient, char[] iClass )
 			int iCosmeticID = ( i == 0 ) ? CS_PRESET_SCOUT[ iScoutRand ].iCosmetic1 : CS_PRESET_SCOUT[ iScoutRand ].iCosmetic2;
 			if ( iCosmeticID != -1 )
 			{
-				TF2_CreateHat( iClient, iCosmeticID, 6 );
+				TF2_CreateHat( iClient, iCosmeticID, QUALITY_UNIQUE );
 			}
 		}
 	}
@@ -976,7 +1033,7 @@ void PresetCosmeticSet( int iClient, char[] iClass )
 	{
 		if ( CS_PRESET_SOLDIER[ iSoldierRand ].iHat != -1 )
 		{
-			TF2_CreateHat( iClient, CS_PRESET_SOLDIER[ iSoldierRand ].iHat, 6, true );
+			TF2_CreateHat( iClient, CS_PRESET_SOLDIER[ iSoldierRand ].iHat, QUALITY_UNIQUE, true );
 		}
 
 		for ( int i = 0; i < 2; ++i )
@@ -984,7 +1041,7 @@ void PresetCosmeticSet( int iClient, char[] iClass )
 			int iCosmeticID = ( i == 0 ) ? CS_PRESET_SOLDIER[ iSoldierRand ].iCosmetic1 : CS_PRESET_SOLDIER[ iSoldierRand ].iCosmetic2;
 			if ( iCosmeticID != -1 )
 			{
-				TF2_CreateHat( iClient, iCosmeticID, 6 );
+				TF2_CreateHat( iClient, iCosmeticID, QUALITY_UNIQUE );
 			}
 		}
 	}
@@ -998,7 +1055,7 @@ void PresetCosmeticSet( int iClient, char[] iClass )
 			int iCosmeticID = CS_PRESET_SOLDIER[ iSoldierRand ].iCosmetic[i];
 			if ( iCosmeticID != -1 )
 			{
-				TF2_CreateHat( iClient, iCosmeticID, 6 );
+				TF2_CreateHat( iClient, iCosmeticID, QUALITY_UNIQUE );
 			}
 		}
 	}*/	
@@ -1021,7 +1078,149 @@ void PresetCosmeticSet( int iClient, char[] iClass )
 // Haunted = 13
 // Collectors = 14
 // Paintkitweapon = 15
-int TF2_CreateHat( int iClient, int iIndex, int iQuality = 6, bool bIsUnusual = false)
+
+int TF2_CreateHat( int iClient, int iIndex, int iQuality = QUALITY_UNIQUE, bool bIsUnusual = false)
+{
+	int iHat = CreateEntityByName( "tf_wearable" );
+	if ( iHat != -1 )
+	{
+		SetEntProp( iHat, Prop_Send, "m_iItemDefinitionIndex", iIndex );
+		SetEntProp( iHat, Prop_Send, "m_bInitialized", 1 );
+		
+		char netClass[ 64 ]; GetEntityNetClass( iHat, netClass, sizeof( netClass ) );
+		int iPropInfoQuality = FindSendPropInfo( netClass, "m_iEntityQuality" );
+		int iPropInfoLevel = FindSendPropInfo( netClass, "m_iEntityLevel" );
+		int iPaintable = GetPaintableCosmetics( iHat );
+		int iNumStyles = GetCosmeticStyles( iHat );
+		bool bCantBeUnusual = false;
+
+		if ( IsChance( 10 ) )
+		{
+			if ( iQuality == QUALITY_VINTAGE || iQuality == QUALITY_GENUINE 
+			|| iQuality == QUALITY_HAUNTED || iQuality == QUALITY_UNUSUAL
+			|| iQuality == QUALITY_COMMUNITY || iQuality == QUALITY_COLLECTORS )
+			{
+				// Remove "Kill Eater" attrbute
+				TF2Attrib_RemoveByDefIndex( iHat, 214 );
+			}
+			else if ( IsChance( 25 ) )
+			{
+				// Set item to strange
+				iQuality = QUALITY_STRANGE;
+				TF2Attrib_SetByDefIndex( iHat, 214, view_as<float>( GetRandomInt( 0, 9000 ) ) );
+			}
+		}	
+
+		if ( iQuality != QUALITY_UNUSUAL && iQuality != QUALITY_STRANGE )
+		{
+			if ( IsChance( 32 ) )
+			{
+				// Genuine quality
+				iQuality = QUALITY_GENUINE;
+				bCantBeUnusual = true;
+			}
+			else if ( IsChance( 24 ) )
+			{
+				// Vintage quality
+				iQuality = QUALITY_VINTAGE;
+				bCantBeUnusual = true;
+			}
+			else if ( IsChance( 16 ) )
+			{
+				// Community Sparkle quality
+				iQuality = QUALITY_COMMUNITY;
+				TF2Attrib_SetByDefIndex( iHat, 134, 4.0 );
+				bCantBeUnusual = true;
+			}
+			else if ( TF2_IsHolidayActive( TFHoliday_HalloweenOrFullMoon ) && IsChance( 12 ) )
+			{
+				// Haunted
+				iQuality = QUALITY_HAUNTED;
+				bCantBeUnusual = true;
+			}
+			else if ( IsChance( 8 ) )
+			{
+				// Collectors quality
+				iQuality = QUALITY_COLLECTORS;
+				bCantBeUnusual = true;
+			}
+			else
+			{
+				// Unique should be more common
+				iQuality = QUALITY_UNIQUE;
+			}
+		}
+
+		// Certain hats have different qualities
+		// Certain Hats always unususl
+		if ( iIndex == 1158 || iIndex == 1173 )
+		{
+			iQuality = QUALITY_UNUSUAL;
+			TF2Attrib_SetByDefIndex( iHat, 134, GetRandomInt( 1, MAX_UNUSUAL_EFFECTS ) + 0.0 );	// We must add a decimal for unusual
+		}
+		
+		// Give these Self Made
+		else if ( iIndex == 30559 )
+		{
+			// 30559 = EOTL COM MEDAL
+			iQuality = QUALITY_SELFMADE;
+			TF2Attrib_SetByDefIndex( iHat, 134, 4.0 );
+			bCantBeUnusual = true;
+		}
+
+		// Never give these hats unusuals
+		else if ( iIndex == 261 || iIndex == 940 || iIndex == 263 )
+		{
+			TF2Attrib_RemoveByDefIndex( iHat, 134 );
+		}
+
+		if ( bIsUnusual && !bCantBeUnusual && IsChance( 25 ) )
+		{
+			// Set the hat as unusual
+			iQuality = QUALITY_UNUSUAL;
+			TF2Attrib_SetByDefIndex( iHat, 134, GetRandomInt( 1, MAX_UNUSUAL_EFFECTS ) + 0.0 );
+		}
+		else
+		{
+			TF2Attrib_RemoveByDefIndex( iHat, 134 );
+		}
+
+		// Random Chance to color cosmetics
+		if ( iPaintable == 1 && IsChance( 25 ) )
+		{
+			int randomPaint = GetRandomInt( 0, 28 );
+			TF2Attrib_SetByDefIndex( iHat, 142, g_paintValues[ randomPaint ][ 0 ] );	// Primary
+			TF2Attrib_SetByDefIndex( iHat, 261, g_paintValues[ randomPaint ][ 1 ] );	// Secondary
+		}
+
+		// Randomly select a style
+		if ( iNumStyles > 1 && IsChance( 25 ) )
+		{
+			int iRandomStyle = GetRandomInt( 1, iNumStyles );
+			TF2Attrib_SetByDefIndex( iHat, 542, float( iRandomStyle ) );
+		}
+
+#if defined TESTING_ONLY
+		CPrintToChatAll( "ID: {lightblue}%i" ,iIndex )
+#endif
+
+		// Finalize hat creation
+		SetEntData( iHat, iPropInfoQuality, iQuality );
+		SetEntData( iHat, iPropInfoLevel, GetRandomInt( 1, 100 ) );
+		
+		// Create it
+		EconItemSpawnGiveTo( iHat, iClient );
+		EconItemView_SetItemID( iHat, GetRandomInt( 1, 2048 ) );
+	}
+	else
+	{
+		LogError( "TF2_CreateHat: Failed to create entity." );
+	}
+	
+	return iHat;
+}
+
+/* int TF2_CreateHat( int iClient, int iIndex, int iQuality = 6, bool bIsUnusual = false)
 {
 	int iHat = CreateEntityByName( "tf_wearable" );
 	if ( iHat != -1 )
@@ -1091,6 +1290,28 @@ int TF2_CreateHat( int iClient, int iIndex, int iQuality = 6, bool bIsUnusual = 
 			}
 		}
 
+		// Certain Hats always unususl
+		if ( iIndex == 1158 || iIndex == 1173 )
+		{
+			SetEntProp( iHat, Prop_Send, "m_iEntityQuality", 5 );
+			TF2Attrib_SetByDefIndex( iHat, 134, GetRandomInt( 1, 325 ) + 0.0 );
+		}
+
+		// Give these Self Made
+		else if ( iIndex == 30559 )
+		{
+			// 30559 = EOTL COM MEDAL
+			SetEntData( iHat, iPropInfoQuality, 7 );
+			TF2Attrib_SetByDefIndex( iHat, 134, 4.0 );
+			bCantBeUnusual = true;
+		}
+
+		// Never give these hats unusuals
+		else if ( iIndex == 261 || iIndex == 940 || iIndex == 263 )
+		{
+			TF2Attrib_RemoveByDefIndex( iHat, 134 );
+		}
+
 		//if ( bIsUnusual && !bCantBeUnusual && GetRandomInt( 1, 4 ) == 1 )
 		if ( bIsUnusual && !bCantBeUnusual && IsChance( 25 ) )
 		{
@@ -1099,18 +1320,6 @@ int TF2_CreateHat( int iClient, int iIndex, int iQuality = 6, bool bIsUnusual = 
 			TF2Attrib_SetByDefIndex( iHat, 134, GetRandomInt( 1, 325 ) + 0.0 );
 		}
 		else
-		{
-			TF2Attrib_RemoveByDefIndex( iHat, 134 );
-		}
-
-		// Certain Hats always unususl
-		if ( iIndex == 1158 || iIndex == 1173 )
-		{
-			SetEntProp( iHat, Prop_Send, "m_iEntityQuality", 5 );
-			TF2Attrib_SetByDefIndex( iHat, 134, GetRandomInt( 1, 325 ) + 0.0 );
-		}
-		// Never give these hats unusuals
-		else if ( iIndex == 261 || iIndex == 940 )
 		{
 			TF2Attrib_RemoveByDefIndex( iHat, 134 );
 		}
@@ -1146,7 +1355,7 @@ int TF2_CreateHat( int iClient, int iIndex, int iQuality = 6, bool bIsUnusual = 
 	
 	return iHat;
 }
-
+ */
 // Helper functions
 
 // Reduce repition
