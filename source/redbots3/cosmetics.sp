@@ -85,6 +85,7 @@ public const int ALLCLASS_HEAD[] = {
 	667,	// Holiday Headcase
 	31128,	// Hollowed Helm
 	30473,	// MK 50
+	31295,	// Onimann
 };
 
 // Don't equip with GLASSES, BEARD
@@ -96,6 +97,7 @@ public const int ALLCLASS_FACE[] = {
 };
 
 public const int ALLCLASS_HATS[] = {
+	30329,	// Polar Pullover
 	341,	// Rather Festive Tree
 	30746,	// Well Wrapped Hat
 	31215,	// Alakablamicon
@@ -150,7 +152,6 @@ public const int ALLCLASS_HATS[] = {
 	31384,	// Demonic Dome
 	252,	// Dr's Dapper Topper
 	30700,	// Duck Billed Hatypus
-	711,	// Daily Duel Winner Reward Hat
 	675,	// Ebenezer
 	31241,	// Fiestibrero
 	263,	// Ellis Hat
@@ -169,7 +170,6 @@ public const int ALLCLASS_HATS[] = {
 	584,	// Ghastly Gibus 2011
 	940,	// Ghostly Gibus
 	31246,	// Giftcrafter
-	712,	// Daily Gift Giver Reward Hat
 	31090,	// Globetrotter
 	1067,	// Grandmaster
 	30065,	// Hardy Laurel
@@ -180,6 +180,7 @@ public const int ALLCLASS_HATS[] = {
 	30177,	// Hong Kong Cone
 	30469,	// Horace
 	291,	// Horrific Headsplitter
+	30704,	// Prehistoric Pullover
 	614,	// Hot Dogger
 	817,	// Human Cannonball
 	408,	// Humanitarian's Hachimaki
@@ -213,11 +214,27 @@ public const int ALLCLASS_HATS[] = {
 	30307,	// Neckwear Headwear
 	137,	// Noble Amassment of Hats
 	30006,	// Noble Nickel Amassment of Hats
+	537,	// TF Birthday Hat 2011
+	30743,	// Patriot Peak
+	30647,	// Phononaut
+	30915,	// Pithy Professional
+	637,	// Point and Shoot
+	30643,	// Potassium Bonnet
+	30759,	// Prinny Hat
+	31170,	// Professional's Pom Pom
+	471,	// Loyalty Reward (Proof Of Purchase)
+	1035,	// Public Accessor
+	31171,	// Reindoonibeanie
 
 	// Unreleased Hats
 	1193,	// Never Forget Cap
 	1192,	// Mannanas Cap
 	1191,	// Mercenary Park Cap
+
+	// Weird hats
+	711,	// Daily Duel Winner Reward Hat
+	712,	// Daily Gift Giver Reward Hat
+	713,	// Daily Map Stamp Reward Hat
 };
 
 public const int ALLCLASS_GLASSES[] = {
@@ -230,6 +247,8 @@ public const int ALLCLASS_GLASSES[] = {
 	31252,	// Festive Frames
 	30104,	// Graybanns
 	31103,	// Hypno-Eyes
+	343,	// Friendly Item (Professor Speks)
+	744,	// Pyrovision Goggles
 };
 
 public const int ALLCLASS_BEARD[] = {
@@ -242,6 +261,7 @@ public const int ALLCLASS_BEARD[] = {
 };
 
 public const int ALLCLASS_MEDAL[] = {
+	262,	// Polycount Pin
 	718,	// Merc Medal
 	296,	// TTG Badge (License To Maim)
 	586,	// Mark of the Saint
@@ -297,6 +317,12 @@ public const int ALLCLASS_MEDAL[] = {
 	13460,	// Heartfelt Hero 2023
 	9515,	// Heartfelt Hug
 	13459,	// Heartfelt Hug 2023
+	// MvM Medals
+	726,	// Tour of Duty Badge Advanced 1
+	975,	// Tour of Duty Badge Advanced 2
+	1066,	// Tour of Duty Badge Advanced 3
+	870,	// Tour of Duty Badge Intermediate 1
+	871,	// Tour of Duty Badge Expert 1
 	12988,	// Anniversary Annihilation Caregiving Corundum 2022
 	12990,	// Anniversary Annihilation Dastardly Diamond 2022
 	12986,	// Anniversary Annihilation Galvanized Goblet 2022
@@ -330,14 +356,39 @@ public const int ALLCLASS_MEDAL[] = {
 	10449,	// Madness vs Machines Pinnacle of Ingenuity 2019
 	9510,	// Mappers vs. Machines Participant Medal 2017
 	717,	// Map Maker's Medallion
-
 	11430,	// Mashed Mediocrity Player 2020
 	11431,	// Mashed Mediocrity Creator 2020
 	11432,	// Mashed Mediocrity Helper 2020
 	10653,	// Memes vs Machines Player 2019
 	10654,	// Memes vs Machines Creator 2019
+	13566,	// Operation Firmware Frenzy Star of the Company 2023
+	13567,	// Operation Firmware Frenzy Purehearted Purple 2023
+	13568,	// Operation Firmware Frenzy Bountiful Benevolence 2023
+	13569,	// Operation Firmware Frenzy Giver in Gold 2023
+	13570,	// Operation Firmware Frenzy Supercritical Selflessness 2023
+	13493,	// Operation Galvanized Gauntlet Shimmering Souvenir 2023
+	13494,	// Operation Galvanized Gauntlet Bejeweled Bounty 2023
+	13495,	// Operation Galvanized Gauntlet Opulent Ornament 2023
+	13496,	// Operation Galvanized Gauntlet Soldiers Spoils 2023
+	13335,	// Operation Last Laugh Copper Chicanery 2023
+	13336,	// Operation Last Laugh Happy Spud 2023
+	13337,	// Operation Last Laugh Bruised Johnstone 2023
+	13338,	// Operation Last Laugh Caustic Container 2023
+	13339,	// Operation Last Laugh Alluring Artifact 2023
+	13380,	// Operation Voltaic Violence Vanity 2023
+	13381,	// Operation Voltaic Violence Valor 2023
+	13382,	// Operation Voltaic Violence Vitality 2023
+	12826,	// Peculiar Pandemonium Tungsten Robot of Leaded Lunacy 2022
+	12827,	// Peculiar Pandemonium Luxurious Lepidolite 2022
+	12828,	// Peculiar Pandemonium Mesmerizing Morganite 2022
+	12829,	// Peculiar Pandemonium Pink Diamond 2022
+	13322,	// Potato Of Labor
 /* 	
-
+	10028,	// Rally Call 2018 Whale
+	10029,	// Rally Call 2018 Whale Donar
+	9731,	// Philanthropist's Indulgence
+	1171,	// PASS Time Early Participation Pin
+	1170,	// PASS Time Miniature Half JACK
 	9632,	// Jaunty Adventurer
 	8779,	// Tip of the Hats 2015 Medal (Jaunty Pin 2015)
 	9231	// Jaunty Camper 2016
@@ -350,12 +401,10 @@ public const int ALLCLASS_MEDAL[] = {
 	11068,	// Jaunty Philanthropist
 	10265,	// Jaunty Ranger
 	11066,	// Jaunty Tipper 2019
-
 	9849,	// Journey to the East 1st Place
 	9850,	// Journey to the East 2nd Place
 	9851,	// Journey to the East 3rd Place
 	9852,	// Journey to the East Participant
-
 	8396,	// InfoShow LAN Party 2014 Participant
 	625,	// Clan Pride
 	9297,	// Duncan's Kindhearted Kisser
@@ -382,7 +431,13 @@ public const int ALLCLASS_MEDAL[] = {
 	12786,	// Australian Hightower Highjinx Royalty 2022
 	12787,	// Australian Hightower Highjinx Participant 2022
 	12788,	// Australian Hightower Highjinx Donor 2022
-	12789,	// Australian Hightower Highjinx Helper 2022 */
+	12789,	// Australian Hightower Highjinx Helper 2022
+	9323,	// Rally Call 2017 - 1st place Medal
+	9324,	// Rally Call 2017 - 2nd place Medal
+	9325,	// Rally Call 2017 - Participant/Helper Medal
+	9326,	// Rally Call 2017 - Donator Medal
+	623,	// Photo Badge
+*/
 };
 
 public const int ALLCLASS_TORSO[] = {
@@ -393,10 +448,21 @@ public const int ALLCLASS_BELT[] = {
 	30738,	// Batbelt
 	30706,	// Catastrophic Companions
 	1025,	// Fortune Hunter
+	31019,	// Pocket Admin
+	31061,	// Pocket Halloween Boss
+	30607,	// Pocket Raiders
+	30972,	// Pocket Santa
+	30880,	// Pocket Saxton
+	30726,	// Pocket Villains
+	30929,	// Pocket Yeti
+	30757,	// Prinny Pouch
 	//31208,	// Creepy Crawlers	 (right shoulder equip region) 
 	//30881,	// Croaking Hazard	(left shoulder equip region)
 	//30693,	// Grim Tweeter	(left shoulder)
 	//31251,	// Ominous Offering (right shoulder)
+	//31086,	// Pebbles the Penguin (right Shoulder)
+	//31018,	// Polar Pal (left/right shoulders)
+	//30878,	// Quizzical Quetzal (left Shoulder)
 };
 
 public const int ALLCLASS_PANTS[] = {
@@ -446,8 +512,8 @@ public const CosmeticSet CS_PRESET_SCOUT[] = {
 	{ 760, 30068, 827 }, 		// Front Runner, Breakneck Baggies, Track Terrorizer
 	{ 346, 347, 30552 },		// Superfan, Essential Accessories, Themral Tracker
 	{ 760, 722, 983 },			// Front Runner, Fast Learner, Digit Divulger
-	{ 261, 743, 166 },			// Mann Co. Cap, Pyrovision Goggles, Mercenary
-	{ 940, 743, 166 },			// Ghostly Gibus, Pyrovision Goggles, Mercenary
+	{ 261, 744, 166 },			// Mann Co. Cap, Pyrovision Goggles, Mercenary
+	{ 940, 744, 166 },			// Ghostly Gibus, Pyrovision Goggles, Mercenary
 	{ 150, 722, 1016 },			// Troublemaker's Tossle Cap, Fast Learner, Buck Turner All-Stars
 };
 
@@ -461,8 +527,8 @@ public const CosmeticSet CS_PRESET_SOLDIER[] = {
 	{ 30390, 30388, 30392 },	// Spook Specs, Classified Coif, Man in Slacks
 	{ 31378, 13494, 31379 },	// Close Quarters Cover, OP-GG Bejeweled Bounty 2023, Stealth Bomber
 	{ 30768, 30727, 31276 },	// Bedouin Bandana, Caped Crusader, Chaser
-	{ 261, 743, 166 },			// Mann Co. Cap, Pyrovision Goggles, Mercenary
-	{ 940, 743, 166 },			// Ghostly Gibus, Pyrovision Goggles, Mercenary
+	{ 261, 744, 166 },			// Mann Co. Cap, Pyrovision Goggles, Mercenary
+	{ 940, 744, 166 },			// Ghostly Gibus, Pyrovision Goggles, Mercenary
 };
 
 // Returns the ellgible cosmetics that can be Unusual
@@ -566,7 +632,20 @@ int GetCosmeticStyles( int iEntity )
 		case 10654:	return 1;	// Memes vs Machines Creator 2019
 		case 30352:	return 1;	// Mustachioed Mann
 		case 31245:	return 1;	// Oh Deer!
-
+		case 13566:	return 1;	// Operation Firmware Frenzy Star of the Company 2023
+		case 13493:	return 1;	// Operation Galvanized Gauntlet Shimmering Souvenir 2023
+		case 13494:	return 1;	// Operation Galvanized Gauntlet Bejeweled Bounty 2023
+		case 13495:	return 1;	// Operation Galvanized Gauntlet Opulent Ornament 2023
+		case 13337:	return 1;	// Operation Last Laugh Bruised Johnstone 2023
+		case 13339:	return 1;	// Operation Last Laugh Alluring Artifact 2023
+		case 13335:	return 1;	// Operation Last Laugh Copper Chicanery 2023
+		case 13336:	return 1;	// Operation Last Laugh Happy Spud 2023
+		case 30743:	return 1;	// Patriot Peak
+		case 12827:	return 1;	// Peculiar Pandemonium Luxurious Lepidolite 2022
+		case 12828:	return 1;	// Peculiar Pandemonium Mesmerizing Morganite 2022
+		case 12829:	return 1;	// Peculiar Pandemonium Pink Diamond 2022
+		case 13322:	return 1;	// Potato Of Labor
+		case 1035:	return 1;	// Public Accessor
 		case I:	return 1;	// 
 		
 
@@ -585,6 +664,7 @@ int GetCosmeticStyles( int iEntity )
 		case 31216:	return 2;	// Hat Outta Hell
 		case 334:	return 2;	// Treasure Hat 3 (Hat of Undeniable Wealth And Respect)
 		case 817:	return 2;	// Human Cannonball
+		case 31295:	return 2;	// Onimann
 		case I:	return 2;	// 
 
 		case 30309:	return 3;	// Dead of Night
@@ -600,6 +680,8 @@ int GetCosmeticStyles( int iEntity )
 		case 31252:	return 3;	// Festive Frames
 		case 116:	return 3;	// Ghastly Gibus (?)
 		case 31242:	return 3;	// Gnome Dome
+		case 31061:	return 3;	// Pocket Halloween Boss
+		case 30607:	return 3;	// Pocket Raiders
 		case I:	return 3;	// 
 
 		case 31284:	return 4;	// Boston Brain Bucket
@@ -620,7 +702,38 @@ int GetPaintableCosmetics( int iEntity )
 	int iIndex = GetEntProp( iEntity, Prop_Send, "m_iItemDefinitionIndex" );
 	switch ( iIndex )
 	{
-		case I:	return true;	// 
+		case IDD:	return true;	// 
+		case 31171:	return true;	// Reindoonibeanie
+		case 10028:	return true;	// Rally Call 2018 Whale
+		case 10029:	return true;	// Rally Call 2018 Whale Donar
+		case 30878:	return true;	// Quizzical Quetzal
+		case 1035:	return true;	// Public Accessor
+		case 31170:	return true;	// Professional's Pom Pom
+		case 30757:	return true;	// Prinny Pouch
+		case 30759:	return true;	// Prinny Hat
+		case 30704:	return true;	// Prehistoric Pullover
+		case 13322:	return true;	// Potato of Labor
+		case 30643:	return true;	// Potassium Bonnet
+		case 30329:	return true;	// Polar Pullover
+		case 31018:	return true;	// Polar Pal
+		case 30929:	return true;	// Pocket Yeti
+		case 30972:	return true;	// Pocket Santa
+		case 30880:	return true;	// Pocket Saxton
+		case 31061:	return true;	// Pocket Halloween Boss
+		case 31019:	return true;	// Pocket Admin
+		case 30915:	return true;	// Pithy Professional
+		case 713:	return true;	// Daily Map Stamp Reward Hat
+		case 9731:	return true;	// Philanthropist's Indulgence
+		case 31086:	return true;	// Pebbles the Penguin
+		case 30743:	return true;	// Patriot Peak
+		case 537:	return true;	// TF Birthday Hat 2011
+		case 13381:	return true;	// Operation Voltaic Violence Valor 2023
+		case 13380:	return true;	// Operation Voltaic Violence Vanity 2023
+		case 13337:	return true;	// Operation Last Laugh Bruised Johnstone 2023
+		case 13493:	return true;	// Operation Galvanized Gauntlet Shimmering Souvenir 2023
+		case 13494:	return true;	// Operation Galvanized Gauntlet Bejeweled Bounty 2023
+		case 13495:	return true;	// Operation Galvanized Gauntlet Opulent Ornament 2023
+		case 31295:	return true;	// Onimann
 		case 31251:	return true;	// Ominous Offering
 		case 31245:	return true;	// Oh Deer!
 		case 30307:	return true;	// Neckwear Headwear
