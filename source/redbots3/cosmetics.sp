@@ -64,6 +64,7 @@ public const int ALLCLASS_HATMISC[] = {
 	30997,	// Deadbeats
 	143,	// OSX Item
 	31172,	// Festive Fascinator
+	31093,	// Glittering Garland
 };
 
 // Don't equip with GLASSES, BEARD, HATS
@@ -138,6 +139,16 @@ public const int ALLCLASS_HATS[] = {
 	31327,	// Festive Rack
 	1158,	// Finder's Fee
 	302,	// Camera Helm
+	668,	// Full Head of Steam
+	31355,	// Full Metal Helmet
+	30003,	// Galvanized Gibus
+	774,	// Gentle Munitionne of Leisure
+	116,	// Ghastly Gibus
+	279,	// Ghastly Gibus 2010
+	584,	// Ghastly Gibus 2011
+	940,	// Ghostly Gibus
+	31246,	// Giftcrafter
+	712,	// Daily Gift Giver Reward Hat
 };
 
 public const int ALLCLASS_GLASSES[] = {
@@ -231,6 +242,8 @@ public const int ALLCLASS_MEDAL[] = {
 	9831,	// Florida LAN 2018 Participant Medal
 	9832,	// Florida LAN 2018 Contributor Medal
 	864,	// Friends Forever Companion Square Badge
+	9048,	// Gift of Giving
+	9308,	// Gift of Giving 2016
 /* 	10511,	// Australian Hightower Highjinx Champion 2019
 	10512,	// Australian Hightower Highjinx Participant 2019
 	10513,	// Australian Hightower Highjinx Donar 2019
@@ -395,6 +408,7 @@ int GetCosmeticStyles( int iEntity )
 		case 31134:	return 1;	// Eye-See-You
 		case 31172:	return 1;	// Festive Fascinator
 		case 31327:	return 1;	// Festive Rack
+		case 31088:	return 1;	// Gingerbread Mann
 		case IDGOESHERE:	return 1;	// 
 
 		case 30104:	return 2;	// Graybanns
@@ -408,6 +422,7 @@ int GetCosmeticStyles( int iEntity )
 		case 31415:	return 2;	// Boarder's Beanie
 		case 31416:	return 2;	// Cozy Cover-Up
 		case 31261:	return 2;	// Decorated Veteran
+		case 279:	return 2;	// Ghastly Gibus 2010
 		case IDGOESHERE:	return 2;	// 
 
 		case 30309:	return 3;	// Dead of Night
@@ -422,6 +437,7 @@ int GetCosmeticStyles( int iEntity )
 		case 30309:	return 3;	// Dead of Night
 		case 31213:	return 3;	// Eyequarium
 		case 31252:	return 3;	// Festive Frames
+		case 116:	return 3;	// Ghastly Gibus (?)
 		case IDGOESHERE:	return 3;	// 
 
 		case 31284:	return 4;	// Boston Brain Bucket
@@ -445,6 +461,15 @@ int GetPaintableCosmetics( int iEntity )
 	switch ( iIndex )
 	{
 		case IDGOESHERE:	return true;	// 
+		case 31093:	return true;	// Glittering Garland
+		case 31246:	return true;	// Giftcrafter
+		case 9048:	return true;	// Gift of Giving
+		case 9308:	return true;	// Gift of Giving 2016
+		case 584:	return true;	// Ghastly Gibus 2011
+		case 116:	return true;	// Ghastly Gibus
+		case 279:	return true;	// Ghastly Gibus 2010
+		case 30003:	return true;	// Galvanized Gibus
+		case 31355:	return true;	// Full Metal Helmet 
 		case 1025:	return true;	// Fortune Hunter
 		case 9830:	return true;	// Florida LAN 2018 Donator Medal
 		case 9831:	return true;	// Florida LAN 2018 Participant Medal
