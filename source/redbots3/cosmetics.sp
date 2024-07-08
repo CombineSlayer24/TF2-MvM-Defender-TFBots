@@ -705,7 +705,7 @@ int GetPaintableCosmetics( int iEntity )
 		default:	return false;
 	}
 
-	return false;
+	return iEntity;
 }
 
 //-----------------------------------------------
