@@ -65,6 +65,8 @@ public const int ALLCLASS_HATMISC[] = {
 	143,	// OSX Item
 	31172,	// Festive Fascinator
 	31093,	// Glittering Garland
+	// 31063,	// Horrible Horns (Too small to see)
+	31125,	// Impish Ears
 };
 
 // Don't equip with GLASSES, BEARD, HATS
@@ -102,6 +104,7 @@ public const int ALLCLASS_HATS[] = {
 	30928,	// Balloonihoodie
 	31183,	// Ballooniphones
 	31058,	// Bat Hat
+	31129,	// A Handsome Handy Thing
 	31212,	// Beanie The All-Gnawing
 	30768,	// Bedouin Bandana
 	//409, 	// Benefactor's Kanmuri
@@ -169,6 +172,24 @@ public const int ALLCLASS_HATS[] = {
 	30838,	// Head Prize
 	30177,	// Hong Kong Cone
 	30469,	// Horace
+	291,	// Horrific Headsplitter
+	614,	// Hot Dogger
+	817,	// Human Cannonball
+	408,	// Humanitarian's Hachimaki
+	30877,	// Hunter in Darkness
+	134,	// Propaganda Contest First Place (J.Axer's Dapper Topper)
+	31165,	// Jolly Jingler
+	30882,	// Jungle Wreath
+	538,	// Killer Exclusive
+	31130,	// King Cardbeard
+	30313,	// Kiss King
+	30362,	// Law
+	30868,	// Legendary Lid
+	30814,	// Lil' Bitey
+	470,	// Lo-Fi Longwave
+	30998,	// Lucky Cat Hat
+	31383,	// Ludicrously Lunatic Lunon Fedora
+	31326,	// Lumbercap
 };
 
 public const int ALLCLASS_GLASSES[] = {
@@ -179,6 +200,7 @@ public const int ALLCLASS_GLASSES[] = {
 	31213,	// Eyequarium
 	31252,	// Festive Frames
 	30104,	// Graybanns
+	31103,	// Hypno-Eyes
 };
 
 public const int ALLCLASS_BEARD[] = {
@@ -265,12 +287,34 @@ public const int ALLCLASS_MEDAL[] = {
 	13218,	// Holographic Harvest Haunted Scrap Canteen 2022
 	13217,	// Holographic Harvest Lahsuniya Ratna 2022
 	13216,	// Holographic Harvest Zebra Zirconia 2022
+	296,	// TTG Badge (License To Maim)
 /* 	
+
+	9632,	// Jaunty Adventurer
+	8779,	// Tip of the Hats 2015 Medal (Jaunty Pin 2015)
+	9231	// Jaunty Camper 2016
+	9233,	// Jaunty Trailblazer 2016
+	9232	// Jaunty Benefactor 2016
+	10266,	// Jaunty Explorer
+	9630,	// Jaunty Globetrotter 2017
+	10264,	// Jaunty Mountaineer 2018
+	9631,	// Jaunty Voyager 2017
+	11068,	// Jaunty Philanthropist
+	10265,	// Jaunty Ranger
+	11066,	// Jaunty Tipper 2019
+
+	9849,	// Journey to the East 1st Place
+	9850,	// Journey to the East 2nd Place
+	9851,	// Journey to the East 3rd Place
+	9852,	// Journey to the East Participant
+
+	8396,	// InfoShow LAN Party 2014 Participant
 	625,	// Clan Pride
 	9297,	// Duncan's Kindhearted Kisser
 	30000,	// Electric Badge-aloo
 	9296,	// Hannah's Altruistic Aspect
 	9046,	// Honeydew's Charitable Countenance
+	9722,	// Israphel's Eleemosynary Expression
 	8831,	// Arms Race 1st Place Medal
 	8832,	// Arms Race 2nd Place Medal
 	8833,	// Arms Race 3rd Place Medal
@@ -312,6 +356,7 @@ public const int ALLCLASS_PANTS[] = {
 public const int ALLCLASS_FEET[] = {
 	31167,	// Festive Flip-Thwomps
 	30551,	// Flashdance Footies
+	31105,	// Loaf Loafers
 };
 
 //public const int ALLCLASS_FLOATING[] = {};
@@ -326,7 +371,7 @@ public const int ALLCLASS_BASEMISC[] = {
 public const CosmeticSet CS_PRESET_SCOUT[] = {
 	{ -1, 30888, 30889 },		// Nothing, Jungle Jersey, Transparent Trousers
 	{ 126, 30104, 30309 },		// Bill Hat, Graybanns, Dead of Night
-	{ 30362, 30085, 296 },		// THe Law, The Macho Mann, License to maim
+	{ 30362, 30085, 296 },		// THe Law, The Macho Mann, TTG Badge (License to maim)
 	{ 324, 31217, 31302 },		// Flipped Trilby, Goalkeeper, Imp's Imprint
 	{ 31168, 987, 31022 },		// Towering Pillar of Beanies, Merc's Muffler, Juvenile's Jumper
 	{ 765, 30185, 30068 },		// Cross-Comm Express, FlapJack, Breakneck Baggies
@@ -411,6 +456,7 @@ int GetCosmeticStyles( int iEntity )
 		case 853:	return 1;	// Crafty Hair
 		case 30189:	return 1;	// Frenchman's Formals
 		case 30078:	return 1;	// Greased Lightning
+		case 31129:	return 1;	// A Handsome Handy Thing
 		case 858:	return 1;	// Hanger-On Hood
 		case 453:	return 1;	// Hero's Tail
 		case 31406:	return 1;	// Last Laugh
@@ -451,7 +497,11 @@ int GetCosmeticStyles( int iEntity )
 		case 868:	return 1;	// Heroic Companion Badge
 		case 12660:	return 1;	// Hexadecimal Horrors Macabre Memento 2021
 		case 12661:	return 1;	// Hexadecimal Horrors Moonlit Magnate 2021
+		case 31103:	return 1;	// Hypno-Eyes
+		case 31125:	return 1;	// Impish Ears
+		case 31105:	return 1;	// Loaf Loafers
 		case IDGOESHERE:	return 1;	// 
+		
 
 		case 30104:	return 2;	// Graybanns
 		case 30397:	return 2;	// Bruiser's Bandanna
@@ -467,6 +517,7 @@ int GetCosmeticStyles( int iEntity )
 		case 279:	return 2;	// Ghastly Gibus 2010
 		case 31216:	return 2;	// Hat Outta Hell
 		case 334:	return 2;	// Treasure Hat 3 (Hat of Undeniable Wealth And Respect)
+		case 817:	return 2;	// Human Cannonball
 		case IDGOESHERE:	return 2;	// 
 
 		case 30309:	return 3;	// Dead of Night
@@ -503,6 +554,30 @@ int GetPaintableCosmetics( int iEntity )
 	switch ( iIndex )
 	{
 		case IDGOESHERE:	return true;	// 
+
+		case 31326:	return true;	// Lumbercap
+		case 31383:	return true;	// Ludicrously Lunatic Lunon Fedora
+		case 30998:	return true;	// Lucky Cat Hat
+		case 31105:	return true;	// Loaf Loafers
+		case 470:	return true;	// Lo-Fi Longwave
+		case 30814:	return true;	// Lil' Bitey
+		case 30868:	return true;	// Legendary Lid
+		case 30362:	return true;	// Law
+		case 30313:	return true;	// Kiss King
+		case 31130:	return true;	// King Cardbeard
+		case 538:	return true;	// Killer Exclusive
+		case 30882:	return true;	// Jungle Wreath
+		case 31165:	return true;	// Jolly Jingler
+		case 31243:	return true;	// Jolly Jester
+		case 10265:	return true;	// Jaunty Ranger
+		case 10264:	return true;	// Jaunty Mountaineer 2018
+		case 10266:	return true;	// Jaunty Explorer
+		case 31125:	return true;	// Impish Ears
+		case 31103:	return true;	// Hypno-Eyes
+		case 30877:	return true;	// Hunter in Darkness
+		case 614:	return true;	// Hot Dogger
+		case 291:	return true;	// Horrific Headsplitter
+		case 31063:	return true;	// Horrible Horns 
 		case 30469:	return true;	// Horace
 		case 30177:	return true;	// Hong Kong Cone
 		case 13216:	return true;	// Holographic Harvest Zebra Zirconia 2022
