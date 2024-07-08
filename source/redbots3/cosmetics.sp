@@ -75,8 +75,9 @@ public const int ALLCLASS_HEAD[] = {
 	30646,	// Captain Space Mann
 	31091,	// Citizen Cane
 	30357,	// Dark Falkirk Helm
-	263,	// Ellis Hat
 	31242,	// Gnome Dome
+	667,	// Holiday Headcase
+	31128,	// Hollowed Helm
 };
 
 // Don't equip with GLASSES, BEARD
@@ -143,6 +144,7 @@ public const int ALLCLASS_HATS[] = {
 	711,	// Daily Duel Winner Reward Hat
 	675,	// Ebenezer
 	31241,	// Fiestibrero
+	263,	// Ellis Hat
 	921,	// Executioner
 	30119,	// Federal Casemaker
 	31327,	// Festive Rack
@@ -165,6 +167,8 @@ public const int ALLCLASS_HATS[] = {
 	31216,	// Hat Outta Hell
 	334,	// Treasure Hat 3 (Hat of Undeniable Wealth And Respect)
 	30838,	// Head Prize
+	30177,	// Hong Kong Cone
+	30469,	// Horace
 };
 
 public const int ALLCLASS_GLASSES[] = {
@@ -186,6 +190,8 @@ public const int ALLCLASS_BEARD[] = {
 };
 
 public const int ALLCLASS_MEDAL[] = {
+	868,	// Heroic Companion Badge
+	943,	// Hitt Mann Badge
 	956, 	// Faerie Solitaire Pin
 	164,	// Grizzled Veteran
 	165,	// Soldier of Fortune
@@ -197,17 +203,6 @@ public const int ALLCLASS_MEDAL[] = {
 	245,	// Duel Medal Plat
 	299,	// Companion Cube Pin
 	583,	// Bombinomicon
-	12988,	// Anniversary Annihilation Caregiving Corundum 2022
-	12990,	// Anniversary Annihilation Dastardly Diamond 2022
-	12986,	// Anniversary Annihilation Galvanized Goblet 2022
-	12989,	// Anniversary Annihilation Heroistic Heart 2022
-	12985,	// Anniversary Annihilation Participation Trophy 2022
-	12987,	// Anniversary Annihilation Soul-Binding Star 2022
-	12705,	// Binary Blackout Bronze Beginner 2021
-	12703,	// Binary Blackout Golden Great 2021
-	12706,	// Binary Blackout Juvenile's Jade 2021
-	12707,	// Binary Blackout Marvellous Moonstone 2021
-	12704,	// Binary Blackout Silver Soldier 2021
 	818,	// Awesomenauts Badge
 	12708,	// Auspicious Automaton Assembler's Accolade
 	1096,	// Baronial Badge
@@ -226,39 +221,67 @@ public const int ALLCLASS_MEDAL[] = {
 	12658,	// Blapature Co. Supporter 2021
 	12994,	// Blapature Co. Supporter 2022
 	12996,	// Blapature Co. Advocator 2022
-	8831,	// Arms Race 1st Place Medal
-	8832,	// Arms Race 2nd Place Medal
-	8833,	// Arms Race 3rd Place Medal
-	8834,	// Arms Race Participant Medal
 	8633,	// Asymmetric Accolade
 	767,	// Atomic Accolade
+	1024,	// Croft's Crest
+	592,	// Dr. Grordbort's Copper Crest
+	443,	// Dr. Grordbort's Crest
+	636,	// Dr. Grordbort's Silver Crest
+	30559,	// End of the Line Community Update Medal
+	956,	// Faerie Solitaire Pin
+	864,	// Friends Forever Companion Square Badge
+	9048,	// Gift of Giving
+	9308,	// Gift of Giving 2016
+	9737,	// Heals for Reals Donor
+	9733,	// Heals for Reals Event 1st Place 2017
+	9734,	// Heals for Reals Event 2nd Place 2017
+	9735,	// Heals for Reals Event 3rd Place 2017
+	9736,	// Heals for Reals Event Participant 2017
+	8367,	// Heart of Gold
+	9941,	// Heartfelt Hero
+	13460,	// Heartfelt Hero 2023
+	9515,	// Heartfelt Hug
+	13459,	// Heartfelt Hug 2023
+	12988,	// Anniversary Annihilation Caregiving Corundum 2022
+	12990,	// Anniversary Annihilation Dastardly Diamond 2022
+	12986,	// Anniversary Annihilation Galvanized Goblet 2022
+	12989,	// Anniversary Annihilation Heroistic Heart 2022
+	12985,	// Anniversary Annihilation Participation Trophy 2022
+	12987,	// Anniversary Annihilation Soul-Binding Star 2022
+	12705,	// Binary Blackout Bronze Beginner 2021
+	12703,	// Binary Blackout Golden Great 2021
+	12706,	// Binary Blackout Juvenile's Jade 2021
+	12707,	// Binary Blackout Marvellous Moonstone 2021
+	12704,	// Binary Blackout Silver Soldier 2021
 	9907,	// Canteen Crasher Platinum Crit Medal 2018
 	9908,	// Canteen Crasher Gold Uber Medal 2018
 	9909,	// Canteen Crasher Silver Building Medal 2018
 	9910,	// Canteen Crasher Bronze Ammo Medal 2018
 	9911,	// Canteen Crasher Iron Recall Medal 2018
 	9912,	// Canteen Crasher Rust Starter Medal 2018
-	1024,	// Croft's Crest
-	//625,	// Clan Pride
-	//9297,	// Duncan's Kindhearted Kisser
-	//30000,	// Electric Badge-aloo
-	//9296,	// Hannah's Altruistic Aspect
-	592,	// Dr. Grordbort's Copper Crest
-	443,	// Dr. Grordbort's Crest
-	636,	// Dr. Grordbort's Silver Crest
-	30559,	// End of the Line Community Update Medal
-	956,	// Faerie Solitaire Pin
+	12660,	// Hexadecimal Horrors Macabre Memento 2021
+	12661,	// Hexadecimal Horrors Moonlit Magnate 2021
+	13215,	// Holographic Harvest Carbon Compassion 2022
+	13218,	// Holographic Harvest Haunted Scrap Canteen 2022
+	13217,	// Holographic Harvest Lahsuniya Ratna 2022
+	13216,	// Holographic Harvest Zebra Zirconia 2022
+/* 	
+	625,	// Clan Pride
+	9297,	// Duncan's Kindhearted Kisser
+	30000,	// Electric Badge-aloo
+	9296,	// Hannah's Altruistic Aspect
+	9046,	// Honeydew's Charitable Countenance
+	8831,	// Arms Race 1st Place Medal
+	8832,	// Arms Race 2nd Place Medal
+	8833,	// Arms Race 3rd Place Medal
+	8834,	// Arms Race Participant Medal
 	8583,	// Florida LAN Medal 2014
 	8674,	// Florida LAN Medal 2015
 	9230,	// Florida LAN Medal 2016
 	9830,	// Florida LAN 2018 Donator Medal
 	9831,	// Florida LAN 2018 Participant Medal
 	9832,	// Florida LAN 2018 Contributor Medal
-	864,	// Friends Forever Companion Square Badge
-	9048,	// Gift of Giving
-	9308,	// Gift of Giving 2016
-	9737,	// Heals for Reals Donor
-/* 	10511,	// Australian Hightower Highjinx Champion 2019
+	10511,	// Australian Hightower Highjinx Champion 2019
 	10512,	// Australian Hightower Highjinx Participant 2019
 	10513,	// Australian Hightower Highjinx Donar 2019
 	10513,	// Australian Hightower Highjinx Donar 2019
@@ -358,8 +381,6 @@ public const CosmeticSet CS_PRESET_SOLDIER[] = {
 		// we just list them here, and clean up the code mess from that.
 		default:	return false;
 	}
-
-	return iEntity;
 } */
 
 // Returns the ellgible cosmetics that has multiple styles
@@ -427,7 +448,10 @@ int GetCosmeticStyles( int iEntity )
 		case 31088:	return 1;	// Gingerbread Mann
 		case 31090:	return 1;	// Globetrotter
 		case 31135:	return 1;	// Handsome Devil
-		//case IDGOESHERE:	return 1;	// 
+		case 868:	return 1;	// Heroic Companion Badge
+		case 12660:	return 1;	// Hexadecimal Horrors Macabre Memento 2021
+		case 12661:	return 1;	// Hexadecimal Horrors Moonlit Magnate 2021
+		case IDGOESHERE:	return 1;	// 
 
 		case 30104:	return 2;	// Graybanns
 		case 30397:	return 2;	// Bruiser's Bandanna
@@ -443,7 +467,7 @@ int GetCosmeticStyles( int iEntity )
 		case 279:	return 2;	// Ghastly Gibus 2010
 		case 31216:	return 2;	// Hat Outta Hell
 		case 334:	return 2;	// Treasure Hat 3 (Hat of Undeniable Wealth And Respect)
-		//case IDGOESHERE:	return 2;	// 
+		case IDGOESHERE:	return 2;	// 
 
 		case 30309:	return 3;	// Dead of Night
 		case 31217:	return 3;	// Goalkeeper
@@ -458,18 +482,16 @@ int GetCosmeticStyles( int iEntity )
 		case 31252:	return 3;	// Festive Frames
 		case 116:	return 3;	// Ghastly Gibus (?)
 		case 31242:	return 3;	// Gnome Dome
-		//case IDGOESHERE:	return 3;	// 
+		case IDGOESHERE:	return 3;	// 
 
 		case 31284:	return 4;	// Boston Brain Bucket
 		case 31285:	return 4;	// Pest's Pads
 		case 31293:	return 4;	// Beaten And Bruised
-		//case IDGOESHERE:	return 4;	// 
+		case IDGOESHERE:	return 4;	// 
 
 		case 1126:	return 10;	// Duck Badge (WTF, 10 styles????)
 		default:	return false;
 	}
-
-	return iEntity;
 }
 
 // Returns the ellgible cosmetics that can be painted.
@@ -480,7 +502,23 @@ int GetPaintableCosmetics( int iEntity )
 	int iIndex = GetEntProp( iEntity, Prop_Send, "m_iItemDefinitionIndex" );
 	switch ( iIndex )
 	{
-		//case IDGOESHERE:	return true;	// 
+		case IDGOESHERE:	return true;	// 
+		case 30469:	return true;	// Horace
+		case 30177:	return true;	// Hong Kong Cone
+		case 13216:	return true;	// Holographic Harvest Zebra Zirconia 2022
+		case 13217:	return true;	// Holographic Harvest Lahsuniya Ratna 2022
+		case 13218:	return true;	// Holographic Harvest Haunted Scrap Canteen 2022
+		case 13215:	return true;	// Holographic Harvest Carbon Compassion 2022
+		case 12661:	return true;	// Hexadecimal Horrors Moonlit Magnate 2021
+		case 9515:	return true;	// Heartfelt Hug
+		case 13459:	return true;	// Heartfelt Hug 2023
+		case 9941:	return true;	// Heartfelt Hero
+		case 13460:	return true;	// Heartfelt Hero 2023
+		case 8367:	return true;	// Heart of Gold
+		case 9733:	return true;	// Heals for Reals Event 1st Place 2017
+		case 9734:	return true;	// Heals for Reals Event 2nd Place 2017
+		case 9735:	return true;	// Heals for Reals Event 3rd Place 2017
+		case 9736:	return true;	// Heals for Reals Event Participant 2017
 		case 9737:	return true;	// Heals for Reals Donor
 		case 30838:	return true;	// Head Prize
 		case 334:	return true;	// Treasure Hat 3 (Hat of Undeniable Wealth And Respect)
@@ -702,10 +740,9 @@ int GetPaintableCosmetics( int iEntity )
 		case 30019:	return true;	// Ye Oiled Baker Boy
 		case 107:	return true;	// Ye Olde Baker Boy
 		case 12708:	return true;	// Auspicious Automaton Assembler's Accolade
+		case 31128:	return true;	// Hollowed Helm
 		default:	return false;
 	}
-
-	return iEntity;
 }
 
 //-----------------------------------------------
@@ -988,15 +1025,15 @@ void GiveBotCosmetics( int iClient )
 				if ( TFClass == TFClass_Scout )
 				{
 					iScoutCosmetics[ 1 ] = iRandScout_Head;
-					iScoutCosmetics[ 2 ] = IsChance( 50 ) ? iRandScout_Hats : iRandHat;
-					iScoutCosmetics[ 3 ] = IsChance( 50 ) ? iRandScout_Glasses : iRandGlasses;
-					iScoutCosmetics[ 4 ] = IsChance( 50 ) ? iRandScout_Beard: iRandBeard;
+					iScoutCosmetics[ 2 ] = IsChance( 75 ) ? iRandScout_Hats : iRandHat;
+					iScoutCosmetics[ 3 ] = IsChance( 75 ) ? iRandScout_Glasses : iRandGlasses;
+					iScoutCosmetics[ 4 ] = IsChance( 75 ) ? iRandScout_Beard: iRandBeard;
 					iScoutCosmetics[ 5 ] = iRandMedal;
-					iScoutCosmetics[ 6 ] = IsChance( 50 ) ? iRandScout_Torso : iRandTorso;
+					iScoutCosmetics[ 6 ] = IsChance( 75 ) ? iRandScout_Torso : iRandTorso;
 					iScoutCosmetics[ 7 ] = iRandScout_Back;
-					iScoutCosmetics[ 8 ] = IsChance( 50 ) ? iRandScout_Belt : iRandBelt;
-					iScoutCosmetics[ 9 ] = IsChance( 50 ) ? iRandScout_Pants : iRandPants;
-					iScoutCosmetics[ 10 ] = IsChance( 50 ) ? iRandScout_Feet : iRandFeet;
+					iScoutCosmetics[ 8 ] = IsChance( 75 ) ? iRandScout_Belt : iRandBelt;
+					iScoutCosmetics[ 9 ] = IsChance( 75 ) ? iRandScout_Pants : iRandPants;
+					iScoutCosmetics[ 10 ] = IsChance( 75 ) ? iRandScout_Feet : iRandFeet;
 
 					int iIndex[ 10 ] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
 					ShuffleArray( iIndex, sizeof( iIndex ) );
@@ -1064,7 +1101,7 @@ void PresetCosmeticSet( int iClient, char[] iClass )
 	if ( StrEqual( iClass, "Scout", false ) ) 
 	{
 		// TODO: If Halloween, use Halloween specific presets
-		//if ( TF2_IsHolidayActive( TFHoliday_HalloweenOrFullMoon ) && GetRandomInt( 1, 4 ) == 1 )
+		//if ( TF2_IsHolidayActive( TFHoliday_HalloweenOrFullMoon ) && IsChance( 25 ) )
 		//{}
 
 		// Add the add if the id is not -1
@@ -1135,7 +1172,7 @@ void PresetCosmeticSet( int iClient, char[] iClass )
 // Collectors = 14
 // Paintkitweapon = 15
 
-int TF2_CreateHat( int iClient, int iIndex, int iQuality = 6, bool bIsUnusual = false)
+int TF2_CreateHat( int iClient, int iIndex, int iQuality, bool bIsUnusual = false)
 {
 	int iHat = CreateEntityByName( "tf_wearable" );
 	if ( iHat != -1 )
@@ -1169,6 +1206,7 @@ int TF2_CreateHat( int iClient, int iIndex, int iQuality = 6, bool bIsUnusual = 
 
 		if ( iQuality != QUALITY_UNUSUAL && iQuality != QUALITY_STRANGE )
 		{
+			// If the hat isn't Unusual or strange, give other qualities
 			if ( IsChance( 32 ) )
 			{
 				// Genuine quality
@@ -1181,20 +1219,21 @@ int TF2_CreateHat( int iClient, int iIndex, int iQuality = 6, bool bIsUnusual = 
 				iQuality = QUALITY_VINTAGE;
 				bCantBeUnusual = true;
 			}
-			else if ( IsChance( 16 ) )
+			else if ( TF2_IsHolidayActive( TFHoliday_HalloweenOrFullMoon ) && IsChance( 16 ) )
+			{
+				// If the server is in Halloween mode, or in a 666 mission,
+				// Huanted qualities should start appearing.
+				iQuality = QUALITY_HAUNTED;
+				bCantBeUnusual = true;
+			}
+			else if ( IsChance( 12 ) && ( iIndex != 1158 && iIndex != 1173 && iIndex != 30559 ) )
 			{
 				// Community Sparkle quality
 				iQuality = QUALITY_COMMUNITY;
 				TF2Attrib_SetByDefIndex( iHat, 134, 4.0 );
 				bCantBeUnusual = true;
 			}
-			else if ( TF2_IsHolidayActive( TFHoliday_HalloweenOrFullMoon ) && IsChance( 12 ) )
-			{
-				// Haunted
-				iQuality = QUALITY_HAUNTED;
-				bCantBeUnusual = true;
-			}
-			else if ( IsChance( 8 ) )
+			else if ( IsChance( 4 ) )
 			{
 				// Collectors quality
 				iQuality = QUALITY_COLLECTORS;
@@ -1225,7 +1264,8 @@ int TF2_CreateHat( int iClient, int iIndex, int iQuality = 6, bool bIsUnusual = 
 		}
 
 		// Never give these hats unusuals
-		else if ( iIndex == 261 || iIndex == 940 || iIndex == 263 )
+		else if ( iIndex == 261 || iIndex == 940 || iIndex == 263 
+		|| iIndex == 116 )
 		{
 			TF2Attrib_RemoveByDefIndex( iHat, 134 );
 		}
@@ -1242,11 +1282,11 @@ int TF2_CreateHat( int iClient, int iIndex, int iQuality = 6, bool bIsUnusual = 
 		}
 
 		// Random Chance to color cosmetics
-		if ( iPaintable == 1 && IsChance( 25 ) )
+		if ( iPaintable && IsChance( 25 ) )
 		{
 			int randomPaint = GetRandomInt( 0, 28 );
-			TF2Attrib_SetByDefIndex( iHat, 142, g_paintValues[ randomPaint ][ 0 ] );	// Primary
-			TF2Attrib_SetByDefIndex( iHat, 261, g_paintValues[ randomPaint ][ 1 ] );	// Secondary
+			TF2Attrib_SetByDefIndex( iHat, 142, g_paintValues[ randomPaint ][ 0 ] );	// Primary color
+			TF2Attrib_SetByDefIndex( iHat, 261, g_paintValues[ randomPaint ][ 1 ] );	// Secondary color
 		}
 
 		// Randomly select a style
@@ -1276,149 +1316,12 @@ int TF2_CreateHat( int iClient, int iIndex, int iQuality = 6, bool bIsUnusual = 
 	return iHat;
 }
 
-/* int TF2_CreateHat( int iClient, int iIndex, int iQuality = 6, bool bIsUnusual = false)
-{
-	int iHat = CreateEntityByName( "tf_wearable" );
-	if ( iHat != -1 )
-	{
-		SetEntProp( iHat, Prop_Send, "m_iItemDefinitionIndex", iIndex );
-		SetEntProp( iHat, Prop_Send, "m_bInitialized", 1 );
-		
-		char netClass[ 64 ]; GetEntityNetClass( iHat, netClass, sizeof( netClass ) );
-		int iPropInfoQuality = FindSendPropInfo( netClass, "m_iEntityQuality" );
-		int iPropInfoLevel = FindSendPropInfo( netClass, "m_iEntityLevel" );
-		int iPaintable = GetPaintableCosmetics( iHat );
-		int iNumStyles = GetCosmeticStyles( iHat );
-		bool bCantBeUnusual = false;
-
-		SetEntData( iHat, iPropInfoQuality, iQuality );
-		SetEntData( iHat, iPropInfoLevel, GetRandomInt( 1, 100 ) );
-
-		//if ( GetRandomInt( 1, 10 ) == 1 )
-		if ( IsChance( 10 ) )
-		{
-			if ( iQuality == 3 || iQuality == 1 || iQuality == 13 || iQuality == 5 )
-			{
-				TF2Attrib_RemoveByDefIndex( iHat, 214 );
-			}
-			//else if ( GetRandomInt( 1, 4 ) == 1 )
-			else if ( IsChance( 25 ) )
-			{
-				// Set item to strange
-				SetEntData( iHat, iPropInfoQuality, 11 );
-				TF2Attrib_SetByDefIndex( iHat, 214, view_as<float>( GetRandomInt( 0, 9000 ) ) );
-			}
-		}	
-
-		if ( iQuality != 5 && iQuality != 11 )
-		{
-			int iRandom = GetRandomInt( 1, 60 );
-			
-
-			if ( iRandom <= 40 )
-			{
-				// Unique quality should be more common!
-				SetEntData( iHat, iPropInfoQuality, 6 );
-			}
-			else if ( iRandom <= 32 )
-			{
-				// Genuine quality
-				SetEntData( iHat, iPropInfoQuality, 1 );
-			}
-			else if ( iRandom <= 24 )
-			{
-				// Vintage quality
-				SetEntData( iHat, iPropInfoQuality, 3 );
-				bCantBeUnusual = true;
-			}
-			else if ( iRandom <= 16 )
-			{
-				// Community Sparkle quality
-				SetEntData( iHat, iPropInfoQuality, 7 );
-				TF2Attrib_SetByDefIndex( iHat, 134, 4.0 );
-				bCantBeUnusual = true;
-			}
-			else if ( iRandom <= 8 )
-			{
-				// Collectors quality
-				SetEntData( iHat, iPropInfoQuality, 14 );
-				bCantBeUnusual = true;
-			}
-		}
-
-		// Certain Hats always unususl
-		if ( iIndex == 1158 || iIndex == 1173 )
-		{
-			SetEntProp( iHat, Prop_Send, "m_iEntityQuality", 5 );
-			TF2Attrib_SetByDefIndex( iHat, 134, GetRandomInt( 1, 325 ) + 0.0 );
-		}
-
-		// Give these Self Made
-		else if ( iIndex == 30559 )
-		{
-			// 30559 = EOTL COM MEDAL
-			SetEntData( iHat, iPropInfoQuality, 7 );
-			TF2Attrib_SetByDefIndex( iHat, 134, 4.0 );
-			bCantBeUnusual = true;
-		}
-
-		// Never give these hats unusuals
-		else if ( iIndex == 261 || iIndex == 940 || iIndex == 263 )
-		{
-			TF2Attrib_RemoveByDefIndex( iHat, 134 );
-		}
-
-		//if ( bIsUnusual && !bCantBeUnusual && GetRandomInt( 1, 4 ) == 1 )
-		if ( bIsUnusual && !bCantBeUnusual && IsChance( 25 ) )
-		{
-			// Set the hat as unusual
-			SetEntData( iHat, iPropInfoQuality, 5 );
-			TF2Attrib_SetByDefIndex( iHat, 134, GetRandomInt( 1, 325 ) + 0.0 );
-		}
-		else
-		{
-			TF2Attrib_RemoveByDefIndex( iHat, 134 );
-		}
-
-		// Random Chance to color cosmetics
-		//if ( iPaintable == 1 && GetRandomInt( 1, 4 ) == 1 )
-		if ( iPaintable == 1 && IsChance( 25 ) )
-		{
-			int randomPaint = GetRandomInt( 0, 28 );
-			TF2Attrib_SetByDefIndex( iHat, 142, g_paintValues[ randomPaint ][ 0 ] );	// Primary
-			TF2Attrib_SetByDefIndex( iHat, 261, g_paintValues[ randomPaint ][ 1 ] );	// Secondary
-		}
-
-		// Randomly select a style
-		//if ( iNumStyles > 1 && GetRandomInt( 1, 4 ) == 1 )
-		if ( iNumStyles > 1 && IsChance( 25 ) )
-		{
-			int iRandomStyle = GetRandomInt( 1, iNumStyles );
-			TF2Attrib_SetByDefIndex( iHat, 542, float( iRandomStyle ) );
-		}
-
-#if defined TESTING_ONLY
-		CPrintToChatAll( "ID: {lightblue}%i" ,iIndex )
-#endif
-		
-		EconItemSpawnGiveTo( iHat, iClient );
-		EconItemView_SetItemID( iHat, GetRandomInt( 1, 2048 ) );
-	}
-	else
-	{
-		LogError( "TF2_CreateHat: Failed to create entity." );
-	}
-	
-	return iHat;
-}
- */
 // Helper functions
-
-// Reduce repition
+// This is here to reduce repition of using GetRandomInt for chances
 bool IsChance( int iRandChance )
 {
-    int iRandomNumber = GetRandomInt( 1, 100 );
-    return iRandomNumber <= iRandChance;
+	int iRandomNumber = GetRandomInt( 1, 100 );
+	return iRandomNumber <= iRandChance;
 }
 
 void ShuffleArray( int[] array, int size )
