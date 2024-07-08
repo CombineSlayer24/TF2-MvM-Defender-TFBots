@@ -50,7 +50,7 @@ public const float g_paintValues[ 29 ][ 2 ] = {
 	{ 8400928.0, 2452877.0 },	// The Value of Teamwork
 	{ 12807213.0, 12091445.0 },	// Cream Spirit
 };
-// REMINDER: LEFT OFF ON EL Fiestibrero
+// REMINDER: LEFT OFF ON Heals for Reals Donor
 // LOADOUT.TF, SCOUT, ALL-CLASSES ONLY
 //-----------------------------------------------
 // ALL CLASS
@@ -76,6 +76,15 @@ public const int ALLCLASS_HEAD[] = {
 	31091,	// Citizen Cane
 	30357,	// Dark Falkirk Helm
 	263,	// Ellis Hat
+	31242,	// Gnome Dome
+};
+
+// Don't equip with GLASSES, BEARD
+// NOT USED FOR NOW
+public const int ALLCLASS_FACE[] = {
+	31386,	// Clown's Cover-Up
+	31217,	// Goalkeeper
+	31135,	// Handsome Devil
 };
 
 public const int ALLCLASS_HATS[] = {
@@ -149,6 +158,13 @@ public const int ALLCLASS_HATS[] = {
 	940,	// Ghostly Gibus
 	31246,	// Giftcrafter
 	712,	// Daily Gift Giver Reward Hat
+	31090,	// Globetrotter
+	1067,	// Grandmaster
+	30065,	// Hardy Laurel
+	31259,	// Hat Chocolate
+	31216,	// Hat Outta Hell
+	334,	// Treasure Hat 3 (Hat of Undeniable Wealth And Respect)
+	30838,	// Head Prize
 };
 
 public const int ALLCLASS_GLASSES[] = {
@@ -158,12 +174,7 @@ public const int ALLCLASS_GLASSES[] = {
 	31134,	// Eye-See-You
 	31213,	// Eyequarium
 	31252,	// Festive Frames
-};
-
-// Don't equip with GLASSES, BEARD
-// NOT USED FOR NOW
-public const int ALLCLASS_FACE[] = {
-	31386,	// Clown's Cover-Up
+	30104,	// Graybanns
 };
 
 public const int ALLCLASS_BEARD[] = {
@@ -171,6 +182,7 @@ public const int ALLCLASS_BEARD[] = {
 	30397,	// Bruiser's Bandanna
 	30306,	// Dictator
 	31260,	// Elf-Made Bandanna
+	31127,	// Ground Grin
 };
 
 public const int ALLCLASS_MEDAL[] = {
@@ -230,6 +242,7 @@ public const int ALLCLASS_MEDAL[] = {
 	//625,	// Clan Pride
 	//9297,	// Duncan's Kindhearted Kisser
 	//30000,	// Electric Badge-aloo
+	//9296,	// Hannah's Altruistic Aspect
 	592,	// Dr. Grordbort's Copper Crest
 	443,	// Dr. Grordbort's Crest
 	636,	// Dr. Grordbort's Silver Crest
@@ -244,6 +257,7 @@ public const int ALLCLASS_MEDAL[] = {
 	864,	// Friends Forever Companion Square Badge
 	9048,	// Gift of Giving
 	9308,	// Gift of Giving 2016
+	9737,	// Heals for Reals Donor
 /* 	10511,	// Australian Hightower Highjinx Champion 2019
 	10512,	// Australian Hightower Highjinx Participant 2019
 	10513,	// Australian Hightower Highjinx Donar 2019
@@ -265,6 +279,7 @@ public const int ALLCLASS_BELT[] = {
 	1025,	// Fortune Hunter
 	//31208,	// Creepy Crawlers	 (right shoulder equip region) 
 	//30881,	// Croaking Hazard	(left shoulder equip region)
+	//30693,	// Grim Tweeter	(left shoulder)
 };
 
 public const int ALLCLASS_PANTS[] = {
@@ -277,6 +292,7 @@ public const int ALLCLASS_FEET[] = {
 };
 
 //public const int ALLCLASS_FLOATING[] = {};
+
 public const int ALLCLASS_BASEMISC[] = {
 	619,	// flair!
 };
@@ -295,7 +311,7 @@ public const CosmeticSet CS_PRESET_SCOUT[] = {
 	{ 30479, 1026, 30889 },		// Thirst Blood, Tomb Wrapper, Transparent Trousers
 	{ 30636, 30637, 30889 },	// Fortnate Son, Flak Jack,  Transparent Trousers
 	{ 30686, 30737, 30873 },	// Death Racer's Helmet, Crook Combantant, Airborne Attire
-	{ 30993, 31367, 30551 },	// Punk's Pomp, Prohibition Opposition, Brooklyn Booties
+	{ 30993, 31367, 30540 },	// Punk's Pomp, Prohibition Opposition, Brooklyn Booties
 	{ 31406, 31339, 31118 },	// Last Laugh, Motley Sleeves, Poolside Polo
 	{ 30573, 13570, 31407 },	// Mountebanks Masque, OP-Firmware Frenzy SS 2023, Jumping Jester
 	{ 30686, 30685, 30890 },	// Death Racer Helmet, Thrilling Tracksuit, Forest Footwear
@@ -332,7 +348,7 @@ public const CosmeticSet CS_PRESET_SOLDIER[] = {
 };
 
 // Returns the ellgible cosmetics that can be Unusual
-int GetUnusualHat( int iEntity )
+/* int GetUnusualHat( int iEntity )
 {
 	int iIndex = GetEntProp( iEntity, Prop_Send, "m_iItemDefinitionIndex" );
 	switch ( iIndex )
@@ -344,7 +360,7 @@ int GetUnusualHat( int iEntity )
 	}
 
 	return iEntity;
-}
+} */
 
 // Returns the ellgible cosmetics that has multiple styles
 int GetCosmeticStyles( int iEntity )
@@ -409,7 +425,9 @@ int GetCosmeticStyles( int iEntity )
 		case 31172:	return 1;	// Festive Fascinator
 		case 31327:	return 1;	// Festive Rack
 		case 31088:	return 1;	// Gingerbread Mann
-		case IDGOESHERE:	return 1;	// 
+		case 31090:	return 1;	// Globetrotter
+		case 31135:	return 1;	// Handsome Devil
+		//case IDGOESHERE:	return 1;	// 
 
 		case 30104:	return 2;	// Graybanns
 		case 30397:	return 2;	// Bruiser's Bandanna
@@ -423,7 +441,9 @@ int GetCosmeticStyles( int iEntity )
 		case 31416:	return 2;	// Cozy Cover-Up
 		case 31261:	return 2;	// Decorated Veteran
 		case 279:	return 2;	// Ghastly Gibus 2010
-		case IDGOESHERE:	return 2;	// 
+		case 31216:	return 2;	// Hat Outta Hell
+		case 334:	return 2;	// Treasure Hat 3 (Hat of Undeniable Wealth And Respect)
+		//case IDGOESHERE:	return 2;	// 
 
 		case 30309:	return 3;	// Dead of Night
 		case 31217:	return 3;	// Goalkeeper
@@ -434,16 +454,16 @@ int GetCosmeticStyles( int iEntity )
 		case 30735:	return 3;	// Sidekick's Side Slick
 		case 31056:	return 3;	// Speedy Scoundrel
 		case 927:	return 3;	// Boo Balloon
-		case 30309:	return 3;	// Dead of Night
 		case 31213:	return 3;	// Eyequarium
 		case 31252:	return 3;	// Festive Frames
 		case 116:	return 3;	// Ghastly Gibus (?)
-		case IDGOESHERE:	return 3;	// 
+		case 31242:	return 3;	// Gnome Dome
+		//case IDGOESHERE:	return 3;	// 
 
 		case 31284:	return 4;	// Boston Brain Bucket
 		case 31285:	return 4;	// Pest's Pads
 		case 31293:	return 4;	// Beaten And Bruised
-		case IDGOESHERE:	return 4;	// 
+		//case IDGOESHERE:	return 4;	// 
 
 		case 1126:	return 10;	// Duck Badge (WTF, 10 styles????)
 		default:	return false;
@@ -460,7 +480,18 @@ int GetPaintableCosmetics( int iEntity )
 	int iIndex = GetEntProp( iEntity, Prop_Send, "m_iItemDefinitionIndex" );
 	switch ( iIndex )
 	{
-		case IDGOESHERE:	return true;	// 
+		//case IDGOESHERE:	return true;	// 
+		case 9737:	return true;	// Heals for Reals Donor
+		case 30838:	return true;	// Head Prize
+		case 334:	return true;	// Treasure Hat 3 (Hat of Undeniable Wealth And Respect)
+		case 31216:	return true;	// Hat Outta Hell
+		case 31259:	return true;	// Hat Chocolate
+		case 31135:	return true;	// Handsome Devil
+		case 30693:	return true;	// Grim Tweeter
+		case 30104:	return true;	// Graybanns
+		case 31127:	return true;	// Ground Grin
+		case 31217:	return true;	// Goalkeeper
+		case 31242:	return true;	// Gnome Dome
 		case 31093:	return true;	// Glittering Garland
 		case 31246:	return true;	// Giftcrafter
 		case 9048:	return true;	// Gift of Giving
@@ -474,7 +505,7 @@ int GetPaintableCosmetics( int iEntity )
 		case 9830:	return true;	// Florida LAN 2018 Donator Medal
 		case 9831:	return true;	// Florida LAN 2018 Participant Medal
 		case 9832:	return true;	// Florida LAN 2018 Contributor Medal
-		case 30551:	return true;	// Flashdance Footies
+		case 30551:	return true;	// EOTL_hiphunter_boots (Flashdance Footies)
 		case 31327:	return true;	// Festive Rack
 		case 31252:	return true;	// Festive Frames
 		case 31167:	return true;	// Festive Flip-Thwomps
@@ -573,7 +604,7 @@ int GetPaintableCosmetics( int iEntity )
 		case 653:	return true;	// Bootie Time
 		case 31042:	return true;	// Bottle Cap
 		case 31366:	return true;	// Brimmed Bootlegger
-		case 30551:	return true;	// Brooklyn Booties
+		case 30540:	return true;	// EOTL_blinks_breeches (Brooklyn Booties)
 		case 1016:	return true;	// Buck Turner All-Stars
 		case 30661:	return true;	// Cadet Visor
 		case 30083:	return true;	// Caffeine Cooler
@@ -1104,7 +1135,7 @@ void PresetCosmeticSet( int iClient, char[] iClass )
 // Collectors = 14
 // Paintkitweapon = 15
 
-int TF2_CreateHat( int iClient, int iIndex, int iQuality = QUALITY_UNIQUE, bool bIsUnusual = false)
+int TF2_CreateHat( int iClient, int iIndex, int iQuality = 6, bool bIsUnusual = false)
 {
 	int iHat = CreateEntityByName( "tf_wearable" );
 	if ( iHat != -1 )
