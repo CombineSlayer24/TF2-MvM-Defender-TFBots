@@ -67,6 +67,10 @@ public const int ALLCLASS_HATMISC[] = {
 	31093,	// Glittering Garland
 	// 31063,	// Horrible Horns (Too small to see)
 	31125,	// Impish Ears
+	31184,	// Manndatory Attire
+	541,	// Merc's Pride Scarf
+	987,	// Merc's Muffler
+	31245,	// Oh Deer!
 };
 
 // Don't equip with GLASSES, BEARD, HATS
@@ -80,6 +84,7 @@ public const int ALLCLASS_HEAD[] = {
 	31242,	// Gnome Dome
 	667,	// Holiday Headcase
 	31128,	// Hollowed Helm
+	30473,	// MK 50
 };
 
 // Don't equip with GLASSES, BEARD
@@ -111,6 +116,7 @@ public const int ALLCLASS_HATS[] = {
 	//30879,	// Aztec Warrior
 	//31248,	// Brain Cane (dumb)
 	1164,	// Civilian Grade JACK Hat (ugly)
+	1169,	// Military Grade JACK Hat (ugly)
 	1034,	// Conspiracy Cap (l reddit)
 	31250,	// Cozy Catchers (dumb)
 	126,	// Bills Hat
@@ -148,6 +154,7 @@ public const int ALLCLASS_HATS[] = {
 	675,	// Ebenezer
 	31241,	// Fiestibrero
 	263,	// Ellis Hat
+	410,	// Mangnanimous Monarch
 	921,	// Executioner
 	30119,	// Federal Casemaker
 	31327,	// Festive Rack
@@ -190,9 +197,31 @@ public const int ALLCLASS_HATS[] = {
 	30998,	// Lucky Cat Hat
 	31383,	// Ludicrously Lunatic Lunon Fedora
 	31326,	// Lumbercap
+	261,	// Mann Co. Cap
+	994,	// Mann Co. Online Cap
+	598,	// Manniversary Paper Hat
+	162,	// TTG Max Hat (Max Severed Head)
+	31385,	// Mean Captain
+	30413,	// Merc's Mohawk
+	31247,	// Merry Cone (Ugly hat)
+	31136,	// Misfortune Fedora
+	31059,	// Mister Bones
+	139,	// Modest Pile of Hat
+	30001,	// Modest Metal Pile of Scrap
+	1186,	// Yeti Park Cap
+	30810,	// Nasty Norsemann
+	30307,	// Neckwear Headwear
+	137,	// Noble Amassment of Hats
+	30006,	// Noble Nickel Amassment of Hats
+
+	// Unreleased Hats
+	1193,	// Never Forget Cap
+	1192,	// Mannanas Cap
+	1191,	// Mercenary Park Cap
 };
 
 public const int ALLCLASS_GLASSES[] = {
+	816,	// Marxman
 	31060,	// Binoculus
 	522,	// Deus Specs
 	30414,	// Eye-Catcher
@@ -209,9 +238,13 @@ public const int ALLCLASS_BEARD[] = {
 	30306,	// Dictator
 	31260,	// Elf-Made Bandanna
 	31127,	// Ground Grin
+	30352,	// Mustachioed Mann
 };
 
 public const int ALLCLASS_MEDAL[] = {
+	718,	// Merc Medal
+	296,	// TTG Badge (License To Maim)
+	586,	// Mark of the Saint
 	868,	// Heroic Companion Badge
 	943,	// Hitt Mann Badge
 	956, 	// Faerie Solitaire Pin
@@ -287,7 +320,22 @@ public const int ALLCLASS_MEDAL[] = {
 	13218,	// Holographic Harvest Haunted Scrap Canteen 2022
 	13217,	// Holographic Harvest Lahsuniya Ratna 2022
 	13216,	// Holographic Harvest Zebra Zirconia 2022
-	296,	// TTG Badge (License To Maim)
+	10448,	// Madness vs Machines Boundless Heart 2019
+	10442,	// Madness vs Machines Burnished Beryl 2019
+	10443,	// Madness vs Machines Grandiose Garnet 2019
+	10444,	// Madness vs Machines Tempered Tourmaline 2019
+	10445,	// Madness vs Machines Royal Rhodonite 2019
+	10446,	// Madness vs Machines Chaotic Crystal 2019
+	10447,	// Madness vs Machines Hopeful Heart 2019
+	10449,	// Madness vs Machines Pinnacle of Ingenuity 2019
+	9510,	// Mappers vs. Machines Participant Medal 2017
+	717,	// Map Maker's Medallion
+
+	11430,	// Mashed Mediocrity Player 2020
+	11431,	// Mashed Mediocrity Creator 2020
+	11432,	// Mashed Mediocrity Helper 2020
+	10653,	// Memes vs Machines Player 2019
+	10654,	// Memes vs Machines Creator 2019
 /* 	
 
 	9632,	// Jaunty Adventurer
@@ -315,6 +363,7 @@ public const int ALLCLASS_MEDAL[] = {
 	9296,	// Hannah's Altruistic Aspect
 	9046,	// Honeydew's Charitable Countenance
 	9722,	// Israphel's Eleemosynary Expression
+	9721,	// Mandrew's Munificent Mug
 	8831,	// Arms Race 1st Place Medal
 	8832,	// Arms Race 2nd Place Medal
 	8833,	// Arms Race 3rd Place Medal
@@ -347,6 +396,7 @@ public const int ALLCLASS_BELT[] = {
 	//31208,	// Creepy Crawlers	 (right shoulder equip region) 
 	//30881,	// Croaking Hazard	(left shoulder equip region)
 	//30693,	// Grim Tweeter	(left shoulder)
+	//31251,	// Ominous Offering (right shoulder)
 };
 
 public const int ALLCLASS_PANTS[] = {
@@ -500,7 +550,24 @@ int GetCosmeticStyles( int iEntity )
 		case 31103:	return 1;	// Hypno-Eyes
 		case 31125:	return 1;	// Impish Ears
 		case 31105:	return 1;	// Loaf Loafers
-		case IDGOESHERE:	return 1;	// 
+		case 10448:	return 1;	// Madness vs Machines Boundless Heart 2019
+		case 10442:	return 1;	// Madness vs Machines Burnished Beryl 2019
+		case 10443:	return 1;	// Madness vs Machines Grandiose Garnet 2019
+		case 10444:	return 1;	// Madness vs Machines Tempered Tourmaline 2019
+		case 10445:	return 1;	// Madness vs Machines Royal Rhodonite 2019
+		case 10446:	return 1;	// Madness vs Machines Chaotic Crystal 2019
+		case 10447:	return 1;	// Madness vs Machines Hopeful Heart 2019
+		case 10449:	return 1;	// Madness vs Machines Pinnacle of Ingenuity 2019
+		case 816:	return 1;	// Marxman
+		case 11430:	return 1;	// Mashed Mediocrity Player 2020
+		case 11431:	return 1;	// Mashed Mediocrity Creator 2020
+		case 11432:	return 1;	// Mashed Mediocrity Helper 2020
+		case 10653:	return 1;	// Memes vs Machines Player 2019
+		case 10654:	return 1;	// Memes vs Machines Creator 2019
+		case 30352:	return 1;	// Mustachioed Mann
+		case 31245:	return 1;	// Oh Deer!
+
+		case I:	return 1;	// 
 		
 
 		case 30104:	return 2;	// Graybanns
@@ -518,7 +585,7 @@ int GetCosmeticStyles( int iEntity )
 		case 31216:	return 2;	// Hat Outta Hell
 		case 334:	return 2;	// Treasure Hat 3 (Hat of Undeniable Wealth And Respect)
 		case 817:	return 2;	// Human Cannonball
-		case IDGOESHERE:	return 2;	// 
+		case I:	return 2;	// 
 
 		case 30309:	return 3;	// Dead of Night
 		case 31217:	return 3;	// Goalkeeper
@@ -533,12 +600,12 @@ int GetCosmeticStyles( int iEntity )
 		case 31252:	return 3;	// Festive Frames
 		case 116:	return 3;	// Ghastly Gibus (?)
 		case 31242:	return 3;	// Gnome Dome
-		case IDGOESHERE:	return 3;	// 
+		case I:	return 3;	// 
 
 		case 31284:	return 4;	// Boston Brain Bucket
 		case 31285:	return 4;	// Pest's Pads
 		case 31293:	return 4;	// Beaten And Bruised
-		case IDGOESHERE:	return 4;	// 
+		case I:	return 4;	// 
 
 		case 1126:	return 10;	// Duck Badge (WTF, 10 styles????)
 		default:	return false;
@@ -553,8 +620,38 @@ int GetPaintableCosmetics( int iEntity )
 	int iIndex = GetEntProp( iEntity, Prop_Send, "m_iItemDefinitionIndex" );
 	switch ( iIndex )
 	{
-		case IDGOESHERE:	return true;	// 
-
+		case I:	return true;	// 
+		case 31251:	return true;	// Ominous Offering
+		case 31245:	return true;	// Oh Deer!
+		case 30307:	return true;	// Neckwear Headwear
+		case 30810:	return true;	// Nasty Norsemann
+		case 30352:	return true;	// Mustachioed Mann
+		case 31059:	return true;	// Mister Bone
+		case 31136:	return true;	// Misfortune Fendora
+		case 31247:	return true;	// Merry Cone
+		case 987:	return true;	// Merc's Muffler
+		case 30413:	return true;	// Merc's Mohawk
+		case 10653:	return true;	// Memes vs Machines Player 2019
+		case 10654:	return true;	// Memes vs Machines Creator 2019
+		case 31385:	return true;	// Mean Captain
+		case 162:	return true;	// TTG Max Hat (Max Severed Head)
+		case 11430:	return true;	// Mashed Mediocrity Player 2020
+		case 11431:	return true;	// Mashed Mediocrity Creator 2020
+		case 11432:	return true;	// Mashed Mediocrity Helper 2020 
+		case 816:	return true;	// Marxman
+		case 9510:	return true;	// Mappers vs. Machines Participant Medal 2017
+		case 717:	return true;	// Map Maker's Medallion
+		case 31184:	return true;	// Manndatory Attire
+		case 994:	return true;	// Mann Co. Online Cap
+		case 261:	return true;	// Mann Co. Cap
+		case 10448:	return true;	// Madness vs Machines Boundless Heart 2019
+		case 10442:	return true;	// Madness vs Machines Burnished Beryl 2019
+		case 10443:	return true;	// Madness vs Machines Grandiose Garnet 2019
+		case 10444:	return true;	// Madness vs Machines Tempered Tourmaline 2019
+		case 10445:	return true;	// Madness vs Machines Royal Rhodonite 2019
+		case 10446:	return true;	// Madness vs Machines Chaotic Crystal 2019
+		case 10447:	return true;	// Madness vs Machines Hopeful Heart 2019
+		case 10449:	return true;	// Madness vs Machines Pinnacle of Ingenuity 2019
 		case 31326:	return true;	// Lumbercap
 		case 31383:	return true;	// Ludicrously Lunatic Lunon Fedora
 		case 30998:	return true;	// Lucky Cat Hat
