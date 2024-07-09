@@ -50,12 +50,12 @@ public const float g_paintValues[ 29 ][ 2 ] = {
 	{ 8400928.0, 2452877.0 },	// The Value of Teamwork
 	{ 12807213.0, 12091445.0 },	// Cream Spirit
 };
-// REMINDER: LEFT OFF ON Robot Chicken Hat
-// LOADOUT.TF, SCOUT, ALL-CLASSES ONLY
+
+// TODO: SPELL PAINTS
+
 //-----------------------------------------------
 // ALL CLASS
 //-----------------------------------------------
-
 public const int ALLCLASS_HATMISC[] = {
 	993,	// Antlers
 	30571,	// Brimstone
@@ -71,10 +71,9 @@ public const int ALLCLASS_HATMISC[] = {
 	541,	// Merc's Pride Scarf
 	987,	// Merc's Muffler
 	31245,	// Oh Deer!
+	30883,	// Slithering Scarf
 };
-
 // Don't equip with GLASSES, BEARD, HATS
-// NOT USED FOR NOW
 public const int ALLCLASS_HEAD[] = {
 	31356,	// Brothers in Blue (TEMP PLACEMETN UNTIL REWORK)
 	30640,	// Captain Cardbeard Cutthroat
@@ -86,24 +85,27 @@ public const int ALLCLASS_HEAD[] = {
 	31128,	// Hollowed Helm
 	30473,	// MK 50
 	31295,	// Onimann
+	277,	// Halloween Mask - Saxton Hale
+	473,	// Spiral Sallet
+	30422,	// Vive La France
+	702,	// Warsworn Helmet
 };
-
 // Don't equip with GLASSES, BEARD
-// NOT USED FOR NOW
 public const int ALLCLASS_FACE[] = {
 	31386,	// Clown's Cover-Up
 	31217,	// Goalkeeper
 	31135,	// Handsome Devil
+	31219,	// Scariest Mask EVER
 };
-
 public const int ALLCLASS_HATS[] = {
+	30829,	// Snowmann
+	31169,	// Showstring Santa
 	30329,	// Polar Pullover
 	341,	// Rather Festive Tree
 	30746,	// Well Wrapped Hat
 	31215,	// Alakablamicon
 	189,	// Alien Swarm Hat
 	31152,	// Hallows' Hatte
-	136,	// Rad As All Hell Hat
 	420,	// Aperture Hard Hat
 	30740,	// Arkham Cowl
 	1177,	// Audio File
@@ -125,7 +127,8 @@ public const int ALLCLASS_HATS[] = {
 	31415,	// Boarder's Beanie
 	756,	// Bolt Action Blitzer
 	31218,	// Bone Cone
-	332,	// Bounty Hat
+	332,	// Treasure Hat 1 (Bounty Hat)
+	333,	// Treasure Hat 2 (Treasure Hat)
 	30546,	// Boxcar Bomber
 	31020,	// Bread Heads
 	31104,	// Breadcrab
@@ -186,6 +189,8 @@ public const int ALLCLASS_HATS[] = {
 	408,	// Humanitarian's Hachimaki
 	30877,	// Hunter in Darkness
 	134,	// Propaganda Contest First Place (J.Axer's Dapper Topper)
+	136,	// Propaganda Contest Second Place (Amber's Rad As All Hell Hat)
+	138,	// Propaganda Contest Third Place (Uncle Sam)
 	31165,	// Jolly Jingler
 	30882,	// Jungle Wreath
 	538,	// Killer Exclusive
@@ -226,18 +231,61 @@ public const int ALLCLASS_HATS[] = {
 	1035,	// Public Accessor
 	31171,	// Reindoonibeanie
 	31249,	// Reindoonihorns
+	785,	// Robot Chicken Hat
+	30623,	// Rotation Sensation
+	611,	// Salty Dog
+	1185,	// Saxton
+	31244,	// Seasonal Spring
+	31214,	// Second-Head Headwear
+	31131,	// Sir Pumpkinton
+	941,	// Skull Island Topper
+	31089,	// Smissmas Saxton
+	31209,	// Spooky Head-Bouncers
+	287,	// Spine-Chilling Skull
+	576,	// Spine-Chilling Skull 2011
+	578,	// Spine-Chilling Skull 2011 Style 1 (Spine-Tingling Skull)
+	579,	// Spine-Chilling Skull 2011 Style 2 (Spine-Cooling Skull))
+	580,	// Spine-Chilling Skull 2011 Style 3 (Spine-Twisting Skull)
+	492,	// Summer Hat
+	345,	// MNC Hat (The Athletic Supporter)
+	30425,	// Tipped Lid
+	30796,	// Toadstool Topper
+	984,	// Tough Stuff Muffs
+	31210,	// Towering Patch of Pumpkins
+	31173,	// Towering Pile of Presents
+	31168,	// Towering Pillar of Beanies
+	135,	// Towering Pillar of Hats
+	1122,	// Towering Pillar of Summer Shades
+	30008,	// Towering Titanium Pillar of Hats
+	31323,	// Trapper's Flap
+	30976,	// Tundra Top
+	31211,	// Twisted Topper
+	31262,	// Undercover Brolly
+	30658,	// Universal Translator
+	1173,	// Unusual Cap
+	289,	// Voodoo Juju
+	30062,	// Well-Rounded Rifleman
+	260,	// Wiki Cap
+
+	30549,	// EOTL_hiphunter_hat (Winter Woodsman)
+	30833,	// Woolen Warmer
+	1899,	// World Traveler
+	31132,	// Wrap-A-Khamon
 
 	// Unreleased Hats
 	1193,	// Never Forget Cap
 	1192,	// Mannanas Cap
 	1191,	// Mercenary Park Cap
-
+	1194,	// Yeti Park Hardhat
 	// Weird hats
 	711,	// Daily Duel Winner Reward Hat
 	712,	// Daily Gift Giver Reward Hat
 	713,	// Daily Map Stamp Reward Hat
+	// Move these later.
+	31294,	// Starlight Sorcerer
+	944,	// That '70s Chapeau
+	640,	// Top Notch
 };
-
 public const int ALLCLASS_GLASSES[] = {
 	816,	// Marxman
 	31060,	// Binoculus
@@ -250,8 +298,13 @@ public const int ALLCLASS_GLASSES[] = {
 	31103,	// Hypno-Eyes
 	343,	// Friendly Item (Professor Speks)
 	744,	// Pyrovision Goggles
+	30801,	// Spooktacles
+	31036,	// Stapler's Specs
+	486,	// Summer Shades
+	1033,	// TF2VRH
+	30569,	// Tomb Readers
+	30140,	// Virtual Viewfinder
 };
-
 public const int ALLCLASS_BEARD[] = {
 	31062,	// Bread Biter
 	30397,	// Bruiser's Bandanna
@@ -260,8 +313,8 @@ public const int ALLCLASS_BEARD[] = {
 	31127,	// Ground Grin
 	30352,	// Mustachioed Mann
 };
-
 public const int ALLCLASS_MEDAL[] = {
+	865,	// Triple A Badge
 	262,	// Polycount Pin
 	718,	// Merc Medal
 	296,	// TTG Badge (License To Maim)
@@ -272,7 +325,6 @@ public const int ALLCLASS_MEDAL[] = {
 	164,	// Grizzled Veteran
 	165,	// Soldier of Fortune
 	166,	// Mercenary
-	868,	// The Heroic Companion Badge
 	242,	// Duel Medal Bronze
 	243,	// Duel Medal Silver
 	244,	// Duel Medal Gold
@@ -283,6 +335,14 @@ public const int ALLCLASS_MEDAL[] = {
 	12708,	// Auspicious Automaton Assembler's Accolade
 	1096,	// Baronial Badge
 	704,	// Bolgan Family Crest
+	953,	// Saxxy Clapper Badge
+	432,	// SpaceChem Pin
+	9074,	// Special Snowflake
+	9307,	// Special Snowflake 2016
+	9732,	// Spectral Snowflake
+	655,	// Spirit of Giving
+	13571,	// Supreme Strategist's Sigil of Status
+	8584,	// Thought that Counts
 	9591,	// Blapature Co. Contributor 2017
 	10012,	// Blapature Co. Supporter 2018
 	10011,	// Blapature Co. Backer 2018
@@ -318,6 +378,7 @@ public const int ALLCLASS_MEDAL[] = {
 	13460,	// Heartfelt Hero 2023
 	9515,	// Heartfelt Hug
 	13459,	// Heartfelt Hug 2023
+	855,	// Vigilant Pin
 	// MvM Medals
 	726,	// Tour of Duty Badge Advanced 1
 	975,	// Tour of Duty Badge Advanced 2
@@ -391,7 +452,32 @@ public const int ALLCLASS_MEDAL[] = {
 	12886,	// Rewired Rampage Perilous Peridot 2022
 	12887,	// Rewired Rampage Sophisticated Sapphire 2022
 	12888,	// Rewired Rampage Gem of Generosity 2022
+	12249,	// Starched Silliness Potato Lookalike 2021
+	12250,	// Starched Silliness Super Spud 2021
+	12251,	// Starched Silliness Curious Carbon 2021
+	9720,	// Titanium Tank Participant Medal 2017
+	11612,	// Titanium Tank Chromatic Cardioid 2020
+	11611,	// Titanium Tank Gilded Giver 2020
+	9228,	// TF2Maps 72hr TF2Jam Summer Participant 2016
+	9592,	// TF2Maps 72hr TF2Jam Summer Participant 2017
+	9322,	// TF2Maps 72hr TF2Jam Winter Participant 2017
+	10015,	// TF2Maps Ray of Sunshine 2018
+	10977,	// TF2Maps Ray of Sunshine 2019
+	11803,	// TF2Maps Ray of Sunshine 2020
+	12992,	// TF2Maps Ray of Sunshine 2022
+	10046,	// TF2Maps 72hr TF2Jam Summer Participant 2018
+	10996,	// TF2Maps 72hr TF2Jam Summer Participant 2019
+	12991,	// TF2Maps 72hr TF2Jam Summer Participant 2022
+	11802,	// TF2Maps 72hr TF2Jam Participant 2020
+	12791,	// TF2Maps 72hr TF2Jam Participant 2021
+	13509,	// TF2Maps 72hr TF2Jam Participant 2023
+	9613,	// TF2Maps Charitable Heart 2017
+	12790,	// TF2Maps Charitable Heart 2021
+	13508,	// TF2Maps Charitable Heart 2023
+
 /* 	
+	873,	 //Whale Bone Charm
+	992,	// Smissmas Wreath
 	10028,	// Rally Call 2018 Whale
 	10029,	// Rally Call 2018 Whale Donar
 	9731,	// Philanthropist's Indulgence
@@ -421,6 +507,9 @@ public const int ALLCLASS_MEDAL[] = {
 	9046,	// Honeydew's Charitable Countenance
 	9722,	// Israphel's Eleemosynary Expression
 	9721,	// Mandrew's Munificent Mug
+	9298,	// Sips' Selfless Simulacrum
+	9299,	// Sjin's Generous Guise
+	9045,	// Xephos' Philanthropic Physiognomy
 	8831,	// Arms Race 1st Place Medal
 	8832,	// Arms Race 2nd Place Medal
 	8833,	// Arms Race 3rd Place Medal
@@ -447,11 +536,10 @@ public const int ALLCLASS_MEDAL[] = {
 	623,	// Photo Badge
 */
 };
-
 public const int ALLCLASS_TORSO[] = {
 	30309,	// Dead Of Night
+	955,	// Tuxxy
 };
-
 public const int ALLCLASS_BELT[] = {
 	30738,	// Batbelt
 	30706,	// Catastrophic Companions
@@ -464,30 +552,31 @@ public const int ALLCLASS_BELT[] = {
 	30726,	// Pocket Villains
 	30929,	// Pocket Yeti
 	30757,	// Prinny Pouch
-	//31208,	// Creepy Crawlers	 (right shoulder equip region) 
-	//30881,	// Croaking Hazard	(left shoulder equip region)
-	//30693,	// Grim Tweeter	(left shoulder)
-	//31251,	// Ominous Offering (right shoulder)
-	//31086,	// Pebbles the Penguin (right Shoulder)
-	//31018,	// Polar Pal (left/right shoulders)
-	//30878,	// Quizzical Quetzal (left Shoulder)
+	31208,	// Creepy Crawlers	 	(right shoulder equip region) 
+	30881,	// Croaking Hazard		(left shoulder equip region)
+	30693,	// Grim Tweeter			(left shoulder)
+	31251,	// Ominous Offering 	(right shoulder)
+	31086,	// Pebbles the Penguin 	(right Shoulder)
+	31018,	// Polar Pal 			(left/right shoulders)
+	30878,	// Quizzical Quetzal 	(left Shoulder)
+	30923,	// Sledder's Sidekick 	(left shoulder)
+	30996,	// Terror-antula 		(left shoulder)
+	869,	// Rump-o'-Lantern 
+	1011,	// Tux (misc)
 };
-
 public const int ALLCLASS_PANTS[] = {
 	30068, // Breakneck Baggies
 };
-
 public const int ALLCLASS_FEET[] = {
 	31167,	// Festive Flip-Thwomps
 	30551,	// Flashdance Footies
 	31105,	// Loaf Loafers
 	30975,	// Robin Walkers
 };
-
 //public const int ALLCLASS_FLOATING[] = {};
-
 public const int ALLCLASS_BASEMISC[] = {
 	619,	// flair!
+	5075,	// Something Special For Someone Special (Wearable)
 };
 
 // When setting up presets, make sure the hat
@@ -524,6 +613,8 @@ public const CosmeticSet CS_PRESET_SCOUT[] = {
 	{ 760, 722, 983 },			// Front Runner, Fast Learner, Digit Divulger
 	{ 261, 744, 166 },			// Mann Co. Cap, Pyrovision Goggles, Mercenary
 	{ 940, 744, 166 },			// Ghostly Gibus, Pyrovision Goggles, Mercenary
+	{ 941, 744, 655 },			// Skull Island Topper, Pyrovision Goggles, Spirit of Giving
+	{ 263, 166, -1 },			// Ellis Hat, Mercenary
 	{ 150, 722, 1016 },			// Troublemaker's Tossle Cap, Fast Learner, Buck Turner All-Stars
 };
 
@@ -541,10 +632,11 @@ public const CosmeticSet CS_PRESET_SOLDIER[] = {
 	{ 30390, 30477, 30983 },	// Spook Specs, Lone Survivor, Veterans Attire
 	{ 261, 744, 166 },			// Mann Co. Cap, Pyrovision Goggles, Mercenary
 	{ 940, 744, 166 },			// Ghostly Gibus, Pyrovision Goggles, Mercenary
+	{ 941, 744, 655 },			// Skull Island Topper, Pyrovision Goggles, Spirit of Giving
 };
 
 // Returns the ellgible cosmetics that can be Unusual
-/* int GetUnusualHat( int iEntity )
+/* bool IsUnusualHat( int iEntity )
 {
 	int iIndex = GetEntProp( iEntity, Prop_Send, "m_iItemDefinitionIndex" );
 	switch ( iIndex )
@@ -556,24 +648,195 @@ public const CosmeticSet CS_PRESET_SOLDIER[] = {
 	}
 } */
 
+
+//-----------------------------------------------
+// SCOUT
+//-----------------------------------------------
+public const int SPECIFIC_SCOUT_HEAD[] = {
+	31406,	// Last Laught
+	30867,	// Lightning Lid
+	31023,	// Millennial Mercenary
+	30573,	// Mountebank's Masque
+	30394,	// Frickin Sweet Ninja Hood
+	30735,	// Sidekick's Side Slick
+	30733,	// Tuefort Knight
+	31282,	// Throttlehead
+
+};
+public const int SPECIFIC_SCOUT_HATS[] = {
+	52,		// batter's helmet
+	30767,	// AirDog
+	30718,	// B'aaarrgh-n-Bicorne
+	617,	// Backwards Ballcap
+	111,	// Baseball Bill's Sports Shine
+	30059,	// Beastly Bonnet
+	652,	// Big Elfin Deal
+	30977,	// Antarctic Eyewear
+	249,	// Bombing Run
+	31437,	// Bonk Beanie
+	106,	// Bonk Helm
+	30030,	// Bonk Leadwear
+	31284,	// Boston Brain Bucket
+	31042,	// Bottle Cap
+	31366,	// Brimmed Bootlegger
+	31117,	// California Cap
+	853,	// Craft Hair
+	765,	// Cross-Comm Express
+	30686,	// Death Racer's Helmet
+	539,	// El Jefe
+	780,	// Fed-Fightin' Fedora
+	30636,	// Fortunate Son
+	31197,	// Fried Batter
+	760,	// Front Runner
+	30078,	// Greased Lighting
+	858,	// Hanger-On Hood
+	31000,	// Hephaistos' Handcraft
+	30769,	// Herald's Helm
+	633,	// Hermes
+	453,	// Hero's Tail
+	219,	// Milkman
+	30811,	// Pestering Jester
+	30428,	// Pomade Prince
+	30993,	// Punk's Pomp
+	846,	// Robot Running Man
+	30332,	// Runner's Warm-Up
+	30326,	// Scout Shako
+	31056,	// speedy scoundrel
+	31283,	// Team Player
+	346,	// Superfan
+	30479,	// Thirst Blood
+	150,	// Troublemaker's Tossle Cap
+	30930,	// Trucker's Topper
+	788,	// Void Monk Hair
+	174,	// Whoopee Cap
+	1012,	// Wilson Weave
+	30809,	// Wing Mann
+	30019,	// Ye Oiled Baker Boy
+	107,	// Ye Olde Baker Boy
+};
+public const int SPECIFIC_SCOUT_GLASSES[] = {
+	30027,	// Bolt Boy
+	451,	// Bonk Boy
+	30661,	// Cadet Visor
+	30085,	// Macho Mann
+	31303,	// Masked Fiend
+	468,	// Planeswalker Goggles
+	30831,	// Reader's Choice
+	31116,	// Soda Specs
+	630,	// Stereoscopic Shades
+};
+public const int SPECIFIC_SCOUT_BEARD[] = {
+	31081,	// Fuel Injector
+	986,	// Mutton Mann
+	31163,	// Particulate Protector
+};
+public const int SPECIFIC_SCOUT_TORSO[] = {
+	30736,	// Bat Backup
+	30076,	// Bigg Mann on Campus
+	30884,	// Aloha Apparel
+	30873,	// Airborne Attire
+	30077,	// Cool Cat Cardigan
+	30770,	// Courtly Cuirass
+	30134,	// Delinquent's Down Ves
+	722,	// Fast Learner
+	30637,	// Flak Jack
+	30185,	// Flapjack
+	30189,	// Frenchman's Formals
+	31302,	// Imp's Imprint
+	31436,	// Isotopic Insulator
+	30888,	// Jungle Jersey
+	31022,	// Juvenile's Jumper
+	30325,	// Little Drummer Mann
+	31196,	// Mealer Dealer
+	31339,	// Motley Sleeves
+	30426,	// Paisley Pro
+	31043,	// Pompous Privateer
+	31118,	// Poolside Polo
+	31367,	// Prohibition Opposition
+	31281,	// Ripped Rider
+	31258,	// Seasonal Employee
+	30395,	// Southie Shinobi
+	30875,	// speedster's spandex
+	925,	// Spooky Sleeves
+	30552,	// Thermal Tracker
+	30685,	// Thrilling Tracksuit
+	30376,	// Ticket Boy
+	1026,	// Tomb Wrapper
+	827,	// Track Terrorizer
+	814,	// Triad Trinket
+	30178,	// Weight Room Warmer
+	30990,	// Wipe Oout Wraps
+};
+public const int SPECIFIC_SCOUT_BACK[] = {
+	30751,	// Batter's Backup
+	707,	// Boston Boom-Bringer
+	30083,	// Caffeine Cooler
+	781,	// Dillinger's Duffel
+	30824,	// Electric Twanger
+	31195,	// Fast Food
+	30084,	// Half-Pipe Hurdler
+	491,	// lucky no. 42
+	30869,	//Messenger's Mail Bag
+	859,	// flight of the monarch
+	30849,	// Pocket Pauling
+	1075,	// Sack fulla smissmas
+	30820,	// Snowwing
+	31119,	// Tools Of The Tourist
+};
+public const int SPECIFIC_SCOUT_BELT[] = {
+	30167,	// Beep Boy
+	30728,	// Buttler
+	30564,	// Orion's Belt
+};
+public const int SPECIFIC_SCOUT_PANTS[] = {
+	30991,	// Blizzard Britches
+	30719,	// B'aaarrgh-n-Britches
+	30060,	// Cheet Sheet
+	31285,	// Pest's Pads
+	30889,	// Transparent Trousers
+};
+public const int SPECIFIC_SCOUT_FEET[] = {
+	540,	// Argyle
+	30561,	// Bootenkhamuns
+	653,	// Bootie Time
+	30551,	// Brooklyn Booties
+	1016,	// Buck Turner All-Stars
+	490,	// Scout Flip-Flops
+	30890,	// Forest Footwear
+	30575,	// Harlequin's Hooves
+	30754,	// Hot Heels
+	1032,	// Long fall loaders
+	30999,	// Olympic Leapers
+	30358,	// Sole Saviors
+	924,	// Spooky Shoes
+	857,	// Flunkyware
+	30771,	// Squire's Sabatons
+	734,	// Teufort Tooth Kicker
+	347,	// Essential Accessories
+};
+//-----------------------------------------------
+// SOLDIER
+//-----------------------------------------------
+
+
 // Returns the ellgible cosmetics that has multiple styles
 int GetCosmeticStyles( int iEntity )
 {
 	int iIndex = GetEntProp( iEntity, Prop_Send, "m_iItemDefinitionIndex" );
 	switch ( iIndex )
 	{
+		case 31211:	return 1;	// Twister Topper
+		case 31294:	return 1;	// Starlight Sorcerer
+		case 785:	return 1;	// Robot Chicken Hat
 		case 31276:	return 1;	// Chaser
-		case 30623:	return 1;	// Rotation Sensation
 		case 30746:	return 1;	// Well Wrapped Hat
 		case 420:	return 1;	// Aperture Labs Hardhat
-		case 492:	return 1;	// Summer Hat
 		case 617:	return 1;	// Backwards Ballcap
 		case 760:	return 1;	// Front Runner
 		case 722:	return 1;	// Fast Leaner
 		case 31437:	return 1;	// Bonk Beanie
 		case 31116:	return 1;	// Soda Specs
 		case 30339:	return 1;	// Killer's Kit
-		case 13494:	return 1;	// OP-GG Bejeweled Bounty 2023
 		case 31379:	return 1;	// Stealth Bomber
 		case 1040:	return 1;	// Bacteria Blocker
 		case 652:	return 1;	// Big Elfin Deal
@@ -661,12 +924,39 @@ int GetCosmeticStyles( int iEntity )
 		case 12888:	return 1;	// Rewired Rampage Gem of Generosity 2022
 		case 12884:	return 1;	// Rewired Rampage Reverse-Engineered Ruby 2022
 		case 12887:	return 1;	// Rewired Rampage Sophisticated Sapphire 2022
-		case I:	return 1;	// 
+		case 30623:	return 1;	// Rotation Sensation
+		case 611:	return 1;	// Salty Dog
+		case 31219:	return 1;	// Scariest Mask EVER
+		case 31214:	return 1;	// Second-Head Headwear
+		case 12249:	return 1;	// Starched Silliness Potato Lookalike 2021
+		case 12250:	return 1;	// Starched Silliness Super Spud 2021
+		case 12251:	return 1;	// Starched Silliness Curious Carbon 2021
+		case 492:	return 1;	// Summer Hat
+		case 9228:	return 1;	// TF2Maps 72hr TF2Jam Summer Participant 2016
+		case 9592:	return 1;	// TF2Maps 72hr TF2Jam Summer Participant 2017
+		case 9322:	return 1;	// TF2Maps 72hr TF2Jam Winter Participant 2017
+		case 10015:	return 1;	// TF2Maps Ray of Sunshine 2018
+		case 10977:	return 1;	// TF2Maps Ray of Sunshine 2019
+		case 11803:	return 1;	// TF2Maps Ray of Sunshine 2020
+		case 12992:	return 1;	// TF2Maps Ray of Sunshine 2022
+		case 10046:	return 1;	// TF2Maps 72hr TF2Jam Summer Participant 2018
+		case 10996:	return 1;	// TF2Maps 72hr TF2Jam Summer Participant 2019
+		case 12991:	return 1;	// TF2Maps 72hr TF2Jam Summer Participant 2022
+		case 11802:	return 1;	// TF2Maps 72hr TF2Jam Participant 2020
+		case 12791:	return 1;	// TF2Maps 72hr TF2Jam Participant 2021
+		case 13509:	return 1;	// TF2Maps 72hr TF2Jam Participant 2023
+		case 9613:	return 1;	// TF2Maps Charitable Heart 2017
+		case 12790:	return 1;	// TF2Maps Charitable Heart 2021
+		case 13508: return 1;	// TF2Maps Charitable Heart 2023
+		case 1033:	return 1;	// TF2VRH
+		case 11612:	return 1;	// Titanium Tank Chromatic Cardioid 2020
+		case 11611:	return 1;	// Titanium Tank Gilded Giver 2020
+		case 31323:	return 1;	// Trapper's Flap
+		case 31132:	return 1;	// Wrap-A-Khamon
 		
 
 		case 30104:	return 2;	// Graybanns
 		case 30397:	return 2;	// Bruiser's Bandanna
-		case 868:	return 2;	// Heroic Companion Badge
 		case 31022:	return 2;	// Juvenile's Jumper
 		case 31184:	return 2;	// Manndatory Attire
 		case 52:	return 2;	// Batter's Helmet
@@ -680,7 +970,8 @@ int GetCosmeticStyles( int iEntity )
 		case 334:	return 2;	// Treasure Hat 3 (Hat of Undeniable Wealth And Respect)
 		case 817:	return 2;	// Human Cannonball
 		case 31295:	return 2;	// Onimann
-		case I:	return 2;	// 
+		case 576:	return 2;	// Spine-Chilling Skull 2011
+		case 31209:	return 1;	// Spooky Head-Bouncers
 
 		case 30309:	return 3;	// Dead of Night
 		case 31217:	return 3;	// Goalkeeper
@@ -697,12 +988,12 @@ int GetCosmeticStyles( int iEntity )
 		case 31242:	return 3;	// Gnome Dome
 		case 31061:	return 3;	// Pocket Halloween Boss
 		case 30607:	return 3;	// Pocket Raiders
-		case I:	return 3;	// 
+		case 984:	return 3;	// Tough Stuff Muffs
+		case 1011:	return 3;	// Tux
 
 		case 31284:	return 4;	// Boston Brain Bucket
 		case 31285:	return 4;	// Pest's Pads
 		case 31293:	return 4;	// Beaten And Bruised
-		case I:	return 4;	// 
 
 		case 1126:	return 10;	// Duck Badge (WTF, 10 styles????)
 		default:	return false;
@@ -712,18 +1003,77 @@ int GetCosmeticStyles( int iEntity )
 // Returns the ellgible cosmetics that can be painted.
 // Yes, this is dumb as well, but oh well. What else
 // can ya do?
-int GetPaintableCosmetics( int iEntity )
+bool IsPaintableHat( int iEntity )
 {
 	int iIndex = GetEntProp( iEntity, Prop_Send, "m_iItemDefinitionIndex" );
 	switch ( iIndex )
 	{
-		case IDD:	return true;	// 
+		case 30549:	return true;	// EOTL_hiphunter_hat (Winter Woodsman)
+		case 30833:	return true;	// Woolen Warmer
+		case 1899:	return true;	// World Traveler
+		case 31132:	return true;	// Wrap-A-Khamon
+		case 260:	return true;	// Wiki Cap
+		case 30067:	return true;	// Well-Rounded Rifleman
+		case 702:	return true;	// Warsworn Helmet
+		case 289:	return true;	// Voodoo Juju
+		case 30422:	return true;	// Vive La France
+		case 30140:	return true;	// Virtual Viewfinder
+		case 1173:	return true;	// Unusual Cap
+		case 31262:	return true;	// Undercover Brolly
+		case 30658:	return true;	// Universal Translator
+		case 31211:	return true;	// Twister Topper
+		case 30976:	return true;	// Tundra Top
+		case 31323:	return true;	// Trapper's Flap
+		case 31168:	return true;	// Towering Pillar of Beanies
+		case 31173:	return true;	// Towering Pile of Presents
+		case 31210:	return true;	// Towering Patch of Pumpkins
+		case 984:	return true;	// Tough Stuff Muffs
+		case 30569:	return true;	// Tomb Readers
+		case 30796:	return true;	// Toadstool Topper
+		case 9720:	return true;	// Titanium Tank Participant Medal 2017
+		case 11612:	return true;	// Titanium Tank Chromatic Cardioid 2020
+		case 11611:	return true;	// Titanium Tank Gilded Giver 2020
+		case 30425:	return true;	// Tipped Lid
+		case 8584:	return true;	// Thought that Counts 
+		case 944:	return true;	// That '70s Chapeau
+		case 30996:	return true;	// Terror-antula
+		case 486:	return true;	// Summer Shades
+		case 492:	return true;	// Summer Hat
+		case 31294:	return true;	// Starlight Sorcerer
+		case 12249:	return true;	// Starched Silliness Potato Lookalike 2021
+		case 12250:	return true;	// Starched Silliness Super Spud 2021
+		case 12251:	return true;	// Starched Silliness Curious Carbon 2021
+		case 31036:	return true;	// Stapler's Specs
+		case 31209:	return true;	// Spooky Head-Bouncers
+		case 30801:	return true;	// Spooktacles
+		case 287:	return true;	// Spine-Chilling Skull
+		case 576:	return true;	// Spine-Chilling Skull 2011
+		case 578:	return true;	// Spine-Chilling Skull 2011 Style 1 (Spine-Tingling Skull)
+		case 579:	return true;	// Spine-Chilling Skull 2011 Style 2 (Spine-Cooling Skull))
+		case 580:	return true;	// Spine-Chilling Skull 2011 Style 3 (Spine-Twisting Skull)
+		case 9074:	return true;	// Special Snowflake
+		case 9307:	return true;	// Special Snowflake 2016
+		case 9732:	return true;	// Spectral Snowflake
+		case 30669:	return true;	// Space Hamster Hammy
+		case 30829:	return true;	// Snowmann
+		case 31166:	return true;	// Smissmass Sorcerer
+		case 31089:	return true;	// Smissmas Saxton
+		case 30883:	return true;	// Slithering Scarf
+		case 30923:	return true;	// Sledder's Sidekick
+		case 31131:	return true;	// Sir Pumpkinton
+		case 31169:	return true;	// Showstring Santa
+		case 31214:	return true;	// Second-Head Headwear
+		case 31244:	return true;	// Seasonal Spring
+		case 611:	return true;	// Salty Dog
+		case 869:	return true;	// Rump-o'-Lantern
+		case 30623:	return true;	// Rotation Sensation
 		case 31418:	return true;	// Trench Warefarer
 		case 30578:	return true;	// Skullcap
 		case 30983:	return true;	// Veterans Attire
 		case 30390:	return true;	// Spook Specs
 		case 30477:	return true;	// Lone Survivor
 		case 30975:	return true;	// Robin Walkers
+		case 785:	return true;	// Robot Chicken Hat
 		case 733:	return true;	// Pet Robro
 		case 12884:	return true;	// Rewired Rampage Reverse-Engineered Ruby 2022
 		case 12885:	return true;	// Rewired Rampage Quarrelous Quartz 2022
@@ -1057,176 +1407,6 @@ int GetPaintableCosmetics( int iEntity )
 		default:	return false;
 	}
 }
-
-//-----------------------------------------------
-// SCOUT
-//-----------------------------------------------
-public const int SPECIFIC_SCOUT_HEAD[] = {
-	31406,	// Last Laught
-	30867,	// Lightning Lid
-	31023,	// Millennial Mercenary
-	30573,	// Mountebank's Masque
-	30394,	// Frickin Sweet Ninja Hood
-	30735,	// Sidekick's Side Slick
-	30733,	// Tuefort Knight
-	31282,	// Throttlehead
-
-};
-public const int SPECIFIC_SCOUT_HATS[] = {
-	52,		// batter's helmet
-	30767,	// AirDog
-	30718,	// B'aaarrgh-n-Bicorne
-	617,	// Backwards Ballcap
-	111,	// Baseball Bill's Sports Shine
-	30059,	// Beastly Bonnet
-	652,	// Big Elfin Deal
-	30977,	// Antarctic Eyewear
-	249,	// Bombing Run
-	31437,	// Bonk Beanie
-	106,	// Bonk Helm
-	30030,	// Bonk Leadwear
-	31284,	// Boston Brain Bucket
-	31042,	// Bottle Cap
-	31366,	// Brimmed Bootlegger
-	31117,	// California Cap
-	853,	// Craft Hair
-	765,	// Cross-Comm Express
-	30686,	// Death Racer's Helmet
-	539,	// El Jefe
-	780,	// Fed-Fightin' Fedora
-	30636,	// Fortunate Son
-	31197,	// Fried Batter
-	760,	// Front Runner
-	30078,	// Greased Lighting
-	858,	// Hanger-On Hood
-	31000,	// Hephaistos' Handcraft
-	30769,	// Herald's Helm
-	633,	// Hermes
-	453,	// Hero's Tail
-	219,	// Milkman
-	30811,	// Pestering Jester
-	30428,	// Pomade Prince
-	30993,	// Punk's Pomp
-	846,	// Robot Running Man
-	30332,	// Runner's Warm-Up
-	30326,	// Scout Shako
-	31056,	// speedy scoundrel
-	31283,	// Team Player
-	346,	// Superfan
-	30479,	// Thirst Blood
-	150,	// Troublemaker's Tossle Cap
-	30930,	// Trucker's Topper
-	788,	// Void Monk Hair
-	174,	// Whoopee Cap
-	1012,	// Wilson Weave
-	30809,	// Wing Mann
-	30019,	// Ye Oiled Baker Boy
-	107,	// Ye Olde Baker Boy
-};
-public const int SPECIFIC_SCOUT_GLASSES[] = {
-	30027,	// Bolt Boy
-	451,	// Bonk Boy
-	30661,	// Cadet Visor
-	30085,	// Macho Mann
-	31303,	// Masked Fiend
-	468,	// Planeswalker Goggles
-	30831,	// Reader's Choice
-	31116,	// Soda Specs
-	630,	// Stereoscopic Shades
-};
-public const int SPECIFIC_SCOUT_BEARD[] = {
-	31081,	// Fuel Injector
-	986,	// Mutton Mann
-	31163,	// Particulate Protector
-};
-public const int SPECIFIC_SCOUT_TORSO[] = {
-	30736,	// Bat Backup
-	30076,	// Bigg Mann on Campus
-	30884,	// Aloha Apparel
-	30873,	// Airborne Attire
-	30077,	// Cool Cat Cardigan
-	30770,	// Courtly Cuirass
-	30134,	// Delinquent's Down Ves
-	722,	// Fast Learner
-	30637,	// Flak Jack
-	30185,	// Flapjack
-	30189,	// Frenchman's Formals
-	31302,	// Imp's Imprint
-	31436,	// Isotopic Insulator
-	30888,	// Jungle Jersey
-	31022,	// Juvenile's Jumper
-	30325,	// Little Drummer Mann
-	31196,	// Mealer Dealer
-	31339,	// Motley Sleeves
-	30426,	// Paisley Pro
-	31043,	// Pompous Privateer
-	31118,	// Poolside Polo
-	31367,	// Prohibition Opposition
-	31281,	// Ripped Rider
-	31258,	// Seasonal Employee
-	30395,	// Southie Shinobi
-	30875,	// speedster's spandex
-	925,	// Spooky Sleeves
-	30552,	// Thermal Tracker
-	30685,	// Thrilling Tracksuit
-	30376,	// Ticket Boy
-	1026,	// Tomb Wrapper
-	827,	// Track Terrorizer
-	814,	// Triad Trinket
-	30178,	// Weight Room Warmer
-	30990,	// Wipe Oout Wraps
-};
-public const int SPECIFIC_SCOUT_BACK[] = {
-	30751,	// Batter's Backup
-	707,	// Boston Boom-Bringer
-	30083,	// Caffeine Cooler
-	781,	// Dillinger's Duffel
-	30824,	// Electric Twanger
-	31195,	// Fast Food
-	30084,	// Half-Pipe Hurdler
-	491,	// lucky no. 42
-	30869,	//Messenger's Mail Bag
-	859,	// flight of the monarch
-	30849,	// Pocket Pauling
-	1075,	// Sack fulla smissmas
-	30820,	// Snowwing
-	31119,	// Tools Of The Tourist
-};
-public const int SPECIFIC_SCOUT_BELT[] = {
-	30167,	// Beep Boy
-	30728,	// Buttler
-	30564,	// Orion's Belt
-};
-public const int SPECIFIC_SCOUT_PANTS[] = {
-	30991,	// Blizzard Britches
-	30719,	// B'aaarrgh-n-Britches
-	30060,	// Cheet Sheet
-	31285,	// Pest's Pads
-	30889,	// Transparent Trousers
-};
-public const int SPECIFIC_SCOUT_FEET[] = {
-	540,	// Argyle
-	30561,	// Bootenkhamuns
-	653,	// Bootie Time
-	30551,	// Brooklyn Booties
-	1016,	// Buck Turner All-Stars
-	490,	// Scout Flip-Flops
-	30890,	// Forest Footwear
-	30575,	// Harlequin's Hooves
-	30754,	// Hot Heels
-	1032,	// Long fall loaders
-	30999,	// Olympic Leapers
-	30358,	// Sole Saviors
-	924,	// Spooky Shoes
-	857,	// Flunkyware
-	30771,	// Squire's Sabatons
-	734,	// Teufort Tooth Kicker
-	347,	// Essential Accessories
-};
-//-----------------------------------------------
-// SOLDIER
-//-----------------------------------------------
-
 //-----------------------------------------------
 // PYRO
 //-----------------------------------------------
@@ -1280,6 +1460,9 @@ void GiveBotCosmetics( int iClient )
 	int iRandBelt = ALLCLASS_BELT[ GetRandomInt( 0, sizeof( ALLCLASS_BELT ) - 1 ) ];
 	int iRandPants = ALLCLASS_PANTS[ GetRandomInt( 0, sizeof( ALLCLASS_PANTS ) - 1 ) ];
 	int iRandFeet = ALLCLASS_FEET[ GetRandomInt( 0, sizeof( ALLCLASS_FEET ) - 1 ) ];
+	int iRandHatMisc = ALLCLASS_HATMISC[ GetRandomInt( 0, sizeof( ALLCLASS_HATMISC ) - 1 ) ];
+	int iRandHead = ALLCLASS_HEAD[ GetRandomInt( 0, sizeof( ALLCLASS_HEAD ) - 1 ) ];
+	int iRandFace = ALLCLASS_FACE[ GetRandomInt( 0, sizeof( ALLCLASS_FACE ) - 1 ) ];
 
 	// SCOUT
 	int iRandScout_Head = SPECIFIC_SCOUT_HEAD[ GetRandomInt( 0, sizeof( SPECIFIC_SCOUT_HEAD ) - 1 ) ];
@@ -1292,9 +1475,9 @@ void GiveBotCosmetics( int iClient )
 	int iRandScout_Pants = SPECIFIC_SCOUT_PANTS[ GetRandomInt( 0, sizeof( SPECIFIC_SCOUT_PANTS ) - 1 ) ];
 	int iRandScout_Feet = SPECIFIC_SCOUT_FEET[ GetRandomInt( 0, sizeof( SPECIFIC_SCOUT_FEET ) - 1 ) ];
 
-	int iSelectedCosmetics[3];
-	int iAllCosmetics[ 9 ];		// All class
-	int iScoutCosmetics[ 11 ];
+	int iSelectedCosmetics[ 3 ];
+	int iAllCosmetics[ 12 ];		// All class
+	int iScoutCosmetics[ 13 ];
 
 	TFClassType TFClass = TF2_GetPlayerClass( iClient );
 
@@ -1316,8 +1499,11 @@ void GiveBotCosmetics( int iClient )
 				iAllCosmetics[ 6 ] = iRandBelt;
 				iAllCosmetics[ 7 ] = iRandPants;
 				iAllCosmetics[ 8 ] = iRandFeet;
+				iAllCosmetics[ 9 ] = iRandHatMisc;
+				iAllCosmetics[ 10 ] = iRandHead;
+				iAllCosmetics[ 11 ] = iRandFace;
 
-				int iIndex[ 8 ] = { 1, 2, 3, 4, 5, 6, 7, 8 };
+				int iIndex[ 11 ] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 };
 				ShuffleArray( iIndex, sizeof( iIndex ) );
 
 				for ( int i = 0; i < 3; ++i )
@@ -1325,7 +1511,25 @@ void GiveBotCosmetics( int iClient )
 					iSelectedCosmetics[ i ] = iAllCosmetics[ iIndex[ i ] ];
 					if ( iSelectedCosmetics[ i ] && iAllCosmetics[ i ] != 1 ) // Make sure it's not invalid
 					{
-						TF2_CreateHat( iClient, iSelectedCosmetics[ i ], QUALITY_UNIQUE, iIndex[ i ] == 1 );
+
+					/* 	Check if head is selected, don't select hat, glasses, or beard
+						TODO: Instead of doing this
+						let's just check to see if there's no cosmetic conflicts.
+						This will save a lot of headache of cosmetic arrangement
+						Like hats with glasses... */
+						if ( iIndex[ i ] == 10 ) 
+						{
+							iAllCosmetics[ 1 ] = 0;
+							iAllCosmetics[ 2 ] = 0;
+							iAllCosmetics[ 11 ] = 0;
+						}
+						// If hat, glasses, beard or face is selected, don't select head
+						else if ( iIndex[ i ] == 1 || iIndex[ i ] == 2 || iIndex[ i ] == 3 || iIndex[ i ] == 11 ) 
+						{
+							iAllCosmetics[ 10 ] = 0;
+						}
+
+						TF2_CreateHat( iClient, iSelectedCosmetics[ i ], QUALITY_UNIQUE, iIndex[ i ] == 1 || iIndex[ i ] == 10 );
 					}
 				}
 
@@ -1337,7 +1541,7 @@ void GiveBotCosmetics( int iClient )
 			{
 				if ( TFClass == TFClass_Scout )
 				{
-					iScoutCosmetics[ 1 ] = iRandScout_Head;
+					iScoutCosmetics[ 1 ] = IsChance( 75 ) ? iRandScout_Head : iRandHead;
 					iScoutCosmetics[ 2 ] = IsChance( 75 ) ? iRandScout_Hats : iRandHat;
 					iScoutCosmetics[ 3 ] = IsChance( 75 ) ? iRandScout_Glasses : iRandGlasses;
 					iScoutCosmetics[ 4 ] = IsChance( 75 ) ? iRandScout_Beard: iRandBeard;
@@ -1347,29 +1551,29 @@ void GiveBotCosmetics( int iClient )
 					iScoutCosmetics[ 8 ] = IsChance( 75 ) ? iRandScout_Belt : iRandBelt;
 					iScoutCosmetics[ 9 ] = IsChance( 75 ) ? iRandScout_Pants : iRandPants;
 					iScoutCosmetics[ 10 ] = IsChance( 75 ) ? iRandScout_Feet : iRandFeet;
+					iScoutCosmetics[ 11 ] = iRandHatMisc;
+					iScoutCosmetics[ 12 ] = iRandFace;
 
-					int iIndex[ 10 ] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+					int iIndex[ 12 ] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 };
 					ShuffleArray( iIndex, sizeof( iIndex ) );
 
 					for ( int i = 0; i < 3; ++i )
 					{
 						iSelectedCosmetics[ i ] = iScoutCosmetics[ iIndex[ i ] ];
-
 						if ( iSelectedCosmetics[ i ] && iScoutCosmetics[ i ] != 1 )
 						{
-							// Check if head is selected, don't select hat, glasses, or beard
-							// TODO: Instead of doing this
-							// let's just check to see if there's no cosmetic conflicts.
-							// This will save a lot of headache of cosmetic arrangement
-							// Like hats with glasses...
+							// If head is selected
+							// do not equip Hats, Glasses, Beard, Hat Misc, Face
 							if ( iIndex[ i ] == 1 ) 
 							{
 								iScoutCosmetics[ 2 ] = 0;
 								iScoutCosmetics[ 3 ] = 0;
 								iScoutCosmetics[ 4 ] = 0;
+								iScoutCosmetics[ 11 ] = 0;
+								iScoutCosmetics[ 12 ] = 0;
 							}
-							// If hat, glasses, or beard is selected, don't select head
-							else if ( iIndex[ i ] == 2 || iIndex[ i ] == 3 || iIndex[ i ] == 4 ) 
+							// If hat, glasses, beard or face is selected, don't select head
+							else if ( iIndex[ i ] == 2 || iIndex[ i ] == 3 || iIndex[ i ] == 4 || iIndex[ i ] == 12 ) 
 							{
 								iScoutCosmetics[ 1 ] = 0;
 							}
@@ -1387,22 +1591,25 @@ void GiveBotCosmetics( int iClient )
 	}
 	else // Pick Premade sets
 	{
-		switch ( TF2_GetPlayerClass( iClient ) )
+		if ( iRandom <= 90 ) // 90% chance to pick one, otherwise, be a 2007 bot player.
 		{
-			case TFClass_Scout: 	PresetCosmeticSet( iClient, "Scout" );
-			case TFClass_Soldier: 	PresetCosmeticSet( iClient, "Soldier" );
-			case TFClass_Pyro: 		PresetCosmeticSet( iClient, "Pyro" );
-			case TFClass_DemoMan: 	PresetCosmeticSet( iClient, "Demoman" );
-			case TFClass_Heavy: 	PresetCosmeticSet( iClient, "HeavyWeapons" );
-			case TFClass_Engineer: 	PresetCosmeticSet( iClient, "Engineer" );
-			case TFClass_Medic: 	PresetCosmeticSet( iClient, "Medic" );
-			case TFClass_Sniper: 	PresetCosmeticSet( iClient, "Sniper" );
-			case TFClass_Spy: 		PresetCosmeticSet( iClient, "Spy" );
-		}
+			switch ( TF2_GetPlayerClass( iClient ) )
+			{
+				case TFClass_Scout: 	PresetCosmeticSet( iClient, "Scout" );
+				case TFClass_Soldier: 	PresetCosmeticSet( iClient, "Soldier" );
+				case TFClass_Pyro: 		PresetCosmeticSet( iClient, "Pyro" );
+				case TFClass_DemoMan: 	PresetCosmeticSet( iClient, "Demoman" );
+				case TFClass_Heavy: 	PresetCosmeticSet( iClient, "HeavyWeapons" );
+				case TFClass_Engineer: 	PresetCosmeticSet( iClient, "Engineer" );
+				case TFClass_Medic: 	PresetCosmeticSet( iClient, "Medic" );
+				case TFClass_Sniper: 	PresetCosmeticSet( iClient, "Sniper" );
+				case TFClass_Spy: 		PresetCosmeticSet( iClient, "Spy" );
+			}
 
 #if defined TESTING_ONLY
-		CPrintToChatAll( "{green}SELECTED PRE-MADE SETS" );
+			CPrintToChatAll( "{green}SELECTED PRE-MADE SETS" );
 #endif
+		}
 	}
 }
 
@@ -1496,8 +1703,9 @@ int TF2_CreateHat( int iClient, int iIndex, int iQuality, bool bIsUnusual = fals
 		char netClass[ 64 ]; GetEntityNetClass( iHat, netClass, sizeof( netClass ) );
 		int iPropInfoQuality = FindSendPropInfo( netClass, "m_iEntityQuality" );
 		int iPropInfoLevel = FindSendPropInfo( netClass, "m_iEntityLevel" );
-		int iPaintable = GetPaintableCosmetics( iHat );
 		int iNumStyles = GetCosmeticStyles( iHat );
+		bool bPaintable = IsPaintableHat( iHat );
+		//bool bIsUnusualHat = IsUnusualHat( iHat );
 		bool bCantBeUnusual = false;
 
 		if ( IsChance( 10 ) )
@@ -1568,7 +1776,7 @@ int TF2_CreateHat( int iClient, int iIndex, int iQuality, bool bIsUnusual = fals
 		}
 		
 		// Give these Self Made
-		else if ( iIndex == 30559 )
+		else if ( iIndex == 30559 || iIndex == 260 )
 		{
 			// 30559 = EOTL COM MEDAL
 			iQuality = QUALITY_SELFMADE;
@@ -1578,11 +1786,12 @@ int TF2_CreateHat( int iClient, int iIndex, int iQuality, bool bIsUnusual = fals
 
 		// Never give these hats unusuals
 		else if ( iIndex == 261 || iIndex == 940 || iIndex == 263 
-		|| iIndex == 116 )
+		|| iIndex == 116 || iIndex == 941 )
 		{
 			TF2Attrib_RemoveByDefIndex( iHat, 134 );
 		}
 
+		//if ( bIsUnusualHat && !bCantBeUnusual && IsChance( 25 ) )
 		if ( bIsUnusual && !bCantBeUnusual && IsChance( 25 ) )
 		{
 			// Set the hat as unusual
@@ -1595,7 +1804,7 @@ int TF2_CreateHat( int iClient, int iIndex, int iQuality, bool bIsUnusual = fals
 		}
 
 		// Random Chance to color cosmetics
-		if ( iPaintable && IsChance( 25 ) )
+		if ( bPaintable && IsChance( 25 ) )
 		{
 			int randomPaint = GetRandomInt( 0, 28 );
 			TF2Attrib_SetByDefIndex( iHat, 142, g_paintValues[ randomPaint ][ 0 ] );	// Primary color
