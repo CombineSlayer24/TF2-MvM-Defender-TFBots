@@ -50,7 +50,7 @@ public const float g_paintValues[ 29 ][ 2 ] = {
 	{ 8400928.0, 2452877.0 },	// The Value of Teamwork
 	{ 12807213.0, 12091445.0 },	// Cream Spirit
 };
-// REMINDER: LEFT OFF ON Heals for Reals Donor
+// REMINDER: LEFT OFF ON Robot Chicken Hat
 // LOADOUT.TF, SCOUT, ALL-CLASSES ONLY
 //-----------------------------------------------
 // ALL CLASS
@@ -225,6 +225,7 @@ public const int ALLCLASS_HATS[] = {
 	471,	// Loyalty Reward (Proof Of Purchase)
 	1035,	// Public Accessor
 	31171,	// Reindoonibeanie
+	31249,	// Reindoonihorns
 
 	// Unreleased Hats
 	1193,	// Never Forget Cap
@@ -383,6 +384,13 @@ public const int ALLCLASS_MEDAL[] = {
 	12828,	// Peculiar Pandemonium Mesmerizing Morganite 2022
 	12829,	// Peculiar Pandemonium Pink Diamond 2022
 	13322,	// Potato Of Labor
+	11610,	// Replica Titanium Tank 2020
+	422,	// Resurrection Associate Pin
+	12884,	// Rewired Rampage Reverse-Engineered Ruby 2022
+	12885,	// Rewired Rampage Quarrelous Quartz 2022
+	12886,	// Rewired Rampage Perilous Peridot 2022
+	12887,	// Rewired Rampage Sophisticated Sapphire 2022
+	12888,	// Rewired Rampage Gem of Generosity 2022
 /* 	
 	10028,	// Rally Call 2018 Whale
 	10029,	// Rally Call 2018 Whale Donar
@@ -473,6 +481,7 @@ public const int ALLCLASS_FEET[] = {
 	31167,	// Festive Flip-Thwomps
 	30551,	// Flashdance Footies
 	31105,	// Loaf Loafers
+	30975,	// Robin Walkers
 };
 
 //public const int ALLCLASS_FLOATING[] = {};
@@ -493,6 +502,7 @@ public const CosmeticSet CS_PRESET_SCOUT[] = {
 	{ 765, 30185, 30068 },		// Cross-Comm Express, FlapJack, Breakneck Baggies
 	{ 846, 30027, 30770 },		// Robot Running Man, Bolt Boy, Courtly Cuirass
 	{ 30479, 1026, 30889 },		// Thirst Blood, Tomb Wrapper, Transparent Trousers
+	{ 31042, 30185, 30751 },	// Bottle Cap, Flapjack, Bonk Batters Backup
 	{ 30636, 30637, 30889 },	// Fortnate Son, Flak Jack,  Transparent Trousers
 	{ 30686, 30737, 30873 },	// Death Racer's Helmet, Crook Combantant, Airborne Attire
 	{ 30993, 31367, 30540 },	// Punk's Pomp, Prohibition Opposition, Brooklyn Booties
@@ -521,12 +531,14 @@ public const CosmeticSet CS_PRESET_SOLDIER[] = {
 	{ 445, 30388, 30392 },		// Armored Authority, Classified Coif, Man in Slacks
 	{ 31325, 30331, 641 },		// Colonel Kringle, Antarctic Parka, Ornament Armament
 	{ 945, 30853, 30388 },		// Chief Constable, FlakCatcher, Classified Coif
+	{ 30578, 31418, 30392 },	// Skullcap, Trench Warefarer, Man In Slacks
 	{ 30897, 30853, 30558 },	// Shellmet, Flakcatcher, Coldfront Curbstompers
 	{ 30897, 30896, 30339 },	// Shellmet, Attack Packs, Killer's kit
 	{ 31025, 30601, 30558 },	// Climbing Commander, Cold Snap Coat, Coldfront Curbstompers
 	{ 30390, 30388, 30392 },	// Spook Specs, Classified Coif, Man in Slacks
 	{ 31378, 13494, 31379 },	// Close Quarters Cover, OP-GG Bejeweled Bounty 2023, Stealth Bomber
 	{ 30768, 30727, 31276 },	// Bedouin Bandana, Caped Crusader, Chaser
+	{ 30390, 30477, 30983 },	// Spook Specs, Lone Survivor, Veterans Attire
 	{ 261, 744, 166 },			// Mann Co. Cap, Pyrovision Goggles, Mercenary
 	{ 940, 744, 166 },			// Ghostly Gibus, Pyrovision Goggles, Mercenary
 };
@@ -646,6 +658,9 @@ int GetCosmeticStyles( int iEntity )
 		case 12829:	return 1;	// Peculiar Pandemonium Pink Diamond 2022
 		case 13322:	return 1;	// Potato Of Labor
 		case 1035:	return 1;	// Public Accessor
+		case 12888:	return 1;	// Rewired Rampage Gem of Generosity 2022
+		case 12884:	return 1;	// Rewired Rampage Reverse-Engineered Ruby 2022
+		case 12887:	return 1;	// Rewired Rampage Sophisticated Sapphire 2022
 		case I:	return 1;	// 
 		
 
@@ -703,6 +718,19 @@ int GetPaintableCosmetics( int iEntity )
 	switch ( iIndex )
 	{
 		case IDD:	return true;	// 
+		case 31418:	return true;	// Trench Warefarer
+		case 30578:	return true;	// Skullcap
+		case 30983:	return true;	// Veterans Attire
+		case 30390:	return true;	// Spook Specs
+		case 30477:	return true;	// Lone Survivor
+		case 30975:	return true;	// Robin Walkers
+		case 733:	return true;	// Pet Robro
+		case 12884:	return true;	// Rewired Rampage Reverse-Engineered Ruby 2022
+		case 12885:	return true;	// Rewired Rampage Quarrelous Quartz 2022
+		case 12886:	return true;	// Rewired Rampage Perilous Peridot 2022
+		case 12888:	return true;	// Rewired Rampage Gem of Generosity 2022
+		case 11610:	return true;	// Replica Titanium Tank 2020
+		case 31249:	return true;	// Reindoonihorns
 		case 31171:	return true;	// Reindoonibeanie
 		case 10028:	return true;	// Rally Call 2018 Whale
 		case 10029:	return true;	// Rally Call 2018 Whale Donar
