@@ -590,6 +590,7 @@ public const CosmeticSet CS_PRESET_SCOUT[] = {
 	{ 31168, 987, 31022 },		// Towering Pillar of Beanies, Merc's Muffler, Juvenile's Jumper
 	{ 765, 30185, 30068 },		// Cross-Comm Express, FlapJack, Breakneck Baggies
 	{ 846, 30027, 30770 },		// Robot Running Man, Bolt Boy, Courtly Cuirass
+	{ 31117, 30068, 827 },		// California Cap, Breakneck Baggies, Track Terrorizer
 	{ 30479, 1026, 30889 },		// Thirst Blood, Tomb Wrapper, Transparent Trousers
 	{ 31042, 30185, 30751 },	// Bottle Cap, Flapjack, Bonk Batters Backup
 	{ 30636, 30637, 30889 },	// Fortnate Son, Flak Jack,  Transparent Trousers
@@ -604,6 +605,9 @@ public const CosmeticSet CS_PRESET_SCOUT[] = {
 	{ 30394, 30395, 30396 },	// Frickin Sweet Ninja Hood, Southie Shinobi, Red Socks
 	{ 30326, 30325, 30824 },	// Scout Shako, Little Drummer Mann, Electric Twanger
 	{ 31437, 31436, 30991 },	// Bonk Beanie, Isotopic Insulator, Blizzard Britches	(NOTE: This one has some clipping, but who tf cares.)
+	{ 30868, 31406, 30888 },	// Legendary Lid, Last Laugh, Jungle Jersey
+	{ 30743, 30685, 30104 },	// Patriot Peak, Thrilling Tracksuit, Graybanns
+	{ 30066, 30309, 30104 },	// Brotherhood Of Arms, Dead of Night, Graybanns
 	{ 30884, 492, 486 },		// Aloha Apparel, Summer Hat, Summer Shades
 	{ 30801, 924, 925 },		// Spooktacles, Spooky Shoes, Spooky Sleeves
 	{ 106, 30751, 827 },		// Bonk Helm, Bonk Batter's Backup, Track Terrorizer
@@ -622,6 +626,7 @@ public const CosmeticSet CS_PRESET_SOLDIER[] = {
 	{ 445, 30388, 30392 },		// Armored Authority, Classified Coif, Man in Slacks
 	{ 31325, 30331, 641 },		// Colonel Kringle, Antarctic Parka, Ornament Armament
 	{ 945, 30853, 30388 },		// Chief Constable, FlakCatcher, Classified Coif
+	{ 126, 30309, 30068 },		// Bills Hat, Dead Of Night, Breakneck Baggies
 	{ 30578, 31418, 30392 },	// Skullcap, Trench Warefarer, Man In Slacks
 	{ 30897, 30853, 30558 },	// Shellmet, Flakcatcher, Coldfront Curbstompers
 	{ 30897, 30896, 30339 },	// Shellmet, Attack Packs, Killer's kit
