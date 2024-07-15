@@ -627,6 +627,7 @@ public const CosmeticSet CS_PRESET_SOLDIER[] = {
 	{ 31325, 30331, 641 },		// Colonel Kringle, Antarctic Parka, Ornament Armament
 	{ 945, 30853, 30388 },		// Chief Constable, FlakCatcher, Classified Coif
 	{ 126, 30309, 30068 },		// Bills Hat, Dead Of Night, Breakneck Baggies
+	{ 31310, 446, 31311 },		// Firearm Protector, Fancy Dress Uniform, Safety Stripes
 	{ 30578, 31418, 30392 },	// Skullcap, Trench Warefarer, Man In Slacks
 	{ 30897, 30853, 30558 },	// Shellmet, Flakcatcher, Coldfront Curbstompers
 	{ 30897, 30896, 30339 },	// Shellmet, Attack Packs, Killer's kit
@@ -635,6 +636,7 @@ public const CosmeticSet CS_PRESET_SOLDIER[] = {
 	{ 31378, 13494, 31379 },	// Close Quarters Cover, OP-GG Bejeweled Bounty 2023, Stealth Bomber
 	{ 30768, 30727, 31276 },	// Bedouin Bandana, Caped Crusader, Chaser
 	{ 30390, 30477, 30983 },	// Spook Specs, Lone Survivor, Veterans Attire
+	{ 30553, 30165, 30601 }, 	// Condor Cap, Cuban Bristle Crisis, Cold Snap Coat
 	{ 261, 744, 166 },			// Mann Co. Cap, Pyrovision Goggles, Mercenary
 	{ 940, 744, 166 },			// Ghostly Gibus, Pyrovision Goggles, Mercenary
 	{ 941, 744, 655 },			// Skull Island Topper, Pyrovision Goggles, Spirit of Giving
@@ -822,7 +824,64 @@ public const int SPECIFIC_SCOUT_FEET[] = {
 //-----------------------------------------------
 // SOLDIER
 //-----------------------------------------------
+// LEFT OFF CRACK POT
+public const int SPECIFIC_SOLDIER_HEAD[] = {
+	1090,	// Big Daddy
+	30969,	// Brass Bucket
+	31335,	// Bulb Bonnet
 
+};
+public const int SPECIFIC_SOLDIER_HATS[] = {
+	445,	// Armored Authority
+	719,	// Battle Bob (ugly hair)
+	31112,	// Bazaar Bauble
+	31057,	// Bobby Bonnet
+	434,	// Bucket Hat
+	31113,	// Breach and Bomb
+	31146,	// Calamitous Cauldron
+	30116,	// Caribbean Conqueror
+	945,	// Chief Constable
+	250,	// Chieftain's Challenge
+	31025,	// Climbing Commander
+	31378,	// Close Quarters Cover
+	30071,	// Cloud Crasher
+	30553,	// EOTL_soldierhat (Condor Cap)
+	721,	// Conquistador
+};
+public const int SPECIFIC_SOLDIER_GLASSES[] = {
+
+};
+public const int SPECIFIC_SOLDIER_BEARD[] = {
+	647, 	// All-Father
+	30165,	// Cuban Bristle Crisis
+};
+public const int SPECIFIC_SOLDIER_COAT[] = {
+	30331,	// Antarctic Parka
+	30131,	// Brawling Buccaneer
+	30727,	// Caped Crusader
+	30388,	// Classified Coif
+	31276,	// Chaser (This is sleeves, but will clip with some coats)
+	30601,	// eotl_winter_coat (Cold Snap Coat)
+};
+public const int SPECIFIC_SOLDIER_GRENADES[] = {
+	30886,	// Bananades
+	922,	// Bonedolier
+	731,	// Captain's Cocktails
+};
+public const int SPECIFIC_SOLDIER_BELT[] = {
+	30728,	// Buttler
+	30115,	// Compatriot (left shoulder)
+};
+public const int SPECIFIC_SOLDIER_PANTS[] = {
+};
+public const int SPECIFIC_SOLDIER_POCKET[] = {
+	30896,	// Attack Packs
+};
+public const int SPECIFIC_SOLDIER_FEET[] = {
+	30558,	// Coldfront Curbstompers
+	30117,	// Colonial Clogs
+
+};
 
 // Returns the ellgible cosmetics that has multiple styles
 int GetCosmeticStyles( int iEntity )
@@ -830,6 +889,13 @@ int GetCosmeticStyles( int iEntity )
 	int iIndex = GetEntProp( iEntity, Prop_Send, "m_iItemDefinitionIndex" );
 	switch ( iIndex )
 	{
+		case I:	return 1;	//
+		case 31276:	return 1;	// Chaser
+		case 30727:	return 1;	// Caped Crusader
+		case 31146:	return 1;	// Calamitous Cauldron
+		case 31335:	return 1;	// Bulb Bonnet
+		case 719:	return 1;	// Battle Bob
+		case 647: 	return 1;	// All-Father
 		case 31211:	return 1;	// Twister Topper
 		case 31294:	return 1;	// Starlight Sorcerer
 		case 785:	return 1;	// Robot Chicken Hat
@@ -958,7 +1024,6 @@ int GetCosmeticStyles( int iEntity )
 		case 11611:	return 1;	// Titanium Tank Gilded Giver 2020
 		case 31323:	return 1;	// Trapper's Flap
 		case 31132:	return 1;	// Wrap-A-Khamon
-		
 
 		case 30104:	return 2;	// Graybanns
 		case 30397:	return 2;	// Bruiser's Bandanna
@@ -976,7 +1041,7 @@ int GetCosmeticStyles( int iEntity )
 		case 817:	return 2;	// Human Cannonball
 		case 31295:	return 2;	// Onimann
 		case 576:	return 2;	// Spine-Chilling Skull 2011
-		case 31209:	return 1;	// Spooky Head-Bouncers
+		case 31209:	return 2;	// Spooky Head-Bouncers
 
 		case 30309:	return 3;	// Dead of Night
 		case 31217:	return 3;	// Goalkeeper
@@ -1013,6 +1078,33 @@ bool IsPaintableHat( int iEntity )
 	int iIndex = GetEntProp( iEntity, Prop_Send, "m_iItemDefinitionIndex" );
 	switch ( iIndex )
 	{
+		case I:	return true;	// 
+		case 31311:	return true;	// Safety Stripes
+		case 446:	return true;	// Fancy Dress Uniform
+		case 31310:	return true;	// Firearm Protector
+		case 30165:	return true;	// Cuban Bristle Crisis
+		case 30553:	return true;	// EOTL_soldierhat (Condor Cap)
+		case 30558:	return true;	// Coldfront Curbstompers
+		case 30601:	return true;	// eotl_winter_coat (Cold Snap Coat)
+		case 30071:	return true;	// Cloud Crasher
+		case 31378:	return true;	// Close Quarters Cover
+		case 31025:	return true;	// Climbing Commander
+		case 250:	return true;	// Chieftain's Challenge
+		case 945:	return true;	// Chief Constable
+		case 31276:	return true;	// Chaser
+		case 30116:	return true;	// Caribbean Conqueror
+		case 30727:	return true;	// Caped Crusader
+		case 31146:	return true;	// Calamitous Cauldron
+		case 31335:	return true;	// Bulb Bonnet
+		case 31113:	return true;	// Breach and Bomb
+		case 30131:	return true;	// Brawling Buccaneer
+		case 30969:	return true;	// Brass Bucket
+		case 922:	return true;	// Bonedolier
+		case 31057:	return true;	// Bobby Bonnet
+		case 31112:	return true;	// Bazaar Bauble
+		case 30886:	return true;	// Bananades
+		case 647: 	return true;	// All-Father
+		case 30331: return true;	// Antarctic Parka
 		case 30549:	return true;	// EOTL_hiphunter_hat (Winter Woodsman)
 		case 30833:	return true;	// Woolen Warmer
 		case 1899:	return true;	// World Traveler

@@ -1,5 +1,17 @@
 # TF2 MvM Defender TFBots
- TFBots that can play Mann vs Machine
+ TFBots that can play Mann vs Machine. Note: Bots may not 100% be supported on specific custom maps.
+
+# Features
+- Random Weapons - Bots can spawn with random weapons.
+- Random Cosmetics - Bots can spawn with random hats.
+- Purchasing Upgrades - Bots can use the upgrade station and buy upgrades.
+- Canteen Usage - Bots can use Canteens under specific scenario's.
+
+  - Uses Recall if the Bomb is near the base.
+  - Uses ÜberCharge is low on health.
+  - Uses Ammo Refill when low on ammo.
+  - Uses Critboost against the tank, boss robots, or if the bomb is about to be deployed.
+  - Medic Bots can share Canteens.
 
 # Requirements
 - [[TF2] TF2Attributes](https://github.com/FlaminSarge/tf2attributes)
