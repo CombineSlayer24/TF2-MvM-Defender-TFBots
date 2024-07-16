@@ -266,7 +266,6 @@ public const int ALLCLASS_HATS[] = {
 	289,	// Voodoo Juju
 	30067,	// Well-Rounded Rifleman
 	260,	// Wiki Cap
-
 	30549,	// EOTL_hiphunter_hat (Winter Woodsman)
 	30833,	// Woolen Warmer
 	1899,	// World Traveler
@@ -583,15 +582,6 @@ public const int ALLCLASS_BASEMISC[] = {
 // is the first entry (iHat). It will be makred
 // as a unusual cosmetic spot
 public const CosmeticSet CS_PRESET_SCOUT[] = {
-	{ -1, 30888, 30889 },		// Nothing, Jungle Jersey, Transparent Trousers
-	{ 126, 30104, 30309 },		// Bill Hat, Graybanns, Dead of Night
-	{ 30362, 30085, 296 },		// THe Law, The Macho Mann, TTG Badge (License to maim)
-	{ 324, 31217, 31302 },		// Flipped Trilby, Goalkeeper, Imp's Imprint
-	{ 31168, 987, 31022 },		// Towering Pillar of Beanies, Merc's Muffler, Juvenile's Jumper
-	{ 765, 30185, 30068 },		// Cross-Comm Express, FlapJack, Breakneck Baggies
-	{ 846, 30027, 30770 },		// Robot Running Man, Bolt Boy, Courtly Cuirass
-	{ 31117, 30068, 827 },		// California Cap, Breakneck Baggies, Track Terrorizer
-	{ 30479, 1026, 30889 },		// Thirst Blood, Tomb Wrapper, Transparent Trousers
 	{ 31042, 30185, 30751 },	// Bottle Cap, Flapjack, Bonk Batters Backup
 	{ 30636, 30637, 30889 },	// Fortnate Son, Flak Jack,  Transparent Trousers
 	{ 30686, 30737, 30873 },	// Death Racer's Helmet, Crook Combantant, Airborne Attire
@@ -608,26 +598,55 @@ public const CosmeticSet CS_PRESET_SCOUT[] = {
 	{ 30868, 31406, 30888 },	// Legendary Lid, Last Laugh, Jungle Jersey
 	{ 30743, 30685, 30104 },	// Patriot Peak, Thrilling Tracksuit, Graybanns
 	{ 30066, 30309, 30104 },	// Brotherhood Of Arms, Dead of Night, Graybanns
+	{ 30767, 31081, 30185 },	// Airdog, Fuel Injector, Flapjack
+	{ 30479, 1026, 30889 },		// Thirst Blood, Tomb Wrapper, Transparent Trousers
+	{ 126, 30104, 30309 },		// Bill Hat, Graybanns, Dead of Night
+	{ 30362, 30085, 296 },		// THe Law, The Macho Mann, TTG Badge (License to maim)
+	{ 324, 31217, 31302 },		// Flipped Trilby, Goalkeeper, Imp's Imprint
+	{ 31168, 987, 31022 },		// Towering Pillar of Beanies, Merc's Muffler, Juvenile's Jumper
+	{ 765, 30185, 30068 },		// Cross-Comm Express, FlapJack, Breakneck Baggies
+	{ 846, 30027, 30770 },		// Robot Running Man, Bolt Boy, Courtly Cuirass
+	{ 31117, 30068, 827 },		// California Cap, Breakneck Baggies, Track Terrorizer
+	{ -1, 30888, 30889 },		// Nothing, Jungle Jersey, Transparent Trousers
 	{ 30884, 492, 486 },		// Aloha Apparel, Summer Hat, Summer Shades
 	{ 30801, 924, 925 },		// Spooktacles, Spooky Shoes, Spooky Sleeves
 	{ 106, 30751, 827 },		// Bonk Helm, Bonk Batter's Backup, Track Terrorizer
 	{ 617, 30076, 707 },		// Backwards Ballcap, Bigg Mann on Campus, Boston Boom-Bringer
 	{ 760, 30068, 827 }, 		// Front Runner, Breakneck Baggies, Track Terrorizer
 	{ 346, 347, 30552 },		// Superfan, Essential Accessories, Themral Tracker
+	{ 150, 722, 1016 },			// Troublemaker's Tossle Cap, Fast Learner, Buck Turner All-Stars
 	{ 760, 722, 983 },			// Front Runner, Fast Learner, Digit Divulger
 	{ 261, 744, 166 },			// Mann Co. Cap, Pyrovision Goggles, Mercenary
 	{ 940, 744, 166 },			// Ghostly Gibus, Pyrovision Goggles, Mercenary
 	{ 941, 744, 655 },			// Skull Island Topper, Pyrovision Goggles, Spirit of Giving
 	{ 263, 166, -1 },			// Ellis Hat, Mercenary
-	{ 150, 722, 1016 },			// Troublemaker's Tossle Cap, Fast Learner, Buck Turner All-Stars
+};
+
+public const CosmeticSet CS_PRESET_SCOUT_HALLOWEEN[] = {
+	{ 30471, 30472, 30470 },	// Alien Cranium, Xeno Suit, Biomech Backpack
+	{ 30494, 30495, 30496 },	// Head Hunter, Claws And Infected, Coach: Crazy Legs
+	{ 30300, 30076, 30084 },	// Haunted Hat, Bigg Mann on Campus, Half-Pipe Hurdler
+	{ 30491, 30492, 30493 },	// Nugget Noggin, Fowl Fists, Talon Trotters
+	{ 30248, 30231, 31043 },	// Halloweiner, Face Plante, Pompous Privateer
+	{ 30066, 30231, 30637 },	// Brotherhood of arms, Face Plante, Flak Jack
+	{ 30248, 31195, 31196 },	// Halloweiner, Fast Food, Meal Dealer
+	{ 31232, 30685, 30737 },	// Computron 5000, Thrilling Tracksuit, Crook Combatant
+	{ 31294, 30189, 31127 },	// Starlight Sorcerer, Frenchman's Formals, Gourd Grin
+	{ 30494, 30495, 5617 },		// Head Hunter, Claws And Infected, Zombie Scout
+	{ 31229, 31407, 1032 },		// Batter's Beak, Jumping Jester, Long Fall Loafers
+	{ 30214, 30497, 5617 },		// One-Way Ticket, Ghost of Spies Checked Past, Zombie Scout
+	{ 31131, 927, 30198 },		// Sir Pumpkinton, Boo Balloon, Pocket Horsemann
+	{ 31294, 30990, 454 },		// Starlight Sorcerer, Wipe Out Wraps, Sign of the Wolf's School
+	{ 30297, 30178, 486 },		// Magical Mercenary, Weight Room Warmer, Summer Shades
+	{ 30300, 547, 30536 },		// Haunted Hat, B-ankh!, Cursed Cruise
+	{ 31104, 5617, -1 },		// BreadCrab, Zombie Scout
+	{ 115, 707, 30076 },		// Mildly Disturbing Halloween Mask, Boston Boom-Bringer, Bigg Mann On Campus
+	{ 546, 547, 5617 },			// Wrap Battler, B-ankh!, Zombie Scout
+	{ 278, 5617, -1 },			// Horseless Headless Horseman's Head, Zombie Scout
+	{ 546, 547, 548 },			// Wrap Battler, B-ankh!, Futankhamun
 };
 
 public const CosmeticSet CS_PRESET_SOLDIER[] = {
-	{ 445, 30388, 30392 },		// Armored Authority, Classified Coif, Man in Slacks
-	{ 31325, 30331, 641 },		// Colonel Kringle, Antarctic Parka, Ornament Armament
-	{ 945, 30853, 30388 },		// Chief Constable, FlakCatcher, Classified Coif
-	{ 126, 30309, 30068 },		// Bills Hat, Dead Of Night, Breakneck Baggies
-	{ 31310, 446, 31311 },		// Firearm Protector, Fancy Dress Uniform, Safety Stripes
 	{ 30578, 31418, 30392 },	// Skullcap, Trench Warefarer, Man In Slacks
 	{ 30897, 30853, 30558 },	// Shellmet, Flakcatcher, Coldfront Curbstompers
 	{ 30897, 30896, 30339 },	// Shellmet, Attack Packs, Killer's kit
@@ -637,6 +656,11 @@ public const CosmeticSet CS_PRESET_SOLDIER[] = {
 	{ 30768, 30727, 31276 },	// Bedouin Bandana, Caped Crusader, Chaser
 	{ 30390, 30477, 30983 },	// Spook Specs, Lone Survivor, Veterans Attire
 	{ 30553, 30165, 30601 }, 	// Condor Cap, Cuban Bristle Crisis, Cold Snap Coat
+	{ 445, 30388, 30392 },		// Armored Authority, Classified Coif, Man in Slacks
+	{ 31325, 30331, 641 },		// Colonel Kringle, Antarctic Parka, Ornament Armament
+	{ 945, 30853, 30388 },		// Chief Constable, FlakCatcher, Classified Coif
+	{ 126, 30309, 30068 },		// Bills Hat, Dead Of Night, Breakneck Baggies
+	{ 31310, 446, 31311 },		// Firearm Protector, Fancy Dress Uniform, Safety Stripes
 	{ 261, 744, 166 },			// Mann Co. Cap, Pyrovision Goggles, Mercenary
 	{ 940, 744, 166 },			// Ghostly Gibus, Pyrovision Goggles, Mercenary
 	{ 941, 744, 655 },			// Skull Island Topper, Pyrovision Goggles, Spirit of Giving
@@ -1089,6 +1113,16 @@ bool IsPaintableHat( int iEntity )
 	switch ( iIndex )
 	{
 		//case I:	return true;	// 
+		case 30536:	return true;	// Cursed Cruise
+		case 30497:	return true;	// Ghost of Spies Checked Past
+		case 30214:	return true;	// One-Way Ticket
+		case 30297:	return true;	// Magical Mercenary
+		case 31232:	return true;	// Computron 5000
+		case 30231:	return true;	// Face Plante
+		case 30491:	return true;	// Nugget Noggin
+		case 30492:	return true;	// Fowl Fists
+		case 31229:	return true;	// Batter's Beak
+		case 30300:	return true;	// Haunted Hat
 		case 31311:	return true;	// Safety Stripes
 		case 446:	return true;	// Fancy Dress Uniform
 		case 31310:	return true;	// Firearm Protector
@@ -1627,14 +1661,14 @@ void GiveBotCosmetics( int iClient )
 				for ( int i = 0; i < 3; ++i )
 				{
 					iSelectedCosmetics[ i ] = iAllCosmetics[ iIndex[ i ] ];
-					if ( iSelectedCosmetics[ i ] && iAllCosmetics[ i ] != 1 ) // Make sure it's not invalid
-					{
 
-					/* 	Check if head is selected, don't select hat, glasses, or beard
-						TODO: Instead of doing this
-						let's just check to see if there's no cosmetic conflicts.
-						This will save a lot of headache of cosmetic arrangement
-						Like hats with glasses... */
+				/* 	Check if head is selected, don't select hat, glasses, or beard
+					TODO: Instead of doing this
+					let's just check to see if there's no cosmetic conflicts.
+					This will save a lot of headache of cosmetic arrangement
+					Like hats with glasses... */
+					if ( iSelectedCosmetics[ i ] )
+					{
 						if ( iIndex[ i ] == 10 ) 
 						{
 							iAllCosmetics[ 1 ] = 0;
@@ -1646,14 +1680,17 @@ void GiveBotCosmetics( int iClient )
 						{
 							iAllCosmetics[ 10 ] = 0;
 						}
+					}
 
+					if ( iSelectedCosmetics[ i ] && iAllCosmetics[ i ] != 1 ) // Make sure it's not invalid
+					{
 						TF2_CreateHat( iClient, iSelectedCosmetics[ i ], QUALITY_UNIQUE, iIndex[ i ] == 1 || iIndex[ i ] == 10 );
 					}
 				}
 
-#if defined TESTING_ONLY
-				CPrintToChatAll( "{green}SELECTED ALL-CLASS" );
-#endif
+				#if defined TESTING_ONLY
+					CPrintToChatAll( "{green}SELECTED ALL-CLASS" );
+				#endif
 			}
 			else
 			{
@@ -1678,10 +1715,11 @@ void GiveBotCosmetics( int iClient )
 					for ( int i = 0; i < 3; ++i )
 					{
 						iSelectedCosmetics[ i ] = iScoutCosmetics[ iIndex[ i ] ];
-						if ( iSelectedCosmetics[ i ] && iScoutCosmetics[ i ] != 1 )
+
+						// If head is selected
+						// do not equip Hats, Glasses, Beard, Hat Misc, Face
+						if ( iSelectedCosmetics[ i ] )
 						{
-							// If head is selected
-							// do not equip Hats, Glasses, Beard, Hat Misc, Face
 							if ( iIndex[ i ] == 1 ) 
 							{
 								iScoutCosmetics[ 2 ] = 0;
@@ -1695,14 +1733,17 @@ void GiveBotCosmetics( int iClient )
 							{
 								iScoutCosmetics[ 1 ] = 0;
 							}
-
+						}
+							
+						if ( iSelectedCosmetics[ i ] && iScoutCosmetics[ i ] != 1 )
+						{
 							TF2_CreateHat( iClient, iSelectedCosmetics[ i ], QUALITY_UNIQUE, iIndex[ i ] == 2 );
 						}
 					}
 
-#if defined TESTING_ONLY
-					CPrintToChatAll( "{green}SELECTED SCOUT SPECIFIC CLASS" );
-#endif
+					#if defined TESTING_ONLY
+						CPrintToChatAll( "{green}SELECTED SCOUT SPECIFIC CLASS" );
+					#endif
 				}
 				if ( TFClass == TFClass_Soldier )
 				{
@@ -1724,10 +1765,11 @@ void GiveBotCosmetics( int iClient )
 					for ( int i = 0; i < 3; ++i )
 					{
 						iSelectedCosmetics[ i ] = iSoldierCosmetics[ iIndex[ i ] ];
-						if ( iSelectedCosmetics[ i ] && iSoldierCosmetics[ i ] != 1 )
+
+						// If head is selected
+						// do not equip Hats, Glasses, Beard
+						if ( iSelectedCosmetics[ i ] )
 						{
-							// If head is selected
-							// do not equip Hats, Glasses, Beard
 							if ( iIndex[ i ] == 1 ) 
 							{
 								iSoldierCosmetics[ 2 ] = 0;
@@ -1739,14 +1781,17 @@ void GiveBotCosmetics( int iClient )
 							{
 								iSoldierCosmetics[ 1 ] = 0;
 							}
+						}
 
+						if ( iSelectedCosmetics[ i ] && iSoldierCosmetics[ i ] != 1 )
+						{
 							TF2_CreateHat( iClient, iSelectedCosmetics[ i ], QUALITY_UNIQUE, iIndex[ i ] == 2 );
 						}
 					}
 
-#if defined TESTING_ONLY
-					CPrintToChatAll( "{green}SELECTED SOLDIER SPECIFIC CLASS" );
-#endif
+					#if defined TESTING_ONLY
+						CPrintToChatAll( "{green}SELECTED SOLDIER SPECIFIC CLASS" );
+					#endif
 				}
 			}
 		}
@@ -1768,9 +1813,9 @@ void GiveBotCosmetics( int iClient )
 				case TFClass_Spy: 		PresetCosmeticSet( iClient, "Spy" );
 			}
 
-#if defined TESTING_ONLY
-			CPrintToChatAll( "{green}SELECTED PRE-MADE SETS" );
-#endif
+			#if defined TESTING_ONLY
+				CPrintToChatAll( "{green}SELECTED PRE-MADE SETS" );
+			#endif
 		}
 	}
 }
@@ -1778,28 +1823,45 @@ void GiveBotCosmetics( int iClient )
 void PresetCosmeticSet( int iClient, char[] iClass ) 
 {
 	int iScoutRand = GetRandomInt( 0, sizeof( CS_PRESET_SCOUT ) / sizeof( CosmeticSet ) - 1 );
+	int iScoutHalloweenRand = GetRandomInt( 0, sizeof( CS_PRESET_SCOUT_HALLOWEEN ) / sizeof( CosmeticSet ) - 1 );
 	int iSoldierRand = GetRandomInt( 0, sizeof( CS_PRESET_SOLDIER ) / sizeof( CosmeticSet ) - 1 );
 
 	if ( StrEqual( iClass, "Scout", false ) ) 
 	{
-		// TODO: If Halloween, use Halloween specific presets
-		//if ( TF2_IsHolidayActive( TFHoliday_HalloweenOrFullMoon ) && IsChance( 25 ) )
-		//{}
-
-		// Add the add if the id is not -1
-		if ( CS_PRESET_SCOUT[ iScoutRand ].iHat != -1 )
+		// If Halloween, use Halloween specific presets
+		if ( TF2_IsHolidayActive( TFHoliday_HalloweenOrFullMoon ) && IsChance( 40 ) )
 		{
-			TF2_CreateHat( iClient, CS_PRESET_SCOUT[ iScoutRand ].iHat, QUALITY_UNIQUE, true ); // Hats always unusual chance
-		}
-
-		// Loops between iCosmetic1 and iCosmetic2
-		// and add it if it's not -1
-		for ( int i = 0; i < 2; ++i )
-		{
-			int iCosmeticID = ( i == 0 ) ? CS_PRESET_SCOUT[ iScoutRand ].iCosmetic1 : CS_PRESET_SCOUT[ iScoutRand ].iCosmetic2;
-			if ( iCosmeticID != -1 )
+			// Add the add if the id is not -1
+			if ( CS_PRESET_SCOUT_HALLOWEEN[ iScoutHalloweenRand ].iHat != -1 )
 			{
-				TF2_CreateHat( iClient, iCosmeticID, QUALITY_UNIQUE );
+				TF2_CreateHat( iClient, CS_PRESET_SCOUT_HALLOWEEN[ iScoutHalloweenRand ].iHat, QUALITY_UNIQUE, true ); // Hats always unusual chance
+			}
+
+			// Loops between iCosmetic1 and iCosmetic2
+			// and add it if it's not -1
+			for ( int i = 0; i < 2; ++i )
+			{
+				int iCosmeticID = ( i == 0 ) ? CS_PRESET_SCOUT_HALLOWEEN[ iScoutHalloweenRand ].iCosmetic1 : CS_PRESET_SCOUT_HALLOWEEN[ iScoutHalloweenRand ].iCosmetic2;
+				if ( iCosmeticID != -1 )
+				{
+					TF2_CreateHat( iClient, iCosmeticID, QUALITY_UNIQUE );
+				}
+			}
+		}
+		else
+		{
+			if ( CS_PRESET_SCOUT[ iScoutRand ].iHat != -1 )
+			{
+				TF2_CreateHat( iClient, CS_PRESET_SCOUT[ iScoutRand ].iHat, QUALITY_UNIQUE, true ); // Hats always unusual chance
+			}
+
+			for ( int i = 0; i < 2; ++i )
+			{
+				int iCosmeticID = ( i == 0 ) ? CS_PRESET_SCOUT[ iScoutRand ].iCosmetic1 : CS_PRESET_SCOUT[ iScoutRand ].iCosmetic2;
+				if ( iCosmeticID != -1 )
+				{
+					TF2_CreateHat( iClient, iCosmeticID, QUALITY_UNIQUE );
+				}
 			}
 		}
 	}
@@ -1948,7 +2010,8 @@ int TF2_CreateHat( int iClient, int iIndex, int iQuality, bool bIsUnusual = fals
 
 		// Never give these hats unusuals
 		else if ( iIndex == 261 || iIndex == 940 || iIndex == 263 
-		|| iIndex == 116 || iIndex == 941 )
+		|| iIndex == 116 || iIndex == 941 
+		|| iIndex == 1164 || iIndex == 1169 )
 		{
 			TF2Attrib_RemoveByDefIndex( iHat, 134 );
 		}
@@ -1980,9 +2043,9 @@ int TF2_CreateHat( int iClient, int iIndex, int iQuality, bool bIsUnusual = fals
 			TF2Attrib_SetByDefIndex( iHat, 542, float( iRandomStyle ) );
 		}
 
-#if defined TESTING_ONLY
-		CPrintToChatAll( "ID: {lightblue}%i" ,iIndex )
-#endif
+		#if defined TESTING_ONLY
+			CPrintToChatAll( "ID: {lightblue}%i" ,iIndex )
+		#endif
 
 		// Finalize hat creation
 		SetEntData( iHat, iPropInfoQuality, iQuality );
