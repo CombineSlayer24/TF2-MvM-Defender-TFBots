@@ -264,7 +264,7 @@ public const int ALLCLASS_HATS[] = {
 	30658,	// Universal Translator
 	1173,	// Unusual Cap
 	289,	// Voodoo Juju
-	30062,	// Well-Rounded Rifleman
+	30067,	// Well-Rounded Rifleman
 	260,	// Wiki Cap
 
 	30549,	// EOTL_hiphunter_hat (Winter Woodsman)
@@ -825,6 +825,7 @@ public const int SPECIFIC_SCOUT_FEET[] = {
 // SOLDIER
 //-----------------------------------------------
 // LEFT OFF CRACK POT
+// PANTS AND GLASSES ARE PLACEHOLDER ALLCLASS
 public const int SPECIFIC_SOLDIER_HEAD[] = {
 	1090,	// Big Daddy
 	30969,	// Brass Bucket
@@ -849,7 +850,16 @@ public const int SPECIFIC_SOLDIER_HATS[] = {
 	721,	// Conquistador
 };
 public const int SPECIFIC_SOLDIER_GLASSES[] = {
-
+	816,	// Marxman
+	31060,	// Binoculus
+	522,	// Deus Specs
+	31252,	// Festive Frames
+	30104,	// Graybanns
+	31103,	// Hypno-Eyes
+	343,	// Friendly Item (Professor Speks)
+	744,	// Pyrovision Goggles
+	486,	// Summer Shades
+	30140,	// Virtual Viewfinder
 };
 public const int SPECIFIC_SOLDIER_BEARD[] = {
 	647, 	// All-Father
@@ -873,6 +883,7 @@ public const int SPECIFIC_SOLDIER_BELT[] = {
 	30115,	// Compatriot (left shoulder)
 };
 public const int SPECIFIC_SOLDIER_PANTS[] = {
+	30068, // Breakneck Baggies
 };
 public const int SPECIFIC_SOLDIER_POCKET[] = {
 	30896,	// Attack Packs
@@ -889,8 +900,7 @@ int GetCosmeticStyles( int iEntity )
 	int iIndex = GetEntProp( iEntity, Prop_Send, "m_iItemDefinitionIndex" );
 	switch ( iIndex )
 	{
-		case I:	return 1;	//
-		case 31276:	return 1;	// Chaser
+		//case I:	return 1;	//
 		case 30727:	return 1;	// Caped Crusader
 		case 31146:	return 1;	// Calamitous Cauldron
 		case 31335:	return 1;	// Bulb Bonnet
@@ -1078,7 +1088,7 @@ bool IsPaintableHat( int iEntity )
 	int iIndex = GetEntProp( iEntity, Prop_Send, "m_iItemDefinitionIndex" );
 	switch ( iIndex )
 	{
-		case I:	return true;	// 
+		//case I:	return true;	// 
 		case 31311:	return true;	// Safety Stripes
 		case 446:	return true;	// Fancy Dress Uniform
 		case 31310:	return true;	// Firearm Protector
@@ -1090,8 +1100,6 @@ bool IsPaintableHat( int iEntity )
 		case 31378:	return true;	// Close Quarters Cover
 		case 31025:	return true;	// Climbing Commander
 		case 250:	return true;	// Chieftain's Challenge
-		case 945:	return true;	// Chief Constable
-		case 31276:	return true;	// Chaser
 		case 30116:	return true;	// Caribbean Conqueror
 		case 30727:	return true;	// Caped Crusader
 		case 31146:	return true;	// Calamitous Cauldron
@@ -1571,10 +1579,23 @@ void GiveBotCosmetics( int iClient )
 	int iRandScout_Belt = SPECIFIC_SCOUT_BELT[ GetRandomInt( 0, sizeof( SPECIFIC_SCOUT_BELT ) - 1 ) ];
 	int iRandScout_Pants = SPECIFIC_SCOUT_PANTS[ GetRandomInt( 0, sizeof( SPECIFIC_SCOUT_PANTS ) - 1 ) ];
 	int iRandScout_Feet = SPECIFIC_SCOUT_FEET[ GetRandomInt( 0, sizeof( SPECIFIC_SCOUT_FEET ) - 1 ) ];
+	
+	// SOLDIER
+	int iRandSoldier_Head = SPECIFIC_SOLDIER_HEAD[ GetRandomInt( 0, sizeof( SPECIFIC_SOLDIER_HEAD ) - 1 ) ];
+	int iRandSoldier_Hats = SPECIFIC_SOLDIER_HATS[ GetRandomInt( 0, sizeof( SPECIFIC_SOLDIER_HATS ) - 1 ) ];
+	int iRandSoldier_Glasses = SPECIFIC_SOLDIER_GLASSES[ GetRandomInt( 0, sizeof( SPECIFIC_SOLDIER_GLASSES ) - 1 ) ];
+	int iRandSoldier_Beard = SPECIFIC_SOLDIER_BEARD[ GetRandomInt( 0, sizeof( SPECIFIC_SOLDIER_BEARD ) - 1 ) ];
+	int iRandSoldier_Coat = SPECIFIC_SOLDIER_COAT[ GetRandomInt( 0, sizeof( SPECIFIC_SOLDIER_COAT ) - 1 ) ];
+	int iRandSoldier_Grenades = SPECIFIC_SOLDIER_GRENADES[ GetRandomInt( 0, sizeof( SPECIFIC_SOLDIER_GRENADES ) - 1 ) ];
+	int iRandSoldier_Belt = SPECIFIC_SOLDIER_BELT[ GetRandomInt( 0, sizeof( SPECIFIC_SOLDIER_BELT ) - 1 ) ];
+	int iRandSoldier_Pants = SPECIFIC_SOLDIER_PANTS[ GetRandomInt( 0, sizeof( SPECIFIC_SOLDIER_PANTS ) - 1 ) ];
+	int iRandSoldier_Pocket = SPECIFIC_SOLDIER_POCKET[ GetRandomInt( 0, sizeof( SPECIFIC_SOLDIER_POCKET ) - 1 ) ];
+	int iRandSoldier_Feet = SPECIFIC_SOLDIER_FEET[ GetRandomInt( 0, sizeof( SPECIFIC_SOLDIER_FEET ) - 1 ) ];
 
 	int iSelectedCosmetics[ 3 ];
 	int iAllCosmetics[ 12 ];		// All class
 	int iScoutCosmetics[ 13 ];
+	int iSoldierCosmetics[ 12 ];
 
 	TFClassType TFClass = TF2_GetPlayerClass( iClient );
 
@@ -1681,6 +1702,50 @@ void GiveBotCosmetics( int iClient )
 
 #if defined TESTING_ONLY
 					CPrintToChatAll( "{green}SELECTED SCOUT SPECIFIC CLASS" );
+#endif
+				}
+				if ( TFClass == TFClass_Soldier )
+				{
+					iSoldierCosmetics[ 1 ] = IsChance( 75 ) ? iRandSoldier_Head : iRandHead;
+					iSoldierCosmetics[ 2 ] = IsChance( 75 ) ? iRandSoldier_Hats : iRandHat;
+					iSoldierCosmetics[ 3 ] = IsChance( 75 ) ? iRandSoldier_Glasses : iRandGlasses;
+					iSoldierCosmetics[ 4 ] = IsChance( 75 ) ? iRandSoldier_Beard: iRandBeard;
+					iSoldierCosmetics[ 5 ] = iRandMedal;
+					iSoldierCosmetics[ 6 ] = IsChance( 75 ) ? iRandSoldier_Coat : iRandTorso;
+					iSoldierCosmetics[ 7 ] = iRandSoldier_Grenades;
+					iSoldierCosmetics[ 8 ] = IsChance( 75 ) ? iRandSoldier_Belt : iRandBelt;
+					iSoldierCosmetics[ 9 ] = IsChance( 75 ) ? iRandSoldier_Pants : iRandPants;
+					iSoldierCosmetics[ 10 ] = IsChance( 75 ) ? iRandSoldier_Feet : iRandFeet;
+					iSoldierCosmetics[ 11 ] = iRandSoldier_Pocket;
+
+					int iIndex[ 11 ] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 };
+					ShuffleArray( iIndex, sizeof( iIndex ) );
+
+					for ( int i = 0; i < 3; ++i )
+					{
+						iSelectedCosmetics[ i ] = iSoldierCosmetics[ iIndex[ i ] ];
+						if ( iSelectedCosmetics[ i ] && iSoldierCosmetics[ i ] != 1 )
+						{
+							// If head is selected
+							// do not equip Hats, Glasses, Beard
+							if ( iIndex[ i ] == 1 ) 
+							{
+								iSoldierCosmetics[ 2 ] = 0;
+								iSoldierCosmetics[ 3 ] = 0;
+								iSoldierCosmetics[ 4 ] = 0;
+							}
+							// If hat, glasses, beard or face is selected, don't select head
+							else if ( iIndex[ i ] == 2 || iIndex[ i ] == 3 || iIndex[ i ] == 4 || iIndex[ i ] == 12 ) 
+							{
+								iSoldierCosmetics[ 1 ] = 0;
+							}
+
+							TF2_CreateHat( iClient, iSelectedCosmetics[ i ], QUALITY_UNIQUE, iIndex[ i ] == 2 );
+						}
+					}
+
+#if defined TESTING_ONLY
+					CPrintToChatAll( "{green}SELECTED SOLDIER SPECIFIC CLASS" );
 #endif
 				}
 			}
