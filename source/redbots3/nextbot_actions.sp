@@ -2442,6 +2442,11 @@ public Action CTFBotCampBomb_Update(BehaviorAction action, int actor, float inte
 		m_pPath[actor].Update(myBot);
 	}
 	
+	CKnownEntity threat = myBot.GetVisionInterface().GetPrimaryKnownThreat(false);
+	
+	if (threat)
+		EquipBestWeaponForThreat(actor, threat);
+	
 	return action.Continue();
 }
 
@@ -2460,7 +2465,7 @@ public Action CTFBotDestroyTeleporter_OnStart(BehaviorAction action, int actor, 
 {
 	m_pPath[actor].SetMinLookAheadDistance(GetDesiredPathLookAheadRange(actor));
 	
-	BaseMultiplayerPlayer_SpeakConceptIfAllowed(actor, MP_CONCEPT_PLAYER_NEGATIVE);
+	BaseMultiplayerPlayer_SpeakConceptIfAllowed(actor, MP_CONCEPT_PLAYER_JEERS);
 	
 	return action.Continue();
 }
@@ -2577,7 +2582,7 @@ public Action CTFBotGuardPoint_OnStart(BehaviorAction action, int actor, Behavio
 	if (IsZeroVector(m_vecPointDefendArea[actor]))
 		return action.ChangeTo(CTFBotDefenderAttack(), "NULL defense area");
 	
-	BaseMultiplayerPlayer_SpeakConceptIfAllowed(actor, MP_CONCEPT_PLAYER_JEERS);
+	BaseMultiplayerPlayer_SpeakConceptIfAllowed(actor, MP_CONCEPT_PLAYER_HELP);
 	
 	return action.Continue();
 }
@@ -2733,7 +2738,7 @@ Action GetDesiredBotAction(int client, BehaviorAction action)
 				else if (CTFBotAttackTank_SelectTarget(client))
 					return action.SuspendFor(CTFBotAttackTank(), "Attacking tank");
 				else if (CTFBotCollectMoney_IsPossible(client))
-					return action.SuspendFor(CTFBotCollectMoney(), "CTFBotCollectMoney_IsPossible");
+					return action.SuspendFor(CTFBotCollectMoney(), "CTFBotCollectMoney_IsPossible"); //TODO: replace this with an action to collect nearby money
 			}
 			case TFClass_Soldier, TFClass_Pyro, TFClass_DemoMan:
 			{
@@ -2766,8 +2771,8 @@ Action GetUpgradePostAction(int client, BehaviorAction action)
 			return action.ChangeTo(CTFBotMoveToFront(), "Finished upgrading; Move to front and press F4");
 	}
 	
-	//The round's probably already running
-	//CTFBotScenarioMonitor_Update will assign the appropriate task
+	/* The round's probably already running
+	CTFBotScenarioMonitor_Update will assign the appropriate task */
 	return action.Done("I finished upgrading");
 }
 
@@ -2942,6 +2947,10 @@ bool IsValidCurrencyPack(int pack)
 
 bool CTFBotCollectMoney_IsPossible(int actor)
 {	
+	//Only one of us needs to really be doing this
+	if (GetMoneyCollectorCount() > 0)
+		return false;
+	
 	if (!IsValidCurrencyPack(SelectCurrencyPack(actor)))
 		return false;
 	
@@ -4242,8 +4251,8 @@ void EquipBestWeaponForThreat(int client, const CKnownEntity threat)
 		{
 			if (gun != -1 && !Clip1(gun))
 			{
-				// NOTE: we do not want to switch off the rocket launcher against uber threats or else we will conflctingly ignore them
-				// on and off due to the detour callback that we do at DHookCallback_IsIgnored_Pre
+				/* NOTE: we do not want to switch off the rocket launcher against uber threats or else we will conflctingly ignore them
+				on and off due to the detour callback that we do at DHookCallback_IsIgnored_Pre */
 				if (secondary != -1 && Clip1(secondary) && (!BaseEntity_IsPlayer(threatEnt) || !TF2_IsInvulnerable(threatEnt)))
 				{
 					const float closeSoldierRange = 500.0;
@@ -4846,6 +4855,34 @@ void UtilizeCompressionBlast(int client, INextBot bot, const CKnownEntity threat
 			}
 		}
 	}
+	
+	//Enhanced projectile airblast
+	if (enhancedStage > 0)
+	{
+		int myTeam = GetClientTeam(client);
+		float myEyePos[3]; GetClientEyePosition(client, myEyePos);
+		int ent = -1;
+		
+		while ((ent = FindEntityByClassname(ent, "tf_projectile_*")) != -1)
+		{
+			if (BaseEntity_GetTeamNumber(ent) == myTeam)
+				continue;
+			
+			if (!CanBeReflected(ent))
+				continue;
+			
+			float origin[3]; BaseEntity_GetLocalOrigin(ent, origin);
+			float vec[3]; MakeVectorFromPoints(origin, myEyePos, vec);
+			
+			//Airblast the projectile if we are actually facing towards it
+			if (GetVectorLength(vec) < 150.0)
+			{
+				g_iSubtractiveButtons[client] |= IN_ATTACK;
+				VS_PressAltFireButton(client);
+				return;
+			}
+		}
+	}
 }
 
 bool CTFBotMedicRevive_IsPossible(int client)
@@ -5142,10 +5179,21 @@ bool CTFBotGuardPoint_IsPossible(int client)
 	return true;
 }
 
-//Since jungle inferno, flamethrower damage is calculated based on the oldest particles
+//Since March 28 2018 update, flamethrower damage is calculated based on the oldest particles
 //Aim a bit higher on the tank for the highest damage output
 void GetFlameThrowerAimForTank(int tank, float aimPos[3])
 {
 	aimPos = WorldSpaceCenter(tank);
 	aimPos[2] += 90.0;
+}
+
+int GetMoneyCollectorCount()
+{
+	int count = 0;
+	
+	for (int i = 1; i <= MaxClients; i++)
+		if (IsClientInGame(i) && g_bIsDefenderBot[i] && ActionsManager.GetAction(i, "DefenderCollectMoney") != INVALID_ACTION)
+			count++;
+	
+	return count;
 }
