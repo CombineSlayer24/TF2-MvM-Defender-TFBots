@@ -8,7 +8,7 @@ public const int QUALITY_STRANGE = 11;
 public const int QUALITY_HAUNTED = 13;
 public const int QUALITY_COLLECTORS = 14;
 
-public const int MAX_UNUSUAL_EFFECTS = 325;
+public const int MAX_UNUSUAL_EFFECTS = 349;
 
 // For Presets
 enum struct CosmeticSet
@@ -270,6 +270,7 @@ public const int ALLCLASS_HATS[] = {
 	30833,	// Woolen Warmer
 	1899,	// World Traveler
 	31132,	// Wrap-A-Khamon
+	31443,	// Brand Loyalist
 
 	// Unreleased Hats
 	1193,	// Never Forget Cap
@@ -372,6 +373,22 @@ public const int ALLCLASS_MEDAL[] = {
 	9734,	// Heals for Reals Event 2nd Place 2017
 	9735,	// Heals for Reals Event 3rd Place 2017
 	9736,	// Heals for Reals Event Participant 2017
+	9228,	// TF2Maps 72hr TF2Jam Summer Participant 2016
+	9592,	// TF2Maps 72hr TF2Jam Summer Participant 2017
+	9322,	// TF2Maps 72hr TF2Jam Winter Participant 2017
+	10015,	// TF2Maps Ray of Sunshine 2018
+	10977,	// TF2Maps Ray of Sunshine 2019
+	11803,	// TF2Maps Ray of Sunshine 2020
+	12992,	// TF2Maps Ray of Sunshine 2022
+	10046,	// TF2Maps 72hr TF2Jam Summer Participant 2018
+	10996,	// TF2Maps 72hr TF2Jam Summer Participant 2019
+	12991,	// TF2Maps 72hr TF2Jam Summer Participant 2022
+	11802,	// TF2Maps 72hr TF2Jam Participant 2020
+	12791,	// TF2Maps 72hr TF2Jam Participant 2021
+	13509,	// TF2Maps 72hr TF2Jam Participant 2023
+	9613,	// TF2Maps Charitable Heart 2017
+	12790,	// TF2Maps Charitable Heart 2021
+	13508,	// TF2Maps Charitable Heart 2023
 	8367,	// Heart of Gold
 	9941,	// Heartfelt Hero
 	13460,	// Heartfelt Hero 2023
@@ -457,22 +474,16 @@ public const int ALLCLASS_MEDAL[] = {
 	9720,	// Titanium Tank Participant Medal 2017
 	11612,	// Titanium Tank Chromatic Cardioid 2020
 	11611,	// Titanium Tank Gilded Giver 2020
-	9228,	// TF2Maps 72hr TF2Jam Summer Participant 2016
-	9592,	// TF2Maps 72hr TF2Jam Summer Participant 2017
-	9322,	// TF2Maps 72hr TF2Jam Winter Participant 2017
-	10015,	// TF2Maps Ray of Sunshine 2018
-	10977,	// TF2Maps Ray of Sunshine 2019
-	11803,	// TF2Maps Ray of Sunshine 2020
-	12992,	// TF2Maps Ray of Sunshine 2022
-	10046,	// TF2Maps 72hr TF2Jam Summer Participant 2018
-	10996,	// TF2Maps 72hr TF2Jam Summer Participant 2019
-	12991,	// TF2Maps 72hr TF2Jam Summer Participant 2022
-	11802,	// TF2Maps 72hr TF2Jam Participant 2020
-	12791,	// TF2Maps 72hr TF2Jam Participant 2021
-	13509,	// TF2Maps 72hr TF2Jam Participant 2023
-	9613,	// TF2Maps Charitable Heart 2017
-	12790,	// TF2Maps Charitable Heart 2021
-	13508,	// TF2Maps Charitable Heart 2023
+	14043,	// Osmium Ordinance Bohrium Buster 2024
+	14055,	// Osmium Ordinance Cobalt Keepsake 2024
+	14041,	// Osmium Ordinance Platinum Pitcher 2024
+	14040,	// Osmium Ordinance Pyrite Pint 2024
+	14042,	// Osmium Ordinance Tungsten Tank 2024
+	13740,	// Operation Magnetic Mayhem Megalomaniacal Mastodon 2024
+	13742,	// Operation Magnetic Mayhem Barely Benign Bismutotantalite 2024
+	13739,	// Operation Magnetic Mayhem Fiendish Fuchsite 2024
+	13741,	// Operation Magnetic Mayhem Humanitarian Hiddenite 2024
+	13743,	// Operation Magnetic Mayhem Treasured Tourmaline 2024
 
 /* 	
 	873,	 //Whale Bone Charm
@@ -572,7 +583,9 @@ public const int ALLCLASS_FEET[] = {
 	31105,	// Loaf Loafers
 	30975,	// Robin Walkers
 };
-//public const int ALLCLASS_FLOATING[] = {};
+public const int ALLCLASS_FLOATING[] = {
+	31442,	// Botler 2000
+};
 public const int ALLCLASS_BASEMISC[] = {
 	619,	// flair!
 	5075,	// Something Special For Someone Special (Wearable)
@@ -599,6 +612,7 @@ public const CosmeticSet CS_PRESET_SCOUT[] = {
 	{ 30743, 30685, 30104 },	// Patriot Peak, Thrilling Tracksuit, Graybanns
 	{ 30066, 30309, 30104 },	// Brotherhood Of Arms, Dead of Night, Graybanns
 	{ 30767, 31081, 30185 },	// Airdog, Fuel Injector, Flapjack
+	{ 31459, 31460, 30104 },	// Commonwealth Commando, Tanker's Top, Graybanns
 	{ 30479, 1026, 30889 },		// Thirst Blood, Tomb Wrapper, Transparent Trousers
 	{ 126, 30104, 30309 },		// Bill Hat, Graybanns, Dead of Night
 	{ 30362, 30085, 296 },		// THe Law, The Macho Mann, TTG Badge (License to maim)
@@ -620,6 +634,7 @@ public const CosmeticSet CS_PRESET_SCOUT[] = {
 	{ 940, 744, 166 },			// Ghostly Gibus, Pyrovision Goggles, Mercenary
 	{ 941, 744, 655 },			// Skull Island Topper, Pyrovision Goggles, Spirit of Giving
 	{ 263, 166, -1 },			// Ellis Hat, Mercenary
+
 };
 
 public const CosmeticSet CS_PRESET_SCOUT_HALLOWEEN[] = {
@@ -648,6 +663,7 @@ public const CosmeticSet CS_PRESET_SCOUT_HALLOWEEN[] = {
 
 public const CosmeticSet CS_PRESET_SOLDIER[] = {
 	{ 30578, 31418, 30392 },	// Skullcap, Trench Warefarer, Man In Slacks
+	{ 31045, 31418, 30165 },	// Dancing Doe, Trench Warefarer, Cuban Bristle Crisis
 	{ 30897, 30853, 30558 },	// Shellmet, Flakcatcher, Coldfront Curbstompers
 	{ 30897, 30896, 30339 },	// Shellmet, Attack Packs, Killer's kit
 	{ 31025, 30601, 30558 },	// Climbing Commander, Cold Snap Coat, Coldfront Curbstompers
@@ -656,6 +672,7 @@ public const CosmeticSet CS_PRESET_SOLDIER[] = {
 	{ 30768, 30727, 31276 },	// Bedouin Bandana, Caped Crusader, Chaser
 	{ 30390, 30477, 30983 },	// Spook Specs, Lone Survivor, Veterans Attire
 	{ 30553, 30165, 30601 }, 	// Condor Cap, Cuban Bristle Crisis, Cold Snap Coat
+	{ 31449, 31450, 31451 },	// Control Patrol, Pathfinder, Justice Johns
 	{ 445, 30388, 30392 },		// Armored Authority, Classified Coif, Man in Slacks
 	{ 31325, 30331, 641 },		// Colonel Kringle, Antarctic Parka, Ornament Armament
 	{ 945, 30853, 30388 },		// Chief Constable, FlakCatcher, Classified Coif
@@ -664,6 +681,21 @@ public const CosmeticSet CS_PRESET_SOLDIER[] = {
 	{ 261, 744, 166 },			// Mann Co. Cap, Pyrovision Goggles, Mercenary
 	{ 940, 744, 166 },			// Ghostly Gibus, Pyrovision Goggles, Mercenary
 	{ 941, 744, 655 },			// Skull Island Topper, Pyrovision Goggles, Spirit of Giving
+};
+
+public const CosmeticSet CS_PRESET_SOLDIER_HALLOWEEN[] = {
+	{ 30521, 30522, 30520 },	// Hellhunter's Headpiece, Supernatural Stalker, Ghoul Gibbin' Gear
+	{ 30300, 30522, 30206 },	// Haunted Hat, Supernatural Stalker, Accursed Apparition
+	{ 30297, 30601, 30558 },	// Magical Mercenary, Cold Snap Coat, EOTL_Coldfront
+	{ 31025, 31228, 30983 },	// Climbing Commander, Poopy Doe, Veterans Attire
+	{ 31025, 31228, 30601 },	// Climbing Commander, Poopy Doe, Cold Snap Coat
+	{ 30294, 30896, 30558 },	// Larval Lid, Attack Packs, EOTL_Coldfront
+	{ 30239, 30388, 30853 },	// Freedom Feathers, Classified Coif, Flakcatcher
+	{ 30521, 30497, 5618 },		// Hellhunter's Headpiece, Ghost of Spies Checked Past, Zombie Soldier
+	{ 31045, 31388, 5618 },		// Dancing Doe, Warlock's Warcloak, Zombie Soldier
+	{ 30268, 30129, -1 },		// Spellbinder's Bonnet, Hornblower
+	{ -1, 31137, 30165 },		// War Blunder, Cuban Bristle Crisis
+	{ 555, 556, 557 },			// Idiot Box, Steel Pipes, Shoestring Budget
 };
 
 // Returns the ellgible cosmetics that can be Unusual
@@ -744,6 +776,7 @@ public const int SPECIFIC_SCOUT_HATS[] = {
 	30809,	// Wing Mann
 	30019,	// Ye Oiled Baker Boy
 	107,	// Ye Olde Baker Boy
+	31459,	// Commonwealth Commando
 };
 public const int SPECIFIC_SCOUT_GLASSES[] = {
 	30027,	// Bolt Boy
@@ -797,6 +830,7 @@ public const int SPECIFIC_SCOUT_TORSO[] = {
 	814,	// Triad Trinket
 	30178,	// Weight Room Warmer
 	30990,	// Wipe Oout Wraps
+	31460,	// Tanker's Top
 };
 public const int SPECIFIC_SCOUT_BACK[] = {
 	30751,	// Batter's Backup
@@ -854,7 +888,7 @@ public const int SPECIFIC_SOLDIER_HEAD[] = {
 	1090,	// Big Daddy
 	30969,	// Brass Bucket
 	31335,	// Bulb Bonnet
-
+	31449,	// Control Patrol
 };
 public const int SPECIFIC_SOLDIER_HATS[] = {
 	445,	// Armored Authority
@@ -872,6 +906,7 @@ public const int SPECIFIC_SOLDIER_HATS[] = {
 	30071,	// Cloud Crasher
 	30553,	// EOTL_soldierhat (Condor Cap)
 	721,	// Conquistador
+	31024,	// Crack Pot
 };
 public const int SPECIFIC_SOLDIER_GLASSES[] = {
 	816,	// Marxman
@@ -896,6 +931,7 @@ public const int SPECIFIC_SOLDIER_COAT[] = {
 	30388,	// Classified Coif
 	31276,	// Chaser (This is sleeves, but will clip with some coats)
 	30601,	// eotl_winter_coat (Cold Snap Coat)
+	31450,	// Pathfinder
 };
 public const int SPECIFIC_SOLDIER_GRENADES[] = {
 	30886,	// Bananades
@@ -907,7 +943,7 @@ public const int SPECIFIC_SOLDIER_BELT[] = {
 	30115,	// Compatriot (left shoulder)
 };
 public const int SPECIFIC_SOLDIER_PANTS[] = {
-	30068, // Breakneck Baggies
+	31451,	// Justice Johns
 };
 public const int SPECIFIC_SOLDIER_POCKET[] = {
 	30896,	// Attack Packs
@@ -924,7 +960,15 @@ int GetCosmeticStyles( int iEntity )
 	int iIndex = GetEntProp( iEntity, Prop_Send, "m_iItemDefinitionIndex" );
 	switch ( iIndex )
 	{
-		//case I:	return 1;	//
+//		case I:	return 1;	//
+		case 31450:	return 1;	// Pathfinder
+		case 31451:	return 1;	// Justice Johns
+		case 31449:	return 1;	// Control Patrol
+		case 13742:	return 1;	// Operation Magnetic Mayhem Barely Benign Bismutotantalite 2024
+		case 13739:	return 1;	// Operation Magnetic Mayhem Fiendish Fuchsite 2024
+		case 13741:	return 1;	// Operation Magnetic Mayhem Humanitarian Hiddenite 2024
+		case 13743:	return 1;	// Operation Magnetic Mayhem Treasured Tourmaline 2024
+		case 31442:	return 1;	// Botler 2000
 		case 30727:	return 1;	// Caped Crusader
 		case 31146:	return 1;	// Calamitous Cauldron
 		case 31335:	return 1;	// Bulb Bonnet
@@ -1112,7 +1156,25 @@ bool IsPaintableHat( int iEntity )
 	int iIndex = GetEntProp( iEntity, Prop_Send, "m_iItemDefinitionIndex" );
 	switch ( iIndex )
 	{
-		//case I:	return true;	// 
+//		case I:	return true;	// 
+		case 31024:	return true;	// Crack Pot
+		case 31450:	return true;	// Pathfinder
+		case 31451:	return true;	// Justice Johns
+		case 31449:	return true;	// Control Patrol
+		case 14043:	return true;	// Osmium Ordinance Bohrium Buster 2024
+		case 14055:	return true;	// Osmium Ordinance Cobalt Keepsake 2024
+		case 14041:	return true;	// Osmium Ordinance Platinum Pitcher 2024
+		case 14040:	return true;	// Osmium Ordinance Pyrite Pint 2024
+		case 14042:	return true;	// Osmium Ordinance Tungsten Tank 2024
+		case 31459:	return true;	// Commonwealth Commando
+		case 31460:	return true;	// Tanker's Top
+		case 31442:	return true;	// Botler 2000
+		case 30129:	return true;	// Hornblower
+		case 30268:	return true;	// Spellbinder's Bonnet
+		case 31388:	return true;	// Warlock's Warcloak
+		case 30294:	return true;	// Larval Lid
+		case 31045:	return true;	// Dnacing Doe 
+		case 30522:	return true;	// Supernatural Stalker
 		case 30536:	return true;	// Cursed Cruise
 		case 30497:	return true;	// Ghost of Spies Checked Past
 		case 30214:	return true;	// One-Way Ticket
@@ -1591,40 +1653,40 @@ void GiveBotCosmetics( int iClient )
 	int iRandom = GetRandomInt( 1, 100 );
 
 	// ALL CLASS
-	int iRandHat = ALLCLASS_HATS[ GetRandomInt( 0, sizeof( ALLCLASS_HATS ) - 1 ) ];
-	int iRandGlasses = ALLCLASS_GLASSES[ GetRandomInt( 0, sizeof( ALLCLASS_GLASSES ) - 1 ) ];
-	int iRandBeard = ALLCLASS_BEARD[ GetRandomInt( 0, sizeof( ALLCLASS_BEARD ) - 1 ) ];
-	int iRandMedal = ALLCLASS_MEDAL[ GetRandomInt( 0, sizeof( ALLCLASS_MEDAL ) - 1 ) ];
-	int iRandTorso = ALLCLASS_TORSO[ GetRandomInt( 0, sizeof( ALLCLASS_TORSO ) - 1 ) ];
-	int iRandBelt = ALLCLASS_BELT[ GetRandomInt( 0, sizeof( ALLCLASS_BELT ) - 1 ) ];
-	int iRandPants = ALLCLASS_PANTS[ GetRandomInt( 0, sizeof( ALLCLASS_PANTS ) - 1 ) ];
-	int iRandFeet = ALLCLASS_FEET[ GetRandomInt( 0, sizeof( ALLCLASS_FEET ) - 1 ) ];
-	int iRandHatMisc = ALLCLASS_HATMISC[ GetRandomInt( 0, sizeof( ALLCLASS_HATMISC ) - 1 ) ];
-	int iRandHead = ALLCLASS_HEAD[ GetRandomInt( 0, sizeof( ALLCLASS_HEAD ) - 1 ) ];
-	int iRandFace = ALLCLASS_FACE[ GetRandomInt( 0, sizeof( ALLCLASS_FACE ) - 1 ) ];
+	int iRandHat 				= ALLCLASS_HATS[ GetRandomInt( 0, sizeof( ALLCLASS_HATS ) - 1 ) ];
+	int iRandGlasses 			= ALLCLASS_GLASSES[ GetRandomInt( 0, sizeof( ALLCLASS_GLASSES ) - 1 ) ];
+	int iRandBeard 				= ALLCLASS_BEARD[ GetRandomInt( 0, sizeof( ALLCLASS_BEARD ) - 1 ) ];
+	int iRandMedal 				= ALLCLASS_MEDAL[ GetRandomInt( 0, sizeof( ALLCLASS_MEDAL ) - 1 ) ];
+	int iRandTorso 				= ALLCLASS_TORSO[ GetRandomInt( 0, sizeof( ALLCLASS_TORSO ) - 1 ) ];
+	int iRandBelt 				= ALLCLASS_BELT[ GetRandomInt( 0, sizeof( ALLCLASS_BELT ) - 1 ) ];
+	int iRandPants 				= ALLCLASS_PANTS[ GetRandomInt( 0, sizeof( ALLCLASS_PANTS ) - 1 ) ];
+	int iRandFeet 				= ALLCLASS_FEET[ GetRandomInt( 0, sizeof( ALLCLASS_FEET ) - 1 ) ];
+	int iRandHatMisc 			= ALLCLASS_HATMISC[ GetRandomInt( 0, sizeof( ALLCLASS_HATMISC ) - 1 ) ];
+	int iRandHead 				= ALLCLASS_HEAD[ GetRandomInt( 0, sizeof( ALLCLASS_HEAD ) - 1 ) ];
+	int iRandFace 				= ALLCLASS_FACE[ GetRandomInt( 0, sizeof( ALLCLASS_FACE ) - 1 ) ];
 
 	// SCOUT
-	int iRandScout_Head = SPECIFIC_SCOUT_HEAD[ GetRandomInt( 0, sizeof( SPECIFIC_SCOUT_HEAD ) - 1 ) ];
-	int iRandScout_Hats = SPECIFIC_SCOUT_HATS[ GetRandomInt( 0, sizeof( SPECIFIC_SCOUT_HATS ) - 1 ) ];
-	int iRandScout_Glasses = SPECIFIC_SCOUT_GLASSES[ GetRandomInt( 0, sizeof( SPECIFIC_SCOUT_GLASSES ) - 1 ) ];
-	int iRandScout_Beard = SPECIFIC_SCOUT_BEARD[ GetRandomInt( 0, sizeof( SPECIFIC_SCOUT_BEARD ) - 1 ) ];
-	int iRandScout_Torso = SPECIFIC_SCOUT_TORSO[ GetRandomInt( 0, sizeof( SPECIFIC_SCOUT_TORSO ) - 1 ) ];
-	int iRandScout_Back = SPECIFIC_SCOUT_BACK[ GetRandomInt( 0, sizeof( SPECIFIC_SCOUT_BACK ) - 1 ) ];
-	int iRandScout_Belt = SPECIFIC_SCOUT_BELT[ GetRandomInt( 0, sizeof( SPECIFIC_SCOUT_BELT ) - 1 ) ];
-	int iRandScout_Pants = SPECIFIC_SCOUT_PANTS[ GetRandomInt( 0, sizeof( SPECIFIC_SCOUT_PANTS ) - 1 ) ];
-	int iRandScout_Feet = SPECIFIC_SCOUT_FEET[ GetRandomInt( 0, sizeof( SPECIFIC_SCOUT_FEET ) - 1 ) ];
+	int iRandScout_Head 		= SPECIFIC_SCOUT_HEAD[ GetRandomInt( 0, sizeof( SPECIFIC_SCOUT_HEAD ) - 1 ) ];
+	int iRandScout_Hats 		= SPECIFIC_SCOUT_HATS[ GetRandomInt( 0, sizeof( SPECIFIC_SCOUT_HATS ) - 1 ) ];
+	int iRandScout_Glasses 		= SPECIFIC_SCOUT_GLASSES[ GetRandomInt( 0, sizeof( SPECIFIC_SCOUT_GLASSES ) - 1 ) ];
+	int iRandScout_Beard 		= SPECIFIC_SCOUT_BEARD[ GetRandomInt( 0, sizeof( SPECIFIC_SCOUT_BEARD ) - 1 ) ];
+	int iRandScout_Torso 		= SPECIFIC_SCOUT_TORSO[ GetRandomInt( 0, sizeof( SPECIFIC_SCOUT_TORSO ) - 1 ) ];
+	int iRandScout_Back 		= SPECIFIC_SCOUT_BACK[ GetRandomInt( 0, sizeof( SPECIFIC_SCOUT_BACK ) - 1 ) ];
+	int iRandScout_Belt 		= SPECIFIC_SCOUT_BELT[ GetRandomInt( 0, sizeof( SPECIFIC_SCOUT_BELT ) - 1 ) ];
+	int iRandScout_Pants 		= SPECIFIC_SCOUT_PANTS[ GetRandomInt( 0, sizeof( SPECIFIC_SCOUT_PANTS ) - 1 ) ];
+	int iRandScout_Feet 		= SPECIFIC_SCOUT_FEET[ GetRandomInt( 0, sizeof( SPECIFIC_SCOUT_FEET ) - 1 ) ];
 	
 	// SOLDIER
-	int iRandSoldier_Head = SPECIFIC_SOLDIER_HEAD[ GetRandomInt( 0, sizeof( SPECIFIC_SOLDIER_HEAD ) - 1 ) ];
-	int iRandSoldier_Hats = SPECIFIC_SOLDIER_HATS[ GetRandomInt( 0, sizeof( SPECIFIC_SOLDIER_HATS ) - 1 ) ];
-	int iRandSoldier_Glasses = SPECIFIC_SOLDIER_GLASSES[ GetRandomInt( 0, sizeof( SPECIFIC_SOLDIER_GLASSES ) - 1 ) ];
-	int iRandSoldier_Beard = SPECIFIC_SOLDIER_BEARD[ GetRandomInt( 0, sizeof( SPECIFIC_SOLDIER_BEARD ) - 1 ) ];
-	int iRandSoldier_Coat = SPECIFIC_SOLDIER_COAT[ GetRandomInt( 0, sizeof( SPECIFIC_SOLDIER_COAT ) - 1 ) ];
-	int iRandSoldier_Grenades = SPECIFIC_SOLDIER_GRENADES[ GetRandomInt( 0, sizeof( SPECIFIC_SOLDIER_GRENADES ) - 1 ) ];
-	int iRandSoldier_Belt = SPECIFIC_SOLDIER_BELT[ GetRandomInt( 0, sizeof( SPECIFIC_SOLDIER_BELT ) - 1 ) ];
-	int iRandSoldier_Pants = SPECIFIC_SOLDIER_PANTS[ GetRandomInt( 0, sizeof( SPECIFIC_SOLDIER_PANTS ) - 1 ) ];
-	int iRandSoldier_Pocket = SPECIFIC_SOLDIER_POCKET[ GetRandomInt( 0, sizeof( SPECIFIC_SOLDIER_POCKET ) - 1 ) ];
-	int iRandSoldier_Feet = SPECIFIC_SOLDIER_FEET[ GetRandomInt( 0, sizeof( SPECIFIC_SOLDIER_FEET ) - 1 ) ];
+	int iRandSoldier_Head 		= SPECIFIC_SOLDIER_HEAD[ GetRandomInt( 0, sizeof( SPECIFIC_SOLDIER_HEAD ) - 1 ) ];
+	int iRandSoldier_Hats 		= SPECIFIC_SOLDIER_HATS[ GetRandomInt( 0, sizeof( SPECIFIC_SOLDIER_HATS ) - 1 ) ];
+	int iRandSoldier_Glasses 	= SPECIFIC_SOLDIER_GLASSES[ GetRandomInt( 0, sizeof( SPECIFIC_SOLDIER_GLASSES ) - 1 ) ];
+	int iRandSoldier_Beard 		= SPECIFIC_SOLDIER_BEARD[ GetRandomInt( 0, sizeof( SPECIFIC_SOLDIER_BEARD ) - 1 ) ];
+	int iRandSoldier_Coat 		= SPECIFIC_SOLDIER_COAT[ GetRandomInt( 0, sizeof( SPECIFIC_SOLDIER_COAT ) - 1 ) ];
+	int iRandSoldier_Grenades 	= SPECIFIC_SOLDIER_GRENADES[ GetRandomInt( 0, sizeof( SPECIFIC_SOLDIER_GRENADES ) - 1 ) ];
+	int iRandSoldier_Belt 		= SPECIFIC_SOLDIER_BELT[ GetRandomInt( 0, sizeof( SPECIFIC_SOLDIER_BELT ) - 1 ) ];
+	int iRandSoldier_Pants 		= SPECIFIC_SOLDIER_PANTS[ GetRandomInt( 0, sizeof( SPECIFIC_SOLDIER_PANTS ) - 1 ) ];
+	int iRandSoldier_Pocket 	= SPECIFIC_SOLDIER_POCKET[ GetRandomInt( 0, sizeof( SPECIFIC_SOLDIER_POCKET ) - 1 ) ];
+	int iRandSoldier_Feet 		= SPECIFIC_SOLDIER_FEET[ GetRandomInt( 0, sizeof( SPECIFIC_SOLDIER_FEET ) - 1 ) ];
 
 	int iSelectedCosmetics[ 3 ];
 	int iAllCosmetics[ 12 ];		// All class
@@ -1822,14 +1884,15 @@ void GiveBotCosmetics( int iClient )
 
 void PresetCosmeticSet( int iClient, char[] iClass ) 
 {
-	int iScoutRand = GetRandomInt( 0, sizeof( CS_PRESET_SCOUT ) / sizeof( CosmeticSet ) - 1 );
-	int iScoutHalloweenRand = GetRandomInt( 0, sizeof( CS_PRESET_SCOUT_HALLOWEEN ) / sizeof( CosmeticSet ) - 1 );
-	int iSoldierRand = GetRandomInt( 0, sizeof( CS_PRESET_SOLDIER ) / sizeof( CosmeticSet ) - 1 );
+	int iScoutRand 				= GetRandomInt( 0, sizeof( CS_PRESET_SCOUT ) / sizeof( CosmeticSet ) - 1 );
+	int iScoutHalloweenRand 	= GetRandomInt( 0, sizeof( CS_PRESET_SCOUT_HALLOWEEN ) / sizeof( CosmeticSet ) - 1 );
+	int iSoldierRand 			= GetRandomInt( 0, sizeof( CS_PRESET_SOLDIER ) / sizeof( CosmeticSet ) - 1 );
+	bool bIsHalloween 			= TF2_IsHolidayActive( TFHoliday_HalloweenOrFullMoon )
 
 	if ( StrEqual( iClass, "Scout", false ) ) 
 	{
 		// If Halloween, use Halloween specific presets
-		if ( TF2_IsHolidayActive( TFHoliday_HalloweenOrFullMoon ) && IsChance( 40 ) )
+		if ( bIsHalloween && IsChance( 40 ) )
 		{
 			// Add the add if the id is not -1
 			if ( CS_PRESET_SCOUT_HALLOWEEN[ iScoutHalloweenRand ].iHat != -1 )
@@ -1930,6 +1993,7 @@ int TF2_CreateHat( int iClient, int iIndex, int iQuality, bool bIsUnusual = fals
 		int iNumStyles = GetCosmeticStyles( iHat );
 		bool bPaintable = IsPaintableHat( iHat );
 		//bool bIsUnusualHat = IsUnusualHat( iHat );
+		bool bHatCannotBeUnusual = CannotBeUnusual( iHat );
 		bool bCantBeUnusual = false;
 
 		if ( IsChance( 10 ) )
@@ -1939,15 +2003,17 @@ int TF2_CreateHat( int iClient, int iIndex, int iQuality, bool bIsUnusual = fals
 			|| iQuality == QUALITY_COMMUNITY || iQuality == QUALITY_COLLECTORS )
 			{
 				// Remove "Kill Eater" attrbute
-				TF2Attrib_RemoveByDefIndex( iHat, 214 );
+				// TF2Attrib_RemoveByDefIndex( iHat, 214 );
+				TF2Attrib_RemoveByName( iHat, "kill eater" )
 			}
 			else if ( IsChance( 25 ) )
 			{
 				// Set item to strange
 				iQuality = QUALITY_STRANGE;
-				TF2Attrib_SetByDefIndex( iHat, 214, view_as<float>( GetRandomInt( 0, 9000 ) ) );
+				//TF2Attrib_SetByDefIndex( iHat, 214, view_as<float>( GetRandomInt( 0, 9000 ) ) );
+				TF2Attrib_SetByName( iHat, "kill eater", view_as<float>( GetRandomInt( 0, 9000 ) ) );
 			}
-		}	
+		}
 
 		if ( iQuality != QUALITY_UNUSUAL && iQuality != QUALITY_STRANGE )
 		{
@@ -1990,30 +2056,35 @@ int TF2_CreateHat( int iClient, int iIndex, int iQuality, bool bIsUnusual = fals
 				iQuality = QUALITY_UNIQUE;
 			}
 		}
-
+		/*
+			TODO: Contain all the Indexes in it's own function
+			just like paintable and styles for cleaner, less crap code.
+		*/
 		// Certain hats have different qualities
 		// Certain Hats always unususl
 		if ( iIndex == 1158 || iIndex == 1173 )
 		{
 			iQuality = QUALITY_UNUSUAL;
-			TF2Attrib_SetByDefIndex( iHat, 134, GetRandomInt( 1, MAX_UNUSUAL_EFFECTS ) + 0.0 );	// We must add a decimal for unusual
+			//TF2Attrib_SetByDefIndex( iHat, 134, GetRandomInt( 1, MAX_UNUSUAL_EFFECTS ) + 0.0 );	// We must add a decimal for unusual
+			TF2Attrib_SetByName( iHat, "attach particle effect", GetRandomInt( 1, MAX_UNUSUAL_EFFECTS ) + 0.0 );
+			
+			/* 
+				Maybe if setting bCantBeUnusual here
+				will prevent another random generation attempt
+				when it is time to generate a random unusual effect
+				later down in this function .
+			*/
+			bCantBeUnusual = true;
 		}
 		
 		// Give these Self Made
-		else if ( iIndex == 30559 || iIndex == 260 )
+		if ( iIndex == 30559 || iIndex == 260 )
 		{
 			// 30559 = EOTL COM MEDAL
 			iQuality = QUALITY_SELFMADE;
-			TF2Attrib_SetByDefIndex( iHat, 134, 4.0 );
+			//TF2Attrib_SetByDefIndex( iHat, 134, 4.0 );
+			TF2Attrib_SetByName( iHat, "attach particle effect", 4.0 );
 			bCantBeUnusual = true;
-		}
-
-		// Never give these hats unusuals
-		else if ( iIndex == 261 || iIndex == 940 || iIndex == 263 
-		|| iIndex == 116 || iIndex == 941 
-		|| iIndex == 1164 || iIndex == 1169 )
-		{
-			TF2Attrib_RemoveByDefIndex( iHat, 134 );
 		}
 
 		//if ( bIsUnusualHat && !bCantBeUnusual && IsChance( 25 ) )
@@ -2021,26 +2092,33 @@ int TF2_CreateHat( int iClient, int iIndex, int iQuality, bool bIsUnusual = fals
 		{
 			// Set the hat as unusual
 			iQuality = QUALITY_UNUSUAL;
-			TF2Attrib_SetByDefIndex( iHat, 134, GetRandomInt( 1, MAX_UNUSUAL_EFFECTS ) + 0.0 );
+			//TF2Attrib_SetByDefIndex( iHat, 134, GetRandomInt( 1, MAX_UNUSUAL_EFFECTS ) + 0.0 );
+			TF2Attrib_SetByName( iHat, "attach particle effect", GetRandomInt( 1, MAX_UNUSUAL_EFFECTS ) + 0.0 );
 		}
-		else
-		{
-			TF2Attrib_RemoveByDefIndex( iHat, 134 );
+		
+		if ( bHatCannotBeUnusual )
+		{ 
+			// Remove unusual effects on certain hats
+			//TF2Attrib_RemoveByDefIndex( iHat, 134 );
+			TF2Attrib_RemoveByName( iHat, "attach particle effect" )
 		}
 
 		// Random Chance to color cosmetics
 		if ( bPaintable && IsChance( 25 ) )
 		{
 			int randomPaint = GetRandomInt( 0, 28 );
-			TF2Attrib_SetByDefIndex( iHat, 142, g_paintValues[ randomPaint ][ 0 ] );	// Primary color
-			TF2Attrib_SetByDefIndex( iHat, 261, g_paintValues[ randomPaint ][ 1 ] );	// Secondary color
+			//TF2Attrib_SetByDefIndex( iHat, 142, g_paintValues[ randomPaint ][ 0 ] );	// Primary color
+			//TF2Attrib_SetByDefIndex( iHat, 261, g_paintValues[ randomPaint ][ 1 ] );	// Secondary color
+			TF2Attrib_SetByName( iHat, "set item tint RGB", g_paintValues[ randomPaint ][ 0 ] );	// Primary color
+			TF2Attrib_SetByName( iHat, "set item tint RGB 2", g_paintValues[ randomPaint ][ 1 ] );	// Secondary color
 		}
 
 		// Randomly select a style
 		if ( iNumStyles > 1 && IsChance( 25 ) )
 		{
 			int iRandomStyle = GetRandomInt( 1, iNumStyles );
-			TF2Attrib_SetByDefIndex( iHat, 542, float( iRandomStyle ) );
+			//TF2Attrib_SetByDefIndex( iHat, 542, float( iRandomStyle ) );
+			TF2Attrib_SetByName( iHat, "item style override", float( iRandomStyle ) );
 		}
 
 		#if defined TESTING_ONLY
@@ -2061,6 +2139,23 @@ int TF2_CreateHat( int iClient, int iIndex, int iQuality, bool bIsUnusual = fals
 	}
 	
 	return iHat;
+}
+
+// Returns hats that cannot be unusual
+bool CannotBeUnusual( int iEntity )
+{
+	int iIndex = GetEntProp( iEntity, Prop_Send, "m_iItemDefinitionIndex" );
+	switch ( iIndex )
+	{
+		case 1164:	return true;	// Civilian Grade JACK Hat
+		case 1169:	return true;	// Military Grade JACK Hat
+		case 941:	return true;	// The Skull Island Topper 
+		case 263:	return true;	// Ellis Hat
+		case 940:	return true;	// Ghostly Gibus
+		case 116:	return true;	// Ghastly Gibus
+		case 261:	return true;	// Mann Co. Cap
+		default:	return false;
+	}
 }
 
 // Helper functions
