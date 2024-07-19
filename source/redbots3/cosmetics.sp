@@ -892,6 +892,8 @@ public const int SPECIFIC_SOLDIER_HEAD[] = {
 	31449,	// Control Patrol
 	31312,	// Cranial Cowl
 	349,	// Defiant Spartan
+	391,	// Honcho's Headgear
+	575,	// Infernal Impaler
 };
 public const int SPECIFIC_SOLDIER_HATS[] = {
 	445,	// Armored Authority
@@ -924,22 +926,26 @@ public const int SPECIFIC_SOLDIER_HATS[] = {
 	30026,	// Full Metal Drill Hat
 	395,	// Furious Fukaamigasa
 	1093,	// Gilded Guard
+	227,	// Grenadier's Softcap
+	30338,	// Ground Control
+	631,	// Hat With No Name
+	31111,	// Hawk Warrior
+	30978,	// Head Hedge
+	30708,	// Hellmet
+	732,	// Helmet Without a Home
+	417,	// Jumper's Jeepcap
+	152,	// Soldier Samurai Hat
+	439,	// Lord Cockswain's Pith Helmet
+	701,	// Lucky Shot
 };
 public const int SPECIFIC_SOLDIER_GLASSES[] = {
-	816,	// Marxman
-	31060,	// Binoculus
-	522,	// Deus Specs
-	31252,	// Festive Frames
-	30104,	// Graybanns
-	31103,	// Hypno-Eyes
-	343,	// Friendly Item (Professor Speks)
-	744,	// Pyrovision Goggles
-	486,	// Summer Shades
-	30140,	// Virtual Viewfinder
+	360,	// Hero's Hachimaki
 };
 public const int SPECIFIC_SOLDIER_BEARD[] = {
 	647, 	// All-Father
 	30165,	// Cuban Bristle Crisis
+	30477,	// Lone Survivor
+	440,	// Lord Cockswain's Novelty Mutton Chops and Pipe
 };
 public const int SPECIFIC_SOLDIER_COAT[] = {
 	30331,	// Antarctic Parka
@@ -951,6 +957,8 @@ public const int SPECIFIC_SOLDIER_COAT[] = {
 	31450,	// Pathfinder
 	30744,	// Diplomat
 	30747,	// Gift Bringer
+	30129,	// Hornblower
+	650,	// Kringle Collection
 };
 public const int SPECIFIC_SOLDIER_SHIRT[] = {
 	936,	// Exorcizor
@@ -964,6 +972,7 @@ public const int SPECIFIC_SOLDIER_GRENADES[] = {
 	948,	// Deadliest Duckling
 	30853,	// Flakcatcher (I don't understand this equip region)
 	121,	// Web Easteregg Medal (MEDAL, but here cuz im lazy)
+	30822,	// Handy Canes
 };
 public const int SPECIFIC_SOLDIER_BELT[] = {
 	30728,	// Buttler
@@ -971,9 +980,11 @@ public const int SPECIFIC_SOLDIER_BELT[] = {
 };
 public const int SPECIFIC_SOLDIER_PANTS[] = {
 	31451,	// Justice Johns
+	30339,	// Killer's Kit
 };
 public const int SPECIFIC_SOLDIER_POCKET[] = {
 	30896,	// Attack Packs
+	30130,	// Lieutenant Bites
 };
 public const int SPECIFIC_SOLDIER_FEET[] = {
 	30558,	// Coldfront Curbstompers
@@ -988,6 +999,8 @@ int GetCosmeticStyles( int iEntity )
 	switch ( iIndex )
 	{
 		case I:	return 1;	//
+		case 440:	return 1;	// Lord Cockswain's Novelty Mutton Chops and Pipe
+		case 30339:	return 1;	// Killer's Kit
 		case 1021:	return 1;	// Doe-Boy
 		case 31277:	return 1;	// Detective
 		case 948:	return 1;	// Deadliest Duckling
@@ -1189,6 +1202,19 @@ bool IsPaintableHat( int iEntity )
 	switch ( iIndex )
 	{
 		case I:	return true;	// 
+		case 439:	return true;	// Lord Cockswain's Pith Helmet
+		case 440:	return true;	// Lord Cockswain's Novelty Mutton Chops and Pipe
+		case 30477:	return true;	// Lone Survivor
+		case 152:	return true;	// Soldier Samurai Hat
+		case 575:	return true;	// Infernal Impaler
+		case 391:	return true;	// Honcho's Headgear
+		case 360:	return true;	// Hero's Hachimaki
+		case 732:	return true;	// Helmet Without a Home
+		case 30708:	return true;	// Hellmet
+		case 30978:	return true;	// Head Hedge
+		case 31111:	return true;	// Hawk Warrior
+		case 631:	return true;	// Hat With No Name
+		case 30338:	return true;	// Ground Control
 		case 30747:	return true;	// Gift Bringer
 		case 395:	return true;	// Furious Fukaamigasa
 		case 30026:	return true;	// Full Metal Drill Hat
