@@ -886,9 +886,12 @@ public const int SPECIFIC_SCOUT_FEET[] = {
 // PANTS AND GLASSES ARE PLACEHOLDER ALLCLASS
 public const int SPECIFIC_SOLDIER_HEAD[] = {
 	1090,	// Big Daddy
+	1091,	// First American
 	30969,	// Brass Bucket
 	31335,	// Bulb Bonnet
 	31449,	// Control Patrol
+	31312,	// Cranial Cowl
+	349,	// Defiant Spartan
 };
 public const int SPECIFIC_SOLDIER_HATS[] = {
 	445,	// Armored Authority
@@ -907,6 +910,20 @@ public const int SPECIFIC_SOLDIER_HATS[] = {
 	30553,	// EOTL_soldierhat (Condor Cap)
 	721,	// Conquistador
 	31024,	// Crack Pot
+	853,	// Crafty Hair
+	30899,	// Crit Cloak
+	764,	// Cross-Comm Crash Helmet
+	31045,	// Dancing Doe
+	31277,	// Detective
+	1021,	// Doe-Boy
+	31035,	// Dumb Bell
+	31069,	// El Zapateador
+	31256,	// Elf Defence
+	339,	// Exquisite Rack (MISC)
+	31310,	// Firearm Protector
+	30026,	// Full Metal Drill Hat
+	395,	// Furious Fukaamigasa
+	1093,	// Gilded Guard
 };
 public const int SPECIFIC_SOLDIER_GLASSES[] = {
 	816,	// Marxman
@@ -932,11 +949,21 @@ public const int SPECIFIC_SOLDIER_COAT[] = {
 	31276,	// Chaser (This is sleeves, but will clip with some coats)
 	30601,	// eotl_winter_coat (Cold Snap Coat)
 	31450,	// Pathfinder
+	30744,	// Diplomat
+	30747,	// Gift Bringer
+};
+public const int SPECIFIC_SOLDIER_SHIRT[] = {
+	936,	// Exorcizor
+	446,	// Fancy Dress Uniform
+	30142,	// Founding Father
 };
 public const int SPECIFIC_SOLDIER_GRENADES[] = {
 	30886,	// Bananades
 	922,	// Bonedolier
 	731,	// Captain's Cocktails
+	948,	// Deadliest Duckling
+	30853,	// Flakcatcher (I don't understand this equip region)
+	121,	// Web Easteregg Medal (MEDAL, but here cuz im lazy)
 };
 public const int SPECIFIC_SOLDIER_BELT[] = {
 	30728,	// Buttler
@@ -960,7 +987,12 @@ int GetCosmeticStyles( int iEntity )
 	int iIndex = GetEntProp( iEntity, Prop_Send, "m_iItemDefinitionIndex" );
 	switch ( iIndex )
 	{
-//		case I:	return 1;	//
+		case I:	return 1;	//
+		case 1021:	return 1;	// Doe-Boy
+		case 31277:	return 1;	// Detective
+		case 948:	return 1;	// Deadliest Duckling
+		case 31312:	return 1;	// Cranial Cowl
+		case 853:	return 1;	// Crafty Hair
 		case 31450:	return 1;	// Pathfinder
 		case 31451:	return 1;	// Justice Johns
 		case 31449:	return 1;	// Control Patrol
@@ -1156,7 +1188,23 @@ bool IsPaintableHat( int iEntity )
 	int iIndex = GetEntProp( iEntity, Prop_Send, "m_iItemDefinitionIndex" );
 	switch ( iIndex )
 	{
-//		case I:	return true;	// 
+		case I:	return true;	// 
+		case 30747:	return true;	// Gift Bringer
+		case 395:	return true;	// Furious Fukaamigasa
+		case 30026:	return true;	// Full Metal Drill Hat
+		case 339:	return true;	// Exquisite Rack
+		case 936:	return true;	// Exorcizor
+		case 31256:	return true;	// Elf Defence
+		case 31069:	return true;	// El Zapateador
+		case 31035:	return true;	// Dumb Bell
+		case 30744:	return true;	// Diplomat
+		case 31277:	return true;	// Detective
+		case 340:	return true;	// Defiant Spartan
+		case 948:	return true;	// Deadliest Duckling
+		case 764:	return true;	// Cross-Comm Crash Helmet
+		case 30899:	return true;	// Crit Cloak
+		case 31312:	return true;	// Cranial Cowl
+		case 853:	return true;	// Crafty Hair
 		case 31024:	return true;	// Crack Pot
 		case 31450:	return true;	// Pathfinder
 		case 31451:	return true;	// Justice Johns
