@@ -634,7 +634,6 @@ public const CosmeticSet CS_PRESET_SCOUT[] = {
 	{ 940, 744, 166 },			// Ghostly Gibus, Pyrovision Goggles, Mercenary
 	{ 941, 744, 655 },			// Skull Island Topper, Pyrovision Goggles, Spirit of Giving
 	{ 263, 166, -1 },			// Ellis Hat, Mercenary
-
 };
 
 public const CosmeticSet CS_PRESET_SCOUT_HALLOWEEN[] = {
@@ -673,11 +672,13 @@ public const CosmeticSet CS_PRESET_SOLDIER[] = {
 	{ 30390, 30477, 30983 },	// Spook Specs, Lone Survivor, Veterans Attire
 	{ 30553, 30165, 30601 }, 	// Condor Cap, Cuban Bristle Crisis, Cold Snap Coat
 	{ 31449, 31450, 31451 },	// Control Patrol, Pathfinder, Justice Johns
+	{ 30118, 30780, 30896 },	// Whirly Warrior, Patriot's Pouches, Attack Packs
 	{ 445, 30388, 30392 },		// Armored Authority, Classified Coif, Man in Slacks
 	{ 31325, 30331, 641 },		// Colonel Kringle, Antarctic Parka, Ornament Armament
 	{ 945, 30853, 30388 },		// Chief Constable, FlakCatcher, Classified Coif
 	{ 126, 30309, 30068 },		// Bills Hat, Dead Of Night, Breakneck Baggies
 	{ 31310, 446, 31311 },		// Firearm Protector, Fancy Dress Uniform, Safety Stripes
+	{ 99, 30164, 30129 },		// Tyrant's Helm, Viking Braider, Hornblower
 	{ 261, 744, 166 },			// Mann Co. Cap, Pyrovision Goggles, Mercenary
 	{ 940, 744, 166 },			// Ghostly Gibus, Pyrovision Goggles, Mercenary
 	{ 941, 744, 655 },			// Skull Island Topper, Pyrovision Goggles, Spirit of Giving
@@ -883,7 +884,8 @@ public const int SPECIFIC_SCOUT_FEET[] = {
 // SOLDIER
 //-----------------------------------------------
 // LEFT OFF CRACK POT
-// PANTS AND GLASSES ARE PLACEHOLDER ALLCLASS
+// UNUSED SO FAR
+//121,	// Web Easteregg Medal
 public const int SPECIFIC_SOLDIER_HEAD[] = {
 	1090,	// Big Daddy
 	1091,	// First American
@@ -927,7 +929,7 @@ public const int SPECIFIC_SOLDIER_HATS[] = {
 	395,	// Furious Fukaamigasa
 	1093,	// Gilded Guard
 	227,	// Grenadier's Softcap
-	30338,	// Ground Control
+	30338,	// Ground Control (has glasses)
 	631,	// Hat With No Name
 	31111,	// Hawk Warrior
 	30978,	// Head Hedge
@@ -937,15 +939,64 @@ public const int SPECIFIC_SOLDIER_HATS[] = {
 	152,	// Soldier Samurai Hat
 	439,	// Lord Cockswain's Pith Helmet
 	701,	// Lucky Shot
+	30885,	// Nuke (Has Glasses)
+	30390,	// Spook Specs (has glasses)
+	//240,	// Worms Gear (Includes Grenades)
+	31199,	// Panisher (ugly hat)
+	31147,	// Semi-Tame Trapper's Hat (ugly)
+	31095,	// Public Speaker (MISC)
+	31044,	// Peacebreaker
+	30811,	// Pestering Jester
+	30069,	// Powdered Practitioner
+	31071,	// Racc Mann
+	30120,	// Rebel Rouser
+	31198,	// Roaming Roman
+	30548,	// EOTL_soldier_garrison (Screamin' Eagle)
+	183,	// Soldier Drill Hat
+	30897,	// Shellmet
+	30578,	// Skullcap
+	30984,	// Sky High Fly Guy
+	30314,	// Slo-Poke
+	980,	// Soldier's Slope Scopers
+	54,		// Soldier's Stash
+	31106,	// Sophisticated Smoker
+	616,	// Stahlhelm
+	98,		// Stainless Pot
+	30017,	// Steel Shako
+	251,	// Stout Shako
+	31002,	// Tank Top
+	378,	// Team Captain
+	31200,	// Thousand-Yard Stare
+	844,	// Tin Pot
+	30316,	// Toy Soldier
+	99,		// Tyrant's Helm
+	30014,	// Tyrantium Helmet
+	30114,	// Valley Forge
+	31003,	// Vampire Vanquisher
+	30887,	// War Eagle
+	829,	// War Pig
+	1073,	// War on Smissmas Battle Hood
+	30118,	// Whirly Warrior
+	1063,	// MvM GateBot Light Soldier (easter egg)
 };
 public const int SPECIFIC_SOLDIER_GLASSES[] = {
 	360,	// Hero's Hachimaki
+	30085,	// Macho Mann
+	30831,	// Reader's Choice
 };
 public const int SPECIFIC_SOLDIER_BEARD[] = {
 	647, 	// All-Father
 	30165,	// Cuban Bristle Crisis
 	30477,	// Lone Survivor
 	440,	// Lord Cockswain's Novelty Mutton Chops and Pipe
+	30335,	// Marshall's Mutton Chops
+	875,	// Menpo
+	30554,	// EOTL_beard (Mistaken Movember)
+	986,	// Mutton Mann
+	31163,	// Particulate Protector
+	30033,	// Soldier's Sparkplug
+	852,	// Soldier's Stogie
+	30164,	// Viking Braider
 };
 public const int SPECIFIC_SOLDIER_COAT[] = {
 	30331,	// Antarctic Parka
@@ -953,17 +1004,23 @@ public const int SPECIFIC_SOLDIER_COAT[] = {
 	30727,	// Caped Crusader
 	30388,	// Classified Coif
 	31276,	// Chaser (This is sleeves, but will clip with some coats)
+	30126,	// Shogun's Shoulder Guard (Sleeves, but putting this here)
 	30601,	// eotl_winter_coat (Cold Snap Coat)
 	31450,	// Pathfinder
 	30744,	// Diplomat
 	30747,	// Gift Bringer
 	30129,	// Hornblower
 	650,	// Kringle Collection
+	31070,	// Party Poncho
+	30898,	// Sharp Chest Pain
+	31418,	// Trench Warefarer
+	30983,	// Veterans Attire
 };
 public const int SPECIFIC_SOLDIER_SHIRT[] = {
 	936,	// Exorcizor
 	446,	// Fancy Dress Uniform
 	30142,	// Founding Father
+	30870,	// Patriot's Pouches
 };
 public const int SPECIFIC_SOLDIER_GRENADES[] = {
 	30886,	// Bananades
@@ -971,25 +1028,35 @@ public const int SPECIFIC_SOLDIER_GRENADES[] = {
 	731,	// Captain's Cocktails
 	948,	// Deadliest Duckling
 	30853,	// Flakcatcher (I don't understand this equip region)
-	121,	// Web Easteregg Medal (MEDAL, but here cuz im lazy)
 	30822,	// Handy Canes
+	641,	// Ornament Armament
+	768,	// Professor's Pineapple
+	31220,	// Trickster's Treats
+	1074,	// War on Smissmas Battle Socks
 };
 public const int SPECIFIC_SOLDIER_BELT[] = {
 	30728,	// Buttler
+	30818,	// Socked And Loaded
 	30115,	// Compatriot (left shoulder)
+	30985,	// Private Maggot Muncher (neckless)
+	31388,	// Warlock's Warcloak (neckless)
 };
 public const int SPECIFIC_SOLDIER_PANTS[] = {
 	31451,	// Justice Johns
 	30339,	// Killer's Kit
+	30392,	// Man in Slacks
+	31379,	// Stealth Bomber
 };
 public const int SPECIFIC_SOLDIER_POCKET[] = {
 	30896,	// Attack Packs
 	30130,	// Lieutenant Bites
+	392,	// Pocket Medic
+	31311,	// Safety Stripes
 };
 public const int SPECIFIC_SOLDIER_FEET[] = {
 	30558,	// Coldfront Curbstompers
 	30117,	// Colonial Clogs
-
+	734,	// Teufort Tooth Kicker
 };
 
 // Returns the ellgible cosmetics that has multiple styles
@@ -998,14 +1065,22 @@ int GetCosmeticStyles( int iEntity )
 	int iIndex = GetEntProp( iEntity, Prop_Send, "m_iItemDefinitionIndex" );
 	switch ( iIndex )
 	{
-		case I:	return 1;	//
+		//case I:	return 1;	// 
+		case 1073:	return 1;	// War on Smissmas Battle Hood
+		case 829:	return 1;	// War Pig
+		case 31220:	return 1;	// Trickster's Treats
+		case 31200:	return 1;	// Thousand-Yard Stare
+		case 844:	return 1;	// Tin Pot
+		case 980:	return 1;	// Soldier's Slope Scopers
+		case 31387:	return 1;	// Shortness Of Breath
+		case 31147:	return 1;	// Semi-Tame Trapper's Hat
+		case 30069:	return 1;	// Powdered Practitioner
+		case 30870:	return 1;	// Patriot's Pouches
 		case 440:	return 1;	// Lord Cockswain's Novelty Mutton Chops and Pipe
-		case 30339:	return 1;	// Killer's Kit
 		case 1021:	return 1;	// Doe-Boy
 		case 31277:	return 1;	// Detective
 		case 948:	return 1;	// Deadliest Duckling
 		case 31312:	return 1;	// Cranial Cowl
-		case 853:	return 1;	// Crafty Hair
 		case 31450:	return 1;	// Pathfinder
 		case 31451:	return 1;	// Justice Johns
 		case 31449:	return 1;	// Control Patrol
@@ -1187,6 +1262,9 @@ int GetCosmeticStyles( int iEntity )
 		case 31284:	return 4;	// Boston Brain Bucket
 		case 31285:	return 4;	// Pest's Pads
 		case 31293:	return 4;	// Beaten And Bruised
+		case 875:	return 4;	// Menpo
+		
+		case 31419:	return 5;	// Wanderer's Wool
 
 		case 1126:	return 10;	// Duck Badge (WTF, 10 styles????)
 		default:	return false;
@@ -1201,10 +1279,52 @@ bool IsPaintableHat( int iEntity )
 	int iIndex = GetEntProp( iEntity, Prop_Send, "m_iItemDefinitionIndex" );
 	switch ( iIndex )
 	{
-		case I:	return true;	// 
+		//case I:	return true;	// 
+		case 30118:	return true;	// Whirly Warrior
+		case 829:	return true;	// War Pig
+		case 31419:	return true;	// Wanderer's Wool
+		case 30164:	return true;	// Viking Braider
+		case 99:	return true;	// Tyrant's Helm
+		case 30014:	return true;	// Tyrantium Helmet
+		case 30114:	return true;	// Valley Forge
+		case 31003:	return true;	// Vampire Vanquisher
+		case 31220:	return true;	// Trickster's Treats
+		case 30316:	return true;	// Toy Soldier
+		case 31200:	return true;	// Thousand-Yard Stare
+		case 30017:	return true;	// Steel Shako
+		case 251:	return true;	// Stout Shako
+		case 31002:	return true;	// Tank Top
+		case 31379:	return true;	// Stealth Bomber
+		case 31106:	return true;	// Sophisticated Smoker
+		case 54:	return true;	// Soldier's Stash
+		case 980:	return true;	// Soldier's Slope Scopers
+		case 30818:	return true;	// Socked and Loaded
+		case 30314:	return true;	// Slo-Poke
+		case 30984:	return true;	// Sky High Fly Guy
+		case 31387:	return true;	// Shortness Of Breath
+		case 30126:	return true;	// Shogun's Shoulder Guard
+		case 30897:	return true;	// Shellmet
+		case 30898:	return true;	// Sharp Chest Pain
+		case 183:	return true;	// Soldier Drill Hat
+		case 31147:	return true;	// Semi-Tame Trapper's Hat
+		case 30548:	return true;	// EOTL_soldier_garrison (Screamin' Eagle)
+		case 31198:	return true;	// Roaming Roman
+		case 30120:	return true;	// Rebel Rouser
+		case 31071:	return true;	// Racc Mann
+		case 31095:	return true;	// Public Speaker
+		case 768:	return true;	// Professor's Pineapple
+		case 30985:	return true;	// Private Maggot Muncher
+		case 30069:	return true;	// Powdered Practitioner
+		case 31044:	return true;	// Peacebreaker
+		case 30870:	return true;	// Patriot's Pouches
+		case 31070:	return true;	// Party Poncho
+		case 641:	return true;	// Ornament Armament
+		case 30885:	return true;	// Nuke
+		case 30554:	return true;	// EOTL_beard (Mistaken Movember)
+		case 875:	return true;	// Menpo
+		case 30335:	return true;	// Marshall's Mutton Chops
 		case 439:	return true;	// Lord Cockswain's Pith Helmet
 		case 440:	return true;	// Lord Cockswain's Novelty Mutton Chops and Pipe
-		case 30477:	return true;	// Lone Survivor
 		case 152:	return true;	// Soldier Samurai Hat
 		case 575:	return true;	// Infernal Impaler
 		case 391:	return true;	// Honcho's Headgear
@@ -1230,7 +1350,6 @@ bool IsPaintableHat( int iEntity )
 		case 764:	return true;	// Cross-Comm Crash Helmet
 		case 30899:	return true;	// Crit Cloak
 		case 31312:	return true;	// Cranial Cowl
-		case 853:	return true;	// Crafty Hair
 		case 31024:	return true;	// Crack Pot
 		case 31450:	return true;	// Pathfinder
 		case 31451:	return true;	// Justice Johns
@@ -1710,14 +1829,12 @@ bool IsPaintableHat( int iEntity )
 // SPY
 //-----------------------------------------------
 
-
 public Action Timer_ApplyCosmetics( Handle timer, int client )
 {
 	if ( !IsClientInGame( client ) || !IsPlayerAlive( client ) )
 		return Plugin_Stop;
 
 	GiveBotCosmetics( client );
-
 	return Plugin_Stop;
 }
 
@@ -1756,6 +1873,7 @@ void GiveBotCosmetics( int iClient )
 	int iRandSoldier_Glasses 	= SPECIFIC_SOLDIER_GLASSES[ GetRandomInt( 0, sizeof( SPECIFIC_SOLDIER_GLASSES ) - 1 ) ];
 	int iRandSoldier_Beard 		= SPECIFIC_SOLDIER_BEARD[ GetRandomInt( 0, sizeof( SPECIFIC_SOLDIER_BEARD ) - 1 ) ];
 	int iRandSoldier_Coat 		= SPECIFIC_SOLDIER_COAT[ GetRandomInt( 0, sizeof( SPECIFIC_SOLDIER_COAT ) - 1 ) ];
+	int iRandSoldier_Shirt 		= SPECIFIC_SOLDIER_SHIRT[ GetRandomInt( 0, sizeof( SPECIFIC_SOLDIER_SHIRT ) - 1 ) ];
 	int iRandSoldier_Grenades 	= SPECIFIC_SOLDIER_GRENADES[ GetRandomInt( 0, sizeof( SPECIFIC_SOLDIER_GRENADES ) - 1 ) ];
 	int iRandSoldier_Belt 		= SPECIFIC_SOLDIER_BELT[ GetRandomInt( 0, sizeof( SPECIFIC_SOLDIER_BELT ) - 1 ) ];
 	int iRandSoldier_Pants 		= SPECIFIC_SOLDIER_PANTS[ GetRandomInt( 0, sizeof( SPECIFIC_SOLDIER_PANTS ) - 1 ) ];
@@ -1765,7 +1883,7 @@ void GiveBotCosmetics( int iClient )
 	int iSelectedCosmetics[ 3 ];
 	int iAllCosmetics[ 12 ];		// All class
 	int iScoutCosmetics[ 13 ];
-	int iSoldierCosmetics[ 12 ];
+	int iSoldierCosmetics[ 13 ];
 
 	TFClassType TFClass = TF2_GetPlayerClass( iClient );
 
@@ -1798,11 +1916,13 @@ void GiveBotCosmetics( int iClient )
 				{
 					iSelectedCosmetics[ i ] = iAllCosmetics[ iIndex[ i ] ];
 
-				/* 	Check if head is selected, don't select hat, glasses, or beard
+				/* 	
+					Check if head is selected, don't select hat, glasses, or beard
 					TODO: Instead of doing this
 					let's just check to see if there's no cosmetic conflicts.
 					This will save a lot of headache of cosmetic arrangement
-					Like hats with glasses... */
+					Like hats with glasses... 
+				*/
 					if ( iSelectedCosmetics[ i ] )
 					{
 						if ( iIndex[ i ] == 10 ) 
@@ -1889,13 +2009,14 @@ void GiveBotCosmetics( int iClient )
 					iSoldierCosmetics[ 4 ] = IsChance( 75 ) ? iRandSoldier_Beard: iRandBeard;
 					iSoldierCosmetics[ 5 ] = iRandMedal;
 					iSoldierCosmetics[ 6 ] = IsChance( 75 ) ? iRandSoldier_Coat : iRandTorso;
-					iSoldierCosmetics[ 7 ] = iRandSoldier_Grenades;
-					iSoldierCosmetics[ 8 ] = IsChance( 75 ) ? iRandSoldier_Belt : iRandBelt;
-					iSoldierCosmetics[ 9 ] = IsChance( 75 ) ? iRandSoldier_Pants : iRandPants;
-					iSoldierCosmetics[ 10 ] = IsChance( 75 ) ? iRandSoldier_Feet : iRandFeet;
-					iSoldierCosmetics[ 11 ] = iRandSoldier_Pocket;
+					iSoldierCosmetics[ 7 ] = iRandSoldier_Shirt
+					iSoldierCosmetics[ 8 ] = iRandSoldier_Grenades;
+					iSoldierCosmetics[ 9 ] = IsChance( 75 ) ? iRandSoldier_Belt : iRandBelt;
+					iSoldierCosmetics[ 10 ] = IsChance( 75 ) ? iRandSoldier_Pants : iRandPants;
+					iSoldierCosmetics[ 11 ] = IsChance( 75 ) ? iRandSoldier_Feet : iRandFeet;
+					iSoldierCosmetics[ 12 ] = iRandSoldier_Pocket;
 
-					int iIndex[ 11 ] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 };
+					int iIndex[ 12 ] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 };
 					ShuffleArray( iIndex, sizeof( iIndex ) );
 
 					for ( int i = 0; i < 3; ++i )
@@ -1913,7 +2034,7 @@ void GiveBotCosmetics( int iClient )
 								iSoldierCosmetics[ 4 ] = 0;
 							}
 							// If hat, glasses, beard or face is selected, don't select head
-							else if ( iIndex[ i ] == 2 || iIndex[ i ] == 3 || iIndex[ i ] == 4 || iIndex[ i ] == 12 ) 
+							else if ( iIndex[ i ] == 2 || iIndex[ i ] == 3 || iIndex[ i ] == 4 ) 
 							{
 								iSoldierCosmetics[ 1 ] = 0;
 							}
@@ -2062,6 +2183,7 @@ int TF2_CreateHat( int iClient, int iIndex, int iQuality, bool bIsUnusual = fals
 		SetEntProp( iHat, Prop_Send, "m_bInitialized", 1 );
 		
 		char netClass[ 64 ]; GetEntityNetClass( iHat, netClass, sizeof( netClass ) );
+		char clientName[ MAX_NAME_LENGTH ]; GetClientName( iClient, clientName, sizeof( clientName ) ) ;
 		int iPropInfoQuality = FindSendPropInfo( netClass, "m_iEntityQuality" );
 		int iPropInfoLevel = FindSendPropInfo( netClass, "m_iEntityLevel" );
 		int iNumStyles = GetCosmeticStyles( iHat );
@@ -2077,14 +2199,12 @@ int TF2_CreateHat( int iClient, int iIndex, int iQuality, bool bIsUnusual = fals
 			|| iQuality == QUALITY_COMMUNITY || iQuality == QUALITY_COLLECTORS )
 			{
 				// Remove "Kill Eater" attrbute
-				// TF2Attrib_RemoveByDefIndex( iHat, 214 );
 				TF2Attrib_RemoveByName( iHat, "kill eater" )
 			}
 			else if ( IsChance( 25 ) )
 			{
 				// Set item to strange
 				iQuality = QUALITY_STRANGE;
-				//TF2Attrib_SetByDefIndex( iHat, 214, view_as<float>( GetRandomInt( 0, 9000 ) ) );
 				TF2Attrib_SetByName( iHat, "kill eater", view_as<float>( GetRandomInt( 0, 9000 ) ) );
 			}
 		}
@@ -2139,7 +2259,6 @@ int TF2_CreateHat( int iClient, int iIndex, int iQuality, bool bIsUnusual = fals
 		if ( iIndex == 1158 || iIndex == 1173 )
 		{
 			iQuality = QUALITY_UNUSUAL;
-			//TF2Attrib_SetByDefIndex( iHat, 134, GetRandomInt( 1, MAX_UNUSUAL_EFFECTS ) + 0.0 );	// We must add a decimal for unusual
 			TF2Attrib_SetByName( iHat, "attach particle effect", GetRandomInt( 1, MAX_UNUSUAL_EFFECTS ) + 0.0 );
 			
 			/* 
@@ -2156,7 +2275,6 @@ int TF2_CreateHat( int iClient, int iIndex, int iQuality, bool bIsUnusual = fals
 		{
 			// 30559 = EOTL COM MEDAL
 			iQuality = QUALITY_SELFMADE;
-			//TF2Attrib_SetByDefIndex( iHat, 134, 4.0 );
 			TF2Attrib_SetByName( iHat, "attach particle effect", 4.0 );
 			bCantBeUnusual = true;
 		}
@@ -2166,14 +2284,12 @@ int TF2_CreateHat( int iClient, int iIndex, int iQuality, bool bIsUnusual = fals
 		{
 			// Set the hat as unusual
 			iQuality = QUALITY_UNUSUAL;
-			//TF2Attrib_SetByDefIndex( iHat, 134, GetRandomInt( 1, MAX_UNUSUAL_EFFECTS ) + 0.0 );
 			TF2Attrib_SetByName( iHat, "attach particle effect", GetRandomInt( 1, MAX_UNUSUAL_EFFECTS ) + 0.0 );
 		}
 		
 		if ( bHatCannotBeUnusual )
 		{ 
 			// Remove unusual effects on certain hats
-			//TF2Attrib_RemoveByDefIndex( iHat, 134 );
 			TF2Attrib_RemoveByName( iHat, "attach particle effect" )
 		}
 
@@ -2181,8 +2297,6 @@ int TF2_CreateHat( int iClient, int iIndex, int iQuality, bool bIsUnusual = fals
 		if ( bPaintable && IsChance( 25 ) )
 		{
 			int randomPaint = GetRandomInt( 0, 28 );
-			//TF2Attrib_SetByDefIndex( iHat, 142, g_paintValues[ randomPaint ][ 0 ] );	// Primary color
-			//TF2Attrib_SetByDefIndex( iHat, 261, g_paintValues[ randomPaint ][ 1 ] );	// Secondary color
 			TF2Attrib_SetByName( iHat, "set item tint RGB", g_paintValues[ randomPaint ][ 0 ] );	// Primary color
 			TF2Attrib_SetByName( iHat, "set item tint RGB 2", g_paintValues[ randomPaint ][ 1 ] );	// Secondary color
 		}
@@ -2191,12 +2305,11 @@ int TF2_CreateHat( int iClient, int iIndex, int iQuality, bool bIsUnusual = fals
 		if ( iNumStyles > 1 && IsChance( 25 ) )
 		{
 			int iRandomStyle = GetRandomInt( 1, iNumStyles );
-			//TF2Attrib_SetByDefIndex( iHat, 542, float( iRandomStyle ) );
 			TF2Attrib_SetByName( iHat, "item style override", float( iRandomStyle ) );
 		}
 
 		#if defined TESTING_ONLY
-			CPrintToChatAll( "ID: {lightblue}%i" ,iIndex )
+			CPrintToChatAll( "BOT: {fuchsia}%s{default}, ID: {lightblue} %i", clientName, iIndex )
 		#endif
 
 		// Finalize hat creation
@@ -2210,6 +2323,9 @@ int TF2_CreateHat( int iClient, int iIndex, int iQuality, bool bIsUnusual = fals
 	else
 	{
 		LogError( "TF2_CreateHat: Failed to create entity." );
+		#if defined TESTING_ONLY
+			CPrintToChatAll( "{fullred}Failed to generate Items." );
+		#endif
 	}
 	
 	return iHat;
