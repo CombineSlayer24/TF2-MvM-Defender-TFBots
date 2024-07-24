@@ -120,6 +120,16 @@
 				"windows"	"\x53\x8B\xDC\x83\xEC\x08\x83\xE4\xF0\x83\xC4\x04\x55\x8B\x6B\x2A\x89\x6C\x24\x2A\x8B\xEC\x81\xEC\x98\x01\x00\x00\x56\x8B\x73"
 				"linux"		"@_ZN9CTFPlayer22PlayTauntSceneFromItemEPK13CEconItemView"
 			}
+			"CBaseAnimating::LookupBone"
+			{
+				"windows"	"\x55\x8B\xEC\x56\x8B\xF1\x80\xBE\x2A\x2A\x2A\x2A\x00\x75\x2A\x83\xBE\x2A\x2A\x2A\x2A\x00\x75\x2A\xE8\x2A\x2A\x2A\x2A\x85\xC0\x74\x2A\x8B\xCE\xE8\x2A\x2A\x2A\x2A\x8B\x86\x2A\x2A\x2A\x2A\x85\xC0\x74\x2A\x83\x38\x00\x74\x2A\xFF\x75\x2A\x50\xE8\x2A\x2A\x2A\x2A\x83\xC4\x08\x5E"
+				"linux"		"@_ZN14CBaseAnimating10LookupBoneEPKc"
+			}
+			"CBaseAnimating::GetBonePosition"
+			{
+				"windows"	"\x55\x8B\xEC\x83\xEC\x30\x56\x8B\xF1\x80\xBE\x2A\x2A\x2A\x2A\x00\x75\x2A"
+				"linux"		"@_ZN14CBaseAnimating15GetBonePositionEiR6VectorR6QAngle"
+			}
 		}
 		"Offsets"
 		{
@@ -168,6 +178,11 @@
 			{
 				"windows"	"63"
 				"linux"		"64"
+			}
+			"CTFWeaponBaseGun::GetProjectileGravity"
+			{
+				"windows"	"482"		
+				"linux"		"489"
 			}
 			//These numbers are used to calculate the actual offset based on the base netprop offset in the Keys section
 			//The calculation formula is base offset + this number

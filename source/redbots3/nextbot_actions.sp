@@ -10,7 +10,6 @@
 #define FLAMETHROWER_REACH_RANGE	350.0
 #define FLAMEBALL_REACH_RANGE	526.0
 #define BOMB_GUARD_RADIUS	400.0
-#define DEFEND_POINT_DURATION	60.0
 
 static char g_strHealthAndAmmoEntities[][] = 
 {
@@ -145,12 +144,17 @@ public void OnActionCreated(BehaviorAction action, int actor, const char[] name)
 	{
 		if (StrEqual(name, "MainAction"))
 		{
-			action.SelectMoreDangerousThreat = CTFBotMainAction_SelectMoreDangerousThreat;
+			// action.SelectMoreDangerousThreat = CTFBotMainAction_SelectMoreDangerousThreat;
 			action.SelectTargetPoint = CTFBotMainAction_SelectTargetPoint;
 		}
 		else if (StrEqual(name, "TacticalMonitor"))
 		{
 			action.Update = CTFBotTacticalMonitor_Update;
+			
+			/* NOTE: I've noticed this seems to be very inconsistent at the MainAction level and it also seems to behave differently on windows vs linux
+			Let's just override it at the TacticalMonitor level, though this one doesn't actually have a function for it in its class
+			But since all nextbot callbacks are virtual i think this should work fine */
+			action.SelectMoreDangerousThreat = CTFBotMainAction_SelectMoreDangerousThreat;
 		}
 		else if (StrEqual(name, "ScenarioMonitor"))
 		{
@@ -186,8 +190,21 @@ public Action CTFBotMainAction_SelectMoreDangerousThreat(BehaviorAction action, 
 	if (g_bIsDefenderBot[me] == false)
 		return Plugin_Continue;
 	
-	// if (!knownThreat1.IsVisibleRecently() && !knownThreat2.IsVisibleRecently())
-		// return Plugin_Continue;
+	bool isImmediateThreat1 = IsImmediateThreat(me, threat1);
+	bool isImmediateThreat2 = IsImmediateThreat(me, threat2);
+	
+	if (isImmediateThreat1 && !isImmediateThreat2)
+	{
+		knownEntity = threat1;
+		return Plugin_Changed;
+	}
+	else if (!isImmediateThreat1 && isImmediateThreat2)
+	{
+		knownEntity = threat2;
+		return Plugin_Changed;
+	}
+	
+	//Either both are immediately dangerous, or neither one of them are
 	
 	CKnownEntity closeThreat = SelectCloserThreat(nextbot, threat1, threat1);
 	
@@ -306,6 +323,22 @@ public Action CTFBotMainAction_SelectTargetPoint(BehaviorAction action, INextBot
 				
 				return Plugin_Changed;
 			}
+			case TF_WEAPON_SNIPERRIFLE, TF_WEAPON_SNIPERRIFLE_DECAP, TF_WEAPON_SNIPERRIFLE_CLASSIC:
+			{
+				//For sniper rifles, try to lookup their head bone to aim at
+				int bone = LookupBone(entity, "bip_head");
+				
+				if (bone != -1)
+				{
+					float vecEmpty[3];
+					GetBonePosition(entity, bone, vec, vecEmpty);
+					vec[2] += 3.0;
+					
+					return Plugin_Changed;
+				}
+				
+				//For sniper rifles, TFBots always aim at the entity's eye position
+			}
 			/* case TF_WEAPON_FLAMETHROWER:
 			{
 				if (IsBaseBoss(entity))
@@ -319,6 +352,7 @@ public Action CTFBotMainAction_SelectTargetPoint(BehaviorAction action, INextBot
 		}
 	}
 	
+	//Let the game do its default aiming
 	return Plugin_Continue;
 }
 
@@ -3991,7 +4025,7 @@ bool OpportunisticallyUseWeaponAbilities(int client, int activeWeapon, INextBot 
 	}
 	
 	//Phlogistinator
-	if (weaponID == TF_WEAPON_FLAMETHROWER && bot.IsRangeLessThan(threat.GetEntity(), 750.0) && !TF2_IsCritBoosted(client))
+	if (weaponID == TF_WEAPON_FLAMETHROWER && bot.IsRangeLessThan(threat.GetEntity(), FLAMETHROWER_REACH_RANGE) && !TF2_IsCritBoosted(client))
 	{
 		if (TF2_GetRageMeter(client) >= 100.0 && !TF2_IsRageDraining(client))
 		{
@@ -4709,9 +4743,26 @@ void MonitorKnownEntities(int client, IVision vision)
 		if (BaseEntity_GetTeamNumber(i) == myTeam)
 			continue;
 		
-		//If the threat is within our visible sightline, we will know about it
+		/* IVision::UpdateKnownEntities runs its own check for collecting potentially visible entities
+		However it only seems to check for them only regarding the bot's FOV
+		When the known entity leaves the bot's FOV, it would eventually become obsolete after 10 seconds
+		And when it becomes obsolete, it gets removed from the list of known entities
+		So here we are basically expanding the functionality using our own line-of-sight of check */
 		if (TF2_IsLineOfFireClear4(client, i))
-			vision.AddKnownEntity(i);
+		{
+			CKnownEntity known = vision.GetKnown(i);
+			
+			if (known)
+			{
+				//We already know about this entity and we can currently see it
+				known.UpdatePosition();
+			}
+			else
+			{
+				//We didn't know about it but we can see it now, recognize it
+				vision.AddKnownEntity(i);
+			}
+		}
 	}
 }
 
@@ -5071,11 +5122,13 @@ bool ShouldBuybackIntoGame(int client)
 	if (g_bIsBeingRevived[client])
 		return false;
 	
+	//Based on our rolled number, decide to buyback
 	return g_iBuybackNumber[client] <= redbots_manager_bot_buyback_chance.IntValue;
 }
 
 bool ShouldUpgradeMidRound(int client)
 {
+	//Based on our rolled number from spawn, decide to buy upgrades now
 	return g_iBuyUpgradesNumber[client] > 0 && g_iBuyUpgradesNumber[client] <= redbots_manager_bot_buy_upgrades_chance.IntValue;
 }
 
@@ -5196,4 +5249,32 @@ int GetMoneyCollectorCount()
 			count++;
 	
 	return count;
+}
+
+bool IsImmediateThreat(int client, const CKnownEntity threat)
+{
+	if (!threat.IsVisibleRecently())
+		return false;
+	
+	int iThreat = threat.GetEntity();
+	
+	if (!TF2_IsLineOfFireClear4(client, iThreat))
+		return false;
+	
+	float myAbsOrigin[3]; GetClientAbsOrigin(client, myAbsOrigin);
+	float lastKnownPos[3]; threat.GetLastKnownPosition(lastKnownPos);
+	
+	float to[3]; SubtractVectors(myAbsOrigin, lastKnownPos, to);
+	float threatRange = NormalizeVector(to, to);
+	
+	const float nearbyRange = 500.0;
+	
+	//Nearby threats are always dangerous
+	if (threatRange < nearbyRange)
+		return true;
+	
+	if (!BaseEntity_IsPlayer(iThreat))
+		return false;
+	
+	return false;
 }
