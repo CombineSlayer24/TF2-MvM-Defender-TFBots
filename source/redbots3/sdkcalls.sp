@@ -7,7 +7,7 @@ static Handle m_hHasAmmo;
 static Handle m_hGetAmmoCount;
 static Handle m_hClip1;
 static Handle m_hGetProjectileSpeed;
-//static Handle m_hPlayTauntSceneFromItem;
+static Handle m_hPlayTauntSceneFromItem;
 
 #if defined METHOD_MVM_UPGRADES
 static Handle m_hGEconItemSchema;
@@ -108,8 +108,7 @@ bool InitSDKCalls(GameData hGamedata)
 		failCount++;
 	}
 
-	// Find this sig, I'll worry about that later on
-/* 	StartPrepSDKCall( SDKCall_Player );
+	StartPrepSDKCall( SDKCall_Player );
 	PrepSDKCall_SetFromConf( hGamedata, SDKConf_Signature, "CTFPlayer::PlayTauntSceneFromItem" );
 	PrepSDKCall_AddParameter( SDKType_PlainOldData, SDKPass_Plain );
 	PrepSDKCall_SetReturnInfo( SDKType_Bool, SDKPass_Plain );
@@ -117,7 +116,7 @@ bool InitSDKCalls(GameData hGamedata)
 	{
 		LogError( "Failed to create SDKCall for CTFPlayer::PlayTauntSceneFromItem!" );
 		failCount++;
-	} */
+	}
 	
 #if defined METHOD_MVM_UPGRADES
 	StartPrepSDKCall(SDKCall_Static);
@@ -242,10 +241,10 @@ float GetProjectileSpeed(int weapon)
 	return SDKCall(m_hGetProjectileSpeed, weapon);
 }
 
-/* bool PlayTauntSceneFromItem( int client, Address econItem )
+bool PlayTauntSceneFromItem( int client, Address econItem )
 {
 	SDKCall( m_hPlayTauntSceneFromItem, client, econItem );
-} */
+}
 
 #if defined METHOD_MVM_UPGRADES
 Address GEconItemSchema()

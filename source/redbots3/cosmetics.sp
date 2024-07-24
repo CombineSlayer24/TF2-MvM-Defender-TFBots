@@ -51,7 +51,25 @@ public const float g_paintValues[ 29 ][ 2 ] = {
 	{ 12807213.0, 12091445.0 },	// Cream Spirit
 };
 
-// TODO: SPELL PAINTS
+// Attribute -- SPELL: set item tint RGB
+public const float g_SpellPaintValues[ 5 ][ 1 ] = {
+	{ 2.0, },
+	{ 0.0, },
+	{ 1.0, },
+	{ 3.0, },
+	{ 4.0, }
+}
+
+// Attribute -- SPELL: set Halloween footstep type
+public const float g_SpellFootprints[ 7 ][ 1 ] = {
+	{ 1.0, },			// Halloween Spell: Team Spirit Footprints
+	{ 3100495.0, },		// Halloween Spell: Corpse Gray Footprints
+	{ 8421376.0, },		// Halloween Spell: Gangreen Footprints
+	{ 5322826.0, },		// Halloween Spell: Violent Violet Footprints
+	{ 13595446.0, },	// Halloween Spell: Rotten Orange Footprints
+	{ 8208497.0, },		// Halloween Spell: Bruised Purple Footprints
+	{ 2.0, },			// Halloween Spell: Headless Horseshoes Footprints
+}
 
 //-----------------------------------------------
 // ALL CLASS
@@ -883,7 +901,6 @@ public const int SPECIFIC_SCOUT_FEET[] = {
 //-----------------------------------------------
 // SOLDIER
 //-----------------------------------------------
-// LEFT OFF CRACK POT
 // UNUSED SO FAR
 //121,	// Web Easteregg Medal
 public const int SPECIFIC_SOLDIER_HEAD[] = {
@@ -1059,13 +1076,151 @@ public const int SPECIFIC_SOLDIER_FEET[] = {
 	734,	// Teufort Tooth Kicker
 };
 
+//-----------------------------------------------
+// PYRO
+//-----------------------------------------------
+// Unused, will be used in Presets
+/*
+30584, 	// dec2014 Armoured Appendage (Sleeves)
+30089,	// El Muchacho (This is a sihrt + grenades)
+30676,	// Face of Mercy
+644,	// Head Warmer 
+*/
+public const int SPECIFIC_PYRO_HEAD_REPLACE[] = {
+	30163,	// Air Raider
+	30859,	// Airtight Arsonist
+	5759,	// Apparition's Aspect
+	31007,	// Arachno-Arsonist
+	30717,	// Arthropod's Aspect
+	30582,	// dec2014 Black Knights Bascinet
+	30304,	// Blizzard Breather
+	1038,	// Breather Bag
+	30799,	// Combustible Cutie
+	30367,	// Cute Suit
+	31389,	// Dead Heat
+	30724,	// Fear Monger
+	30036,	// Filamental
+	31144,	// Fire Tooth
+	30721,	// Firefly
+	335,	// KF Pyro Mask
+	783,	// HazMat Headcase
+	31065,	// Head of the Dead
+	570,	// Last Breath
+	30075,	// Mair Mask
+	31431,	// Masked Loyalty
+	30475,	// Mishap Mercenary
+	31006,	// Mr. Quackers
+	1124,	// Nabler
+	30684,	// Neptune's Nightmare
+	950,	// Nose Candy
+	//31067,	// Candy Cranium
+};
+public const int SPECIFIC_PYRO_HATS[] = {
+	30662,	// A Head Full of Hot Air
+	854,	// Area 451
+	213,	// Attendant
+	615,	// Birdcage
+	30057,	// Bolted Birdcage
+	30162,	// Bone Dome
+	105,	// Brigade Helm
+	31185,	// Brim Of Fire
+	597,	// Bubble Pipe
+	30091,	// Burning Bandana
+	30936,	// Burning Beanie
+	30987,	// Burning Question
+	30937,	// Cat's Pajamas
+	30063,	// Centurion
+	30418,	// Combustible Kabuto
+	394,	// Connoisseur's Cap
+	30800,	// Cranial Carcharodon
+	435,	// Traffic Cone
+	949,	// DethKapp
+	30025,	// Electric Escorter
+	31253,	// Elf Ignition
+	30903,	// Feathered Fiend
+	31108,	// Fire Fighter
+	31462,	// Fire Marshal
+	31359,	// Firestalker
+	30038,	// Firewall Helmet
+	627,	// Flamboyant Flamenco
+	31357,	// Flame Warrior
+	31107,	// Flamehawk
+	377,	// Hottie's Hoodie
+	31432,	// Impact Impaler
+	612,	// Little Buddy
+	321,	// Madame Dixie
+	31041,	// Melted Mop
+	30028,	// Metal Slug
+	248,	// Napper's Respite
+	1031,	// Necronomicrown
+	247,	// Old Guadalajara
+};
+public const int SPECIFIC_PYRO_GLASSES[] = {
+	30901,	// D-eye-monds
+	31096,	// Discovision
+	30053,	// Googol Glass Eyes
+};
+public const int SPECIFIC_PYRO_SHIRT[] = {
+	30716,	// Crusader's Getup
+	936,	// Exorcizor
+	31328,	// Firebrand
+	30986,	// Hot Case
+	31463,	// Invisible Flame
+	31263,	// Kazan Karategi
+	30400,	// Lunatic's Leathers
+	30544,	// TF_EOTL_pyro_sweater
+};
+public const int SPECIFIC_PYRO_GRENADES[] = {
+	30886,	// Bananades
+	922,	// Bonedolier
+	746,	// Burning Bongos
+	632,	// Cremator's Conscience
+	948,	// Deadliest Duckling
+	30822,	// Handy Canes
+	651,	// Jingle Belt
+	641,	// Ornament Armament
+};
+public const int SPECIFIC_PYRO_BACK[] = {
+	30090,	// Backpack Broiler
+	938,	// Coffin Kit
+	30900,	// Fireman's Essentials
+	30819,	// Flammable Favor
+	30417,	// Frymaster
+	30398,	// Gas Guzzler
+	31187,	// Hook Line and Cinder
+	745,	// Infernal Orchestrina (Pyroland only)
+	30663,	// Jupiter Jetpack
+	596,	// Moonman Backpack
+};
+public const int SPECIFIC_PYRO_BELT[] = {
+	30167,	// Beep Boy
+	30728,	// Buttler
+	30902,	// Deity's Dress
+	31047,	// Fiery Phoenix (left shoulder)
+};
+public const int SPECIFIC_PYRO_PANTS[] = {
+	30819,	// Flavorful Baggies
+	31464,	// Scorched Earth Stompers
+};
+public const int SPECIFIC_PYRO_FEET[] = {
+	30905,	// Hot Huaraches
+};
 // Returns the ellgible cosmetics that has multiple styles
 int GetCosmeticStyles( int iEntity )
 {
 	int iIndex = GetEntProp( iEntity, Prop_Send, "m_iItemDefinitionIndex" );
 	switch ( iIndex )
 	{
-		//case I:	return 1;	// 
+		case 950:	return 1;	// Nose Candy
+		case 31463:	return 1;	// Invisible Flame
+		case 31432:	return 1;	// Impact Impaler
+		case 31065:	return 1;	// Head of the Dead
+		case 31357:	return 1;	// Flame Warrior
+		case 31108:	return 1;	// Fire Fighter
+		case 30724:	return 1;	// Fear Monger
+		case 31253:	return 1;	// Elf Ignition
+		case 30367:	return 1;	// Cute Suit
+		case 30162:	return 1;	// Bone Dome
 		case 1073:	return 1;	// War on Smissmas Battle Hood
 		case 829:	return 1;	// War Pig
 		case 31220:	return 1;	// Trickster's Treats
@@ -1240,6 +1395,7 @@ int GetCosmeticStyles( int iEntity )
 		case 31295:	return 2;	// Onimann
 		case 576:	return 2;	// Spine-Chilling Skull 2011
 		case 31209:	return 2;	// Spooky Head-Bouncers
+		case 31431:	return 2;	// Masked Loyalty
 
 		case 30309:	return 3;	// Dead of Night
 		case 31217:	return 3;	// Goalkeeper
@@ -1258,6 +1414,8 @@ int GetCosmeticStyles( int iEntity )
 		case 30607:	return 3;	// Pocket Raiders
 		case 984:	return 3;	// Tough Stuff Muffs
 		case 1011:	return 3;	// Tux
+		case 949:	return 3;	// DethKapp
+		case 783:	return 3;	// HazMat Headcase
 
 		case 31284:	return 4;	// Boston Brain Bucket
 		case 31285:	return 4;	// Pest's Pads
@@ -1271,15 +1429,90 @@ int GetCosmeticStyles( int iEntity )
 	}
 }
 
-// Returns the ellgible cosmetics that can be painted.
-// Yes, this is dumb as well, but oh well. What else
-// can ya do?
+/* Returns the ellgible cosmetics that can be painted.
+Yes, this is dumb as well, but oh well. What else
+can ya do? */
 bool IsPaintableHat( int iEntity )
 {
 	int iIndex = GetEntProp( iEntity, Prop_Send, "m_iItemDefinitionIndex" );
 	switch ( iIndex )
 	{
-		//case I:	return true;	// 
+		//case :	return true;	// 
+		case 247:	return true;	// Old Guadalajara
+		case 950:	return true;	// Nose Candy
+		case 30544:	return true;	// TF_EOTL_pyro_sweater
+		case 248:	return true;	// Napper's Respite
+		case 31006:	return true;	// Mr. Quackers
+		case 30475:	return true;	// Mishap Mercenary
+		case 30028:	return true;	// Metal Slug
+		case 31041:	return true;	// Melted Mop
+		case 31431:	return true;	// Masked Loyalty
+		case 30075:	return true;	// Mair Mask
+		case 321:	return true;	// Madame Dixie
+		case 30400:	return true;	// Lunatic's Leathers
+		case 612:	return true;	// Little Buddy
+		case 31263:	return true;	// Kazan Karategi
+		case 30663:	return true;	// Jupiter Jetpack
+		case 31463:	return true;	// Invisible Flame
+		case 31432:	return true;	// Impact Impaler
+		case 377:	return true;	// Hottie's Hoodie
+		case 30905:	return true;	// Hot Huaraches
+		case 30986:	return true;	// Hot Case
+		case 30093:	return true;	// Hive Minder
+		case 31065:	return true;	// Head of the Dead
+		case 644:	return true;	// Head Warmer
+		case 783:	return true;	// HazMat Headcase
+		case 30398:	return true;	// Gas Guzzler
+		case 30819:	return true;	// Flammable Favor
+		case 31107:	return true;	// Flamehawk
+		case 31357:	return true;	// Flame Warrior
+		case 627:	return true;	// Flamboyant Flamenco
+		case 30038:	return true;	// Firewall Helmet
+		case 31359:	return true;	// Firestalker
+		case 30900:	return true;	// Fireman's Essentials
+		case 30721:	return true;	// Firefly
+		case 31328:	return true;	// Firebrand
+		case 31144:	return true;	// Fire Tooth
+		case 31462:	return true;	// Fire Marshal
+		case 31108:	return true;	// Fire Fighter
+		case 30036:	return true;	// Filamental
+		case 30903:	return true;	// Feathered Fiend
+		case 30724:	return true;	// Fear Monger
+		case 30416:	return true;	// Employee of the Mmmph
+		case 31253:	return true;	// Elf Ignition
+		case 30025:	return true;	// Electric Escorter
+		case 30089:	return true;	// El Muchacho
+		case 31096:	return true;	// Discovision
+		case 949:	return true;	// DethKapp
+		case 30902:	return true;	// Deity's Dress
+		case 31389:	return true;	// Dead Heat
+		case 30901:	return true;	// D-eye-monds
+		case 30367:	return true;	// Cute Suit
+		case 30716:	return true;	// Crusader's Getup
+		case 632:	return true;	// Cremator's Conscience
+		case 30800:	return true;	// Cranial Carcharodon
+		case 30418:	return true;	// Combustible Kabuto
+		case 394:	return true;	// Connoisseur's Cap
+		case 30799:	return true;	// Combustible Cutie
+		case 30063:	return true;	// Centurion
+		case 30937:	return true;	// Cat's Pajamas
+		case 31067:	return true;	// Candy Cranium
+		case 30987:	return true;	// Burning Question
+		case 30091:	return true;	// Burning Bandana
+		case 31185:	return true;	// Brim Of Fire
+		case 105:	return true;	// Brigade Helm
+		case 1038:	return true;	// Breather Bag
+		case 30162:	return true;	// Bone Dome
+		case 30057:	return true;	// Bolted Birdcage
+		case 30304:	return true;	// Blizzard Breather
+		case 615:	return true;	// Birdcage
+		case 30090:	return true;	// Backpack Broiler
+		case 30717:	return true;	// Arthropod's Aspect
+		case 30859:	return true;	// Airtight Arsonist
+		case 5759:	return true;	// Apparition's Aspect
+		case 31007:	return true;	// Arachno-Arsonist
+		case 30163:	return true;	// Air Raider
+		case 30662:	return true;	// A Head Full of Hot Air
 		case 30118:	return true;	// Whirly Warrior
 		case 829:	return true;	// War Pig
 		case 31419:	return true;	// Wanderer's Wool
@@ -1801,10 +2034,6 @@ bool IsPaintableHat( int iEntity )
 		default:	return false;
 	}
 }
-//-----------------------------------------------
-// PYRO
-//-----------------------------------------------
-
 //-----------------------------------------------
 // DEMO
 //-----------------------------------------------
