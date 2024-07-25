@@ -653,7 +653,6 @@ public const CosmeticSet CS_PRESET_SCOUT[] = {
 	{ 941, 744, 655 },			// Skull Island Topper, Pyrovision Goggles, Spirit of Giving
 	{ 263, 166, -1 },			// Ellis Hat, Mercenary
 };
-
 public const CosmeticSet CS_PRESET_SCOUT_HALLOWEEN[] = {
 	{ 30471, 30472, 30470 },	// Alien Cranium, Xeno Suit, Biomech Backpack
 	{ 30494, 30495, 30496 },	// Head Hunter, Claws And Infected, Coach: Crazy Legs
@@ -677,7 +676,6 @@ public const CosmeticSet CS_PRESET_SCOUT_HALLOWEEN[] = {
 	{ 278, 5617, -1 },			// Horseless Headless Horseman's Head, Zombie Scout
 	{ 546, 547, 548 },			// Wrap Battler, B-ankh!, Futankhamun
 };
-
 public const CosmeticSet CS_PRESET_SOLDIER[] = {
 	{ 30578, 31418, 30392 },	// Skullcap, Trench Warefarer, Man In Slacks
 	{ 31045, 31418, 30165 },	// Dancing Doe, Trench Warefarer, Cuban Bristle Crisis
@@ -701,7 +699,6 @@ public const CosmeticSet CS_PRESET_SOLDIER[] = {
 	{ 940, 744, 166 },			// Ghostly Gibus, Pyrovision Goggles, Mercenary
 	{ 941, 744, 655 },			// Skull Island Topper, Pyrovision Goggles, Spirit of Giving
 };
-
 public const CosmeticSet CS_PRESET_SOLDIER_HALLOWEEN[] = {
 	{ 30521, 30522, 30520 },	// Hellhunter's Headpiece, Supernatural Stalker, Ghoul Gibbin' Gear
 	{ 30300, 30522, 30206 },	// Haunted Hat, Supernatural Stalker, Accursed Apparition
@@ -715,6 +712,11 @@ public const CosmeticSet CS_PRESET_SOLDIER_HALLOWEEN[] = {
 	{ 30268, 30129, -1 },		// Spellbinder's Bonnet, Hornblower
 	{ -1, 31137, 30165 },		// War Blunder, Cuban Bristle Crisis
 	{ 555, 556, 557 },			// Idiot Box, Steel Pipes, Shoestring Budget
+};
+public const CosmeticSet CS_PRESET_PYRO[] = {
+	{ 247, 30089, 30168 },	 // Old Guadalajara, El Muchacho, Special Eye
+	{ 30304, 30305, -1 },		// Blizzard Breather, Sub Zero Suit
+	{ 644, 30305, -1 },		// Head Warmer, Sub Zero Suit
 };
 
 // Returns the ellgible cosmetics that can be Unusual
@@ -1085,6 +1087,15 @@ public const int SPECIFIC_SOLDIER_FEET[] = {
 30089,	// El Muchacho (This is a sihrt + grenades)
 30676,	// Face of Mercy
 644,	// Head Warmer 
+1020,	// Person in the Iron Mask (full head)
+31067,	// Candy Cranium (Ugly)
+951,	// Rail Spikes
+31174,	// Round-A-Bout (Extremely goofy and dumb)
+30391,	// Sengoku Scorcher (grenades + shirt)
+30664,	// Space Diver (Conflicts with pants)
+30305,	// Sub Zero Suit (conflicts with pants)
+761,	// Triclops (full head)
+31221,	// Wandering Wraith (full head)
 */
 public const int SPECIFIC_PYRO_HEAD_REPLACE[] = {
 	30163,	// Air Raider
@@ -1113,7 +1124,13 @@ public const int SPECIFIC_PYRO_HEAD_REPLACE[] = {
 	1124,	// Nabler
 	30684,	// Neptune's Nightmare
 	950,	// Nose Candy
-	//31067,	// Candy Cranium
+	30652,	// Phobos Filter
+	31076,	// Pyr'o Lantern
+	30835,	// Pyro the Flamedeer
+	30032,	// Rusty Reaper
+	31222,	// Smiling Somen
+	30538,	// EOTL_Skier
+	976,	// Winter Wonderland Wrap
 };
 public const int SPECIFIC_PYRO_HATS[] = {
 	30662,	// A Head Full of Hot Air
@@ -1154,11 +1171,49 @@ public const int SPECIFIC_PYRO_HATS[] = {
 	248,	// Napper's Respite
 	1031,	// Necronomicrown
 	247,	// Old Guadalajara
+	30139,	// Pampered Pyro
+	31329,	// Partizan
+	30811,	// Pestering Jester
+	30022,	// Plumber's Pipe
+	318,	// Prancer's Pride
+	31296,	// Propaniac
+	51,		// Pyro's Beanie
+	30040,	// Pyro's Boron Beanie
+	30580,	// dec2014 2014_pyromancer_hood
+	31186,	// Reel Fly Hat
+	30039,	// Respectless Robo-Glove
+	102,	// Respectless Rubber Glove
+	31143,	// Seared Sorcerer
+	31066,	// Skullbrero
+	30399,	// Smoking Skid Lid
+	30555,	// Sole Mate
+	31390,	// Splitting Headache
+	481,	// Stately Steel Toe
+	30327,	// Toy Tailor
+	151,	// Pyro Brain Sucker
+	31064,	// Trick Stabber
+	182,	// Pyro Helm
+	753,	// Waxy Wayfinder
+	31094,	// Winter Wrap Up
+	937,	// Wraith Wrap
 };
 public const int SPECIFIC_PYRO_GLASSES[] = {
 	30901,	// D-eye-monds
 	31096,	// Discovision
 	30053,	// Googol Glass Eyes
+	30176,	// Pop-Eyes
+	31004,	// Pyro in Chinatown
+	30831,	// Reader's Choice
+	387,	// Sight for Sore Eyes
+	30168,	// Special Eyes
+};
+public const int SPECIFIC_PYRO_NECKLESS[] = {
+	336,	// KF Pyro Tie
+	787		// Tribal Bones
+};
+public const int SPECIFIC_PYRO_BEARD[] = {
+	316,	// Pyromancer's Mask
+	175,	// Pyro Monocle
 };
 public const int SPECIFIC_PYRO_SHIRT[] = {
 	30716,	// Crusader's Getup
@@ -1169,6 +1224,16 @@ public const int SPECIFIC_PYRO_SHIRT[] = {
 	31263,	// Kazan Karategi
 	30400,	// Lunatic's Leathers
 	30544,	// TF_EOTL_pyro_sweater
+	30581,	// dec2014 Pyromancer's Raiments
+	31358,	// Soho Sleuth
+	30092,	// Soot Suit
+	30062,	// Steel Sixpack
+	30826,	// Sweet Smissmas Sweater
+	30583,	// dec2014 Torchers Tabard
+	31433,	// Torcher's Trench Coat
+	30169,	// Trickster's Turnout Gear
+	31051,	// Wanderer's Wear
+	31188,	// Water Waders
 };
 public const int SPECIFIC_PYRO_GRENADES[] = {
 	30886,	// Bananades
@@ -1179,6 +1244,9 @@ public const int SPECIFIC_PYRO_GRENADES[] = {
 	30822,	// Handy Canes
 	651,	// Jingle Belt
 	641,	// Ornament Armament
+	768,	// Professor's Pineapple
+	30818,	// Socked and Loaded
+	31220,	// Trickster's Treats
 };
 public const int SPECIFIC_PYRO_BACK[] = {
 	30090,	// Backpack Broiler
@@ -1191,26 +1259,48 @@ public const int SPECIFIC_PYRO_BACK[] = {
 	745,	// Infernal Orchestrina (Pyroland only)
 	30663,	// Jupiter Jetpack
 	596,	// Moonman Backpack
+	1072,	// Portable Smissmas Spirit Dispenser
+	842,	// Pyrobotics Pack
+	856,	// Pyrotechnic Tote
+	820,	// Russian Rocketeer
+	30904,	// Sacrificial Stone
+	754,	// Scrap Pack
+	30020,	// Scrap Sack
+	31050,	// Spawn Camper
+	30321,	// Tiny Timber
+	30308,	// Trail-Blazer
 };
 public const int SPECIFIC_PYRO_BELT[] = {
 	30167,	// Beep Boy
 	30728,	// Buttler
 	30902,	// Deity's Dress
 	31047,	// Fiery Phoenix (left shoulder)
+	31026,	// Pocket Pardner
 };
 public const int SPECIFIC_PYRO_PANTS[] = {
 	30819,	// Flavorful Baggies
+	31464,	// Scorched Earth Stompers
 	31464,	// Scorched Earth Stompers
 };
 public const int SPECIFIC_PYRO_FEET[] = {
 	30905,	// Hot Huaraches
 };
+//-----------------------------------------------
+// DEMO
+//-----------------------------------------------
 // Returns the ellgible cosmetics that has multiple styles
 int GetCosmeticStyles( int iEntity )
 {
 	int iIndex = GetEntProp( iEntity, Prop_Send, "m_iItemDefinitionIndex" );
 	switch ( iIndex )
 	{
+		case 976:	return 1;	// Winter Wonderland Wrap
+		case 761:	return 1;	// Triclops
+		case 30168:	return 1;	// Special Eyes
+		case 31143:	return 1;	// Seared Sorcerer
+		case 31464:	return 1;	// Scorched Earth Stompers
+		case 31004:	return 1;	// Pyro in Chinatown
+		case 31026:	return 1;	// Pocket Pardner
 		case 950:	return 1;	// Nose Candy
 		case 31463:	return 1;	// Invisible Flame
 		case 31432:	return 1;	// Impact Impaler
@@ -1396,6 +1486,7 @@ int GetCosmeticStyles( int iEntity )
 		case 576:	return 2;	// Spine-Chilling Skull 2011
 		case 31209:	return 2;	// Spooky Head-Bouncers
 		case 31431:	return 2;	// Masked Loyalty
+		case 316:	return 2;	// Pyromancer's Mask
 
 		case 30309:	return 3;	// Dead of Night
 		case 31217:	return 3;	// Goalkeeper
@@ -1438,6 +1529,56 @@ bool IsPaintableHat( int iEntity )
 	switch ( iIndex )
 	{
 		//case :	return true;	// 
+		case 31094:	return true;	// Winter Wrap Up
+		case 976:	return true;	// Winter Wonderland Wrap
+		case 175:	return true;	// Pyro Monocle
+		case 753:	return true;	// Waxy Wayfinder
+		case 31188:	return true;	// Water Waders
+		case 30538:	return true;	// EOTL_Skier
+		case 31221:	return true;	// Wandering Wraith
+		case 182:	return true;	// Pyro Helm
+		case 761:	return true;	// Triclops
+		case 151:	return true;	// Pyro Brain Sucker
+		case 31064:	return true;	// Trick Stabber
+		case 31433:	return true;	// Torcher's Trench Coat
+		case 30321:	return true;	// Tiny Timber
+		case 30305:	return true;	// Sub Zero Suit
+		case 787:	return true;	// Tribal Bones
+		case 30168:	return true;	// Special Eyes
+		case 31050:	return true;	// Spawn Camper
+		case 30664:	return true;	// Space Diver
+		case 30092:	return true;	// Soot Suit
+		case 30355:	return true;	// Sole Mate
+		case 31358:	return true;	// Soho Sleuth
+		case 30399:	return true;	// Smoking Skid Lid
+		case 31222:	return true;	// Smiling Somen
+		case 31066:	return true;	// Skullbrero
+		case 30391:	return true;	// Sengoku Scorcher
+		case 31143:	return true;	// Seared Sorcerer
+		case 30020:	return true;	// Scrap Sack
+		case 754:	return true;	// Scrap Pack
+		case 30904:	return true;	// Sacrificial Stone
+		case 30032:	return true;	// Rusty Reaper
+		case 102:	return true;	// Respectless Rubber Glove
+		case 30039:	return true;	// Respectless Robo-Glove
+		case 31186:	return true;	// Reel Fly Hat
+		case 951:	return true;	// Rail Spikes
+		case 856:	return true;	// Pyrotechnic Tote
+		case 30581:	return true;	// dec2014 Pyromancer's Raiments
+		case 316:	return true;	// Pyromancer's Mask
+		case 30580:	return true;	// dec2014 2014_pyromancer_hood
+		case 30040:	return true;	// Pyro's Boron Beanie
+		case 51:	return true;	// Pyro's Beanie
+		case 30835:	return true;	// Pyro the Flamedeer
+		case 31004:	return true;	// Pyro in Chinatown
+		case 31076:	return true;	// Pyr'o Lantern
+		case 31296:	return true;	// Propaniac
+		case 30176:	return true;	// Pop-Eyes
+		case 31026:	return true;	// Pocket Pardner
+		case 30022:	return true;	// Plumber's Pipe
+		case 30652:	return true;	// Phobos Filter
+		case 31329:	return true;	// Partizan
+		case 30139:	return true;	// Pampered Pyro
 		case 247:	return true;	// Old Guadalajara
 		case 950:	return true;	// Nose Candy
 		case 30544:	return true;	// TF_EOTL_pyro_sweater
@@ -2035,10 +2176,6 @@ bool IsPaintableHat( int iEntity )
 	}
 }
 //-----------------------------------------------
-// DEMO
-//-----------------------------------------------
-
-//-----------------------------------------------
 // HEAVYWEAPONSGUY
 //-----------------------------------------------
 
@@ -2109,10 +2246,24 @@ void GiveBotCosmetics( int iClient )
 	int iRandSoldier_Pocket 	= SPECIFIC_SOLDIER_POCKET[ GetRandomInt( 0, sizeof( SPECIFIC_SOLDIER_POCKET ) - 1 ) ];
 	int iRandSoldier_Feet 		= SPECIFIC_SOLDIER_FEET[ GetRandomInt( 0, sizeof( SPECIFIC_SOLDIER_FEET ) - 1 ) ];
 
+	// SOLDIER
+	int iRandPyro_HeadReplace 	= SPECIFIC_PYRO_HEAD_REPLACE[ GetRandomInt( 0, sizeof( SPECIFIC_PYRO_HEAD_REPLACE ) - 1 ) ];
+	int iRandPyro_Hats 			= SPECIFIC_PYRO_HATS[ GetRandomInt( 0, sizeof( SPECIFIC_PYRO_HATS ) - 1 ) ];
+	int iRandPyro_Glasses 		= SPECIFIC_PYRO_GLASSES[ GetRandomInt( 0, sizeof( SPECIFIC_PYRO_GLASSES ) - 1 ) ];
+	int iRandPyro_Neckless 		= SPECIFIC_PYRO_NECKLESS[ GetRandomInt( 0, sizeof( SPECIFIC_PYRO_NECKLESS ) - 1 ) ];
+	int iRandPyro_Beard 		= SPECIFIC_PYRO_BEARD[ GetRandomInt( 0, sizeof( SPECIFIC_PYRO_BEARD ) - 1 ) ];
+	int iRandPyro_Shirt 		= SPECIFIC_PYRO_SHIRT[ GetRandomInt( 0, sizeof( SPECIFIC_PYRO_SHIRT ) - 1 ) ];
+	int iRandPyro_Grenades 		= SPECIFIC_PYRO_GRENADES[ GetRandomInt( 0, sizeof( SPECIFIC_PYRO_GRENADES ) - 1 ) ];
+	int iRandPyro_Back 			= SPECIFIC_PYRO_BACK[ GetRandomInt( 0, sizeof( SPECIFIC_PYRO_BACK ) - 1 ) ];
+	int iRandPyro_Belt 			= SPECIFIC_PYRO_BELT[ GetRandomInt( 0, sizeof( SPECIFIC_PYRO_BELT ) - 1 ) ];
+	int iRandPyro_Pants 		= SPECIFIC_PYRO_PANTS[ GetRandomInt( 0, sizeof( SPECIFIC_PYRO_PANTS ) - 1 ) ];
+	int iRandPyro_Feet 			= SPECIFIC_PYRO_FEET[ GetRandomInt( 0, sizeof( SPECIFIC_PYRO_FEET ) - 1 ) ];
+
 	int iSelectedCosmetics[ 3 ];
 	int iAllCosmetics[ 12 ];		// All class
 	int iScoutCosmetics[ 13 ];
 	int iSoldierCosmetics[ 13 ];
+	int iPyroCosmetics[ 14 ];
 
 	TFClassType TFClass = TF2_GetPlayerClass( iClient );
 
@@ -2144,7 +2295,6 @@ void GiveBotCosmetics( int iClient )
 				for ( int i = 0; i < 3; ++i )
 				{
 					iSelectedCosmetics[ i ] = iAllCosmetics[ iIndex[ i ] ];
-
 				/* 	
 					Check if head is selected, don't select hat, glasses, or beard
 					TODO: Instead of doing this
@@ -2201,8 +2351,7 @@ void GiveBotCosmetics( int iClient )
 					{
 						iSelectedCosmetics[ i ] = iScoutCosmetics[ iIndex[ i ] ];
 
-						// If head is selected
-						// do not equip Hats, Glasses, Beard, Hat Misc, Face
+						// If head is selected, do not equip Hats, Glasses, Beard, Hat Misc, Face
 						if ( iSelectedCosmetics[ i ] )
 						{
 							if ( iIndex[ i ] == 1 ) 
@@ -2252,8 +2401,6 @@ void GiveBotCosmetics( int iClient )
 					{
 						iSelectedCosmetics[ i ] = iSoldierCosmetics[ iIndex[ i ] ];
 
-						// If head is selected
-						// do not equip Hats, Glasses, Beard
 						if ( iSelectedCosmetics[ i ] )
 						{
 							if ( iIndex[ i ] == 1 ) 
@@ -2277,6 +2424,38 @@ void GiveBotCosmetics( int iClient )
 
 					#if defined TESTING_ONLY
 						CPrintToChatAll( "{green}SELECTED SOLDIER SPECIFIC CLASS" );
+					#endif
+				}
+				if ( TFClass == TFClass_Pyro )
+				{
+					iPyroCosmetics[ 1 ] = IsChance( 75 ) ? iRandPyro_HeadReplace : iRandHead;
+					iPyroCosmetics[ 2 ] = IsChance( 75 ) ? iRandPyro_Hats : iRandHat;
+					iPyroCosmetics[ 3 ] = IsChance( 75 ) ? iRandPyro_Glasses : iRandGlasses;
+					iPyroCosmetics[ 4 ] = IsChance( 75 ) ? iRandPyro_Beard: iRandBeard;
+					iPyroCosmetics[ 5 ] = iRandMedal;
+					iPyroCosmetics[ 6 ] = IsChance( 75 ) ? iRandPyro_Shirt : iRandTorso;
+					iPyroCosmetics[ 7 ] = iRandPyro_Back;
+					iPyroCosmetics[ 8 ] = iRandPyro_Grenades;
+					iPyroCosmetics[ 9 ] = IsChance( 75 ) ? iRandPyro_Belt : iRandBelt;
+					iPyroCosmetics[ 10 ] = IsChance( 75 ) ? iRandPyro_Pants : iRandPants;
+					iPyroCosmetics[ 11 ] = IsChance( 75 ) ? iRandPyro_Feet : iRandFeet;
+					iPyroCosmetics[ 12 ] = IsChance( 75 ) ? iRandPyro_Neckless : iRandHatMisc;
+					iPyroCosmetics[ 13 ] = iRandFace;
+
+					int iIndex[ 13 ] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13 };
+					ShuffleArray( iIndex, sizeof( iIndex ) );
+
+					for ( int i = 0; i < 3; ++i )
+					{
+						iSelectedCosmetics[ i ] = iPyroCosmetics[ iIndex[ i ] ];
+						if ( iSelectedCosmetics[ i ] && iPyroCosmetics[ i ] != 1 )
+						{
+							TF2_CreateHat( iClient, iSelectedCosmetics[ i ], QUALITY_UNIQUE, iIndex[ i ] == 2 );
+						}
+					}
+
+					#if defined TESTING_ONLY
+						CPrintToChatAll( "{green}SELECTED SCOUT SPECIFIC CLASS" );
 					#endif
 				}
 			}
@@ -2309,8 +2488,10 @@ void GiveBotCosmetics( int iClient )
 void PresetCosmeticSet( int iClient, char[] iClass ) 
 {
 	int iScoutRand 				= GetRandomInt( 0, sizeof( CS_PRESET_SCOUT ) / sizeof( CosmeticSet ) - 1 );
-	int iScoutHalloweenRand 	= GetRandomInt( 0, sizeof( CS_PRESET_SCOUT_HALLOWEEN ) / sizeof( CosmeticSet ) - 1 );
+	int iScoutHalloRand 		= GetRandomInt( 0, sizeof( CS_PRESET_SCOUT_HALLOWEEN ) / sizeof( CosmeticSet ) - 1 );
 	int iSoldierRand 			= GetRandomInt( 0, sizeof( CS_PRESET_SOLDIER ) / sizeof( CosmeticSet ) - 1 );
+	int iSoldierHalloRand 		= GetRandomInt( 0, sizeof( CS_PRESET_SOLDIER_HALLOWEEN ) / sizeof( CosmeticSet ) - 1 );
+	int iPyroRand 				= GetRandomInt( 0, sizeof( CS_PRESET_PYRO ) / sizeof( CosmeticSet ) - 1 );
 	bool bIsHalloween 			= TF2_IsHolidayActive( TFHoliday_HalloweenOrFullMoon )
 
 	if ( StrEqual( iClass, "Scout", false ) ) 
@@ -2319,16 +2500,16 @@ void PresetCosmeticSet( int iClient, char[] iClass )
 		if ( bIsHalloween && IsChance( 40 ) )
 		{
 			// Add the add if the id is not -1
-			if ( CS_PRESET_SCOUT_HALLOWEEN[ iScoutHalloweenRand ].iHat != -1 )
+			if ( CS_PRESET_SCOUT_HALLOWEEN[ iScoutHalloRand ].iHat != -1 )
 			{
-				TF2_CreateHat( iClient, CS_PRESET_SCOUT_HALLOWEEN[ iScoutHalloweenRand ].iHat, QUALITY_UNIQUE, true ); // Hats always unusual chance
+				TF2_CreateHat( iClient, CS_PRESET_SCOUT_HALLOWEEN[ iScoutHalloRand ].iHat, QUALITY_UNIQUE, true ); // Hats always unusual chance
 			}
 
 			// Loops between iCosmetic1 and iCosmetic2
 			// and add it if it's not -1
 			for ( int i = 0; i < 2; ++i )
 			{
-				int iCosmeticID = ( i == 0 ) ? CS_PRESET_SCOUT_HALLOWEEN[ iScoutHalloweenRand ].iCosmetic1 : CS_PRESET_SCOUT_HALLOWEEN[ iScoutHalloweenRand ].iCosmetic2;
+				int iCosmeticID = ( i == 0 ) ? CS_PRESET_SCOUT_HALLOWEEN[ iScoutHalloRand ].iCosmetic1 : CS_PRESET_SCOUT_HALLOWEEN[ iScoutHalloRand ].iCosmetic2;
 				if ( iCosmeticID != -1 )
 				{
 					TF2_CreateHat( iClient, iCosmeticID, QUALITY_UNIQUE );
@@ -2355,14 +2536,50 @@ void PresetCosmeticSet( int iClient, char[] iClass )
 
 	if ( StrEqual( iClass, "Soldier", false ) ) 
 	{
-		if ( CS_PRESET_SOLDIER[ iSoldierRand ].iHat != -1 )
+		if ( bIsHalloween && IsChance( 40 ) )
 		{
-			TF2_CreateHat( iClient, CS_PRESET_SOLDIER[ iSoldierRand ].iHat, QUALITY_UNIQUE, true );
+			if ( CS_PRESET_SOLDIER_HALLOWEEN[ iSoldierHalloRand ].iHat != -1 )
+			{
+				TF2_CreateHat( iClient, CS_PRESET_SOLDIER_HALLOWEEN[ iSoldierHalloRand ].iHat, QUALITY_UNIQUE, true ); 
+			}
+
+			for ( int i = 0; i < 2; ++i )
+			{
+				int iCosmeticID = ( i == 0 ) ? CS_PRESET_SOLDIER_HALLOWEEN[ iSoldierHalloRand ].iCosmetic1 : CS_PRESET_SOLDIER_HALLOWEEN[ iSoldierHalloRand ].iCosmetic2;
+				if ( iCosmeticID != -1 )
+				{
+					TF2_CreateHat( iClient, iCosmeticID, QUALITY_UNIQUE );
+				}
+			}
+		}
+		else
+		{
+			if ( CS_PRESET_SOLDIER[ iSoldierRand ].iHat != -1 )
+			{
+				TF2_CreateHat( iClient, CS_PRESET_SOLDIER[ iSoldierRand ].iHat, QUALITY_UNIQUE, true );
+			}
+
+			for ( int i = 0; i < 2; ++i )
+			{
+				int iCosmeticID = ( i == 0 ) ? CS_PRESET_SOLDIER[ iSoldierRand ].iCosmetic1 : CS_PRESET_SOLDIER[ iSoldierRand ].iCosmetic2;
+				if ( iCosmeticID != -1 )
+				{
+					TF2_CreateHat( iClient, iCosmeticID, QUALITY_UNIQUE );
+				}
+			}
+		}
+	}
+
+	if ( StrEqual( iClass, "Pyro", false ) ) 
+	{
+		if ( CS_PRESET_PYRO[ iPyroRand ].iHat != -1 )
+		{
+			TF2_CreateHat( iClient, CS_PRESET_PYRO[ iPyroRand ].iHat, QUALITY_UNIQUE, true );
 		}
 
 		for ( int i = 0; i < 2; ++i )
 		{
-			int iCosmeticID = ( i == 0 ) ? CS_PRESET_SOLDIER[ iSoldierRand ].iCosmetic1 : CS_PRESET_SOLDIER[ iSoldierRand ].iCosmetic2;
+			int iCosmeticID = ( i == 0 ) ? CS_PRESET_PYRO[ iPyroRand ].iCosmetic1 : CS_PRESET_PYRO[ iPyroRand ].iCosmetic2;
 			if ( iCosmeticID != -1 )
 			{
 				TF2_CreateHat( iClient, iCosmeticID, QUALITY_UNIQUE );
@@ -2420,6 +2637,7 @@ int TF2_CreateHat( int iClient, int iIndex, int iQuality, bool bIsUnusual = fals
 		//bool bIsUnusualHat = IsUnusualHat( iHat );
 		bool bHatCannotBeUnusual = CannotBeUnusual( iHat );
 		bool bCantBeUnusual = false;
+		bool bIsHalloween = TF2_IsHolidayActive( TFHoliday_HalloweenOrFullMoon )
 
 		if ( IsChance( 10 ) )
 		{
@@ -2453,7 +2671,7 @@ int TF2_CreateHat( int iClient, int iIndex, int iQuality, bool bIsUnusual = fals
 				iQuality = QUALITY_VINTAGE;
 				bCantBeUnusual = true;
 			}
-			else if ( TF2_IsHolidayActive( TFHoliday_HalloweenOrFullMoon ) && IsChance( 16 ) )
+			else if ( bIsHalloween && IsChance( 16 ) )
 			{
 				// If the server is in Halloween mode, or in a 666 mission,
 				// Huanted qualities should start appearing.
