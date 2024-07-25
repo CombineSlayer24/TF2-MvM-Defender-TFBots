@@ -679,9 +679,9 @@ public const CosmeticSet CS_PRESET_SCOUT_HALLOWEEN[] = {
 public const CosmeticSet CS_PRESET_SOLDIER[] = {
 	{ 30578, 31418, 30392 },	// Skullcap, Trench Warefarer, Man In Slacks
 	{ 31045, 31418, 30165 },	// Dancing Doe, Trench Warefarer, Cuban Bristle Crisis
-	{ 30897, 30853, 30558 },	// Shellmet, Flakcatcher, Coldfront Curbstompers
+	{ 30897, 30853, 30558 },	// Shellmet, Flakcatcher, EOTL_Coldfront Curbstompers
 	{ 30897, 30896, 30339 },	// Shellmet, Attack Packs, Killer's kit
-	{ 31025, 30601, 30558 },	// Climbing Commander, Cold Snap Coat, Coldfront Curbstompers
+	{ 31025, 30601, 30558 },	// Climbing Commander, Cold Snap Coat, EOTL_Coldfront Curbstompers
 	{ 30390, 30388, 30392 },	// Spook Specs, Classified Coif, Man in Slacks
 	{ 31378, 13494, 31379 },	// Close Quarters Cover, OP-GG Bejeweled Bounty 2023, Stealth Bomber
 	{ 30768, 30727, 31276 },	// Bedouin Bandana, Caped Crusader, Chaser
@@ -689,12 +689,15 @@ public const CosmeticSet CS_PRESET_SOLDIER[] = {
 	{ 30553, 30165, 30601 }, 	// Condor Cap, Cuban Bristle Crisis, Cold Snap Coat
 	{ 31449, 31450, 31451 },	// Control Patrol, Pathfinder, Justice Johns
 	{ 30118, 30780, 30896 },	// Whirly Warrior, Patriot's Pouches, Attack Packs
+	{ 30743, 30165, 30744 },	// Patriot Peak, Cuban Bristle Crisis, Diplomat
+	{ 30338, 30558, 30983 },	// Ground Control, EOTL_Coldfront Curbstompers, Veterans Attire
 	{ 445, 30388, 30392 },		// Armored Authority, Classified Coif, Man in Slacks
 	{ 31325, 30331, 641 },		// Colonel Kringle, Antarctic Parka, Ornament Armament
 	{ 945, 30853, 30388 },		// Chief Constable, FlakCatcher, Classified Coif
 	{ 126, 30309, 30068 },		// Bills Hat, Dead Of Night, Breakneck Baggies
 	{ 31310, 446, 31311 },		// Firearm Protector, Fancy Dress Uniform, Safety Stripes
 	{ 99, 30164, 30129 },		// Tyrant's Helm, Viking Braider, Hornblower
+	{ 183, 30339, 446 },		// Soldier Drill Hat, Killer's Kit, Fancy Dress Uniform
 	{ 261, 744, 166 },			// Mann Co. Cap, Pyrovision Goggles, Mercenary
 	{ 940, 744, 166 },			// Ghostly Gibus, Pyrovision Goggles, Mercenary
 	{ 941, 744, 655 },			// Skull Island Topper, Pyrovision Goggles, Spirit of Giving
@@ -702,10 +705,10 @@ public const CosmeticSet CS_PRESET_SOLDIER[] = {
 public const CosmeticSet CS_PRESET_SOLDIER_HALLOWEEN[] = {
 	{ 30521, 30522, 30520 },	// Hellhunter's Headpiece, Supernatural Stalker, Ghoul Gibbin' Gear
 	{ 30300, 30522, 30206 },	// Haunted Hat, Supernatural Stalker, Accursed Apparition
-	{ 30297, 30601, 30558 },	// Magical Mercenary, Cold Snap Coat, EOTL_Coldfront
+	{ 30297, 30601, 30558 },	// Magical Mercenary, Cold Snap Coat, EOTL_Coldfront Curbstompers
 	{ 31025, 31228, 30983 },	// Climbing Commander, Poopy Doe, Veterans Attire
 	{ 31025, 31228, 30601 },	// Climbing Commander, Poopy Doe, Cold Snap Coat
-	{ 30294, 30896, 30558 },	// Larval Lid, Attack Packs, EOTL_Coldfront
+	{ 30294, 30896, 30558 },	// Larval Lid, Attack Packs, EOTL_Coldfront Curbstompers
 	{ 30239, 30388, 30853 },	// Freedom Feathers, Classified Coif, Flakcatcher
 	{ 30521, 30497, 5618 },		// Hellhunter's Headpiece, Ghost of Spies Checked Past, Zombie Soldier
 	{ 31045, 31388, 5618 },		// Dancing Doe, Warlock's Warcloak, Zombie Soldier
@@ -714,9 +717,32 @@ public const CosmeticSet CS_PRESET_SOLDIER_HALLOWEEN[] = {
 	{ 555, 556, 557 },			// Idiot Box, Steel Pipes, Shoestring Budget
 };
 public const CosmeticSet CS_PRESET_PYRO[] = {
-	{ 247, 30089, 30168 },	 // Old Guadalajara, El Muchacho, Special Eye
+	{ 30582, 30583, 30584 },	// dec2014 Black Knights Bascinet, dec2014 Torchers Tabard, dec2014 Armoured Appendages
+	{ 30538, 30544, 30551 },	// EOTL_Skier, EOTL_pyro_sweater, EOTL_hiphunter_boots
+	{ 31108, 31127, 31328 },	// Fire Fighter, Gourd Grin, Firebrand
+	{ 30399, 30398, 30400 },	// The Smoking Skid Lid, Gas Guzzler, Lunatic's Leathers
+	{ 30662, 30663, 30664 },	// A Head Full of Hot Air, Jupiter Jetpack, Space Diver
+	{ 30162, 30163, 30664 },	// Bone Dome, Air Raider, Space Diver
+	{ 30063, 30062, 30901 },	// Centurion, Steel Sixpack, D-eye-monds
+	{ 30903, 30902, 30904 },	// Feathered Fiend, Deity's Dress, Sacrificial Stone
+	{ 31432, 31433, 31431 },	// Impact Impaler, Torcher's Trench Coat, Masked Loyalty
+	{ 31462, 31463, 31464 },	// Fire Marshal, Invisible Flame, Scorched Earth Stompers
+	{ 31359, 30168, 31358 },	// Firestalker, Special Eyes, Soho Sleuth
+	{ 30580, 31050, 31328 },	// dec2014 2014_pyromancer_hood, Spawn Camper, Firebrand
+	{ 30743, 30986, 31050 },	// Patriot Peak, Hot Case, Spawn Camper
+	{ 105, 30859, 30169 },		// Brigade Helm, Airtight Arsonist, Trickster's Turnout Gear
+	{ 247, 30089, 30168 },		// Old Guadalajara, El Muchacho, Special Eye
+	{ 247, 30089, 31065 },		// Old Guadalajara, El Muchacho, Head of the Dead
+	{ 30038, 30032, 842 },		// Firewall Helmet, Rusty Reaper, Pyrobotics Pack
+	{ 126, 30309, 31464 },		// L4D Hat, Dead Of Night, Scorched Earth Stompers
+	{ 30066, 30309, 486 },		// BrotherHood of Arms, Dead Of Night, Summer Shades
 	{ 30304, 30305, -1 },		// Blizzard Breather, Sub Zero Suit
-	{ 644, 30305, -1 },		// Head Warmer, Sub Zero Suit
+	{ 126, 570, 30305 },		// L4D Hat, Last Breath, Sub Zero Suit
+	{ 644, 30305, -1 },			// Head Warmer, Sub Zero Suit
+	{ 182, 570, -1 },			// Pyro Helm, Last Breath [The Once Upon A Time In 2Fort Pyro]
+	{ 261, 744, 166 },			// Mann Co. Cap, Pyrovision Goggles, Mercenary
+	{ 940, 744, 166 },			// Ghostly Gibus, Pyrovision Goggles, Mercenary
+	{ 31357, 30391, 30901 },	// Flame Warrior, Sengoku Scorcher, d-eye-monds
 };
 
 // Returns the ellgible cosmetics that can be Unusual
