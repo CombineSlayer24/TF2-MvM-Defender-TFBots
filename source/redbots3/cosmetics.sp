@@ -2450,6 +2450,14 @@ void GiveBotCosmetics( int iClient )
 						iSelectedCosmetics[ i ] = iPyroCosmetics[ iIndex[ i ] ];
 						if ( iSelectedCosmetics[ i ] && iPyroCosmetics[ i ] != 1 )
 						{
+							if ( iIndex[ i ] == 1 ) 
+							{
+								iSoldierCosmetics[ 1 ] = 0;
+							}
+						}
+
+						if ( iSelectedCosmetics[ i ] && iSoldierCosmetics[ i ] != 1 )
+						{
 							TF2_CreateHat( iClient, iSelectedCosmetics[ i ], QUALITY_UNIQUE, iIndex[ i ] == 2 );
 						}
 					}
@@ -2497,7 +2505,7 @@ void PresetCosmeticSet( int iClient, char[] iClass )
 	if ( StrEqual( iClass, "Scout", false ) ) 
 	{
 		// If Halloween, use Halloween specific presets
-		if ( bIsHalloween && IsChance( 40 ) )
+		if ( bIsHalloween && IsChance( 60 ) )
 		{
 			// Add the add if the id is not -1
 			if ( CS_PRESET_SCOUT_HALLOWEEN[ iScoutHalloRand ].iHat != -1 )
@@ -2536,7 +2544,7 @@ void PresetCosmeticSet( int iClient, char[] iClass )
 
 	if ( StrEqual( iClass, "Soldier", false ) ) 
 	{
-		if ( bIsHalloween && IsChance( 40 ) )
+		if ( bIsHalloween && IsChance( 60 ) )
 		{
 			if ( CS_PRESET_SOLDIER_HALLOWEEN[ iSoldierHalloRand ].iHat != -1 )
 			{
