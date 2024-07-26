@@ -631,7 +631,10 @@ public const CosmeticSet CS_PRESET_SCOUT[] = {
 	{ 30066, 30309, 30104 },	// Brotherhood Of Arms, Dead of Night, Graybanns
 	{ 30767, 31081, 30185 },	// Airdog, Fuel Injector, Flapjack
 	{ 31459, 31460, 30104 },	// Commonwealth Commando, Tanker's Top, Graybanns
+	{ 31197, 31195, 31196 },	// Fried Batter, Fast Food, Meal Dealer
+	{ 31284, 31285, 31283 },	// Boston Brain Bucket, Pest's Pads, Team Player
 	{ 30479, 1026, 30889 },		// Thirst Blood, Tomb Wrapper, Transparent Trousers
+	{ 1014, 30890, 31281 },		// Brutal Bouffant, Forest Footwear, Ripped Rider
 	{ 126, 30104, 30309 },		// Bill Hat, Graybanns, Dead of Night
 	{ 30362, 30085, 296 },		// THe Law, The Macho Mann, TTG Badge (License to maim)
 	{ 324, 31217, 31302 },		// Flipped Trilby, Goalkeeper, Imp's Imprint
@@ -647,11 +650,12 @@ public const CosmeticSet CS_PRESET_SCOUT[] = {
 	{ 760, 30068, 827 }, 		// Front Runner, Breakneck Baggies, Track Terrorizer
 	{ 346, 347, 30552 },		// Superfan, Essential Accessories, Themral Tracker
 	{ 150, 722, 1016 },			// Troublemaker's Tossle Cap, Fast Learner, Buck Turner All-Stars
+	{ 346, 486, 347 },			// MNC Mascot Hat, Summer Shades, MNC Mascot Outfit
 	{ 760, 722, 983 },			// Front Runner, Fast Learner, Digit Divulger
-	{ 261, 744, 166 },			// Mann Co. Cap, Pyrovision Goggles, Mercenary
+/* 	{ 261, 744, 166 },			// Mann Co. Cap, Pyrovision Goggles, Mercenary
 	{ 940, 744, 166 },			// Ghostly Gibus, Pyrovision Goggles, Mercenary
 	{ 941, 744, 655 },			// Skull Island Topper, Pyrovision Goggles, Spirit of Giving
-	{ 263, 166, -1 },			// Ellis Hat, Mercenary
+	{ 263, 166, -1 },			// Ellis Hat, Mercenary */
 };
 public const CosmeticSet CS_PRESET_SCOUT_HALLOWEEN[] = {
 	{ 30471, 30472, 30470 },	// Alien Cranium, Xeno Suit, Biomech Backpack
@@ -691,16 +695,25 @@ public const CosmeticSet CS_PRESET_SOLDIER[] = {
 	{ 30118, 30780, 30896 },	// Whirly Warrior, Patriot's Pouches, Attack Packs
 	{ 30743, 30165, 30744 },	// Patriot Peak, Cuban Bristle Crisis, Diplomat
 	{ 30338, 30558, 30983 },	// Ground Control, EOTL_Coldfront Curbstompers, Veterans Attire
+	{ 31113, 30853, 30309 },	// Breach and Bomb, Flakcatcher, Dead of Night
+	{ 31113, 30558, 30309 },	// Breach and Bomb, EOTL_Coldfront Curbstompers, Dead of Night
+	{ 31131, 31127, 31220 },	// Sir Pumpkinton, Gourd Grin, Trickster's Treats
+	{ 1185, 30165, 30085 },		// Saxton, Cuban Bristle Crisis, MAcho Mann
 	{ 445, 30388, 30392 },		// Armored Authority, Classified Coif, Man in Slacks
 	{ 31325, 30331, 641 },		// Colonel Kringle, Antarctic Parka, Ornament Armament
 	{ 945, 30853, 30388 },		// Chief Constable, FlakCatcher, Classified Coif
-	{ 126, 30309, 30068 },		// Bills Hat, Dead Of Night, Breakneck Baggies
+	{ 126, 30309, 30068 },		// L4D Hat, Dead Of Night, Breakneck Baggies
 	{ 31310, 446, 31311 },		// Firearm Protector, Fancy Dress Uniform, Safety Stripes
+	{ 666, 30747, 30818 },		// B.M.O.C., Gift Bringer, Socked And Loaded
+	{ 30477, 631, 30392 },		// Lone Survivor, Hat with No Name, Man in Slacks
+	{ 31277, 31276, -1 },		// Detective, Caped Crusader, Chaser
 	{ 99, 30164, 30129 },		// Tyrant's Helm, Viking Braider, Hornblower
 	{ 183, 30339, 446 },		// Soldier Drill Hat, Killer's Kit, Fancy Dress Uniform
-	{ 261, 744, 166 },			// Mann Co. Cap, Pyrovision Goggles, Mercenary
+	{ 152, 30126, 875 },		// Soldier Samurai Hat, Shogun's Shoulder Guard, Menpo
+/* 	{ 261, 744, 166 },			// Mann Co. Cap, Pyrovision Goggles, Mercenary
 	{ 940, 744, 166 },			// Ghostly Gibus, Pyrovision Goggles, Mercenary
 	{ 941, 744, 655 },			// Skull Island Topper, Pyrovision Goggles, Spirit of Giving
+	{ 263, 166, -1 },			// Ellis Hat, Mercenary */
 };
 public const CosmeticSet CS_PRESET_SOLDIER_HALLOWEEN[] = {
 	{ 30521, 30522, 30520 },	// Hellhunter's Headpiece, Supernatural Stalker, Ghoul Gibbin' Gear
@@ -712,8 +725,11 @@ public const CosmeticSet CS_PRESET_SOLDIER_HALLOWEEN[] = {
 	{ 30239, 30388, 30853 },	// Freedom Feathers, Classified Coif, Flakcatcher
 	{ 30521, 30497, 5618 },		// Hellhunter's Headpiece, Ghost of Spies Checked Past, Zombie Soldier
 	{ 31045, 31388, 5618 },		// Dancing Doe, Warlock's Warcloak, Zombie Soldier
+	{ 30228, 30227, 30281 },	// Hidden Dragon, Faux Manchu, Shaolin Sash
 	{ 30268, 30129, -1 },		// Spellbinder's Bonnet, Hornblower
 	{ -1, 31137, 30165 },		// War Blunder, Cuban Bristle Crisis
+	{ 555, 556, 557 },			// Idiot Box, Steel Pipes, Shoestring Budget
+	{ 555, 556, 557 },			// Idiot Box, Steel Pipes, Shoestring Budget
 	{ 555, 556, 557 },			// Idiot Box, Steel Pipes, Shoestring Budget
 };
 public const CosmeticSet CS_PRESET_PYRO[] = {
@@ -730,20 +746,41 @@ public const CosmeticSet CS_PRESET_PYRO[] = {
 	{ 31359, 30168, 31358 },	// Firestalker, Special Eyes, Soho Sleuth
 	{ 30580, 31050, 31328 },	// dec2014 2014_pyromancer_hood, Spawn Camper, Firebrand
 	{ 30743, 30986, 31050 },	// Patriot Peak, Hot Case, Spawn Camper
+	{ 31357, 30391, 30901 },	// Flame Warrior, Sengoku Scorcher, d-eye-monds
+	{ 31186, 31188, 31187 },	// Reel Fly Hat, Water Waders, Hook Line and Cinder
 	{ 105, 30859, 30169 },		// Brigade Helm, Airtight Arsonist, Trickster's Turnout Gear
 	{ 247, 30089, 30168 },		// Old Guadalajara, El Muchacho, Special Eye
 	{ 247, 30089, 31065 },		// Old Guadalajara, El Muchacho, Head of the Dead
 	{ 30038, 30032, 842 },		// Firewall Helmet, Rusty Reaper, Pyrobotics Pack
 	{ 126, 30309, 31464 },		// L4D Hat, Dead Of Night, Scorched Earth Stompers
 	{ 30066, 30309, 486 },		// BrotherHood of Arms, Dead Of Night, Summer Shades
+	{ 394, 30169, 30417 },		// Connoisseur's Cap, Trickster's Turnout Gear, Frymaster
 	{ 30304, 30305, -1 },		// Blizzard Breather, Sub Zero Suit
 	{ 126, 570, 30305 },		// L4D Hat, Last Breath, Sub Zero Suit
 	{ 644, 30305, -1 },			// Head Warmer, Sub Zero Suit
 	{ 182, 570, -1 },			// Pyro Helm, Last Breath [The Once Upon A Time In 2Fort Pyro]
+/* 	{ 261, 744, 166 },			// Mann Co. Cap, Pyrovision Goggles, Mercenary
+	{ 940, 744, 166 },			// Ghostly Gibus, Pyrovision Goggles, Mercenary
+	{ 941, 744, 655 },			// Skull Island Topper, Pyrovision Goggles, Spirit of Giving
+	{ 263, 166, -1 },			// Ellis Hat, Mercenary */
+};
+public const CosmeticSet CS_PRESET_PYRO_HALLOWEEN[] = {
+	{ 30928, 31318, 30309 },	// Balloonihoodie, Magical Mount, Dead of Night
+	{ 30203, 30225, 30259 },	// Burnys Boney Bonnet, Cauterizers Caudal Appendage, Monsters Stompers
+	{ 30194, 927, 31263 },		// Spectralnaut, Boo Balloon, Kazan Karategi
+	{ 278, 5624, 30196 },		// HHH Head, Zombie Pyro, Maniac's Manacles
+	{ 549, 550, 551 },			// Blazing Bull, Fallen Angel, Tail from the Crypt
+};
+
+public const CosmeticSet CS_PRESET_F2P[] = {
 	{ 261, 744, 166 },			// Mann Co. Cap, Pyrovision Goggles, Mercenary
 	{ 940, 744, 166 },			// Ghostly Gibus, Pyrovision Goggles, Mercenary
-	{ 31357, 30391, 30901 },	// Flame Warrior, Sengoku Scorcher, d-eye-monds
+	{ 941, 744, 655 },			// Skull Island Topper, Pyrovision Goggles, Spirit of Giving
+	{ 537, 166, 744 },			// TF Birthday Hat 2011, Mercenary, Pyrovision Goggles
+	{ 263, 166, -1 },			// Ellis Hat, Mercenary
+	{ 537, 166, -1 },			// TF Birthday Hat 2011, Mercenary
 };
+
 
 // Returns the ellgible cosmetics that can be Unusual
 /* bool IsUnusualHat( int iEntity )
@@ -771,7 +808,6 @@ public const int SPECIFIC_SCOUT_HEAD[] = {
 	30735,	// Sidekick's Side Slick
 	30733,	// Tuefort Knight
 	31282,	// Throttlehead
-
 };
 public const int SPECIFIC_SCOUT_HATS[] = {
 	52,		// batter's helmet
@@ -1555,6 +1591,7 @@ bool IsPaintableHat( int iEntity )
 	switch ( iIndex )
 	{
 		//case :	return true;	// 
+		case 31318:	return true;	// Magical Mount
 		case 31094:	return true;	// Winter Wrap Up
 		case 976:	return true;	// Winter Wonderland Wrap
 		case 175:	return true;	// Pyro Monocle
@@ -2497,7 +2534,7 @@ void GiveBotCosmetics( int iClient )
 	}
 	else // Pick Premade sets
 	{
-		if ( iRandom <= 90 ) // 90% chance to pick one, otherwise, be a 2007 bot player.
+		if ( iRandom <= 75 )
 		{
 			switch ( TF2_GetPlayerClass( iClient ) )
 			{
@@ -2516,6 +2553,19 @@ void GiveBotCosmetics( int iClient )
 				CPrintToChatAll( "{green}SELECTED PRE-MADE SETS" );
 			#endif
 		}
+		else if ( iRandom <= 90 )
+		{
+			PresetCosmeticSet( iClient, "F2P" );
+			#if defined TESTING_ONLY
+				CPrintToChatAll( "{green}SELECTED NOOB/F2P SETS" );
+			#endif
+		}
+		else
+		{
+			#if defined TESTING_ONLY
+				CPrintToChatAll( "{green}SELECTED NO PRESETS (2007 PLAYER)" );
+			#endif
+		}
 	}
 }
 
@@ -2526,6 +2576,7 @@ void PresetCosmeticSet( int iClient, char[] iClass )
 	int iSoldierRand 			= GetRandomInt( 0, sizeof( CS_PRESET_SOLDIER ) / sizeof( CosmeticSet ) - 1 );
 	int iSoldierHalloRand 		= GetRandomInt( 0, sizeof( CS_PRESET_SOLDIER_HALLOWEEN ) / sizeof( CosmeticSet ) - 1 );
 	int iPyroRand 				= GetRandomInt( 0, sizeof( CS_PRESET_PYRO ) / sizeof( CosmeticSet ) - 1 );
+	int iF2PRand 				= GetRandomInt( 0, sizeof( CS_PRESET_F2P ) / sizeof( CosmeticSet ) - 1 );
 	bool bIsHalloween 			= TF2_IsHolidayActive( TFHoliday_HalloweenOrFullMoon )
 
 	if ( StrEqual( iClass, "Scout", false ) ) 
@@ -2617,6 +2668,43 @@ void PresetCosmeticSet( int iClient, char[] iClass )
 			if ( iCosmeticID != -1 )
 			{
 				TF2_CreateHat( iClient, iCosmeticID, QUALITY_UNIQUE );
+			}
+		}
+	}
+
+	if ( StrEqual( iClass, "F2P", false ) ) 
+	{
+		if ( bIsHalloween && IsChance( 60 ) )
+		{
+			// TODO: DO HALLOWEEN LATER
+			if ( CS_PRESET_F2P[ iF2PRand ].iHat != -1 )
+			{
+				TF2_CreateHat( iClient, CS_PRESET_F2P[ iF2PRand ].iHat, QUALITY_UNIQUE, true );
+			}
+
+			for ( int i = 0; i < 2; ++i )
+			{
+				int iCosmeticID = ( i == 0 ) ? CS_PRESET_F2P[ iF2PRand ].iCosmetic1 : CS_PRESET_F2P[ iF2PRand ].iCosmetic2;
+				if ( iCosmeticID != -1 )
+				{
+					TF2_CreateHat( iClient, iCosmeticID, QUALITY_UNIQUE );
+				}
+			}
+		}
+		else
+		{
+			if ( CS_PRESET_F2P[ iF2PRand ].iHat != -1 )
+			{
+				TF2_CreateHat( iClient, CS_PRESET_F2P[ iF2PRand ].iHat, QUALITY_UNIQUE, true );
+			}
+
+			for ( int i = 0; i < 2; ++i )
+			{
+				int iCosmeticID = ( i == 0 ) ? CS_PRESET_F2P[ iF2PRand ].iCosmetic1 : CS_PRESET_F2P[ iF2PRand ].iCosmetic2;
+				if ( iCosmeticID != -1 )
+				{
+					TF2_CreateHat( iClient, iCosmeticID, QUALITY_UNIQUE );
+				}
 			}
 		}
 	}
