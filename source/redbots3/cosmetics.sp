@@ -633,6 +633,7 @@ public const CosmeticSet CS_PRESET_SCOUT[] = {
 	{ 31197, 31195, 31196 },	// Fried Batter, Fast Food, Meal Dealer
 	{ 31284, 31285, 31283 },	// Boston Brain Bucket, Pest's Pads, Team Player
 	{ 30119, 30873, 31135 },	// Federal Casemaker, Airborne Attire, Handsome Devil
+	{ 31326, 30309, 30427 },	// Lumbercap, Dead of Night, Argyle Ace
 	{ 30479, 1026, 30889 },		// Thirst Blood, Tomb Wrapper, Transparent Trousers
 	{ 1014, 30890, 31281 },		// Brutal Bouffant, Forest Footwear, Ripped Rider
 	{ 126, 30104, 30309 },		// Bill Hat, Graybanns, Dead of Night
@@ -643,12 +644,14 @@ public const CosmeticSet CS_PRESET_SCOUT[] = {
 	{ 846, 30027, 30770 },		// Robot Running Man, Bolt Boy, Courtly Cuirass
 	{ 31117, 30068, 827 },		// California Cap, Breakneck Baggies, Track Terrorizer
 	{ -1, 30888, 30889 },		// Nothing, Jungle Jersey, Transparent Trousers
+	{ 31417, 722, 9908 },		// Dapper Dickens, Fast Learner, Canteen Crasher Gold Uber Medal 2018
 	{ 30884, 492, 486 },		// Aloha Apparel, Summer Hat, Summer Shades
 	{ 30801, 924, 925 },		// Spooktacles, Spooky Shoes, Spooky Sleeves
 	{ 106, 30751, 827 },		// Bonk Helm, Bonk Batter's Backup, Track Terrorizer
 	{ 617, 30076, 707 },		// Backwards Ballcap, Bigg Mann on Campus, Boston Boom-Bringer
 	{ 760, 30068, 827 }, 		// Front Runner, Breakneck Baggies, Track Terrorizer
 	{ 346, 347, 30552 },		// Superfan, Essential Accessories, Themral Tracker
+	{ 31366, 814, 815 },		// Brimmed Bootlegger, triad trinket, Champ Stamp
 	{ 150, 722, 1016 },			// Troublemaker's Tossle Cap, Fast Learner, Buck Turner All-Stars
 	{ 346, 486, 347 },			// MNC Mascot Hat, Summer Shades, MNC Mascot Outfit
 	{ 760, 722, 983 },			// Front Runner, Fast Learner, Digit Divulger
@@ -783,6 +786,7 @@ public const CosmeticSet CS_PRESET_DEMOMAN[] = {
 	{ 30016, 31307, 845 },		// FF-0, Alcoholic Automaton, Battery Bandolier
 	{ 342, 30124, 874 },		// Prince Tavish's Crown, Gaelic Garb, King of Scotland Cape
 	{ 671, 30305, -1 },			// Brown Bomber, Sub Zero Suit
+	{ 255, 31392, -1 },			// Sober Stuntman, Stunt Suit
 	{ 332, 295, -1 },			// Treasure Hat 1, TTG Glasses
 };
 public const CosmeticSet CS_PRESET_F2P[] = {
@@ -933,6 +937,7 @@ public const int SPECIFIC_SCOUT_TORSO[] = {
 	30178,	// Weight Room Warmer
 	30990,	// Wipe Oout Wraps
 	31460,	// Tanker's Top
+	815,	// Champ Stamp
 };
 public const int SPECIFIC_SCOUT_BACK[] = {
 	30751,	// Batter's Backup
@@ -1541,12 +1546,78 @@ public const int SPECIFIC_DEMO_FEET[] = {
 //-----------------------------------------------
 // HEAVYWEAPONSGUY
 //-----------------------------------------------
+// left on all father
+public const int SPECIFIC_HEAVY_HEAD[] = {
+	145,	// Heavy Hair (Hound Dog)
+};
+public const int SPECIFIC_HEAVY_HEADSKIN[] = {
+	380,	// Large Luchadore
+	585,	// Cold War Luchador
+};
+public const int SPECIFIC_HEAVY_HATS[] = {
+	49,		// Football helmet
+	96,		// Officer's Ushanka
+	97,		// Tough Guy's Toque
+	185,	// Heavy do-rag
+	246,	// Pugilist's Protector
+	254,	// Hard Counter
+	290,	// Cadaver's Cranium
+	292,	// Poker Visor
+	309,	// Big Chief
+	313,	// Magnificent Mongolian
+	330,	// Coupe D'isaster
+	358,	// Heavy Topknot
+	378,	// Team Captain
+	427,	// Capone's Capper
+	478,	// Copper's Hard Top
+	515,	// Pilotka
+	517,	// Dragonborn Helmet
+	535,	// Storm Spirit's Jolly Hat
+	601,	// One-Man Army
+	603,	// Outdoorsman
+	613,	// Gym Rat
+	635,	// War Head
+	821,	// Soviet Gentleman
+	840,	// U-clank-a
+	853,	// Crafty Hair
+	866,	// Heavy Artillery Officer's Cap
+	876,	// K-9 Mane
+};
+public const int SPECIFIC_HEAVY_GLASSES[] = {
+	479,	// Security Shades
+};
+public const int SPECIFIC_HEAVY_BEARD[] = {
+	485,	// Big Steel Jaw of Summer Fun
+	647, 	// All-Father
+};
+public const int SPECIFIC_HEAVY_SHIRT[] = {
+	524,	// Purity Fist (arms)
+	777,	// Apparatchik's Apparel
+	814,	// Triad Trinket
+	815,	// Champ Stamp
+	925,	// Spooky Sleeves
+};
+public const int SPECIFIC_HEAVY_TOWEL[] = {
+	757,	// Toss-Proof Towel
+	30012,	// Titanium Towel
+	30910,	// Heavy Harness
+};
+public const int SPECIFIC_HEAVY_HIP[] = {
+	643,	// Sandvich Safe
+};
+public const int SPECIFIC_HEAVY_BELT[] = {
+	392,	// Pocket Medic
+};
+
 // Returns the ellgible cosmetics that has multiple styles
 int GetCosmeticStyles( int iEntity )
 {
 	int iIndex = GetEntProp( iEntity, Prop_Send, "m_iItemDefinitionIndex" );
 	switch ( iIndex )
 	{
+		case 821:	return 1;	// Soviet Gentleman
+		case 610:	return 1;	// One-Man Army
+		case 478:	return 1;	// Copper's Hard Top
 		case 31422:	return 1;	// Nightcap
 		case 31393:	return 1;	// Mad Lad
 		case 31372:	return 1;	// Shrapnel Shell
@@ -1756,7 +1827,9 @@ int GetCosmeticStyles( int iEntity )
 		case 31341:	return 2;	// Plaid Lad
 		case 31342:	return 2;	// Glasgow Bankroll
 		case 31391:	return 2;	// Thunder Dome
+		case 380:	return 2;	// Large Luchadore
 
+		case 777:	return 3;	// Apparatchik's Apparel
 		case 30309:	return 3;	// Dead of Night
 		case 31217:	return 3;	// Goalkeeper
 		case 983:	return 3;	// Digital Divulger
@@ -1799,7 +1872,30 @@ bool IsPaintableHat( int iEntity )
 	int iIndex = GetEntProp( iEntity, Prop_Send, "m_iItemDefinitionIndex" );
 	switch ( iIndex )
 	{
-		//case :	return true;	// 
+		case :	return true;	// 
+		case 876:	return true;	// K-9 Mane
+		case 840:	return true;	// U-clank-a
+		case 821:	return true;	// Soviet Gentleman
+		case 777:	return true;	// Apparatchik's Apparel
+		case 757:	return true;	// Toss-Proof Towel
+		case 30012:	return true;	// Titanium Towel
+		case 603:	return true;	// Outdoorsman
+		case 613:	return true;	// Gym Rat
+		case 610:	return true;	// One-Man Army
+		case 585:	return true;	// Cold War Luchador
+		case 515:	return true;	// Pilotka
+		case 427:	return true;	// Capone's Capper
+		case 380:	return true;	// Large Luchadore
+		case 339:	return true;	// Coupe D'isaster
+		case 313:	return true;	// Magnificent Mongolian
+		case 292:	return true;	// Poker Visor
+		case 185:	return true;	// Heavy do-rag
+		case 246:	return true;	// Pugilist's Protector
+		case 254:	return true;	// Hard Counter
+		case 145:	return true;	// Heavy Hair
+		case 49:	return true;	// Football helmet
+		case 96:	return true;	// Officer's Ushanka
+		case 97:	return true;	// Tough Guy's Toque
 		case 31424:	return true;	// Slumber Slacks
 		case 31423:	return true;	// Lazy Lounger
 		case 31422:	return true;	// Nightcap
