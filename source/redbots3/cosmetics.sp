@@ -289,7 +289,6 @@ public const int ALLCLASS_HATS[] = {
 	1899,	// World Traveler
 	31132,	// Wrap-A-Khamon
 	31443,	// Brand Loyalist
-
 	// Unreleased Hats
 	1193,	// Never Forget Cap
 	1192,	// Mannanas Cap
@@ -633,6 +632,7 @@ public const CosmeticSet CS_PRESET_SCOUT[] = {
 	{ 31459, 31460, 30104 },	// Commonwealth Commando, Tanker's Top, Graybanns
 	{ 31197, 31195, 31196 },	// Fried Batter, Fast Food, Meal Dealer
 	{ 31284, 31285, 31283 },	// Boston Brain Bucket, Pest's Pads, Team Player
+	{ 30119, 30873, 31135 },	// Federal Casemaker, Airborne Attire, Handsome Devil
 	{ 30479, 1026, 30889 },		// Thirst Blood, Tomb Wrapper, Transparent Trousers
 	{ 1014, 30890, 31281 },		// Brutal Bouffant, Forest Footwear, Ripped Rider
 	{ 126, 30104, 30309 },		// Bill Hat, Graybanns, Dead of Night
@@ -652,10 +652,6 @@ public const CosmeticSet CS_PRESET_SCOUT[] = {
 	{ 150, 722, 1016 },			// Troublemaker's Tossle Cap, Fast Learner, Buck Turner All-Stars
 	{ 346, 486, 347 },			// MNC Mascot Hat, Summer Shades, MNC Mascot Outfit
 	{ 760, 722, 983 },			// Front Runner, Fast Learner, Digit Divulger
-/* 	{ 261, 744, 166 },			// Mann Co. Cap, Pyrovision Goggles, Mercenary
-	{ 940, 744, 166 },			// Ghostly Gibus, Pyrovision Goggles, Mercenary
-	{ 941, 744, 655 },			// Skull Island Topper, Pyrovision Goggles, Spirit of Giving
-	{ 263, 166, -1 },			// Ellis Hat, Mercenary */
 };
 public const CosmeticSet CS_PRESET_SCOUT_HALLOWEEN[] = {
 	{ 30471, 30472, 30470 },	// Alien Cranium, Xeno Suit, Biomech Backpack
@@ -710,10 +706,6 @@ public const CosmeticSet CS_PRESET_SOLDIER[] = {
 	{ 99, 30164, 30129 },		// Tyrant's Helm, Viking Braider, Hornblower
 	{ 183, 30339, 446 },		// Soldier Drill Hat, Killer's Kit, Fancy Dress Uniform
 	{ 152, 30126, 875 },		// Soldier Samurai Hat, Shogun's Shoulder Guard, Menpo
-/* 	{ 261, 744, 166 },			// Mann Co. Cap, Pyrovision Goggles, Mercenary
-	{ 940, 744, 166 },			// Ghostly Gibus, Pyrovision Goggles, Mercenary
-	{ 941, 744, 655 },			// Skull Island Topper, Pyrovision Goggles, Spirit of Giving
-	{ 263, 166, -1 },			// Ellis Hat, Mercenary */
 };
 public const CosmeticSet CS_PRESET_SOLDIER_HALLOWEEN[] = {
 	{ 30521, 30522, 30520 },	// Hellhunter's Headpiece, Supernatural Stalker, Ghoul Gibbin' Gear
@@ -759,10 +751,6 @@ public const CosmeticSet CS_PRESET_PYRO[] = {
 	{ 126, 570, 30305 },		// L4D Hat, Last Breath, Sub Zero Suit
 	{ 644, 30305, -1 },			// Head Warmer, Sub Zero Suit
 	{ 182, 570, -1 },			// Pyro Helm, Last Breath [The Once Upon A Time In 2Fort Pyro]
-/* 	{ 261, 744, 166 },			// Mann Co. Cap, Pyrovision Goggles, Mercenary
-	{ 940, 744, 166 },			// Ghostly Gibus, Pyrovision Goggles, Mercenary
-	{ 941, 744, 655 },			// Skull Island Topper, Pyrovision Goggles, Spirit of Giving
-	{ 263, 166, -1 },			// Ellis Hat, Mercenary */
 };
 public const CosmeticSet CS_PRESET_PYRO_HALLOWEEN[] = {
 	{ 30928, 31318, 30309 },	// Balloonihoodie, Magical Mount, Dead of Night
@@ -771,7 +759,32 @@ public const CosmeticSet CS_PRESET_PYRO_HALLOWEEN[] = {
 	{ 278, 5624, 30196 },		// HHH Head, Zombie Pyro, Maniac's Manacles
 	{ 549, 550, 551 },			// Blazing Bull, Fallen Angel, Tail from the Crypt
 };
-
+public const CosmeticSet CS_PRESET_DEMOMAN[] = {
+	{ 31422, 31423, 31424 },	// Nightcap, Lazy Lounger, Slumber Slacks
+	{ 31391, 31372, 31392 },	// Thunder Dome, Shrapnel Shell, Stunt Suit
+	{ 31341, 31342, 30831 },	// Plaid Lad, Glasgow Bankroll, Reader's Choice
+	{ 30628, 31274, 31275 },	// Outta' Sight, Hawaiian hangover, Barefoot Brawler
+	{ 30979, 30945, 30555 },	// Frag Proof Fragger, Blast Blocker, EOTL_demopants
+	{ 30393, 30373, 30104 },	// Razor Cut, Toowoomba Tunic, Graybanns
+	{ 30066, 30104, 30178 },	// Brotherhood of Arms, Graybanns, Weight Room Warmer
+	{ 30066, 30104, 30309 },	// Brotherhood of Arms, Graybanns, Dead of Night
+	{ 30105, 30107, 30124 },	// Black Watch, Gaelic Golf Bag, Gaelic garb
+	{ 31115, 31392, 30945 },	// Hazard Headgear, Stunt Suit, Blast Blocker
+	{ 30421, 30541, 30550 },	// Frontier Djustice", EOTL_demo_dynamite, EOTL_hiphunter_jacket
+	{ 30546, 30541, 30550 },	// EOTL_FURCAP, EOTL_demo_dynamite, EOTL_hiphunter_jacket
+	{ 30064, 30061, 30124 },	// Tartan Shade, Tartantaloons, Gaelic Garb
+	{ 30334, 30305, 30333 },	// Tartan Tyrolean, Sub Zero Suit, Highland High Heels
+	{ 30429, 30430, 30431 },	// Allbrero, Seeing Double, Six Pack Abs
+	{ 30340, 1016, 30178 },		// Stylish DeGroot, Buck Turner All-Stars, Weight Room Warmer
+	{ 306, 30179, 30085 },		// Scotch Bonnet, Hurt Locher, Macho Mann
+	{ 306, 30179, 30363 },		// Scotch Bonnet, Hurt Locher, Juggernaut Jacket
+	{ 146, 31037, 30068 },		// Demoman Hallmark, Dynamite Abs, Breakneck Baggies
+	{ 359, 30348, 30742 },		// Demo Kabuto, Bushi-Dou, Shin Shredders
+	{ 30016, 31307, 845 },		// FF-0, Alcoholic Automaton, Battery Bandolier
+	{ 342, 30124, 874 },		// Prince Tavish's Crown, Gaelic Garb, King of Scotland Cape
+	{ 671, 30305, -1 },			// Brown Bomber, Sub Zero Suit
+	{ 332, 295, -1 },			// Treasure Hat 1, TTG Glasses
+};
 public const CosmeticSet CS_PRESET_F2P[] = {
 	{ 261, 744, 166 },			// Mann Co. Cap, Pyrovision Goggles, Mercenary
 	{ 940, 744, 166 },			// Ghostly Gibus, Pyrovision Goggles, Mercenary
@@ -779,6 +792,12 @@ public const CosmeticSet CS_PRESET_F2P[] = {
 	{ 537, 166, 744 },			// TF Birthday Hat 2011, Mercenary, Pyrovision Goggles
 	{ 263, 166, -1 },			// Ellis Hat, Mercenary
 	{ 537, 166, -1 },			// TF Birthday Hat 2011, Mercenary
+	{ 537, -1, -1 },			// TF Birthday Hat 2011
+};
+public const CosmeticSet CS_PRESET_F2P_HALLOWEEN[] = {
+	{ 581, 655, -1 },			// MONOCULUS!, Spirit of Giving
+	{ 278, 166, -1 },			// HHH Head, Mercenary
+	{ 115, 166, -1 },			// Mildly Disturbing Halloween Mask, Mercenary
 };
 
 
@@ -965,8 +984,6 @@ public const int SPECIFIC_SCOUT_FEET[] = {
 //-----------------------------------------------
 // SOLDIER
 //-----------------------------------------------
-// UNUSED SO FAR
-//121,	// Web Easteregg Medal
 public const int SPECIFIC_SOLDIER_HEAD[] = {
 	1090,	// Big Daddy
 	1091,	// First American
@@ -977,6 +994,7 @@ public const int SPECIFIC_SOLDIER_HEAD[] = {
 	349,	// Defiant Spartan
 	391,	// Honcho's Headgear
 	575,	// Infernal Impaler
+	30733,	// Tuefort Knight
 };
 public const int SPECIFIC_SOLDIER_HATS[] = {
 	445,	// Armored Authority
@@ -1121,6 +1139,7 @@ public const int SPECIFIC_SOLDIER_BELT[] = {
 	30115,	// Compatriot (left shoulder)
 	30985,	// Private Maggot Muncher (neckless)
 	31388,	// Warlock's Warcloak (neckless)
+	121,	// Web Easteregg Medal (medal)
 };
 public const int SPECIFIC_SOLDIER_PANTS[] = {
 	31451,	// Justice Johns
@@ -1350,12 +1369,193 @@ public const int SPECIFIC_PYRO_FEET[] = {
 //-----------------------------------------------
 // DEMO
 //-----------------------------------------------
+// LEFT ON Ornament Armament
+// Unused, will be used in Presets
+/*
+31225,	// Death Stare
+30305,	// Sub Zero Suit (conflicts with pants)
+31392,	// Stunt Suit
+*/
+public const int SPECIFIC_DEMO_HEAD[] = {
+	514,	// Mask of the Shaman
+	30733,	// Tuefort Knight
+	30863,	// Blast Defense
+	30979,	// Frag Proof Fragger
+	703,	// Bolgan
+	30082,	// Glasgow Great Helm (Considered a hat?)
+	30723,	// Hood of Sorrows
+	30733,	// Tuefort Knight
+	30863,	// Blast Defense
+	30979,	// Frag Proof Fragger
+	31307,	// Alcoholic Automaton
+};
+public const int SPECIFIC_DEMO_HATS[] = {
+	47,		// Demoman's Fro
+	100,	// Glengarry Bonnet
+	120,	// Scotsman's Stove Pipe
+	146,	// Demoman Hallmark (Hustler's Hallmark)
+	179,	// Demoman Tricone
+	216,	// Rimmed Raincatcher
+	255,	// Sober Stuntman
+	259,	// Carouser's Capotain
+	306,	// Scotch Bonnet
+	342,	// Prince Tavish's Crown
+	359,	// Demo Kabuto
+	388,	// Private Eye
+	390,	// Reggaelator
+	403,	// Sultan's Ceremonial
+	465,	// Conjurer's Cowl
+	604,	// Tavish DeGroot Experience
+	607,	// Buccaneer's Bicorne
+	631,	// Hat With No Name
+	786,	// Grenadier Helm
+	876,	// K-9 Mane
+	935,	// Voodoo JuJu (Slight Return)
+	1012,	// Wilson Weave
+	30016,	// FR-0
+	30021,	// Pure Tin Capotain
+	30024,	// Cyborg Stunt Helmet
+	30029,	// Broadband Bonnet
+	30034,	// Bolted Bicorne
+	30037,	// Strontium Stove Pipe
+	30064,	// Tartan Shade
+	30105,	// Black Watch
+	30106,	// Tartan Spartan
+	30112,	// Stormin' Norman
+	30180,	// Pirate Bandana
+	30334,	// Tartan Tyrolean
+	30340,	// Stylish DeGroot
+	30393,	// Razor Cut
+	30429,	// Allbrero
+	30547,	// EOTL_summerhat
+	30586,	// dec2014 Viking Helmet
+	30604,	// dec2014 Comforter
+	30627,	// Bruce's Bonnet
+	30807,	// Spirit of the Bombing Past
+	30823,	// Bomb Beanie
+	30830,	// Bomber Knight
+	30836,	// Elf Esteem
+	30887,	// War Eagle
+	30421,	// Frontier Djustice
+	30628,	// Outta' Sight
+	30779,	// Dayjogger
+	30977,	// Antarctic Eyewear
+	31038,	// Backbreaker's Skullcracker
+	31057,	// Bobby Bonnet
+	31100,	// Spiky Viking
+	31106,	// Sophisticated Smoker
+	31115,	// Hazard Headgear
+	31182,	// Helm Helm
+	31273,	// Head Banger
+	31308,	// Nightbane Brim
+	31309,	// Bombard Brigadier
+	31341,	// Plaid Lad
+	31371,	// Blast Bowl
+	31391,	// Thunder Dome
+	31422,	// Nightcap
+	31461,	// Vaudeville Visor
+};
+public const int SPECIFIC_DEMO_GLASSES[] = {
+	295,	// TTG Glasses
+	709,	// Snapped Pupil
+	1019,	// Blind Justice
+	30010,	// HDMI Patch
+	30085,	// Macho Mann
+	30430,	// Seeing Double
+	30831,	// Reader's Choice
+	30945,	// Blast Blocker
+};
+public const int SPECIFIC_DEMO_BEARD[] = {
+	647, 	// All-Father
+	830,	// Bearded Bombardier
+	875,	// Menpo
+	986,	// Mutton Mann
+	30011,	// Bolted Bombardier
+	31017,	// Gaelic Glutton
+	31040,	// Unforgiven Glory
+	31163,	// Particulate Protector
+};
+public const int SPECIFIC_DEMO_SHIRT[] = {
+	925,	// Spooky Sleeves (sleeves)
+	30110,	// Whiskey Bib
+	30124,	// Gaelic Garb
+	30178,	// Weight Room Warmer
+	30179,	// Hurt Locher
+	30348,	// Bushi-Dou
+	30366,	// Sangu Sleeves (sleeves)
+	30373,	// Toowoomba Tunic
+	30480,	// Mann of the Seven Sees
+	30550,	// TF_EOTL_hiphunter_jacket
+	31037,	// Dynamite Abs
+	31274,	// Hawaiian Hangover
+	31342,	// Glasgow Bankroll
+	31423,	// Lazy Lounger
+};
+public const int SPECIFIC_DEMO_GRENADES[] = {
+	618,	// A Whiff of the Old Brimstone
+	641,	// Ornament Armament
+	768,	// Professor's Pineapple
+	845,	// Battery Bandolier
+	922,	// Bonedolier
+	948,	// Deadliest Duckling
+	30431,	// Six Pack Abs
+	30541,	// EOTL_demo_dynamite
+	30822,	// Handy Canes
+	30886,	// Bananades
+	31039,	// Backbreaker's Guards
+	31220,	// Trickster's Treats
+	31372,	// Shrapnel Shell
+	31393,	// Mad Lad
+};
+public const int SPECIFIC_DEMO_BACK[] = {
+	771,	// Liquor Locker
+	874,	// King of Scotland Cape
+	30055,	// Scrumpy Strongbox
+	30107,	// Gaelic Golf Bag
+	30788,	// Demo's Dustcatcher (ehhh)
+	30973,	// Melody of Misery
+};
+public const int SPECIFIC_DEMO_BELT[] = {
+	708,	// Aladdin's Private Reserve
+	776,	// Bird-Man of Aberdeen (left shoulder)
+	30073,	// Dark Age Defender (left shoulder)
+	30363,	// Juggernaut Jacket (left shoulder)
+	30818,	// Socked and Loaded
+};
+public const int SPECIFIC_DEMO_PANTS[] = {
+	979,	// Cool Breeze
+	30061,	// Tartantaloons
+	30555,	// EOTL_demopants
+	30742,	// Shin Shredders
+	31275,	// Barefoot Brawler
+	31424,	// Slumber Slacks
+};
+public const int SPECIFIC_DEMO_FEET[] = {
+	734,	// Teufort Tooth Kicker
+	1016,	// Buck Turner All-Stars
+	30333,	// Highland High Heels
+	30358,	// Sole Saviors
+	30587,	// dec2014 Viking Boots
+};
+
+//-----------------------------------------------
+// HEAVYWEAPONSGUY
+//-----------------------------------------------
 // Returns the ellgible cosmetics that has multiple styles
 int GetCosmeticStyles( int iEntity )
 {
 	int iIndex = GetEntProp( iEntity, Prop_Send, "m_iItemDefinitionIndex" );
 	switch ( iIndex )
 	{
+		case 31422:	return 1;	// Nightcap
+		case 31393:	return 1;	// Mad Lad
+		case 31372:	return 1;	// Shrapnel Shell
+		case 31307:	return 1;	// Alcoholic Automaton
+		case 31100:	return 1;	// Spiky Viking
+		case 31037:	return 1;	// Dynamite Abs
+		case 30373:	return 1;	// Toowoomba Tunic
+		case 830:	return 1;	// Bearded Bombardier
+		case 120:	return 1;	// Scotsman's Stove Pipe
 		case 976:	return 1;	// Winter Wonderland Wrap
 		case 761:	return 1;	// Triclops
 		case 30168:	return 1;	// Special Eyes
@@ -1529,7 +1729,9 @@ int GetCosmeticStyles( int iEntity )
 		case 11611:	return 1;	// Titanium Tank Gilded Giver 2020
 		case 31323:	return 1;	// Trapper's Flap
 		case 31132:	return 1;	// Wrap-A-Khamon
+		case 31371:	return 1;	// Blast Bowl
 
+		case 31392:	return 3;	// Stunt Suit
 		case 30104:	return 2;	// Graybanns
 		case 30397:	return 2;	// Bruiser's Bandanna
 		case 31022:	return 2;	// Juvenile's Jumper
@@ -1549,6 +1751,11 @@ int GetCosmeticStyles( int iEntity )
 		case 31209:	return 2;	// Spooky Head-Bouncers
 		case 31431:	return 2;	// Masked Loyalty
 		case 316:	return 2;	// Pyromancer's Mask
+		case 776:	return 2;	// Bird-Man of Aberdeen
+		case 31309:	return 2;	// Bombard Brigadier
+		case 31341:	return 2;	// Plaid Lad
+		case 31342:	return 2;	// Glasgow Bankroll
+		case 31391:	return 2;	// Thunder Dome
 
 		case 30309:	return 3;	// Dead of Night
 		case 31217:	return 3;	// Goalkeeper
@@ -1569,6 +1776,8 @@ int GetCosmeticStyles( int iEntity )
 		case 1011:	return 3;	// Tux
 		case 949:	return 3;	// DethKapp
 		case 783:	return 3;	// HazMat Headcase
+		case 390:	return 3;	// Reggaelator
+		case 701:	return 3;	// Liquor Locker
 
 		case 31284:	return 4;	// Boston Brain Bucket
 		case 31285:	return 4;	// Pest's Pads
@@ -1591,6 +1800,91 @@ bool IsPaintableHat( int iEntity )
 	switch ( iIndex )
 	{
 		//case :	return true;	// 
+		case 31424:	return true;	// Slumber Slacks
+		case 31423:	return true;	// Lazy Lounger
+		case 31422:	return true;	// Nightcap
+		case 31393:	return true;	// Mad Lad
+		case 31392:	return true;	// Stunt Suit
+		case 31391:	return true;	// Thunder Dome
+		case 31372:	return true;	// Shrapnel Shell
+		case 31342:	return true;	// Glasgow Bankroll
+		case 31309:	return true;	// Bombard Brigadier
+		case 31341:	return true;	// Plaid Lad
+		case 31371:	return true;	// Blast Bowl
+		case 31307:	return true;	// Alcoholic Automaton
+		case 31275:	return true;	// Barefoot Brawler
+		case 31274:	return true;	// Hawaiian Hangover
+		case 31273:	return true;	// Head Banger
+		case 31182:	return true;	// Helm Helm
+		case 31115:	return true;	// Hazard Headgear
+		case 31100:	return true;	// Spiky Viking
+		case 31040:	return true;	// Unforgiven Glory
+		case 31039:	return true;	// Backbreaker's Guards
+		case 31038:	return true;	// Backbreaker's Skullcracker
+		case 30973:	return true;	// Melody of Misery
+		case 30954:	return true;	// Hungover Hero
+		case 30945:	return true;	// Blast Blocker
+		case 30823:	return true;	// Bomb Beanie
+		case 30830:	return true;	// Bomber Knight
+		case 30836:	return true;	// Elf Esteem
+		case 30788:	return true;	// Demo's Dustcatcher
+		case 30779:	return true;	// Dayjogger
+		case 30723:	return true;	// Hood of Sorrows
+		case 30628:	return true;	// Outta' Sight
+		case 30627:	return true;	// Bruce's Bonnet
+		case 30604:	return true;	// dec2014 Comforter
+		case 30587:	return true;	// dec2014 Viking Boots
+		case 30586:	return true;	// dec2014 Viking Helmet
+		case 30555:	return true;	// EOTL_demopants
+		case 30550:	return true;	// TF_EOTL_hiphunter_jacket
+		case 30547:	return true;	// EOTL_summerhat
+		case 30541:	return true;	// EOTL_demo_dynamite
+		case 30480:	return true;	// Mann of the Seven Sees
+		case 30421:	return true;	// Frontier Djustice
+		case 30393:	return true;	// Razor Cut
+		case 30373:	return true;	// Toowoomba Tunic
+		case 30366:	return true;	// Sangu Sleeves
+		case 30363:	return true;	// Juggernaut Jacket
+		case 30334:	return true;	// Tartan Tyrolean
+		case 30340:	return true;	// Stylish DeGroot
+		case 30333:	return true;	// Highland High Heels
+		case 30180:	return true;	// Pirate Bandana
+		case 30179:	return true;	// Hurt Locher
+		case 30124:	return true;	// Gaelic Garb
+		case 30112:	return true;	// Stormin' Norman
+		case 30110:	return true;	// Whiskey Bib
+		case 30107:	return true;	// Gaelic Golf Bag
+		case 30106:	return true;	// Tartan Spartan
+		case 30105:	return true;	// Black Watch
+		case 30055:	return true;	// Scrumpy Strongbox
+		case 30029:	return true;	// Broadband Bonnet
+		case 30034:	return true;	// Bolted Bicorne
+		case 30024:	return true;	// Cyborg Stunt Helmet
+		case 30021:	return true;	// Pure Tin Capotain
+		case 30016:	return true;	// FR-0
+		case 30011:	return true;	// Bolted Bombardier
+		case 1019:	return true;	// Blind Justice
+		case 935:	return true;	// Voodoo JuJu (Slight Return)
+		case 876:	return true;	// K-9 Mane
+		case 830:	return true;	// Bearded Bombardier
+		case 776:	return true;	// Bird-Man of Aberdeen
+		case 701:	return true;	// Liquor Locker
+		case 703:	return true;	// Bolgan
+		case 607:	return true;	// Buccaneer's Bicorne
+		case 604:	return true;	// Tavish DeGroot Experience
+		case 514:	return true;	// Mask of the Shaman
+		case 30863:	return true;	// Blast Defense
+		case 30979:	return true;	// Frag Proof Fragger
+		case 390:	return true;	// Reggaelator
+		case 342:	return true;	// Prince Tavish's Crown
+		case 295:	return true;	// TTG Glasses
+		case 255:	return true;	// Sober Stuntman
+		case 216:	return true;	// Rimmed Raincatcher
+		case 146:	return true;	// Demoman Hallmark
+		case 179:	return true;	// Demoman Tricone
+		case 120:	return true;	// Scotsman's Stove Pipe
+		case 100:	return true;	// Glengarry Bonnet
+		case 47:	return true;	// Demoman's Fro
 		case 31318:	return true;	// Magical Mount
 		case 31094:	return true;	// Winter Wrap Up
 		case 976:	return true;	// Winter Wonderland Wrap
@@ -2239,10 +2533,6 @@ bool IsPaintableHat( int iEntity )
 	}
 }
 //-----------------------------------------------
-// HEAVYWEAPONSGUY
-//-----------------------------------------------
-
-//-----------------------------------------------
 // ENGINEER
 //-----------------------------------------------
 
@@ -2271,6 +2561,8 @@ public Action Timer_ApplyCosmetics( Handle timer, int client )
 void GiveBotCosmetics( int iClient )
 {
 	int iRandom = GetRandomInt( 1, 100 );
+
+	char clientName[ MAX_NAME_LENGTH ]; GetClientName( iClient, clientName, sizeof( clientName ) ) ;
 
 	// ALL CLASS
 	int iRandHat 				= ALLCLASS_HATS[ GetRandomInt( 0, sizeof( ALLCLASS_HATS ) - 1 ) ];
@@ -2309,7 +2601,7 @@ void GiveBotCosmetics( int iClient )
 	int iRandSoldier_Pocket 	= SPECIFIC_SOLDIER_POCKET[ GetRandomInt( 0, sizeof( SPECIFIC_SOLDIER_POCKET ) - 1 ) ];
 	int iRandSoldier_Feet 		= SPECIFIC_SOLDIER_FEET[ GetRandomInt( 0, sizeof( SPECIFIC_SOLDIER_FEET ) - 1 ) ];
 
-	// SOLDIER
+	// PYRO
 	int iRandPyro_HeadReplace 	= SPECIFIC_PYRO_HEAD_REPLACE[ GetRandomInt( 0, sizeof( SPECIFIC_PYRO_HEAD_REPLACE ) - 1 ) ];
 	int iRandPyro_Hats 			= SPECIFIC_PYRO_HATS[ GetRandomInt( 0, sizeof( SPECIFIC_PYRO_HATS ) - 1 ) ];
 	int iRandPyro_Glasses 		= SPECIFIC_PYRO_GLASSES[ GetRandomInt( 0, sizeof( SPECIFIC_PYRO_GLASSES ) - 1 ) ];
@@ -2322,11 +2614,24 @@ void GiveBotCosmetics( int iClient )
 	int iRandPyro_Pants 		= SPECIFIC_PYRO_PANTS[ GetRandomInt( 0, sizeof( SPECIFIC_PYRO_PANTS ) - 1 ) ];
 	int iRandPyro_Feet 			= SPECIFIC_PYRO_FEET[ GetRandomInt( 0, sizeof( SPECIFIC_PYRO_FEET ) - 1 ) ];
 
+	// DEMOMAN
+	int iRandDemo_HeadReplace 	= SPECIFIC_DEMO_HEAD[ GetRandomInt( 0, sizeof( SPECIFIC_DEMO_HEAD ) - 1 ) ];
+	int iRandDemo_Hats		 	= SPECIFIC_DEMO_HATS[ GetRandomInt( 0, sizeof( SPECIFIC_DEMO_HATS ) - 1 ) ];
+	int iRandDemo_Glasses		= SPECIFIC_DEMO_GLASSES[ GetRandomInt( 0, sizeof( SPECIFIC_DEMO_GLASSES ) - 1 ) ];
+	int iRandDemo_Beard			= SPECIFIC_DEMO_BEARD[ GetRandomInt( 0, sizeof( SPECIFIC_DEMO_BEARD ) - 1 ) ];
+	int iRandDemo_Shirt			= SPECIFIC_DEMO_SHIRT[ GetRandomInt( 0, sizeof( SPECIFIC_DEMO_SHIRT ) - 1 ) ];
+	int iRandDemo_Grenades		= SPECIFIC_DEMO_GRENADES[ GetRandomInt( 0, sizeof( SPECIFIC_DEMO_GRENADES ) - 1 ) ];
+	int iRandDemo_Back			= SPECIFIC_DEMO_BACK[ GetRandomInt( 0, sizeof( SPECIFIC_DEMO_BACK ) - 1 ) ];
+	int iRandDemo_Belt			= SPECIFIC_DEMO_BELT[ GetRandomInt( 0, sizeof( SPECIFIC_DEMO_BELT ) - 1 ) ];
+	int iRandDemo_Pants			= SPECIFIC_DEMO_PANTS[ GetRandomInt( 0, sizeof( SPECIFIC_DEMO_PANTS ) - 1 ) ];
+	int iRandDemo_Feet			= SPECIFIC_DEMO_FEET[ GetRandomInt( 0, sizeof( SPECIFIC_DEMO_FEET ) - 1 ) ];
+
 	int iSelectedCosmetics[ 3 ];
 	int iAllCosmetics[ 12 ];		// All class
 	int iScoutCosmetics[ 13 ];
 	int iSoldierCosmetics[ 13 ];
 	int iPyroCosmetics[ 14 ];
+	int iDemoManCosmetics[ 13 ];
 
 	TFClassType TFClass = TF2_GetPlayerClass( iClient );
 
@@ -2387,7 +2692,7 @@ void GiveBotCosmetics( int iClient )
 				}
 
 				#if defined TESTING_ONLY
-					CPrintToChatAll( "{green}SELECTED ALL-CLASS" );
+					CPrintToChatAll( "BOT: {fuchsia}%s{default}, Selected {green}All-Class {default}specific cosmetics.", clientName )
 				#endif
 			}
 			else
@@ -2439,7 +2744,7 @@ void GiveBotCosmetics( int iClient )
 					}
 
 					#if defined TESTING_ONLY
-						CPrintToChatAll( "{green}SELECTED SCOUT SPECIFIC CLASS" );
+						CPrintToChatAll( "BOT: {fuchsia}%s{default}, Selected {green}Scout {default}specific cosmetics.", clientName )
 					#endif
 				}
 				if ( TFClass == TFClass_Soldier )
@@ -2486,7 +2791,7 @@ void GiveBotCosmetics( int iClient )
 					}
 
 					#if defined TESTING_ONLY
-						CPrintToChatAll( "{green}SELECTED SOLDIER SPECIFIC CLASS" );
+						CPrintToChatAll( "BOT: {fuchsia}%s{default}, Selected {green}Soldier {default}specific cosmetics.", clientName )
 					#endif
 				}
 				if ( TFClass == TFClass_Pyro )
@@ -2513,20 +2818,58 @@ void GiveBotCosmetics( int iClient )
 						iSelectedCosmetics[ i ] = iPyroCosmetics[ iIndex[ i ] ];
 						if ( iSelectedCosmetics[ i ] && iPyroCosmetics[ i ] != 1 )
 						{
+							TF2_CreateHat( iClient, iSelectedCosmetics[ i ], QUALITY_UNIQUE, iIndex[ i ] == 2 );
+						}
+					}
+
+					#if defined TESTING_ONLY
+						CPrintToChatAll( "BOT: {fuchsia}%s{default}, Selected {green}Pyro {default}specific cosmetics.", clientName )
+					#endif
+				}
+				if ( TFClass == TFClass_DemoMan )
+				{
+					iDemoManCosmetics[ 1 ] = IsChance( 75 ) ? iRandDemo_HeadReplace : iRandHead;
+					iDemoManCosmetics[ 2 ] = IsChance( 75 ) ? iRandDemo_Hats : iRandHat;
+					iDemoManCosmetics[ 3 ] = IsChance( 75 ) ? iRandDemo_Glasses : iRandGlasses;
+					iDemoManCosmetics[ 4 ] = IsChance( 75 ) ? iRandDemo_Beard: iRandBeard;
+					iDemoManCosmetics[ 5 ] = iRandMedal;
+					iDemoManCosmetics[ 6 ] = IsChance( 75 ) ? iRandDemo_Shirt : iRandTorso;
+					iDemoManCosmetics[ 7 ] = iRandDemo_Back;
+					iDemoManCosmetics[ 8 ] = iRandDemo_Grenades;
+					iDemoManCosmetics[ 9 ] = IsChance( 75 ) ? iRandDemo_Belt : iRandBelt;
+					iDemoManCosmetics[ 10 ] = IsChance( 75 ) ? iRandDemo_Pants : iRandPants;
+					iDemoManCosmetics[ 11 ] = IsChance( 75 ) ? iRandDemo_Feet : iRandFeet;
+					iDemoManCosmetics[ 12 ] = iRandHatMisc;
+
+					int iIndex[ 12 ] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 };
+					ShuffleArray( iIndex, sizeof( iIndex ) );
+
+					for ( int i = 0; i < 3; ++i )
+					{
+						iSelectedCosmetics[ i ] = iDemoManCosmetics[ iIndex[ i ] ];
+						if ( iSelectedCosmetics[ i ] )
+						{
 							if ( iIndex[ i ] == 1 ) 
 							{
-								iSoldierCosmetics[ 1 ] = 0;
+								iDemoManCosmetics[ 2 ] = 0;
+								iDemoManCosmetics[ 3 ] = 0;
+								iDemoManCosmetics[ 4 ] = 0;
+							}
+							// If hat, glasses, beard or face is selected, don't select head
+							else if ( iIndex[ i ] == 2 || iIndex[ i ] == 3 || iIndex[ i ] == 4 ) 
+							{
+								iDemoManCosmetics[ 1 ] = 0;
 							}
 						}
 
-						if ( iSelectedCosmetics[ i ] && iSoldierCosmetics[ i ] != 1 )
+						if ( iSelectedCosmetics[ i ] && iDemoManCosmetics[ i ] != 1 )
 						{
 							TF2_CreateHat( iClient, iSelectedCosmetics[ i ], QUALITY_UNIQUE, iIndex[ i ] == 2 );
 						}
 					}
 
 					#if defined TESTING_ONLY
-						CPrintToChatAll( "{green}SELECTED SCOUT SPECIFIC CLASS" );
+						CPrintToChatAll( "BOT: {fuchsia}%s{default}, Selected {green}DemoMan {default}specific cosmetics.", clientName )
 					#endif
 				}
 			}
@@ -2550,20 +2893,20 @@ void GiveBotCosmetics( int iClient )
 			}
 
 			#if defined TESTING_ONLY
-				CPrintToChatAll( "{green}SELECTED PRE-MADE SETS" );
+				CPrintToChatAll( "BOT: {fuchsia}%s{default}, Selected {green}Pre-made {default}set.", clientName )
 			#endif
 		}
 		else if ( iRandom <= 90 )
 		{
 			PresetCosmeticSet( iClient, "F2P" );
 			#if defined TESTING_ONLY
-				CPrintToChatAll( "{green}SELECTED NOOB/F2P SETS" );
+				CPrintToChatAll( "BOT: {fuchsia}%s{default}, Selected {green}F2P {default}set.", clientName )
 			#endif
 		}
 		else
 		{
 			#if defined TESTING_ONLY
-				CPrintToChatAll( "{green}SELECTED NO PRESETS (2007 PLAYER)" );
+				CPrintToChatAll( "BOT: {fuchsia}%s{default}, Selected no sets (2007 player).", clientName )
 			#endif
 		}
 	}
@@ -2576,13 +2919,17 @@ void PresetCosmeticSet( int iClient, char[] iClass )
 	int iSoldierRand 			= GetRandomInt( 0, sizeof( CS_PRESET_SOLDIER ) / sizeof( CosmeticSet ) - 1 );
 	int iSoldierHalloRand 		= GetRandomInt( 0, sizeof( CS_PRESET_SOLDIER_HALLOWEEN ) / sizeof( CosmeticSet ) - 1 );
 	int iPyroRand 				= GetRandomInt( 0, sizeof( CS_PRESET_PYRO ) / sizeof( CosmeticSet ) - 1 );
+	int iPyroHalloRand 			= GetRandomInt( 0, sizeof( CS_PRESET_PYRO_HALLOWEEN ) / sizeof( CosmeticSet ) - 1 );
+	int iDemoRand 				= GetRandomInt( 0, sizeof( CS_PRESET_DEMOMAN ) / sizeof( CosmeticSet ) - 1 );
 	int iF2PRand 				= GetRandomInt( 0, sizeof( CS_PRESET_F2P ) / sizeof( CosmeticSet ) - 1 );
+	int iF2PHalloRand 			= GetRandomInt( 0, sizeof( CS_PRESET_F2P_HALLOWEEN ) / sizeof( CosmeticSet ) - 1 );
+	int iHalloweenChance 		= IsChance( 60 );
 	bool bIsHalloween 			= TF2_IsHolidayActive( TFHoliday_HalloweenOrFullMoon )
 
 	if ( StrEqual( iClass, "Scout", false ) ) 
 	{
 		// If Halloween, use Halloween specific presets
-		if ( bIsHalloween && IsChance( 60 ) )
+		if ( bIsHalloween && iHalloweenChance )
 		{
 			// Add the add if the id is not -1
 			if ( CS_PRESET_SCOUT_HALLOWEEN[ iScoutHalloRand ].iHat != -1 )
@@ -2621,7 +2968,7 @@ void PresetCosmeticSet( int iClient, char[] iClass )
 
 	if ( StrEqual( iClass, "Soldier", false ) ) 
 	{
-		if ( bIsHalloween && IsChance( 60 ) )
+		if ( bIsHalloween && iHalloweenChance )
 		{
 			if ( CS_PRESET_SOLDIER_HALLOWEEN[ iSoldierHalloRand ].iHat != -1 )
 			{
@@ -2657,14 +3004,51 @@ void PresetCosmeticSet( int iClient, char[] iClass )
 
 	if ( StrEqual( iClass, "Pyro", false ) ) 
 	{
-		if ( CS_PRESET_PYRO[ iPyroRand ].iHat != -1 )
+		if ( bIsHalloween && iHalloweenChance )
 		{
-			TF2_CreateHat( iClient, CS_PRESET_PYRO[ iPyroRand ].iHat, QUALITY_UNIQUE, true );
+			if ( CS_PRESET_PYRO_HALLOWEEN[ iPyroHalloRand ].iHat != -1 )
+			{
+				TF2_CreateHat( iClient, CS_PRESET_PYRO_HALLOWEEN[ iPyroHalloRand ].iHat, QUALITY_UNIQUE, true );
+			}
+
+			for ( int i = 0; i < 2; ++i )
+			{
+				int iCosmeticID = ( i == 0 ) ? CS_PRESET_PYRO_HALLOWEEN[ iPyroHalloRand ].iCosmetic1 : CS_PRESET_PYRO_HALLOWEEN[ iPyroHalloRand ].iCosmetic2;
+				if ( iCosmeticID != -1 )
+				{
+					TF2_CreateHat( iClient, iCosmeticID, QUALITY_UNIQUE );
+				}
+			}
+		}
+		else
+		{
+			if ( CS_PRESET_PYRO[ iPyroRand ].iHat != -1 )
+			{
+				TF2_CreateHat( iClient, CS_PRESET_PYRO[ iPyroRand ].iHat, QUALITY_UNIQUE, true );
+			}
+
+			for ( int i = 0; i < 2; ++i )
+			{
+				int iCosmeticID = ( i == 0 ) ? CS_PRESET_PYRO[ iPyroRand ].iCosmetic1 : CS_PRESET_PYRO[ iPyroRand ].iCosmetic2;
+				if ( iCosmeticID != -1 )
+				{
+					TF2_CreateHat( iClient, iCosmeticID, QUALITY_UNIQUE );
+				}
+			}
+		}
+	}
+
+	if ( StrEqual( iClass, "Demoman", false ) ) 
+	{
+
+		if ( CS_PRESET_DEMOMAN[ iDemoRand ].iHat != -1 )
+		{
+			TF2_CreateHat( iClient, CS_PRESET_DEMOMAN[ iDemoRand ].iHat, QUALITY_UNIQUE, true );
 		}
 
 		for ( int i = 0; i < 2; ++i )
 		{
-			int iCosmeticID = ( i == 0 ) ? CS_PRESET_PYRO[ iPyroRand ].iCosmetic1 : CS_PRESET_PYRO[ iPyroRand ].iCosmetic2;
+			int iCosmeticID = ( i == 0 ) ? CS_PRESET_DEMOMAN[ iDemoRand ].iCosmetic1 : CS_PRESET_DEMOMAN[ iDemoRand ].iCosmetic2;
 			if ( iCosmeticID != -1 )
 			{
 				TF2_CreateHat( iClient, iCosmeticID, QUALITY_UNIQUE );
@@ -2674,17 +3058,16 @@ void PresetCosmeticSet( int iClient, char[] iClass )
 
 	if ( StrEqual( iClass, "F2P", false ) ) 
 	{
-		if ( bIsHalloween && IsChance( 60 ) )
+		if ( bIsHalloween && iHalloweenChance )
 		{
-			// TODO: DO HALLOWEEN LATER
-			if ( CS_PRESET_F2P[ iF2PRand ].iHat != -1 )
+			if ( CS_PRESET_F2P_HALLOWEEN[ iF2PHalloRand ].iHat != -1 )
 			{
-				TF2_CreateHat( iClient, CS_PRESET_F2P[ iF2PRand ].iHat, QUALITY_UNIQUE, true );
+				TF2_CreateHat( iClient, CS_PRESET_F2P_HALLOWEEN[ iF2PHalloRand ].iHat, QUALITY_UNIQUE, true );
 			}
 
 			for ( int i = 0; i < 2; ++i )
 			{
-				int iCosmeticID = ( i == 0 ) ? CS_PRESET_F2P[ iF2PRand ].iCosmetic1 : CS_PRESET_F2P[ iF2PRand ].iCosmetic2;
+				int iCosmeticID = ( i == 0 ) ? CS_PRESET_F2P_HALLOWEEN[ iF2PHalloRand ].iCosmetic1 : CS_PRESET_F2P_HALLOWEEN[ iF2PHalloRand ].iCosmetic2;
 				if ( iCosmeticID != -1 )
 				{
 					TF2_CreateHat( iClient, iCosmeticID, QUALITY_UNIQUE );
@@ -2880,6 +3263,12 @@ int TF2_CreateHat( int iClient, int iIndex, int iQuality, bool bIsUnusual = fals
 		#if defined TESTING_ONLY
 			CPrintToChatAll( "BOT: {fuchsia}%s{default}, ID: {lightblue} %i", clientName, iIndex )
 		#endif
+
+		// Rare chance for limited hat
+//		if ( IsChance( 2 ) )
+//		{
+//			TF2Attrib_SetByName( iHat, "limited quantity item", 1.0 );
+//		}
 
 		// Finalize hat creation
 		SetEntData( iHat, iPropInfoQuality, iQuality );
