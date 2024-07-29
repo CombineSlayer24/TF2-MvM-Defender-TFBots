@@ -1549,10 +1549,16 @@ public const int SPECIFIC_DEMO_FEET[] = {
 // Unused, will be used in Presets
 /*
 991,	// Hunger Force
+30563,	// Jungle Booty
 */
 public const int SPECIFIC_HEAVY_HEAD[] = {
 	145,	// Heavy Hair (Hound Dog)
 	1187,	// Yeti_Head
+	30645,	// El Duderino
+	30733,	// Teufort Knight
+	30815,	// Mad Mask
+	30866,	// Warhood
+	30885,	// Nuke
 };
 public const int SPECIFIC_HEAVY_HEADSKIN[] = {
 	380,	// Large Luchadore
@@ -1597,32 +1603,83 @@ public const int SPECIFIC_HEAVY_HATS[] = {
 	30054,	// Bunsen Brave
 	30081,	// Tsarboosh
 	30094,	// Katyusha
+	30122,	// Bear Necessities
+	30315,	// Minnesota Slick
+	30344,	// Bullet Buzz
+	30346,	// Trash Man
+	30369,	// Eliminators Safeguard
+	30374,	// Sammy Cap
+	30545,	// EOTL_Flat_cap
+	30588,	// dec2014 heavy_parka
+	30589,	// dec2014 The Big Papa
+	30644,	// White Russian
+	30653,	// Sucker Slug
+	30811,	// Pestering Jester
+	30812,	// Mo'Horn
+	30887,	// War Eagle
+	30911,	// Fat Man's Field Cap
+	30912,	// Commando Elite
+	30959,	// Sinner's Shade
+	30981,	// Starboard Crusader
+	31008,	// Mann-O-War
+	31029,	// Cool Capuchon
+	31052,	// Mediterranean Mercenary
+	31080,	// Convict Cap
+	31106,	// Sophisticated Smoker
 };
 public const int SPECIFIC_HEAVY_GLASSES[] = {
 	479,	// Security Shades
 	30085,	// Macho Mann
+	30141,	// Gabe Glasses
+	30368,	// War Goggles
+	30831,	// Reader's Choice
 };
 public const int SPECIFIC_HEAVY_BEARD[] = {
 	485,	// Big Steel Jaw of Summer Fun
 	647, 	// All-Father
 	986,	// Mutton Mann
+	30164,	// Viking Braider
+	30165,	// Cuban Bristle Crisis
+	30345,	// Leftover Trap
+	30401,	// Yuri's Revenge
+	30482,	// Unshaved Bear
+	30960,	// Wild West Whiskers
+	31163,	// Particulate Protector
 };
 public const int SPECIFIC_HEAVY_SHIRT[] = {
-	524,	// Purity Fist (arms)
 	777,	// Apparatchik's Apparel
 	814,	// Triad Trinket
-	815,	// Champ Stamp
 	925,	// Spooky Sleeves
 	946,	// Siberian Sophisticate
 	30074,	// Tyurtlenek
+	30138,	// Bolshevik Biker
+	30178,	// Weight Room Warmer
+	30342,	// Heavy Lifter
+	30364,	// Warmth Preserver
+	30550,	// EOTL_hiphunter_jacket
+	30556,	// EOTL_Ursa Major
+	30557,	// EOTL_sheavyshirt
+	30633,	// Commissar's Coat
+	30745,	// Siberian Sweater
+	30747,	// Gift Bringer
+	30803,	// Heavy Tourism
+	30873,	// Airborne Attire
+	30913,	// Siberian Tigerstripe
+	30914,	// Aztec Aggressor
+	30980,	// Tsar Platinum
+	31030,	// Paka Parka
+	31053,	// Kapitan's Kaftan
 };
 public const int SPECIFIC_HEAVY_MISC[] = {
+	524,	// Purity Fist (arms)
 	757,	// Toss-Proof Towel
+	815,	// Champ Stamp
 	1088,	// Die Regime-Panzerung
 	30012,	// Titanium Towel
 	30910,	// Heavy Harness
 	1189,	// Yeti_Arms
 	30108,	// Borscht Belt
+	31079,	// Soviet Strongmann
 };
 public const int SPECIFIC_HEAVY_HIP[] = {
 	643,	// Sandvich Safe
@@ -1633,12 +1690,18 @@ public const int SPECIFIC_HEAVY_BELT[] = {
 	1028,	// Samson Skewer
 	1097,	// Little Bear
 	30079,	// Red Army Robin (left shoulder)
+	30728,	// Buttler
+	31123,	// Mamma Kiev
 };
 public const int SPECIFIC_HEAVY_PANTS[] = {
 	1188,	// Yeti_Legs
+	30319,	// Mann of the House
+	30343,	// Gone Commando
+	30372,	// Combat Slacks
 };
 public const int SPECIFIC_HEAVY_FEET[] = {
 	990,	// Aqua Flops
+	30354,	// Rat Stompers
 };
 
 // Returns the ellgible cosmetics that has multiple styles
@@ -1647,6 +1710,11 @@ int GetCosmeticStyles( int iEntity )
 	int iIndex = GetEntProp( iEntity, Prop_Send, "m_iItemDefinitionIndex" );
 	switch ( iIndex )
 	{
+		case 31123:	return 1;	// Mamma Kiev
+		case 31052:	return 1;	// Mediterranean Mercenary
+		case 30981:	return 1;	// Starboard Crusader
+		case 31029:	return 1;	// Cool Capuchon
+		case 30369:	return 1;	// Eliminators Safeguard
 		case 1028:	return 1;	// Samson Skewer
 		case 821:	return 1;	// Soviet Gentleman
 		case 610:	return 1;	// One-Man Army
@@ -1834,8 +1902,10 @@ int GetCosmeticStyles( int iEntity )
 		case 31323:	return 1;	// Trapper's Flap
 		case 31132:	return 1;	// Wrap-A-Khamon
 		case 31371:	return 1;	// Blast Bowl
+		case 31080:	return 1;	// Convict Cap
 
-		case 31392:	return 3;	// Stunt Suit
+		case 31079:	return 2;	// Soviet Strongmann
+		case 31392:	return 2;	// Stunt Suit
 		case 30104:	return 2;	// Graybanns
 		case 30397:	return 2;	// Bruiser's Bandanna
 		case 31022:	return 2;	// Juvenile's Jumper
@@ -1905,7 +1975,44 @@ bool IsPaintableHat( int iEntity )
 	int iIndex = GetEntProp( iEntity, Prop_Send, "m_iItemDefinitionIndex" );
 	switch ( iIndex )
 	{
-		//case :	return true;	// 
+		case :	return true;	// 
+		case 31080:	return true;	// Convict Cap
+		case 31079:	return true;	// Soviet Strongmann
+		case 31053:	return true;	// Kapitan's Kaftan
+		case 31052:	return true;	// Mediterranean Mercenary
+		case 31030:	return true;	// Paka Parka
+		case 30981:	return true;	// Starboard Crusader
+		case 31008:	return true;	// Mann-O-War
+		case 31029:	return true;	// Cool Capuchon
+		case 30980:	return true;	// Tsar Platinum
+		case 30960:	return true;	// Wild West Whiskers
+		case 30959:	return true;	// Sinner's Shade
+		case 30914:	return true;	// Aztec Aggressor
+		case 30913:	return true;	// Siberian Tigerstripe
+		case 30911:	return true;	// Fat Man's Field Cap
+		case 30912:	return true;	// Commando Elite
+		case 30866:	return true;	// Warhood
+		case 30815:	return true;	// Mad Mask
+		case 30812:	return true;	// Mo'Horn
+		case 30803:	return true;	// Heavy Tourism
+		case 30747:	return true;	// Gift Bringer
+		case 30745:	return true;	// Siberian Sweater
+		case 30653:	return true;	// Sucker Slug
+		case 30645:	return true;	// El Duderino
+		case 30644:	return true;	// White Russian
+		case 30589:	return true;	// dec2014 The Big Papa
+		case 30588:	return true;	// dec2014 heavy_parka
+		case 30557:	return true;	// EOTL_sheavyshirt
+		case 30545:	return true;	// EOTL_Flat_cap
+		case 30401:	return true;	// Yuri's Revenge
+		case 30374:	return true;	// Sammy Cap
+		case 30372:	return true;	// Combat Slacks
+		case 30369:	return true;	// Eliminators Safeguard
+		case 30368:	return true;	// War Goggles
+		case 30344:	return true;	// Bullet Buzz
+		case 30346:	return true;	// Trash Man
+		case 30345:	return true;	// Leftover Trap
+		case 30315:	return true;	// Minnesota Slick
 		case 30108:	return true;	// Borscht Belt
 		case 30094:	return true;	// Katyusha
 		case 30013:	return true;	// Gridiron Guardian
@@ -1977,6 +2084,7 @@ bool IsPaintableHat( int iEntity )
 		case 30586:	return true;	// dec2014 Viking Helmet
 		case 30555:	return true;	// EOTL_demopants
 		case 30550:	return true;	// TF_EOTL_hiphunter_jacket
+		case 30556:	return true;	// EOTL_Ursa Major
 		case 30547:	return true;	// EOTL_summerhat
 		case 30541:	return true;	// EOTL_demo_dynamite
 		case 30480:	return true;	// Mann of the Seven Sees
