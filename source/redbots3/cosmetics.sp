@@ -636,7 +636,7 @@ public const CosmeticSet CS_PRESET_SCOUT[] = {
 	{ 31326, 30309, 30427 },	// Lumbercap, Dead of Night, Argyle Ace
 	{ 30479, 1026, 30889 },		// Thirst Blood, Tomb Wrapper, Transparent Trousers
 	{ 1014, 30890, 31281 },		// Brutal Bouffant, Forest Footwear, Ripped Rider
-	{ 126, 30104, 30309 },		// Bill Hat, Graybanns, Dead of Night
+	{ 126, 30104, 30309 },		// L4D Hat, Graybanns, Dead of Night
 	{ 30362, 30085, 296 },		// THe Law, The Macho Mann, TTG Badge (License to maim)
 	{ 324, 31217, 31302 },		// Flipped Trilby, Goalkeeper, Imp's Imprint
 	{ 31168, 987, 31022 },		// Towering Pillar of Beanies, Merc's Muffler, Juvenile's Jumper
@@ -708,7 +708,7 @@ public const CosmeticSet CS_PRESET_SOLDIER[] = {
 	{ 31277, 31276, -1 },		// Detective, Caped Crusader, Chaser
 	{ 99, 30164, 30129 },		// Tyrant's Helm, Viking Braider, Hornblower
 	{ 183, 30339, 446 },		// Soldier Drill Hat, Killer's Kit, Fancy Dress Uniform
-	{ 152, 30126, 875 }		// Soldier Samurai Hat, Shogun's Shoulder Guard, Menpo
+	{ 152, 30126, 875 }			// Soldier Samurai Hat, Shogun's Shoulder Guard, Menpo
 };
 public const CosmeticSet CS_PRESET_SOLDIER_HALLOWEEN[] = {
 	{ 30521, 30522, 30520 },	// Hellhunter's Headpiece, Supernatural Stalker, Ghoul Gibbin' Gear
@@ -737,23 +737,30 @@ public const CosmeticSet CS_PRESET_PYRO[] = {
 	{ 30063, 30062, 30901 },	// Centurion, Steel Sixpack, D-eye-monds
 	{ 30903, 30902, 30904 },	// Feathered Fiend, Deity's Dress, Sacrificial Stone
 	{ 31432, 31433, 31431 },	// Impact Impaler, Torcher's Trench Coat, Masked Loyalty
-	{ 31462, 31463, 31464 },	// Fire Marshal, Invisible Flame, Scorched Earth Stompers
+	{ 31462, 31463, 31464 },	// Castro Set
 	{ 31359, 30168, 31358 },	// Firestalker, Special Eyes, Soho Sleuth
 	{ 30580, 31050, 31328 },	// dec2014 2014_pyromancer_hood, Spawn Camper, Firebrand
 	{ 30743, 30986, 31050 },	// Patriot Peak, Hot Case, Spawn Camper
 	{ 31357, 30391, 30901 },	// Flame Warrior, Sengoku Scorcher, d-eye-monds
 	{ 31186, 31188, 31187 },	// Reel Fly Hat, Water Waders, Hook Line and Cinder
+	{ 30066, 30104, 30309 },	// Brotherhood of Arms, Graybanns, Dead of Night
+	{ 30987, 30092, 30569 },	// Buring Question, Soot Suit, Tomb Readers
+	{ 31185, 30986, 31184 },	// Brim of Fire, Hot Case, Manndatory Attire
+	{ 30877, 31464, 31328 },	// Hunter In Darkness, Scorched Earth Stompers, Firebrand
 	{ 105, 30859, 30169 },		// Brigade Helm, Airtight Arsonist, Trickster's Turnout Gear
 	{ 247, 30089, 30168 },		// Old Guadalajara, El Muchacho, Special Eye
 	{ 247, 30089, 31065 },		// Old Guadalajara, El Muchacho, Head of the Dead
 	{ 30038, 30032, 842 },		// Firewall Helmet, Rusty Reaper, Pyrobotics Pack
 	{ 126, 30309, 31464 },		// L4D Hat, Dead Of Night, Scorched Earth Stompers
+	{ 126, 30104, 30309 },		// L4D Hat, Graybanns, Dead of Night
 	{ 30066, 30309, 486 },		// BrotherHood of Arms, Dead Of Night, Summer Shades
 	{ 394, 30169, 30417 },		// Connoisseur's Cap, Trickster's Turnout Gear, Frymaster
 	{ 30304, 30305, -1 },		// Blizzard Breather, Sub Zero Suit
 	{ 126, 570, 30305 },		// L4D Hat, Last Breath, Sub Zero Suit
+	{ 126, 30305, -1 },			// L4D Hat, Sub Zero Suit, Last Breath
 	{ 644, 30305, -1 },			// Head Warmer, Sub Zero Suit
-	{ 182, 570, -1 }			// Pyro Helm, Last Breath [The Once Upon A Time In 2Fort Pyro]
+	{ 102, 387, 336 },			// Respectless Rubber Glove, Sight For Sore Eyes, TF_KF_Pyro_Tie
+	{ 182, 570, -1 }			// The Once Upon A Time In 2Fort Pyro set
 };
 public const CosmeticSet CS_PRESET_PYRO_HALLOWEEN[] = {
 	{ 30928, 31318, 30309 },	// Balloonihoodie, Magical Mount, Dead of Night
@@ -784,10 +791,48 @@ public const CosmeticSet CS_PRESET_DEMOMAN[] = {
 	{ 146, 31037, 30068 },		// Demoman Hallmark, Dynamite Abs, Breakneck Baggies
 	{ 359, 30348, 30742 },		// Demo Kabuto, Bushi-Dou, Shin Shredders
 	{ 30016, 31307, 845 },		// FF-0, Alcoholic Automaton, Battery Bandolier
+	{ 126, 30104, 30309 },		// L4D Hat, Graybanns, Dead of Night
 	{ 342, 30124, 874 },		// Prince Tavish's Crown, Gaelic Garb, King of Scotland Cape
 	{ 671, 30305, -1 },			// Brown Bomber, Sub Zero Suit
 	{ 255, 31392, -1 },			// Sober Stuntman, Stunt Suit
+	{ 47, 295, 1016 },			// Demomans Fro, TTG Glasses, Buck Turner All-Stars
 	{ 332, 295, -1 }			// Treasure Hat 1, TTG Glasses
+};
+public const CosmeticSet CS_PRESET_HEAVY[] = {
+	{ 31368, 31369, 31370 },	// Brother Mann, Heavy Metal, Hog Heels
+	{ 31345, 31346, 30343 },	// WW2 German Set
+	{ 30315, 30557, 30319 },	// minnesota Slick, EOTL_sheavyshirt, Mann Of the House
+	{ 30866, 30557, 30368 },	// Warhood, EOTL_sheavyshirt, War Goggles
+	{ 30644, 30645, 30803 },	// White Russian, El Duderino, Heavy Tourism
+	{ 30912, 30343, 30913 },	// Commando Elite, Gone Commando, Siberian Tigerstripe
+	{ 30066, 30104, 30309 },	// Brotherhood of Arms, Graybanns, Dead of Night
+	{ 30369, 30913, 30372 },	// Eliminators Safeguard, Siberian Tigerstripe, Combat Slacks
+	{ 30885, 30873, 30563 },	// Nuke, Airborne Attire, Jungle Booty
+	{ 30885, 30873, 30343 },	// Nuke, Airborne Attire, Gone Commando
+	{ 30964, 31346, 30343 },	// Polar Bear, Heavy Heating, Gone Commando
+	{ 31178, 31179, 31180 },	// Pajama Set
+	{ 30743, 30980, 30108 },	// Patriot Peak, Tsar Platinum, Borscht Belt
+	{ 31355, 30074, 30372 },	// Full Metal Helmet, Tyurtlenek, Combat Slacks
+	{ 30344, 30368, 30343 },	// Bullet Buzz, War Goggles, Gone Commando
+	{ 1185, 30563, 30306 },		// Saxton, Jungle Booty, Dictator
+	{ 31267, 31268, 1028 },		// Squatter's Right, Combat Casual, Samson Skewer
+	{ 185, 30342, 30368 },		// Heavy Do-Rag, Heavy Lifter, War Goggles
+	{ 30959, 30960, 777 },		// Sinner's Shade, Wild West Whiskers, Apparatchik's Apparel
+	{ 1087, 1088, 30372 },		// Wolfenstien Set
+	{ 126, 30165, 30104 },		// L4D Hat, Cuban Bristle Crisis, Graybanns
+	{ 126, 30104, 30309 },		// L4D Hat, Graybanns, Dead of Night
+	{ 145, 30165, 31453 },		// Heavy Hair, Cuban Bristle Crisis, Brute's Braces
+	{ 30549, 30550, 486 },		// EOTL_hiphunter_hat, EOTL_hiphunter_jacket, Summer Shades
+	{ 96, 30401, 30633 },		// Officer's Ushanka, Yuri's Revenge, Commissar's Coat
+	{ 1187, 1188, 1189 },		// Yeti Set
+	{ 666, 647, 30747 },		// B.M.O.C, All-father, Gift Bringer
+	{ 613, 757, 30080 },		// Gym Rat, Toss-Proof Towel, Heavy-Weight Champ
+	{ 952, 30104, 946 },		// Brock's Locks, Graybanns, Siberian Sophisticate
+	{ 603, 479, 777 },			// Outdoorsman, Security Shades, Apparatchik's Apparel
+	{ 478, 479, 946 },			// Copper's Hard Top, Security Shades, Siberian Sophisticate
+	{ 427, 814, 815 },			// Capone's Capper, Triad Trinket, Champ Stamp
+	{ 989, 990, 991 },			// Aqua Teen Hunger Heavy Set
+	{ 330, 946, -1 }			// Coupe D'isaster, Siberian Sophisticate
 };
 public const CosmeticSet CS_PRESET_F2P[] = {
 	{ 261, 744, 166 },			// Mann Co. Cap, Pyrovision Goggles, Mercenary
@@ -1559,10 +1604,13 @@ public const int SPECIFIC_HEAVY_HEAD[] = {
 	30815,	// Mad Mask
 	30866,	// Warhood
 	30885,	// Nuke
+	31305,	// Road Rage
+	31368	// Brother Mann
 };
 public const int SPECIFIC_HEAVY_HEADSKIN[] = {
 	380,	// Large Luchadore
 	585,	// Cold War Luchador
+	31191	// Two Punch Mann
 };
 public const int SPECIFIC_HEAVY_HATS[] = {
 	49,		// Football helmet
@@ -1626,13 +1674,23 @@ public const int SPECIFIC_HEAVY_HATS[] = {
 	31052,	// Mediterranean Mercenary
 	31080,	// Convict Cap
 	31106,	// Sophisticated Smoker
+	31178,	// SandMann's Brush
+	31190,	// Snack Stack
+	31255,	// Mooshanka
+	31267,	// Squatter's Right
+	31304,	// Horror Shawl
+	31345,	// Ol' Reliable
+	31402,	// Bare Bear Bones
+	31403,	// Make Ogre
+	31434,	// Balkan's Brute
+	31452	// Crook's Cap
 };
 public const int SPECIFIC_HEAVY_GLASSES[] = {
 	479,	// Security Shades
 	30085,	// Macho Mann
 	30141,	// Gabe Glasses
 	30368,	// War Goggles
-	30831,	// Reader's Choice
+	30831	// Reader's Choice
 };
 public const int SPECIFIC_HEAVY_BEARD[] = {
 	485,	// Big Steel Jaw of Summer Fun
@@ -1644,7 +1702,7 @@ public const int SPECIFIC_HEAVY_BEARD[] = {
 	30401,	// Yuri's Revenge
 	30482,	// Unshaved Bear
 	30960,	// Wild West Whiskers
-	31163,	// Particulate Protector
+	31163	// Particulate Protector
 };
 public const int SPECIFIC_HEAVY_SHIRT[] = {
 	777,	// Apparatchik's Apparel
@@ -1669,21 +1727,26 @@ public const int SPECIFIC_HEAVY_SHIRT[] = {
 	30980,	// Tsar Platinum
 	31030,	// Paka Parka
 	31053,	// Kapitan's Kaftan
+	31179,	// BedBug Protection
+	31268,	// Combat Casual
+	31346,	// Heavy Heating
+	31369,	// Heavy Metal
+	31435,	// Bigger Mann on Campus
+	31453	// Brute's Braces
 };
 public const int SPECIFIC_HEAVY_MISC[] = {
 	524,	// Purity Fist (arms)
 	757,	// Toss-Proof Towel
+	643,	// Sandvich Safe
 	815,	// Champ Stamp
 	1088,	// Die Regime-Panzerung
+	30080,	// Heavy-Weight Champ
 	30012,	// Titanium Towel
 	30910,	// Heavy Harness
 	1189,	// Yeti_Arms
 	30108,	// Borscht Belt
 	31079,	// Soviet Strongmann
-};
-public const int SPECIFIC_HEAVY_HIP[] = {
-	643,	// Sandvich Safe
-	30080,	// Heavy-Weight Champ
+	31306	// Road Block
 };
 public const int SPECIFIC_HEAVY_BELT[] = {
 	392,	// Pocket Medic
@@ -1691,17 +1754,19 @@ public const int SPECIFIC_HEAVY_BELT[] = {
 	1097,	// Little Bear
 	30079,	// Red Army Robin (left shoulder)
 	30728,	// Buttler
-	31123,	// Mamma Kiev
+	31123	// Mamma Kiev
 };
 public const int SPECIFIC_HEAVY_PANTS[] = {
 	1188,	// Yeti_Legs
 	30319,	// Mann of the House
 	30343,	// Gone Commando
 	30372,	// Combat Slacks
+	31180,	// Bear Walker
+	31370	// Hog Heels
 };
 public const int SPECIFIC_HEAVY_FEET[] = {
 	990,	// Aqua Flops
-	30354,	// Rat Stompers
+	30354	// Rat Stompers
 };
 
 // Returns the ellgible cosmetics that has multiple styles
@@ -1710,6 +1775,10 @@ int GetCosmeticStyles( int iEntity )
 	int iIndex = GetEntProp( iEntity, Prop_Send, "m_iItemDefinitionIndex" );
 	switch ( iIndex )
 	{
+		case 31304:	return 1;	// Horror Shawl
+		case 31268:	return 1;	// Combat Casual
+		case 31267:	return 1;	// Squatter's Right
+		case 31191:	return 1;	// Two Punch Mann
 		case 31123:	return 1;	// Mamma Kiev
 		case 31052:	return 1;	// Mediterranean Mercenary
 		case 30981:	return 1;	// Starboard Crusader
@@ -1931,6 +2000,9 @@ int GetCosmeticStyles( int iEntity )
 		case 31342:	return 2;	// Glasgow Bankroll
 		case 31391:	return 2;	// Thunder Dome
 		case 380:	return 2;	// Large Luchadore
+		case 31345:	return 2;	// Ol' Reliable
+		case 31346:	return 2;	// Heavy Heating
+		case 31368:	return 2;	// Brother Mann
 
 		case 777:	return 3;	// Apparatchik's Apparel
 		case 30309:	return 3;	// Dead of Night
@@ -1975,7 +2047,26 @@ bool IsPaintableHat( int iEntity )
 	int iIndex = GetEntProp( iEntity, Prop_Send, "m_iItemDefinitionIndex" );
 	switch ( iIndex )
 	{
-		case :	return true;	// 
+		//case :	return true;	// 
+		case 31453:	return true;	// Brute's Braces
+		case 31452:	return true;	// Crook's Cap
+		case 31435:	return true;	// Bigger Mann on Campus
+		case 31402:	return true;	// Bare Bear Bones
+		case 31369:	return true;	// Heavy Metal
+		case 31368:	return true;	// Brother Mann
+		case 31346:	return true;	// Heavy Heating
+		case 31345:	return true;	// Ol' Reliable
+		case 31306:	return true;	// Road Block
+		case 31305:	return true;	// Road Rage
+		case 31304:	return true;	// Horror Shawl
+		case 31268:	return true;	// Combat Casual
+		case 31267:	return true;	// Squatter's Right
+		case 31255:	return true;	// Mooshanka
+		case 31191:	return true;	// Two Punch Mann
+		case 31190:	return true;	// Snack Stack
+		case 31180:	return true;	// Bear Walker
+		case 31179:	return true;	// BedBug Protection
+		case 31178:	return true;	// Sandmann's Brush
 		case 31080:	return true;	// Convict Cap
 		case 31079:	return true;	// Soviet Strongmann
 		case 31053:	return true;	// Kapitan's Kaftan
@@ -1995,7 +2086,6 @@ bool IsPaintableHat( int iEntity )
 		case 30815:	return true;	// Mad Mask
 		case 30812:	return true;	// Mo'Horn
 		case 30803:	return true;	// Heavy Tourism
-		case 30747:	return true;	// Gift Bringer
 		case 30745:	return true;	// Siberian Sweater
 		case 30653:	return true;	// Sucker Slug
 		case 30645:	return true;	// El Duderino
@@ -2874,12 +2964,25 @@ void GiveBotCosmetics( int iClient )
 	int iRandDemo_Pants			= SPECIFIC_DEMO_PANTS[ GetRandomInt( 0, sizeof( SPECIFIC_DEMO_PANTS ) - 1 ) ];
 	int iRandDemo_Feet			= SPECIFIC_DEMO_FEET[ GetRandomInt( 0, sizeof( SPECIFIC_DEMO_FEET ) - 1 ) ];
 
+	// HEAVYWEAPONS
+	int iRandHeavy_Head 		= SPECIFIC_HEAVY_HEAD[ GetRandomInt( 0, sizeof( SPECIFIC_HEAVY_HEAD ) - 1 ) ];
+	int iRandHeavy_HeadSkin 	= SPECIFIC_HEAVY_HEADSKIN[ GetRandomInt( 0, sizeof( SPECIFIC_HEAVY_HEADSKIN ) - 1 ) ];
+	int iRandHeavy_Hats 		= SPECIFIC_HEAVY_HATS[ GetRandomInt( 0, sizeof( SPECIFIC_HEAVY_HATS ) - 1 ) ];
+	int iRandHeavy_Glasses 		= SPECIFIC_HEAVY_GLASSES[ GetRandomInt( 0, sizeof( SPECIFIC_HEAVY_GLASSES ) - 1 ) ];
+	int iRandHeavy_Beard 		= SPECIFIC_HEAVY_BEARD[ GetRandomInt( 0, sizeof( SPECIFIC_HEAVY_BEARD ) - 1 ) ];
+	int iRandHeavy_Shirt 		= SPECIFIC_HEAVY_SHIRT[ GetRandomInt( 0, sizeof( SPECIFIC_HEAVY_SHIRT ) - 1 ) ];
+	int iRandHeavy_Misc 		= SPECIFIC_HEAVY_MISC[ GetRandomInt( 0, sizeof( SPECIFIC_HEAVY_MISC ) - 1 ) ];
+	int iRandHeavy_Belt 		= SPECIFIC_HEAVY_BELT[ GetRandomInt( 0, sizeof( SPECIFIC_HEAVY_BELT ) - 1 ) ];
+	int iRandHeavy_Pants 		= SPECIFIC_HEAVY_PANTS[ GetRandomInt( 0, sizeof( SPECIFIC_HEAVY_PANTS ) - 1 ) ];
+	int iRandHeavy_Feets 		= SPECIFIC_HEAVY_FEET[ GetRandomInt( 0, sizeof( SPECIFIC_HEAVY_FEET ) - 1 ) ];
+
 	int iSelectedCosmetics[ 3 ];
 	int iAllCosmetics[ 12 ];		// All class
 	int iScoutCosmetics[ 13 ];
-	int iSoldierCosmetics[ 13 ];
+	int iSoldierCosmetics[ 15 ];
 	int iPyroCosmetics[ 14 ];
-	int iDemoManCosmetics[ 13 ];
+	int iDemoManCosmetics[ 14 ];
+	int iHeavyCosmetics[ 13 ];
 
 	TFClassType TFClass = TF2_GetPlayerClass( iClient );
 
@@ -2975,10 +3078,10 @@ void GiveBotCosmetics( int iClient )
 								iScoutCosmetics[ 2 ] = 0;
 								iScoutCosmetics[ 3 ] = 0;
 								iScoutCosmetics[ 4 ] = 0;
-								iScoutCosmetics[ 11 ] = 0;
+								//iScoutCosmetics[ 11 ] = 0;
 								iScoutCosmetics[ 12 ] = 0;
 							}
-							// If hat, glasses, beard or face is selected, don't select head
+							// If hat(2), glasses(3), beard(4), face(12) is selected, don't select head
 							else if ( iIndex[ i ] == 2 || iIndex[ i ] == 3 || iIndex[ i ] == 4 || iIndex[ i ] == 12 ) 
 							{
 								iScoutCosmetics[ 1 ] = 0;
@@ -2995,6 +3098,7 @@ void GiveBotCosmetics( int iClient )
 						CPrintToChatAll( "BOT: {fuchsia}%s{default}, Selected {green}Scout {default}specific cosmetics.", clientName )
 					#endif
 				}
+				
 				if ( TFClass == TFClass_Soldier )
 				{
 					iSoldierCosmetics[ 1 ] = IsChance( 75 ) ? iRandSoldier_Head : iRandHead;
@@ -3009,8 +3113,10 @@ void GiveBotCosmetics( int iClient )
 					iSoldierCosmetics[ 10 ] = IsChance( 75 ) ? iRandSoldier_Pants : iRandPants;
 					iSoldierCosmetics[ 11 ] = IsChance( 75 ) ? iRandSoldier_Feet : iRandFeet;
 					iSoldierCosmetics[ 12 ] = iRandSoldier_Pocket;
+					iSoldierCosmetics[ 13 ] = iRandHatMisc;
+					iSoldierCosmetics[ 14 ] = iRandFace;
 
-					int iIndex[ 12 ] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 };
+					int iIndex[ 14 ] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14 };
 					ShuffleArray( iIndex, sizeof( iIndex ) );
 
 					for ( int i = 0; i < 3; ++i )
@@ -3024,9 +3130,10 @@ void GiveBotCosmetics( int iClient )
 								iSoldierCosmetics[ 2 ] = 0;
 								iSoldierCosmetics[ 3 ] = 0;
 								iSoldierCosmetics[ 4 ] = 0;
+								iSoldierCosmetics[ 14 ] = 0;
 							}
-							// If hat, glasses, beard or face is selected, don't select head
-							else if ( iIndex[ i ] == 2 || iIndex[ i ] == 3 || iIndex[ i ] == 4 ) 
+							// If hat(2), glasses(3), beard(4) or face(14) is selected, don't select head
+							else if ( iIndex[ i ] == 2 || iIndex[ i ] == 3 || iIndex[ i ] == 4 || iIndex[ i ] == 14 ) 
 							{
 								iSoldierCosmetics[ 1 ] = 0;
 							}
@@ -3042,6 +3149,7 @@ void GiveBotCosmetics( int iClient )
 						CPrintToChatAll( "BOT: {fuchsia}%s{default}, Selected {green}Soldier {default}specific cosmetics.", clientName )
 					#endif
 				}
+				
 				if ( TFClass == TFClass_Pyro )
 				{
 					iPyroCosmetics[ 1 ] = IsChance( 75 ) ? iRandPyro_HeadReplace : iRandHead;
@@ -3074,6 +3182,7 @@ void GiveBotCosmetics( int iClient )
 						CPrintToChatAll( "BOT: {fuchsia}%s{default}, Selected {green}Pyro {default}specific cosmetics.", clientName )
 					#endif
 				}
+				
 				if ( TFClass == TFClass_DemoMan )
 				{
 					iDemoManCosmetics[ 1 ] = IsChance( 75 ) ? iRandDemo_HeadReplace : iRandHead;
@@ -3088,6 +3197,7 @@ void GiveBotCosmetics( int iClient )
 					iDemoManCosmetics[ 10 ] = IsChance( 75 ) ? iRandDemo_Pants : iRandPants;
 					iDemoManCosmetics[ 11 ] = IsChance( 75 ) ? iRandDemo_Feet : iRandFeet;
 					iDemoManCosmetics[ 12 ] = iRandHatMisc;
+					iDemoManCosmetics[ 13 ] = iRandFace;
 
 					int iIndex[ 12 ] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 };
 					ShuffleArray( iIndex, sizeof( iIndex ) );
@@ -3102,9 +3212,10 @@ void GiveBotCosmetics( int iClient )
 								iDemoManCosmetics[ 2 ] = 0;
 								iDemoManCosmetics[ 3 ] = 0;
 								iDemoManCosmetics[ 4 ] = 0;
+								iDemoManCosmetics[ 13 ] = 0;
 							}
-							// If hat, glasses, beard or face is selected, don't select head
-							else if ( iIndex[ i ] == 2 || iIndex[ i ] == 3 || iIndex[ i ] == 4 ) 
+							// If hat(2), glasses(3), beard(4) or face(13) is selected, don't select head
+							else if ( iIndex[ i ] == 2 || iIndex[ i ] == 3 || iIndex[ i ] == 4 || iIndex[ i ] == 13) 
 							{
 								iDemoManCosmetics[ 1 ] = 0;
 							}
@@ -3120,12 +3231,60 @@ void GiveBotCosmetics( int iClient )
 						CPrintToChatAll( "BOT: {fuchsia}%s{default}, Selected {green}DemoMan {default}specific cosmetics.", clientName )
 					#endif
 				}
+
+				if ( TFClass == TFClass_Heavy )
+				{
+					iHeavyCosmetics[ 1 ] = IsChance( 75 ) ? iRandHeavy_Head : iRandHead;
+					iHeavyCosmetics[ 2 ] = IsChance( 75 ) ? iRandHeavy_Hats : iRandHat;
+					iHeavyCosmetics[ 3 ] = IsChance( 75 ) ? iRandHeavy_Glasses : iRandGlasses;
+					iHeavyCosmetics[ 4 ] = IsChance( 75 ) ? iRandHeavy_Beard: iRandBeard;
+					iHeavyCosmetics[ 5 ] = iRandMedal;
+					iHeavyCosmetics[ 6 ] = IsChance( 75 ) ? iRandHeavy_Shirt : iRandTorso;
+					iHeavyCosmetics[ 7 ] = iRandHeavy_Misc;
+					iHeavyCosmetics[ 8 ] = IsChance( 75 ) ? iRandHeavy_Belt : iRandBelt;
+					iHeavyCosmetics[ 9 ] = IsChance( 75 ) ? iRandHeavy_Pants : iRandPants;
+					iHeavyCosmetics[ 10 ] = IsChance( 75 ) ? iRandHeavy_Feets : iRandFeet;
+					iHeavyCosmetics[ 11 ] = iRandHatMisc;
+					iHeavyCosmetics[ 12 ] = IsChance( 25 ) ? iRandHeavy_HeadSkin : iRandFace;
+
+					int iIndex[ 12 ] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 };
+					ShuffleArray( iIndex, sizeof( iIndex ) );
+
+					for ( int i = 0; i < 3; ++i )
+					{
+						iSelectedCosmetics[ i ] = iHeavyCosmetics[ iIndex[ i ] ];
+						if ( iSelectedCosmetics[ i ] )
+						{
+							if ( iIndex[ i ] == 1 ) 
+							{
+								iHeavyCosmetics[ 2 ] = 0;
+								iHeavyCosmetics[ 3 ] = 0;
+								iHeavyCosmetics[ 4 ] = 0;
+								iHeavyCosmetics[ 12 ] = 0;
+							}
+							// If hat(2), glasses(3), beard(4) or face(12) is selected, don't select head
+							else if ( iIndex[ i ] == 2 || iIndex[ i ] == 3 || iIndex[ i ] == 4 || iIndex[ i ] == 12 ) 
+							{
+								iHeavyCosmetics[ 1 ] = 0;
+							}
+						}
+
+						if ( iSelectedCosmetics[ i ] && iHeavyCosmetics[ i ] != 1 )
+						{
+							TF2_CreateHat( iClient, iSelectedCosmetics[ i ], QUALITY_UNIQUE, iIndex[ i ] == 2 );
+						}
+					}
+
+					#if defined TESTING_ONLY
+						CPrintToChatAll( "BOT: {fuchsia}%s{default}, Selected {green}Heavy {default}specific cosmetics.", clientName )
+					#endif
+				}
 			}
 		}
 	}
 	else // Pick Premade sets
 	{
-		if ( iRandom <= 75 )
+		if ( iRandom <= 80 )
 		{
 			switch ( TF2_GetPlayerClass( iClient ) )
 			{
@@ -3169,6 +3328,7 @@ void PresetCosmeticSet( int iClient, char[] iClass )
 	int iPyroRand 				= GetRandomInt( 0, sizeof( CS_PRESET_PYRO ) / sizeof( CosmeticSet ) - 1 );
 	int iPyroHalloRand 			= GetRandomInt( 0, sizeof( CS_PRESET_PYRO_HALLOWEEN ) / sizeof( CosmeticSet ) - 1 );
 	int iDemoRand 				= GetRandomInt( 0, sizeof( CS_PRESET_DEMOMAN ) / sizeof( CosmeticSet ) - 1 );
+	int iHeavyRand 				= GetRandomInt( 0, sizeof( CS_PRESET_HEAVY ) / sizeof( CosmeticSet ) - 1 );
 	int iF2PRand 				= GetRandomInt( 0, sizeof( CS_PRESET_F2P ) / sizeof( CosmeticSet ) - 1 );
 	int iF2PHalloRand 			= GetRandomInt( 0, sizeof( CS_PRESET_F2P_HALLOWEEN ) / sizeof( CosmeticSet ) - 1 );
 	int iHalloweenChance 		= IsChance( 60 );
@@ -3297,6 +3457,23 @@ void PresetCosmeticSet( int iClient, char[] iClass )
 		for ( int i = 0; i < 2; ++i )
 		{
 			int iCosmeticID = ( i == 0 ) ? CS_PRESET_DEMOMAN[ iDemoRand ].iCosmetic1 : CS_PRESET_DEMOMAN[ iDemoRand ].iCosmetic2;
+			if ( iCosmeticID != -1 )
+			{
+				TF2_CreateHat( iClient, iCosmeticID, QUALITY_UNIQUE );
+			}
+		}
+	}
+
+	if ( StrEqual( iClass, "HeavyWeapons", false ) ) 
+	{
+		if ( CS_PRESET_HEAVY[ iHeavyRand ].iHat != -1 )
+		{
+			TF2_CreateHat( iClient, CS_PRESET_HEAVY[ iHeavyRand ].iHat, QUALITY_UNIQUE, true );
+		}
+
+		for ( int i = 0; i < 2; ++i )
+		{
+			int iCosmeticID = ( i == 0 ) ? CS_PRESET_HEAVY[ iHeavyRand ].iCosmetic1 : CS_PRESET_HEAVY[ iHeavyRand ].iCosmetic2;
 			if ( iCosmeticID != -1 )
 			{
 				TF2_CreateHat( iClient, iCosmeticID, QUALITY_UNIQUE );
