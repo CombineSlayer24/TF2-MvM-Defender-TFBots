@@ -89,7 +89,7 @@ public const int ALLCLASS_HATMISC[] = {
 	541,	// Merc's Pride Scarf
 	987,	// Merc's Muffler
 	31245,	// Oh Deer!
-	30883,	// Slithering Scarf
+	30883	// Slithering Scarf
 };
 // Don't equip with GLASSES, BEARD, HATS
 public const int ALLCLASS_HEAD[] = {
@@ -106,14 +106,14 @@ public const int ALLCLASS_HEAD[] = {
 	277,	// Halloween Mask - Saxton Hale
 	473,	// Spiral Sallet
 	30422,	// Vive La France
-	702,	// Warsworn Helmet
+	702		// Warsworn Helmet
 };
 // Don't equip with GLASSES, BEARD
 public const int ALLCLASS_FACE[] = {
 	31386,	// Clown's Cover-Up
 	31217,	// Goalkeeper
 	31135,	// Handsome Devil
-	31219,	// Scariest Mask EVER
+	31219	// Scariest Mask EVER
 };
 public const int ALLCLASS_HATS[] = {
 	30829,	// Snowmann
@@ -301,7 +301,7 @@ public const int ALLCLASS_HATS[] = {
 	// Move these later.
 	31294,	// Starlight Sorcerer
 	944,	// That '70s Chapeau
-	640,	// Top Notch
+	640		// Top Notch
 };
 public const int ALLCLASS_GLASSES[] = {
 	816,	// Marxman
@@ -320,7 +320,7 @@ public const int ALLCLASS_GLASSES[] = {
 	486,	// Summer Shades
 	1033,	// TF2VRH
 	30569,	// Tomb Readers
-	30140,	// Virtual Viewfinder
+	30140	// Virtual Viewfinder
 };
 public const int ALLCLASS_BEARD[] = {
 	31062,	// Bread Biter
@@ -328,7 +328,7 @@ public const int ALLCLASS_BEARD[] = {
 	30306,	// Dictator
 	31260,	// Elf-Made Bandanna
 	31127,	// Ground Grin
-	30352,	// Mustachioed Mann
+	30352	// Mustachioed Mann
 };
 public const int ALLCLASS_MEDAL[] = {
 	865,	// Triple A Badge
@@ -500,7 +500,7 @@ public const int ALLCLASS_MEDAL[] = {
 	13742,	// Operation Magnetic Mayhem Barely Benign Bismutotantalite 2024
 	13739,	// Operation Magnetic Mayhem Fiendish Fuchsite 2024
 	13741,	// Operation Magnetic Mayhem Humanitarian Hiddenite 2024
-	13743,	// Operation Magnetic Mayhem Treasured Tourmaline 2024
+	13743	// Operation Magnetic Mayhem Treasured Tourmaline 2024
 
 /* 	
 	873,	 //Whale Bone Charm
@@ -565,7 +565,7 @@ public const int ALLCLASS_MEDAL[] = {
 };
 public const int ALLCLASS_TORSO[] = {
 	30309,	// Dead Of Night
-	955,	// Tuxxy
+	955		// Tuxxy
 };
 public const int ALLCLASS_BELT[] = {
 	30738,	// Batbelt
@@ -589,23 +589,23 @@ public const int ALLCLASS_BELT[] = {
 	30923,	// Sledder's Sidekick 	(left shoulder)
 	30996,	// Terror-antula 		(left shoulder)
 	869,	// Rump-o'-Lantern 
-	1011,	// Tux (misc)
+	1011	// Tux (misc)
 };
 public const int ALLCLASS_PANTS[] = {
-	30068, // Breakneck Baggies
+	30068 // Breakneck Baggies
 };
 public const int ALLCLASS_FEET[] = {
 	31167,	// Festive Flip-Thwomps
 	30551,	// Flashdance Footies
 	31105,	// Loaf Loafers
-	30975,	// Robin Walkers
+	30975	// Robin Walkers
 };
 public const int ALLCLASS_FLOATING[] = {
-	31442,	// Botler 2000
+	31442	// Botler 2000
 };
 public const int ALLCLASS_BASEMISC[] = {
 	619,	// flair!
-	5075,	// Something Special For Someone Special (Wearable)
+	5075	// Something Special For Someone Special (Wearable)
 };
 
 // When setting up presets, make sure the hat
@@ -654,7 +654,7 @@ public const CosmeticSet CS_PRESET_SCOUT[] = {
 	{ 31366, 814, 815 },		// Brimmed Bootlegger, triad trinket, Champ Stamp
 	{ 150, 722, 1016 },			// Troublemaker's Tossle Cap, Fast Learner, Buck Turner All-Stars
 	{ 346, 486, 347 },			// MNC Mascot Hat, Summer Shades, MNC Mascot Outfit
-	{ 760, 722, 983 },			// Front Runner, Fast Learner, Digit Divulger
+	{ 760, 722, 983 }			// Front Runner, Fast Learner, Digit Divulger
 };
 public const CosmeticSet CS_PRESET_SCOUT_HALLOWEEN[] = {
 	{ 30471, 30472, 30470 },	// Alien Cranium, Xeno Suit, Biomech Backpack
@@ -677,7 +677,7 @@ public const CosmeticSet CS_PRESET_SCOUT_HALLOWEEN[] = {
 	{ 115, 707, 30076 },		// Mildly Disturbing Halloween Mask, Boston Boom-Bringer, Bigg Mann On Campus
 	{ 546, 547, 5617 },			// Wrap Battler, B-ankh!, Zombie Scout
 	{ 278, 5617, -1 },			// Horseless Headless Horseman's Head, Zombie Scout
-	{ 546, 547, 548 },			// Wrap Battler, B-ankh!, Futankhamun
+	{ 546, 547, 548 }			// Wrap Battler, B-ankh!, Futankhamun
 };
 public const CosmeticSet CS_PRESET_SOLDIER[] = {
 	{ 30578, 31418, 30392 },	// Skullcap, Trench Warefarer, Man In Slacks
@@ -708,7 +708,7 @@ public const CosmeticSet CS_PRESET_SOLDIER[] = {
 	{ 31277, 31276, -1 },		// Detective, Caped Crusader, Chaser
 	{ 99, 30164, 30129 },		// Tyrant's Helm, Viking Braider, Hornblower
 	{ 183, 30339, 446 },		// Soldier Drill Hat, Killer's Kit, Fancy Dress Uniform
-	{ 152, 30126, 875 },		// Soldier Samurai Hat, Shogun's Shoulder Guard, Menpo
+	{ 152, 30126, 875 }		// Soldier Samurai Hat, Shogun's Shoulder Guard, Menpo
 };
 public const CosmeticSet CS_PRESET_SOLDIER_HALLOWEEN[] = {
 	{ 30521, 30522, 30520 },	// Hellhunter's Headpiece, Supernatural Stalker, Ghoul Gibbin' Gear
@@ -725,7 +725,7 @@ public const CosmeticSet CS_PRESET_SOLDIER_HALLOWEEN[] = {
 	{ -1, 31137, 30165 },		// War Blunder, Cuban Bristle Crisis
 	{ 555, 556, 557 },			// Idiot Box, Steel Pipes, Shoestring Budget
 	{ 555, 556, 557 },			// Idiot Box, Steel Pipes, Shoestring Budget
-	{ 555, 556, 557 },			// Idiot Box, Steel Pipes, Shoestring Budget
+	{ 555, 556, 557 }			// Idiot Box, Steel Pipes, Shoestring Budget
 };
 public const CosmeticSet CS_PRESET_PYRO[] = {
 	{ 30582, 30583, 30584 },	// dec2014 Black Knights Bascinet, dec2014 Torchers Tabard, dec2014 Armoured Appendages
@@ -753,14 +753,14 @@ public const CosmeticSet CS_PRESET_PYRO[] = {
 	{ 30304, 30305, -1 },		// Blizzard Breather, Sub Zero Suit
 	{ 126, 570, 30305 },		// L4D Hat, Last Breath, Sub Zero Suit
 	{ 644, 30305, -1 },			// Head Warmer, Sub Zero Suit
-	{ 182, 570, -1 },			// Pyro Helm, Last Breath [The Once Upon A Time In 2Fort Pyro]
+	{ 182, 570, -1 }			// Pyro Helm, Last Breath [The Once Upon A Time In 2Fort Pyro]
 };
 public const CosmeticSet CS_PRESET_PYRO_HALLOWEEN[] = {
 	{ 30928, 31318, 30309 },	// Balloonihoodie, Magical Mount, Dead of Night
 	{ 30203, 30225, 30259 },	// Burnys Boney Bonnet, Cauterizers Caudal Appendage, Monsters Stompers
 	{ 30194, 927, 31263 },		// Spectralnaut, Boo Balloon, Kazan Karategi
 	{ 278, 5624, 30196 },		// HHH Head, Zombie Pyro, Maniac's Manacles
-	{ 549, 550, 551 },			// Blazing Bull, Fallen Angel, Tail from the Crypt
+	{ 549, 550, 551 }			// Blazing Bull, Fallen Angel, Tail from the Crypt
 };
 public const CosmeticSet CS_PRESET_DEMOMAN[] = {
 	{ 31422, 31423, 31424 },	// Nightcap, Lazy Lounger, Slumber Slacks
@@ -787,7 +787,7 @@ public const CosmeticSet CS_PRESET_DEMOMAN[] = {
 	{ 342, 30124, 874 },		// Prince Tavish's Crown, Gaelic Garb, King of Scotland Cape
 	{ 671, 30305, -1 },			// Brown Bomber, Sub Zero Suit
 	{ 255, 31392, -1 },			// Sober Stuntman, Stunt Suit
-	{ 332, 295, -1 },			// Treasure Hat 1, TTG Glasses
+	{ 332, 295, -1 }			// Treasure Hat 1, TTG Glasses
 };
 public const CosmeticSet CS_PRESET_F2P[] = {
 	{ 261, 744, 166 },			// Mann Co. Cap, Pyrovision Goggles, Mercenary
@@ -796,12 +796,12 @@ public const CosmeticSet CS_PRESET_F2P[] = {
 	{ 537, 166, 744 },			// TF Birthday Hat 2011, Mercenary, Pyrovision Goggles
 	{ 263, 166, -1 },			// Ellis Hat, Mercenary
 	{ 537, 166, -1 },			// TF Birthday Hat 2011, Mercenary
-	{ 537, -1, -1 },			// TF Birthday Hat 2011
+	{ 537, -1, -1 }			// TF Birthday Hat 2011
 };
 public const CosmeticSet CS_PRESET_F2P_HALLOWEEN[] = {
 	{ 581, 655, -1 },			// MONOCULUS!, Spirit of Giving
 	{ 278, 166, -1 },			// HHH Head, Mercenary
-	{ 115, 166, -1 },			// Mildly Disturbing Halloween Mask, Mercenary
+	{ 115, 166, -1 }			// Mildly Disturbing Halloween Mask, Mercenary
 };
 
 
@@ -830,7 +830,7 @@ public const int SPECIFIC_SCOUT_HEAD[] = {
 	30394,	// Frickin Sweet Ninja Hood
 	30735,	// Sidekick's Side Slick
 	30733,	// Tuefort Knight
-	31282,	// Throttlehead
+	31282	// Throttlehead
 };
 public const int SPECIFIC_SCOUT_HATS[] = {
 	52,		// batter's helmet
@@ -882,7 +882,7 @@ public const int SPECIFIC_SCOUT_HATS[] = {
 	30809,	// Wing Mann
 	30019,	// Ye Oiled Baker Boy
 	107,	// Ye Olde Baker Boy
-	31459,	// Commonwealth Commando
+	31459	// Commonwealth Commando
 };
 public const int SPECIFIC_SCOUT_GLASSES[] = {
 	30027,	// Bolt Boy
@@ -893,12 +893,12 @@ public const int SPECIFIC_SCOUT_GLASSES[] = {
 	468,	// Planeswalker Goggles
 	30831,	// Reader's Choice
 	31116,	// Soda Specs
-	630,	// Stereoscopic Shades
+	630		// Stereoscopic Shades
 };
 public const int SPECIFIC_SCOUT_BEARD[] = {
 	31081,	// Fuel Injector
 	986,	// Mutton Mann
-	31163,	// Particulate Protector
+	31163	// Particulate Protector
 };
 public const int SPECIFIC_SCOUT_TORSO[] = {
 	30736,	// Bat Backup
@@ -937,7 +937,7 @@ public const int SPECIFIC_SCOUT_TORSO[] = {
 	30178,	// Weight Room Warmer
 	30990,	// Wipe Oout Wraps
 	31460,	// Tanker's Top
-	815,	// Champ Stamp
+	815		// Champ Stamp
 };
 public const int SPECIFIC_SCOUT_BACK[] = {
 	30751,	// Batter's Backup
@@ -953,19 +953,19 @@ public const int SPECIFIC_SCOUT_BACK[] = {
 	30849,	// Pocket Pauling
 	1075,	// Sack fulla smissmas
 	30820,	// Snowwing
-	31119,	// Tools Of The Tourist
+	31119	// Tools Of The Tourist
 };
 public const int SPECIFIC_SCOUT_BELT[] = {
 	30167,	// Beep Boy
 	30728,	// Buttler
-	30564,	// Orion's Belt
+	30564	// Orion's Belt
 };
 public const int SPECIFIC_SCOUT_PANTS[] = {
 	30991,	// Blizzard Britches
 	30719,	// B'aaarrgh-n-Britches
 	30060,	// Cheet Sheet
 	31285,	// Pest's Pads
-	30889,	// Transparent Trousers
+	30889	// Transparent Trousers
 };
 public const int SPECIFIC_SCOUT_FEET[] = {
 	540,	// Argyle
@@ -984,7 +984,7 @@ public const int SPECIFIC_SCOUT_FEET[] = {
 	857,	// Flunkyware
 	30771,	// Squire's Sabatons
 	734,	// Teufort Tooth Kicker
-	347,	// Essential Accessories
+	347		// Essential Accessories
 };
 //-----------------------------------------------
 // SOLDIER
@@ -999,7 +999,7 @@ public const int SPECIFIC_SOLDIER_HEAD[] = {
 	349,	// Defiant Spartan
 	391,	// Honcho's Headgear
 	575,	// Infernal Impaler
-	30733,	// Tuefort Knight
+	30733	// Tuefort Knight
 };
 public const int SPECIFIC_SOLDIER_HATS[] = {
 	445,	// Armored Authority
@@ -1081,12 +1081,12 @@ public const int SPECIFIC_SOLDIER_HATS[] = {
 	829,	// War Pig
 	1073,	// War on Smissmas Battle Hood
 	30118,	// Whirly Warrior
-	1063,	// MvM GateBot Light Soldier (easter egg)
+	1063	// MvM GateBot Light Soldier (easter egg)
 };
 public const int SPECIFIC_SOLDIER_GLASSES[] = {
 	360,	// Hero's Hachimaki
 	30085,	// Macho Mann
-	30831,	// Reader's Choice
+	30831	// Reader's Choice
 };
 public const int SPECIFIC_SOLDIER_BEARD[] = {
 	647, 	// All-Father
@@ -1100,7 +1100,7 @@ public const int SPECIFIC_SOLDIER_BEARD[] = {
 	31163,	// Particulate Protector
 	30033,	// Soldier's Sparkplug
 	852,	// Soldier's Stogie
-	30164,	// Viking Braider
+	30164	// Viking Braider
 };
 public const int SPECIFIC_SOLDIER_COAT[] = {
 	30331,	// Antarctic Parka
@@ -1118,13 +1118,13 @@ public const int SPECIFIC_SOLDIER_COAT[] = {
 	31070,	// Party Poncho
 	30898,	// Sharp Chest Pain
 	31418,	// Trench Warefarer
-	30983,	// Veterans Attire
+	30983	// Veterans Attire
 };
 public const int SPECIFIC_SOLDIER_SHIRT[] = {
 	936,	// Exorcizor
 	446,	// Fancy Dress Uniform
 	30142,	// Founding Father
-	30870,	// Patriot's Pouches
+	30870	// Patriot's Pouches
 };
 public const int SPECIFIC_SOLDIER_GRENADES[] = {
 	30886,	// Bananades
@@ -1136,32 +1136,32 @@ public const int SPECIFIC_SOLDIER_GRENADES[] = {
 	641,	// Ornament Armament
 	768,	// Professor's Pineapple
 	31220,	// Trickster's Treats
-	1074,	// War on Smissmas Battle Socks
+	1074	// War on Smissmas Battle Socks
 };
 public const int SPECIFIC_SOLDIER_BELT[] = {
 	30728,	// Buttler
 	30818,	// Socked And Loaded
 	30115,	// Compatriot (left shoulder)
 	30985,	// Private Maggot Muncher (neckless)
-	31388,	// Warlock's Warcloak (neckless)
-	121,	// Web Easteregg Medal (medal)
+	31388	// Warlock's Warcloak (neckless)
+	//121		// Web Easteregg Medal (medal)
 };
 public const int SPECIFIC_SOLDIER_PANTS[] = {
 	31451,	// Justice Johns
 	30339,	// Killer's Kit
 	30392,	// Man in Slacks
-	31379,	// Stealth Bomber
+	31379	// Stealth Bomber
 };
 public const int SPECIFIC_SOLDIER_POCKET[] = {
 	30896,	// Attack Packs
 	30130,	// Lieutenant Bites
 	392,	// Pocket Medic
-	31311,	// Safety Stripes
+	31311	// Safety Stripes
 };
 public const int SPECIFIC_SOLDIER_FEET[] = {
 	30558,	// Coldfront Curbstompers
 	30117,	// Colonial Clogs
-	734,	// Teufort Tooth Kicker
+	734		// Teufort Tooth Kicker
 };
 
 //-----------------------------------------------
@@ -1216,7 +1216,7 @@ public const int SPECIFIC_PYRO_HEAD_REPLACE[] = {
 	30032,	// Rusty Reaper
 	31222,	// Smiling Somen
 	30538,	// EOTL_Skier
-	976,	// Winter Wonderland Wrap
+	976		// Winter Wonderland Wrap
 };
 public const int SPECIFIC_PYRO_HATS[] = {
 	30662,	// A Head Full of Hot Air
@@ -1281,7 +1281,7 @@ public const int SPECIFIC_PYRO_HATS[] = {
 	182,	// Pyro Helm
 	753,	// Waxy Wayfinder
 	31094,	// Winter Wrap Up
-	937,	// Wraith Wrap
+	937		// Wraith Wrap
 };
 public const int SPECIFIC_PYRO_GLASSES[] = {
 	30901,	// D-eye-monds
@@ -1291,7 +1291,7 @@ public const int SPECIFIC_PYRO_GLASSES[] = {
 	31004,	// Pyro in Chinatown
 	30831,	// Reader's Choice
 	387,	// Sight for Sore Eyes
-	30168,	// Special Eyes
+	30168	// Special Eyes
 };
 public const int SPECIFIC_PYRO_NECKLESS[] = {
 	336,	// KF Pyro Tie
@@ -1299,7 +1299,7 @@ public const int SPECIFIC_PYRO_NECKLESS[] = {
 };
 public const int SPECIFIC_PYRO_BEARD[] = {
 	316,	// Pyromancer's Mask
-	175,	// Pyro Monocle
+	175		// Pyro Monocle
 };
 public const int SPECIFIC_PYRO_SHIRT[] = {
 	30716,	// Crusader's Getup
@@ -1319,7 +1319,7 @@ public const int SPECIFIC_PYRO_SHIRT[] = {
 	31433,	// Torcher's Trench Coat
 	30169,	// Trickster's Turnout Gear
 	31051,	// Wanderer's Wear
-	31188,	// Water Waders
+	31188	// Water Waders
 };
 public const int SPECIFIC_PYRO_GRENADES[] = {
 	30886,	// Bananades
@@ -1332,7 +1332,7 @@ public const int SPECIFIC_PYRO_GRENADES[] = {
 	641,	// Ornament Armament
 	768,	// Professor's Pineapple
 	30818,	// Socked and Loaded
-	31220,	// Trickster's Treats
+	31220	// Trickster's Treats
 };
 public const int SPECIFIC_PYRO_BACK[] = {
 	30090,	// Backpack Broiler
@@ -1354,22 +1354,22 @@ public const int SPECIFIC_PYRO_BACK[] = {
 	30020,	// Scrap Sack
 	31050,	// Spawn Camper
 	30321,	// Tiny Timber
-	30308,	// Trail-Blazer
+	30308	// Trail-Blazer
 };
 public const int SPECIFIC_PYRO_BELT[] = {
 	30167,	// Beep Boy
 	30728,	// Buttler
 	30902,	// Deity's Dress
 	31047,	// Fiery Phoenix (left shoulder)
-	31026,	// Pocket Pardner
+	31026	// Pocket Pardner
 };
 public const int SPECIFIC_PYRO_PANTS[] = {
 	30819,	// Flavorful Baggies
 	31464,	// Scorched Earth Stompers
-	31464,	// Scorched Earth Stompers
+	31464	// Scorched Earth Stompers
 };
 public const int SPECIFIC_PYRO_FEET[] = {
-	30905,	// Hot Huaraches
+	30905	// Hot Huaraches
 };
 //-----------------------------------------------
 // DEMO
@@ -1392,7 +1392,7 @@ public const int SPECIFIC_DEMO_HEAD[] = {
 	30733,	// Tuefort Knight
 	30863,	// Blast Defense
 	30979,	// Frag Proof Fragger
-	31307,	// Alcoholic Automaton
+	31307	// Alcoholic Automaton
 };
 public const int SPECIFIC_DEMO_HATS[] = {
 	47,		// Demoman's Fro
@@ -1458,7 +1458,7 @@ public const int SPECIFIC_DEMO_HATS[] = {
 	31371,	// Blast Bowl
 	31391,	// Thunder Dome
 	31422,	// Nightcap
-	31461,	// Vaudeville Visor
+	31461	// Vaudeville Visor
 };
 public const int SPECIFIC_DEMO_GLASSES[] = {
 	295,	// TTG Glasses
@@ -1468,7 +1468,7 @@ public const int SPECIFIC_DEMO_GLASSES[] = {
 	30085,	// Macho Mann
 	30430,	// Seeing Double
 	30831,	// Reader's Choice
-	30945,	// Blast Blocker
+	30945	// Blast Blocker
 };
 public const int SPECIFIC_DEMO_BEARD[] = {
 	647, 	// All-Father
@@ -1478,7 +1478,7 @@ public const int SPECIFIC_DEMO_BEARD[] = {
 	30011,	// Bolted Bombardier
 	31017,	// Gaelic Glutton
 	31040,	// Unforgiven Glory
-	31163,	// Particulate Protector
+	31163	// Particulate Protector
 };
 public const int SPECIFIC_DEMO_SHIRT[] = {
 	925,	// Spooky Sleeves (sleeves)
@@ -1494,7 +1494,7 @@ public const int SPECIFIC_DEMO_SHIRT[] = {
 	31037,	// Dynamite Abs
 	31274,	// Hawaiian Hangover
 	31342,	// Glasgow Bankroll
-	31423,	// Lazy Lounger
+	31423	// Lazy Lounger
 };
 public const int SPECIFIC_DEMO_GRENADES[] = {
 	618,	// A Whiff of the Old Brimstone
@@ -1510,7 +1510,7 @@ public const int SPECIFIC_DEMO_GRENADES[] = {
 	31039,	// Backbreaker's Guards
 	31220,	// Trickster's Treats
 	31372,	// Shrapnel Shell
-	31393,	// Mad Lad
+	31393	// Mad Lad
 };
 public const int SPECIFIC_DEMO_BACK[] = {
 	771,	// Liquor Locker
@@ -1518,14 +1518,14 @@ public const int SPECIFIC_DEMO_BACK[] = {
 	30055,	// Scrumpy Strongbox
 	30107,	// Gaelic Golf Bag
 	30788,	// Demo's Dustcatcher (ehhh)
-	30973,	// Melody of Misery
+	30973	// Melody of Misery
 };
 public const int SPECIFIC_DEMO_BELT[] = {
 	708,	// Aladdin's Private Reserve
 	776,	// Bird-Man of Aberdeen (left shoulder)
 	30073,	// Dark Age Defender (left shoulder)
 	30363,	// Juggernaut Jacket (left shoulder)
-	30818,	// Socked and Loaded
+	30818	// Socked and Loaded
 };
 public const int SPECIFIC_DEMO_PANTS[] = {
 	979,	// Cool Breeze
@@ -1533,22 +1533,26 @@ public const int SPECIFIC_DEMO_PANTS[] = {
 	30555,	// EOTL_demopants
 	30742,	// Shin Shredders
 	31275,	// Barefoot Brawler
-	31424,	// Slumber Slacks
+	31424	// Slumber Slacks
 };
 public const int SPECIFIC_DEMO_FEET[] = {
 	734,	// Teufort Tooth Kicker
 	1016,	// Buck Turner All-Stars
 	30333,	// Highland High Heels
 	30358,	// Sole Saviors
-	30587,	// dec2014 Viking Boots
+	30587	// dec2014 Viking Boots
 };
 
 //-----------------------------------------------
 // HEAVYWEAPONSGUY
 //-----------------------------------------------
-// left on all father
+// Unused, will be used in Presets
+/*
+991,	// Hunger Force
+*/
 public const int SPECIFIC_HEAVY_HEAD[] = {
 	145,	// Heavy Hair (Hound Dog)
+	1187,	// Yeti_Head
 };
 public const int SPECIFIC_HEAVY_HEADSKIN[] = {
 	380,	// Large Luchadore
@@ -1582,13 +1586,26 @@ public const int SPECIFIC_HEAVY_HATS[] = {
 	853,	// Crafty Hair
 	866,	// Heavy Artillery Officer's Cap
 	876,	// K-9 Mane
+	952,	// Brock's Locks
+	985,	// Heavy's Hockey Hair
+	989,	// Carl
+	1012,	// Wilson Weave
+	1018,	// Pounding Father
+	1087,	// Der Maschinensoldaten-Helm
+	30013,	// Gridiron Guardian
+	30049,	// Tungsten Toque
+	30054,	// Bunsen Brave
+	30081,	// Tsarboosh
+	30094,	// Katyusha
 };
 public const int SPECIFIC_HEAVY_GLASSES[] = {
 	479,	// Security Shades
+	30085,	// Macho Mann
 };
 public const int SPECIFIC_HEAVY_BEARD[] = {
 	485,	// Big Steel Jaw of Summer Fun
 	647, 	// All-Father
+	986,	// Mutton Mann
 };
 public const int SPECIFIC_HEAVY_SHIRT[] = {
 	524,	// Purity Fist (arms)
@@ -1596,17 +1613,32 @@ public const int SPECIFIC_HEAVY_SHIRT[] = {
 	814,	// Triad Trinket
 	815,	// Champ Stamp
 	925,	// Spooky Sleeves
+	946,	// Siberian Sophisticate
+	30074,	// Tyurtlenek
 };
-public const int SPECIFIC_HEAVY_TOWEL[] = {
+public const int SPECIFIC_HEAVY_MISC[] = {
 	757,	// Toss-Proof Towel
+	1088,	// Die Regime-Panzerung
 	30012,	// Titanium Towel
 	30910,	// Heavy Harness
+	1189,	// Yeti_Arms
+	30108,	// Borscht Belt
 };
 public const int SPECIFIC_HEAVY_HIP[] = {
 	643,	// Sandvich Safe
+	30080,	// Heavy-Weight Champ
 };
 public const int SPECIFIC_HEAVY_BELT[] = {
 	392,	// Pocket Medic
+	1028,	// Samson Skewer
+	1097,	// Little Bear
+	30079,	// Red Army Robin (left shoulder)
+};
+public const int SPECIFIC_HEAVY_PANTS[] = {
+	1188,	// Yeti_Legs
+};
+public const int SPECIFIC_HEAVY_FEET[] = {
+	990,	// Aqua Flops
 };
 
 // Returns the ellgible cosmetics that has multiple styles
@@ -1615,6 +1647,7 @@ int GetCosmeticStyles( int iEntity )
 	int iIndex = GetEntProp( iEntity, Prop_Send, "m_iItemDefinitionIndex" );
 	switch ( iIndex )
 	{
+		case 1028:	return 1;	// Samson Skewer
 		case 821:	return 1;	// Soviet Gentleman
 		case 610:	return 1;	// One-Man Army
 		case 478:	return 1;	// Copper's Hard Top
@@ -1872,8 +1905,19 @@ bool IsPaintableHat( int iEntity )
 	int iIndex = GetEntProp( iEntity, Prop_Send, "m_iItemDefinitionIndex" );
 	switch ( iIndex )
 	{
-		case :	return true;	// 
-		case 876:	return true;	// K-9 Mane
+		//case :	return true;	// 
+		case 30108:	return true;	// Borscht Belt
+		case 30094:	return true;	// Katyusha
+		case 30013:	return true;	// Gridiron Guardian
+		case 30049:	return true;	// Tungsten Toque
+		case 30054:	return true;	// Bunsen Brave
+		case 30081:	return true;	// Tsarboosh
+		case 1018:	return true;	// Pounding Father
+		case 990:	return true;	// Aqua Flops
+		case 952:	return true;	// Brock's Locks
+		case 985:	return true;	// Heavy's Hockey Hair
+		case 989:	return true;	// Carl
+		case 946:	return true;	// Siberian Sophisticate
 		case 840:	return true;	// U-clank-a
 		case 821:	return true;	// Soviet Gentleman
 		case 777:	return true;	// Apparatchik's Apparel
@@ -1886,7 +1930,7 @@ bool IsPaintableHat( int iEntity )
 		case 515:	return true;	// Pilotka
 		case 427:	return true;	// Capone's Capper
 		case 380:	return true;	// Large Luchadore
-		case 339:	return true;	// Coupe D'isaster
+		case 330:	return true;	// Coupe D'isaster
 		case 313:	return true;	// Magnificent Mongolian
 		case 292:	return true;	// Poker Visor
 		case 185:	return true;	// Heavy do-rag
