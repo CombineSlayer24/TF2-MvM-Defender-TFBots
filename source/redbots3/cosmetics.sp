@@ -694,6 +694,8 @@ public const CosmeticSet CS_PRESET_SOLDIER[] = {
 	{ 30118, 30780, 30896 },	// Whirly Warrior, Patriot's Pouches, Attack Packs
 	{ 30743, 30165, 30744 },	// Patriot Peak, Cuban Bristle Crisis, Diplomat
 	{ 30338, 30558, 30983 },	// Ground Control, EOTL_Coldfront Curbstompers, Veterans Attire
+	{ 30338, 30309, 30392 },	// Ground Control, Dead of Night, Man In Slacks
+	{ 31323, 30309, 30306 },	// Trapper's Flap, Dead of Night, The Dictator
 	{ 31113, 30853, 30309 },	// Breach and Bomb, Flakcatcher, Dead of Night
 	{ 31113, 30558, 30309 },	// Breach and Bomb, EOTL_Coldfront Curbstompers, Dead of Night
 	{ 31131, 31127, 31220 },	// Sir Pumpkinton, Gourd Grin, Trickster's Treats
@@ -747,6 +749,7 @@ public const CosmeticSet CS_PRESET_PYRO[] = {
 	{ 30987, 30092, 30569 },	// Buring Question, Soot Suit, Tomb Readers
 	{ 31185, 30986, 31184 },	// Brim of Fire, Hot Case, Manndatory Attire
 	{ 30877, 31464, 31328 },	// Hunter In Darkness, Scorched Earth Stompers, Firebrand
+	{ 30743, 30309, 30068 },	// Patriot Peak, Dead Of Night, Breakneck Baggies
 	{ 105, 30859, 30169 },		// Brigade Helm, Airtight Arsonist, Trickster's Turnout Gear
 	{ 247, 30089, 30168 },		// Old Guadalajara, El Muchacho, Special Eye
 	{ 247, 30089, 31065 },		// Old Guadalajara, El Muchacho, Head of the Dead
@@ -757,8 +760,10 @@ public const CosmeticSet CS_PRESET_PYRO[] = {
 	{ 394, 30169, 30417 },		// Connoisseur's Cap, Trickster's Turnout Gear, Frymaster
 	{ 30304, 30305, -1 },		// Blizzard Breather, Sub Zero Suit
 	{ 126, 570, 30305 },		// L4D Hat, Last Breath, Sub Zero Suit
+	{ 420, 632, 31051 },		// Potato Hat, Cremator's Conscience, Wanderer's Wear
 	{ 126, 30305, -1 },			// L4D Hat, Sub Zero Suit, Last Breath
 	{ 644, 30305, -1 },			// Head Warmer, Sub Zero Suit
+	{ 394, 30581, -1 },			// Connoisseur's Cap, Pyromancer's Raiments
 	{ 102, 387, 336 },			// Respectless Rubber Glove, Sight For Sore Eyes, TF_KF_Pyro_Tie
 	{ 182, 570, -1 }			// The Once Upon A Time In 2Fort Pyro set
 };
@@ -780,11 +785,13 @@ public const CosmeticSet CS_PRESET_DEMOMAN[] = {
 	{ 30066, 30104, 30309 },	// Brotherhood of Arms, Graybanns, Dead of Night
 	{ 30105, 30107, 30124 },	// Black Watch, Gaelic Golf Bag, Gaelic garb
 	{ 31115, 31392, 30945 },	// Hazard Headgear, Stunt Suit, Blast Blocker
-	{ 30421, 30541, 30550 },	// Frontier Djustice", EOTL_demo_dynamite, EOTL_hiphunter_jacket
+	{ 30421, 30541, 30550 },	// Frontier Djustice, EOTL_demo_dynamite, EOTL_hiphunter_jacket
 	{ 30546, 30541, 30550 },	// EOTL_FURCAP, EOTL_demo_dynamite, EOTL_hiphunter_jacket
 	{ 30064, 30061, 30124 },	// Tartan Shade, Tartantaloons, Gaelic Garb
 	{ 30334, 30305, 30333 },	// Tartan Tyrolean, Sub Zero Suit, Highland High Heels
 	{ 30429, 30430, 30431 },	// Allbrero, Seeing Double, Six Pack Abs
+	{ 30180, 30373, 30061 },	// Pirate Bandana, Toowoomba Tunic, Tartantaloons
+	{ 30180, 30373, 31037 },	// Pirate Bandana, Toowoomba Tunic, Dynamite Abs
 	{ 30340, 1016, 30178 },		// Stylish DeGroot, Buck Turner All-Stars, Weight Room Warmer
 	{ 306, 30179, 30085 },		// Scotch Bonnet, Hurt Locher, Macho Mann
 	{ 306, 30179, 30363 },		// Scotch Bonnet, Hurt Locher, Juggernaut Jacket
@@ -792,6 +799,8 @@ public const CosmeticSet CS_PRESET_DEMOMAN[] = {
 	{ 359, 30348, 30742 },		// Demo Kabuto, Bushi-Dou, Shin Shredders
 	{ 30016, 31307, 845 },		// FF-0, Alcoholic Automaton, Battery Bandolier
 	{ 126, 30104, 30309 },		// L4D Hat, Graybanns, Dead of Night
+	{ 30421, 30788, 734 },		// Frontier Djustice, Demo's Dustcatcher, Teufort Tooth Kicker
+	{ 30180, 31037, 925 },		// Pirate Bandana, Dynamite Abs, Spooky Sleeves
 	{ 342, 30124, 874 },		// Prince Tavish's Crown, Gaelic Garb, King of Scotland Cape
 	{ 671, 30305, -1 },			// Brown Bomber, Sub Zero Suit
 	{ 255, 31392, -1 },			// Sober Stuntman, Stunt Suit
@@ -814,6 +823,7 @@ public const CosmeticSet CS_PRESET_HEAVY[] = {
 	{ 30743, 30980, 30108 },	// Patriot Peak, Tsar Platinum, Borscht Belt
 	{ 31355, 30074, 30372 },	// Full Metal Helmet, Tyurtlenek, Combat Slacks
 	{ 30344, 30368, 30343 },	// Bullet Buzz, War Goggles, Gone Commando
+	{ 30877, 30557, 30563 },	// Hunter in Darkness, EOTL_sheavyshirt, Jungle Booty
 	{ 1185, 30563, 30306 },		// Saxton, Jungle Booty, Dictator
 	{ 31267, 31268, 1028 },		// Squatter's Right, Combat Casual, Samson Skewer
 	{ 185, 30342, 30368 },		// Heavy Do-Rag, Heavy Lifter, War Goggles
@@ -823,8 +833,10 @@ public const CosmeticSet CS_PRESET_HEAVY[] = {
 	{ 126, 30104, 30309 },		// L4D Hat, Graybanns, Dead of Night
 	{ 145, 30165, 31453 },		// Heavy Hair, Cuban Bristle Crisis, Brute's Braces
 	{ 30549, 30550, 486 },		// EOTL_hiphunter_hat, EOTL_hiphunter_jacket, Summer Shades
+	{ 821, 31030, 30319 },		// Soviet Gentleman, Paka Parka, Mann Of the House
 	{ 96, 30401, 30633 },		// Officer's Ushanka, Yuri's Revenge, Commissar's Coat
 	{ 1187, 1188, 1189 },		// Yeti Set
+	{ 97, 30079, 30745 },		// Tough Guy's Toque, Red Army Robin, Siberian Sweater
 	{ 666, 647, 30747 },		// B.M.O.C, All-father, Gift Bringer
 	{ 613, 757, 30080 },		// Gym Rat, Toss-Proof Towel, Heavy-Weight Champ
 	{ 952, 30104, 946 },		// Brock's Locks, Graybanns, Siberian Sophisticate
@@ -1562,7 +1574,7 @@ public const int SPECIFIC_DEMO_BACK[] = {
 	874,	// King of Scotland Cape
 	30055,	// Scrumpy Strongbox
 	30107,	// Gaelic Golf Bag
-	30788,	// Demo's Dustcatcher (ehhh)
+	30788,	// Demo's Dustcatcher
 	30973	// Melody of Misery
 };
 public const int SPECIFIC_DEMO_BELT[] = {
@@ -1769,12 +1781,206 @@ public const int SPECIFIC_HEAVY_FEET[] = {
 	30354	// Rat Stompers
 };
 
+//-----------------------------------------------
+// ENGINEER
+//-----------------------------------------------
+// Unused, will be used in Presets
+/*
+31223,	// Hook, Line, and Thinker
+*/
+public const int SPECIFIC_ENGY_HEADMISC[] = {
+	30707,	// Dead'er Alive
+	30806,	// Corpus Christi Cranium
+	31394,	// Dell Dynamic
+	31150	// Goblineer
+};
+public const int SPECIFIC_ENGY_HEAD[] = {
+	31333,	// Arctic Mole
+	30420,	// Danger
+	533,	// Clockwerk's Helm
+	30592,	// dec2014 engineer_detectiveglasses
+	30099,	// Pardner's Pompadour
+	384,	// Professor's Peculiarity
+	30733	// Teufort Knight
+};
+public const int SPECIFIC_ENGY_HATS[] = {
+	30884, 	// Antarctic Eyewear
+	988,	// Barnstormer
+	382,	// Big Country
+	31175,	// Blitzen Bowl
+	31049,	// Brain Interface
+	590,	// Brainiac Hairpiece
+	322,	// Buckaroos Hat
+	31425,	// Clue Hairdo
+	853,	// Crafty Hair
+	31375,	// Cranium Cooler
+	31445,	// Daring Dell
+	30051,	// Data Mining Light
+	31011,	// Defragmenting Hard Hat 17%
+	31297,	// Dustbowl Devil
+	31074,	// El Mostacho
+	95,		// Engineer's Cap
+	30871,	// Flash of Inspiration
+	631,	// Hat With No Name
+	31374,	// Hazard Handler
+	31114,	// Head of Defense
+	436,	// Polish War Babushka
+	148,	// Engineer Welding Mask
+	338,	// Industrial Festivizer
+	1010,	// Last Straw
+	31272,	// Lawnmaker
+	48,		// Mining Light
+	31298,	// More Gun Marshal
+	399,	// Ol' Geezer
+	30406,	// Peacenik's Ponytail
+	605,	// Pencil Pusher
+	30031,	// Plug-In Prospector
+	30846,	// Plumber's Cap
+	31097,	// Provisions Cap
+	178,	// Engineer Earmuffs
+	30682,	// Smokey Sombrero
+	31331,	// Soft Hard Hat
+	31106,	// Sophisticated Smoker
+	31098,	// Telefragger Toque
+	118,	// Texas Slim's Dome Shine
+	94,		// Texas Ten Gallon
+	30044,	// Texas Tin-Gallon
+	31046,	// Texas Toast
+	30035,	// Timeless Topper
+	848,	// Tin-1000
+	31254,	// Train of Thought
+	30336,	// Trencher's Topper
+	31064,	// Trick Stabber
+	30930,	// Trucker's Topper
+	628,	// Virtual Reality Headset
+	1017,	// Vox Diabolus
+	31148,	// Wavefinder
+	379,	// Western Wear
+	30805,	// Wide-Brimmed Bandito
+	1012,	// Wilson Weave
+	31094	// Winter Wrap Up
+};
+public const int SPECIFIC_ENGY_GLASSES[] = {
+	591,	// Brainiac Goggles
+	389,	// Googly Gazer
+	30872,	// Head Mounted Double Observatory
+	30085,	// Macho Mann
+	30831,	// Reader's Choice
+	31189,	// Sightliner
+	30168	// Special Eyes
+};
+public const int SPECIFIC_ENGY_BEARD[] = {
+	647, 	// All-Father
+	30165,	// Cuban Bristle Crisis
+	30681,	// El Patron
+	30322,	// Face Full of Festive
+	30172,	// Gold Digger
+	1009,	// Grizzled Growth
+	30407,	// Level Three Chin
+	986,	// Mutton Mann
+	31163,	// Particulate Protector
+	30347,	// Scotch Saver
+	30164,	// Viking Braider
+	31031	// Wise Whiskers
+};
+public const int SPECIFIC_ENGY_SHIRT[] = {
+	30884,	// Aloha Apparel
+	30377,	// Antarctic Researcher
+	31446,	// Big Star
+	31373,	// Cargo Constructor
+	815,	// Champ Stamp
+	31395,	// Constructor's Cover
+	31332,	// Cool Warm Sweater
+	30367,	// Cute Suit
+	30785,	// Dad Duds
+	31444,	// Desk Engineer
+	30330,	// Dogfighter
+	30408,	// Egghead's Overalls
+	30804,	// El Paso Poncho
+	30412,	// Endothermic Exowear
+	30590,	// dec2014 engineer_detectiveholster
+	30539,	// EOTL_Insulated_innovator
+	30698,	// Iron Lung
+	30655,	// Rocket Operator
+	31426,	// Sleuth Suit
+	925,	// Spooky Sleeves
+	30605,	// Thermal Insulation Layer
+	30402,	// Tools of the Trade
+	30337,	// Trencher's Tunic
+	814,	// Triad Trinket
+	31334,	// Underminer's Overcoat
+	31264,	// Western Wraps
+	30635	// Wild West Waistcoat
+};
+public const int SPECIFIC_ENGY_BACK[] = {
+	30992,	// Cold Case
+	31151,	// Ghoul Box
+	784,	// Idea Tube
+	30403,	// Joe-on-the-Go
+	30821,	// Packable Provisions
+	31032,	// Puggyback
+	30749	// Winter Backup
+};
+public const int SPECIFIC_ENGY_PANTS[] = {
+	30113,	// Flared Frontiersman
+	755	// Texas Half-Pants
+};
+public const int SPECIFIC_ENGY_BELT[] = {
+	31012,	// Aim Assistant
+	30167,	// Beep Boy
+	606,	// Builder's Blueprints
+	30728,	// Buttler
+	30593,	// dec2014 engineer_seal
+	30908,	// Conaghers' Utility Idol
+	948,	// Deadliest Duckling
+	30087,	// Dry Gulch Gulp
+	30056,	// Dual-Core Devil Doll
+	30341,	// Ein
+	30680,	// El Caballero
+	30481,	// Hillbilly Speed-Bump
+	646,	// Itsy Bitsy Spyer
+	30654,	// Life Support System
+	31013,	// Mini-Engy
+	1089,	// Mister Bubbles
+	519,	// Pip-Boy
+	823,	// Pocket Purrer
+	30070,	// Pocket Pyro
+	1008,	// Prize Plushy
+	670,	// Stocking Stuffer
+	386,	// Teddy Roosebelt
+	30023,	// Teddy Robobelt
+	30086,	// Trash Toter
+	30909,	// Tropical Toad
+	520	// Wingstick
+};
+public const int SPECIFIC_ENGY_FEET[] = {
+	30409,	// Lonesome Loafers
+	484,	// Prairie Heel Biters
+	30675,	// Roboot
+	30543,	// EOTL_winter_pants
+	30629,	// Support Spurs
+	734	// Teufort Tooth Kicker
+};
+
 // Returns the ellgible cosmetics that has multiple styles
 int GetCosmeticStyles( int iEntity )
 {
 	int iIndex = GetEntProp( iEntity, Prop_Send, "m_iItemDefinitionIndex" );
 	switch ( iIndex )
 	{
+		case 31031:	return 1;	// Wise Whiskers
+		case 30336:	return 1;	// Trencher's Topper
+		case 31254:	return 1;	// Train of Thought
+		case 755:	return 1;	// Texas Half-Pants
+		case 30634:	return 1;	// Sheriff's Stetson
+		case 31272:	return 1;	// Lawnmaker
+		case 31114:	return 1;	// Head of Defense
+		case 389:	return 1;	// Googly Gazer
+		case 31150:	return 1;	// Goblineer
+		case 31332:	return 1;	// Cool Warm Sweater
+		case 590:	return 1;	// Brainiac Hairpiece
+		case 382:	return 1;	// Big Country
+		case 31012:	return 1;	// Aim Assistant
 		case 31304:	return 1;	// Horror Shawl
 		case 31268:	return 1;	// Combat Casual
 		case 31267:	return 1;	// Squatter's Right
@@ -1972,7 +2178,11 @@ int GetCosmeticStyles( int iEntity )
 		case 31132:	return 1;	// Wrap-A-Khamon
 		case 31371:	return 1;	// Blast Bowl
 		case 31080:	return 1;	// Convict Cap
+		case 988:	return 1;	// Barnstormer
 
+		case 31334:	return 2;	// Underminer's Overcoat
+		case 31425:	return 2;	// Clue Hairdo
+		case 31333:	return 2;	// Arctic Mole
 		case 31079:	return 2;	// Soviet Strongmann
 		case 31392:	return 2;	// Stunt Suit
 		case 30104:	return 2;	// Graybanns
@@ -2004,6 +2214,9 @@ int GetCosmeticStyles( int iEntity )
 		case 31346:	return 2;	// Heavy Heating
 		case 31368:	return 2;	// Brother Mann
 
+		case 31426:	return 3;	// Sleuth Suit
+		case 31374:	return 3;	// Hazard Handler
+		case 31444:	return 3;	// Desk Engineer
 		case 777:	return 3;	// Apparatchik's Apparel
 		case 30309:	return 3;	// Dead of Night
 		case 31217:	return 3;	// Goalkeeper
@@ -2026,6 +2239,8 @@ int GetCosmeticStyles( int iEntity )
 		case 783:	return 3;	// HazMat Headcase
 		case 390:	return 3;	// Reggaelator
 		case 701:	return 3;	// Liquor Locker
+		case 31445:	return 3;	// Daring Dell
+		case 31298:	return 3;	// More Gun Marshal
 
 		case 31284:	return 4;	// Boston Brain Bucket
 		case 31285:	return 4;	// Pest's Pads
@@ -2047,7 +2262,99 @@ bool IsPaintableHat( int iEntity )
 	int iIndex = GetEntProp( iEntity, Prop_Send, "m_iItemDefinitionIndex" );
 	switch ( iIndex )
 	{
-		//case :	return true;	// 
+		case 31031:	return true;	// Wise Whiskers
+		case 30749:	return true;	// Winter Backup
+		case 30635:	return true;	// Wild West Waistcoat
+		case 30805:	return true;	// Wide-Brimmed Bandito
+		case 31264:	return true;	// Western Wraps
+		case 31148:	return true;	// Wavefinder
+		case 1017:	return true;	// Vox Diabolus
+		case 628:	return true;	// Virtual Reality Headset
+		case 31334:	return true;	// Underminer's Overcoat
+		case 30909:	return true;	// Tropical Toad	
+		case 30336:	return true;	// Trencher's Topper
+		case 30086:	return true;	// Trash Toter
+		case 94:	return true;	// Texas Ten Gallon
+		case 30044:	return true;	// Texas Tin-Gallon
+		case 31046:	return true;	// Texas Toast
+		case 30035:	return true;	// Timeless Topper
+		case 31254:	return true;	// Train of Thought
+		case 31098:	return true;	// Telefragger Toque
+		case 755:	return true;	// Texas Half-Pants
+		case 386:	return true;	// Teddy Roosebelt
+		case 30023:	return true;	// Teddy Robobelt
+		case 30629:	return true;	// Support Spurs
+		case 31331:	return true;	// Soft Hard Hat
+		case 30543:	return true;	// EOTL_winter_pants
+		case 30682:	return true;	// Smokey Sombrero
+		case 31426:	return true;	// Sleuth Suit
+		case 31189:	return true;	// Sightliner
+		case 30634:	return true;	// Sheriff's Stetson
+		case 30347:	return true;	// Scotch Saver
+		case 30655:	return true;	// Rocket Operator
+		case 30675:	return true;	// Roboot
+		case 31032:	return true;	// Puggyback
+		case 31097:	return true;	// Provisions Cap
+		case 178:	return true;	// Engineer Earmuffs
+		case 384:	return true;	// Professor's Peculiarity
+		case 1008:	return true;	// Prize Plushy
+		case 30070:	return true;	// Pocket Pyro
+		case 30846:	return true;	// Plumber's Cap
+		case 30406:	return true;	// Peacenik's Ponytail
+		case 30099:	return true;	// Pardner's Pompadour
+		case 484:	return true;	// Prairie Heel Biters
+		case 399:	return true;	// Ol' Geezer
+		case 823:	return true;	// Pocket Purrer
+		case 31298:	return true;	// More Gun Marshal
+		case 31013:	return true;	// Mini-Engy
+		case 30409:	return true;	// Lonesome Loafers
+		case 30403:	return true;	// Joe-on-the-Go
+		case 30539:	return true;	// EOTL_Insulated_innovator
+		case 31272:	return true;	// Lawnmaker
+		case 784:	return true;	// Idea Tube
+		case 1010:	return true;	// Last Straw
+		case 30590:	return true;	// dec2014 engineer_detectiveholster
+		case 30481:	return true;	// Hillbilly Speed-Bump
+		case 436:	return true;	// Polish War Babushka
+		case 31114:	return true;	// Head of Defense
+		case 30872:	return true;	// Head Mounted Double Observatory
+		case 31374:	return true;	// Hazard Handler
+		case 1009:	return true;	// Grizzled Growth
+		case 389:	return true;	// Googly Gazer
+		case 30172:	return true;	// Gold Digger
+		case 31151:	return true;	// Ghoul Box
+		case 30871:	return true;	// Flash of Inspiration
+		case 30322:	return true;	// Face Full of Festive
+		case 95:	return true;	// Engineer's Cap
+		case 30412:	return true;	// Endothermic Exowear
+		case 30681:	return true;	// El Patron
+		case 30804:	return true;	// El Paso Poncho
+		case 31074:	return true;	// El Mostacho
+		case 30680:	return true;	// El Caballero
+		case 31297:	return true;	// Dustbowl Devil
+		case 30087:	return true;	// Dry Gulch Gulp
+		case 30330:	return true;	// Dogfighter
+		case 31444:	return true;	// Desk Engineer
+		case 31394:	return true;	// Dell Dynamic
+		case 31011:	return true;	// Defragmenting Hard Hat 17%
+		case 31445:	return true;	// Daring Dell
+		case 30806:	return true;	// Corpus Christi Cranium
+		case 31375:	return true;	// Cranium Cooler
+		case 31332:	return true;	// Cool Warm Sweater
+		case 30908:	return true;	// Conaghers' Utility Idol
+		case 30592:	return true;	// dec2014 engineer_detectiveglasses
+		case 31425:	return true;	// Clue Hairdo
+		case 31373:	return true;	// Cargo Constructor
+		case 606:	return true;	// Builder's Blueprints
+		case 30420:	return true;	// Danger
+		case 322:	return true;	// Buckaroos Hat
+		case 31049:	return true;	// Brain Interface
+		case 31175:	return true;	// Blitzen Bowl
+		case 31446:	return true;	// Big Star
+		case 382:	return true;	// Big Country
+		case 31333:	return true;	// Arctic Mole
+		case 988:	return true;	// Barnstormer
+		case 31012:	return true;	// Aim Assistant
 		case 31453:	return true;	// Brute's Braces
 		case 31452:	return true;	// Crook's Cap
 		case 31435:	return true;	// Bigger Mann on Campus
@@ -2871,10 +3178,6 @@ bool IsPaintableHat( int iEntity )
 	}
 }
 //-----------------------------------------------
-// ENGINEER
-//-----------------------------------------------
-
-//-----------------------------------------------
 // MEDIC
 //-----------------------------------------------
 
@@ -3608,7 +3911,7 @@ int TF2_CreateHat( int iClient, int iIndex, int iQuality, bool bIsUnusual = fals
 				iQuality = QUALITY_HAUNTED;
 				bCantBeUnusual = true;
 			}
-			else if ( IsChance( 12 ) && ( iIndex != 1158 && iIndex != 1173 && iIndex != 30559 ) )
+			else if ( IsChance( 8 ) && ( iIndex != 1158 && iIndex != 1173 && iIndex != 30559 ) )
 			{
 				// Community Sparkle quality
 				iQuality = QUALITY_COMMUNITY;
