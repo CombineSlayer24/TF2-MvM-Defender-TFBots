@@ -1963,12 +1963,58 @@ public const int SPECIFIC_ENGY_FEET[] = {
 //-----------------------------------------------
 // MEDIC
 //-----------------------------------------------
+/*
+315,	// Blighted Beak
+467,	// Medic MtG Hat
+620,	// Couvre Corner
+754,	// Scrap Pack
+843,	// Medic Mech-Bag
+*/
+
+// LEFT ON Gentleman's Ushanka
+public const int SPECIFIC_MEDIC_HEAD[] = {
+	303,	// Berliner's Bucket Helm
+};
+public const int SPECIFIC_MEDIC_HATS[] = {
+	50,		// Prussian Pickelhaube
+	101,	// Vintage Tyrolean
+	104,	// Otolaryngologist's Mirror
+	177,	// Medic Goggles
+	184,	// Medic Gatsby
+	323,	// German Gonzila
+	363,	// Geisha Boy
+	378,	// Team Captain
+	381,	// Medic's Mountain Cap
+	383,	// Grimm Hatte
+	388,	// Private Eye
+	398,	// Doctor's Sack
+	616,	// Surgeon's Stahlhelm
+	778,	// Gentleman's Ushanka
+};
+public const int SPECIFIC_MEDIC_GLASSES[] = {
+	657,	// Nine-Pipe Problem
+};
+public const int SPECIFIC_MEDIC_BEARD[] = {
+	144,	// Medic Mask
+	647,	// All-Father
+};
+public const int SPECIFIC_MEDIC_SHIRT[] = {
+	621,	// Surgeon's Stethoscope
+	639,	// bowtie
+	769,	// Quadwrangler
+};
+public const int SPECIFIC_MEDIC_BELT[] = {
+	770,	// Surgeon's Side Satchel
+};
+
 // Returns the ellgible cosmetics that has multiple styles
 int GetCosmeticStyles( int iEntity )
 {
 	int iIndex = GetEntProp( iEntity, Prop_Send, "m_iItemDefinitionIndex" );
 	switch ( iIndex )
 	{
+		case 657:	return 1; 	// Nine-Pipe Problem
+		case 315:	return 1;	// Blighted Beak
 		case 31031:	return 1;	// Wise Whiskers
 		case 30336:	return 1;	// Trencher's Topper
 		case 31254:	return 1;	// Train of Thought
@@ -2263,6 +2309,21 @@ bool IsPaintableHat( int iEntity )
 	int iIndex = GetEntProp( iEntity, Prop_Send, "m_iItemDefinitionIndex" );
 	switch ( iIndex )
 	{
+		//case :	return true; 	// 
+		case 778:	return true; 	// Gentleman's Ushanka
+		case 770:	return true; 	// Surgeon's Side Satchel
+		case 657:	return true; 	// Nine-Pipe Problem
+		case 639:	return true; 	// bowtie
+		case 621:	return true;	// Surgeon's Stethoscope
+		case 616:	return true;	// Surgeon's Stahlhelm
+		case 383:	return true;	// Grimm Hatte
+		case 381:	return true;	// Medic's Mountain Cap
+		case 323:	return true;	// German Gonzila
+		case 315:	return true;	// Blighted Beak
+		case 184:	return true;	// Medic Gatsby
+		case 144:	return true;	// Medic Mask
+		case 50:	return true;	// Prussian Pickelhaube
+		case 101:	return true;	// Vintage Tyrolean
 		case 31031:	return true;	// Wise Whiskers
 		case 30749:	return true;	// Winter Backup
 		case 30635:	return true;	// Wild West Waistcoat
