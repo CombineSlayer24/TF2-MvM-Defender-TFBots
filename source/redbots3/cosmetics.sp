@@ -1780,7 +1780,6 @@ public const int SPECIFIC_HEAVY_FEET[] = {
 	990,	// Aqua Flops
 	30354	// Rat Stompers
 };
-
 //-----------------------------------------------
 // ENGINEER
 //-----------------------------------------------
@@ -1961,7 +1960,9 @@ public const int SPECIFIC_ENGY_FEET[] = {
 	30629,	// Support Spurs
 	734	// Teufort Tooth Kicker
 };
-
+//-----------------------------------------------
+// MEDIC
+//-----------------------------------------------
 // Returns the ellgible cosmetics that has multiple styles
 int GetCosmeticStyles( int iEntity )
 {
@@ -3177,10 +3178,6 @@ bool IsPaintableHat( int iEntity )
 		default:	return false;
 	}
 }
-//-----------------------------------------------
-// MEDIC
-//-----------------------------------------------
-
 //-----------------------------------------------
 // SNIPER
 //-----------------------------------------------
