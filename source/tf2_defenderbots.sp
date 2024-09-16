@@ -32,6 +32,8 @@ Author: ★ Officer Spy ★
 
 #define METHOD_MVM_UPGRADES
 
+#define CHANGETEAM_RESTRICTIONS
+
 // #define EXTRA_PLUGINBOT
 
 // #define IDLEBOT_AIMING
@@ -52,12 +54,14 @@ bool g_bBotsEnabled;
 float g_flNextReadyTime;
 int g_iDetonatingPlayer = -1;
 ArrayList g_adtChosenBotClasses;
+bool g_bBotClassesLocked;
 
 //For defender bots
 bool g_bIsDefenderBot[MAXPLAYERS + 1];
 bool g_bIsBeingRevived[MAXPLAYERS + 1];
 bool g_bHasUpgraded[MAXPLAYERS + 1];
 int g_iAdditionalButtons[MAXPLAYERS + 1];
+float g_flForceHoldButtonsTime[MAXPLAYERS + 1];
 int g_iSubtractiveButtons[MAXPLAYERS + 1];
 float g_flBlockInputTime[MAXPLAYERS + 1];
 static float m_flDeadRethinkTime[MAXPLAYERS + 1];
@@ -73,6 +77,12 @@ static float m_flNextRollTime[MAXPLAYERS + 1];
 #endif
 
 //For other players
+bool g_bChoosingBotClasses[MAXPLAYERS + 1];
+
+#if defined CHANGETEAM_RESTRICTIONS
+float g_flEnableBotsCooldown[MAXPLAYERS + 1];
+#endif
+
 static float m_flLastCommandTime[MAXPLAYERS + 1];
 static float m_flLastReadyInputTime[MAXPLAYERS + 1];
 
@@ -95,6 +105,8 @@ ConVar redbots_manager_bot_upgrade_interval;
 ConVar redbots_manager_bot_use_upgrades;
 ConVar redbots_manager_bot_buyback_chance;
 ConVar redbots_manager_bot_buy_upgrades_chance;
+ConVar redbots_manager_bot_max_tank_attackers;
+ConVar redbots_manager_extra_bots;
 
 #if defined MOD_REQUEST_CREDITS
 ConVar redbots_manager_bot_request_credits;
@@ -135,8 +147,8 @@ public Plugin myinfo =
 	name = "[TF2] TFBots (MVM) with Manager",
 	author = "Officer Spy",
 	description = "Bot Management",
-	version = "1.3.5",
-	url = ""
+	version = "1.4.0",
+	url = "https://github.com/OfficerSpy/TF2-MvM-Defender-TFBots"
 };
 
 public void OnPluginStart()
@@ -161,6 +173,8 @@ public void OnPluginStart()
 	redbots_manager_bot_use_upgrades = CreateConVar("sm_redbots_manager_bot_use_upgrades", "1", "Enable bots to buy upgrades.", FCVAR_NOTIFY);
 	redbots_manager_bot_buyback_chance = CreateConVar("sm_redbots_manager_bot_buyback_chance", "5", "Chance for bots to buyback into the game.", FCVAR_NOTIFY);
 	redbots_manager_bot_buy_upgrades_chance = CreateConVar("sm_redbots_manager_bot_buy_upgrades_chance", "50", "Chance for bots to buy upgrades in the middle of a game.", FCVAR_NOTIFY);
+	redbots_manager_bot_max_tank_attackers = CreateConVar("sm_redbots_manager_bot_max_tank_attackers", "3", _, FCVAR_NOTIFY);
+	redbots_manager_extra_bots = CreateConVar("sm_redbots_manager_extra_bots", "1", "How many more bots we are allowed to request beyond the team size", FCVAR_NOTIFY);
 	
 #if defined MOD_REQUEST_CREDITS
 	redbots_manager_bot_request_credits = CreateConVar("sm_redbots_manager_bot_request_credits", "1", _, FCVAR_NOTIFY);
@@ -182,7 +196,11 @@ public void OnPluginStart()
 	RegConsoleCmd("sm_botlineup", Command_ShowNewBotTeamComposition);
 	RegConsoleCmd("sm_rerollbotclasses", Command_RerollNewBotTeamComposition);
 	RegConsoleCmd("sm_rerollbots", Command_RerollNewBotTeamComposition);
+	RegConsoleCmd("sm_rollbots", Command_RerollNewBotTeamComposition);
 	RegConsoleCmd("sm_playwithbots", Command_JoinBluePlayWithBots);
+	RegConsoleCmd("sm_requestbot", Command_RequestExtraBot);
+	RegConsoleCmd("sm_choosebotteam", Command_ChooseBotClasses);
+	RegConsoleCmd("sm_cbt", Command_ChooseBotClasses);
 	
 #if defined TESTING_ONLY
 	RegConsoleCmd("sm_bots_start_now", Command_BotsReadyNow);
@@ -252,6 +270,11 @@ public void OnPluginStart()
 #endif
 }
 
+public void OnPluginEnd()
+{
+	RemoveAllDefenderBots("BM3 OnPluginEnd");
+}
+
 public APLRes AskPluginLoad2(Handle myself, bool late, char[] error, int err_max)
 {
 	g_bLateLoad = late;
@@ -263,14 +286,33 @@ public void OnMapStart()
 {
 	g_bBotsEnabled = false;
 	g_flNextReadyTime = 0.0;
+	g_bBotClassesLocked = false;
 	
 	Config_LoadBotNames();
 	CreateBotPreferenceMenu();
 }
 
+public void OnConfigsExecuted()
+{
+	tf_bot_path_lookahead_range = FindConVar("tf_bot_path_lookahead_range");
+	tf_bot_health_critical_ratio = FindConVar("tf_bot_health_critical_ratio");
+	tf_bot_health_ok_ratio = FindConVar("tf_bot_health_ok_ratio");
+	tf_bot_ammo_search_range = FindConVar("tf_bot_ammo_search_range");
+	tf_bot_health_search_far_range = FindConVar("tf_bot_health_search_far_range");
+	tf_bot_health_search_near_range = FindConVar("tf_bot_health_search_near_range");
+	tf_bot_suicide_bomb_range = FindConVar("tf_bot_suicide_bomb_range");
+}
+
+/* public void OnMapEnd()
+{
+	RemoveAllDefenderBots("BM3 OnMapEnd");
+} */
+
 public void OnClientDisconnect(int client)
 {
 	g_bIsDefenderBot[client] = false;
+	
+	g_bChoosingBotClasses[client] = false;
 	
 	ResetLoadouts(client);
 }
@@ -279,6 +321,7 @@ public void OnClientPutInServer(int client)
 {
 	g_bHasUpgraded[client] = false;
 	g_iAdditionalButtons[client] = 0;
+	g_flForceHoldButtonsTime[client] = 0.0;
 	g_iSubtractiveButtons[client] = 0;
 	g_flBlockInputTime[client] = 0.0;
 	m_flDeadRethinkTime[client] = 0.0;
@@ -289,6 +332,10 @@ public void OnClientPutInServer(int client)
 	
 #if defined MOD_ROLL_THE_DICE_REVAMPED
 	m_flNextRollTime[client] = 0.0;
+#endif
+	
+#if defined CHANGETEAM_RESTRICTIONS
+	g_flEnableBotsCooldown[client] = 0.0;
 #endif
 	
 	m_flLastCommandTime[client] = GetGameTime();
@@ -311,17 +358,10 @@ public void OnEntityCreated(int entity, const char[] classname)
 	DHooks_OnEntityCreated(entity, classname);
 }
 
-public void OnConfigsExecuted()
-{
-	tf_bot_path_lookahead_range = FindConVar("tf_bot_path_lookahead_range");
-	tf_bot_health_critical_ratio = FindConVar("tf_bot_health_critical_ratio");
-	tf_bot_health_ok_ratio = FindConVar("tf_bot_health_ok_ratio");
-	tf_bot_ammo_search_range = FindConVar("tf_bot_ammo_search_range");
-	tf_bot_health_search_far_range = FindConVar("tf_bot_health_search_far_range");
-	tf_bot_health_search_near_range = FindConVar("tf_bot_health_search_near_range");
-	tf_bot_suicide_bomb_range = FindConVar("tf_bot_suicide_bomb_range");
-}
-
+/* NOTE: This forward is not consistent with nextbot functionalities such as Action::Update
+Nextbot behavior updates are based on the value of convar nb_update_frequency
+This forward is only called every time CBasePlayer::PlayerRunCommand is called, which updates on its own interval
+So what gets done in here will never always be consistent with the nextbot behavior actions */
 public Action OnPlayerRunCmd(int client, int &buttons, int &impulse, float vel[3], float angles[3], int &weapon, int &subtype, int &cmdnum, int &tickcount, int &seed, int mouse[2])
 {
 	if (g_bIsDefenderBot[client] == false)
@@ -331,8 +371,23 @@ public Action OnPlayerRunCmd(int client, int &buttons, int &impulse, float vel[3
 	{
 		if (g_iAdditionalButtons[client] != 0)
 		{
+			if (g_iAdditionalButtons[client] & IN_BACK)
+				vel[0] -= PLAYER_SIDESPEED;
+			
+			if (g_iAdditionalButtons[client] & IN_FORWARD)
+				vel[0] += PLAYER_SIDESPEED;
+			
+			if (g_iAdditionalButtons[client] & IN_MOVELEFT)
+				vel[1] -= PLAYER_SIDESPEED;
+			
+			if (g_iAdditionalButtons[client] & IN_MOVERIGHT)
+				vel[1] += PLAYER_SIDESPEED;
+			
 			buttons |= g_iAdditionalButtons[client];
-			g_iAdditionalButtons[client] = 0;
+			
+			//We are told to hold these inputs down for a specific time, don't clear until it expires
+			if (g_flForceHoldButtonsTime[client] <= GetGameTime())
+				g_iAdditionalButtons[client] = 0;
 		}
 		
 		if (g_iSubtractiveButtons[client] != 0)
@@ -446,7 +501,8 @@ public Action OnPlayerRunCmd(int client, int &buttons, int &impulse, float vel[3
 				if (threat)
 				{
 					//Exclude certain things for scenarios where aim shouldn't be altered
-					if (IsCombatWeapon(client, myWeapon) && weaponID != TF_WEAPON_KNIFE && TF2_GetPlayerClass(client) != TFClass_Engineer)
+					//TODO: replace this with a variable to control this
+					if (IsCombatWeapon(client, myWeapon) && weaponID != TF_WEAPON_KNIFE && TF2_GetPlayerClass(client) != TFClass_Engineer && weaponID != TF_WEAPON_BONESAW)
 					{
 						int iThreat = threat.GetEntity();
 						
@@ -538,6 +594,12 @@ public void TF2_OnConditionAdded(int client, TFCond condition)
 
 public Action Command_Votebots(int client, int args)
 {
+	if (g_bBotsEnabled)
+	{
+		PrintToChat(client, "%s Bots are already enabled for this round.", PLUGIN_PREFIX);
+		return Plugin_Handled;
+	}
+	
 	if (redbots_manager_mode.IntValue != MANAGER_MODE_MANUAL_BOTS)
 	{
 		PrintToChat(client, "%s This is only allowed in MANAGER_MODE_MANUAL_BOTS.", PLUGIN_PREFIX);
@@ -547,12 +609,6 @@ public Action Command_Votebots(int client, int args)
 	if (IsServerFull())
 	{
 		PrintToChat(client, "%s Server is at max capacity.", PLUGIN_PREFIX);
-		return Plugin_Handled;
-	}
-	
-	if (g_bBotsEnabled)
-	{
-		PrintToChat(client, "%s Bots are already enabled for this round.", PLUGIN_PREFIX);
 		return Plugin_Handled;
 	}
 	
@@ -568,10 +624,34 @@ public Action Command_Votebots(int client, int args)
 		return Plugin_Handled;
 	}
 	
+	if (g_bChoosingBotClasses[client])
+	{
+		PrintToChat(client, "%s You are already choosing the next team lineup.", PLUGIN_PREFIX);
+		return Plugin_Handled;
+	}
+	
+	if (GetCountOfPlayersChoosingBotClasses() > 0)
+	{
+		PrintToChat(client, "%s Someone is currently choosing the next team lineup.", PLUGIN_PREFIX);
+		return Plugin_Handled;
+	}
+	
 	switch (TF2_GetClientTeam(client))
 	{
 		case TFTeam_Red:
 		{
+#if defined CHANGETEAM_RESTRICTIONS
+			float botBanTime = g_flEnableBotsCooldown[client] - GetGameTime();
+			
+			if (botBanTime > 0.0)
+			{
+				ReplyToCommand(client, "%s You cannot start the bots at this time.", PLUGIN_PREFIX);
+				LogAction(client, -1, "MANAGER_MODE_MANUAL_BOTS: %L tried to start the bots on cooldown. (%f seconds)", client, botBanTime);
+				
+				return Plugin_Handled;
+			}
+#endif
+			
 			if (GetHumanAndDefenderBotCount(TFTeam_Red) < redbots_manager_defender_team_size.IntValue)
 			{
 				StartBotVote(client);
@@ -621,7 +701,7 @@ public Action Command_RerollNewBotTeamComposition(int client, int args)
 	}
 #endif
 	
-	UpdateChosenBotTeamComposition();
+	UpdateChosenBotTeamComposition(client);
 	CreateDisplayPanelBotTeamComposition(client);
 	
 	return Plugin_Handled;
@@ -650,6 +730,86 @@ public Action Command_JoinBluePlayWithBots(int client, int args)
 	AddRandomDefenderBots(redbots_manager_defender_team_size.IntValue); //TODO: replace me with a smarter team comp
 	g_bBotsEnabled = true;
 	PrintToChatAll("%s You will play a game with bots.", PLUGIN_PREFIX);
+	
+	return Plugin_Handled;
+}
+
+public Action Command_RequestExtraBot(int client, int args)
+{
+	if (!g_bBotsEnabled)
+	{
+		PrintToChat(client, "%s Bots aren't enabled.", PLUGIN_PREFIX);
+		return Plugin_Handled;
+	}
+	
+	if (TF2_GetClientTeam(client) != TFTeam_Red)
+	{
+		PrintToChat(client, "%s Your team is not allowed to use this.", PLUGIN_PREFIX);
+		return Plugin_Handled;
+	}
+	
+	if (IsServerFull())
+	{
+		PrintToChat(client, "%s It is currently not possible to add any more.", PLUGIN_PREFIX);
+		return Plugin_Handled;
+	}
+	
+	int defenderLimit = redbots_manager_defender_team_size.IntValue + redbots_manager_extra_bots.IntValue;
+	
+	if (GetHumanAndDefenderBotCount(TFTeam_Red) >= defenderLimit)
+	{
+		PrintToChat(client, "%s You already have an additional unit.", PLUGIN_PREFIX);
+		return Plugin_Handled;
+	}
+	
+	AddBotsBasedOnPreferences(1);
+	PrintToChatAll("%s %N requested an additional unit.", PLUGIN_PREFIX, client);
+	
+	return Plugin_Handled;
+}
+
+public Action Command_ChooseBotClasses(int client, int args)
+{
+	if (g_bBotsEnabled)
+	{
+		PrintToChat(client, "%s Bots are already enabled.", PLUGIN_PREFIX);
+		return Plugin_Handled;
+	}
+	
+	if (TF2_GetClientTeam(client) != TFTeam_Red)
+	{
+		PrintToChat(client, "%s Your team is not allowed to use this.", PLUGIN_PREFIX);
+		return Plugin_Handled;
+	}
+	
+	if (g_bBotClassesLocked)
+	{
+		PrintToChat(client, "%s Someone has already chosen the lineup for the next game.", PLUGIN_PREFIX);
+		return Plugin_Handled;
+	}
+	
+	if (g_bChoosingBotClasses[client])
+	{
+		PrintToChat(client, "%s You are already choosing the next team lineup.", PLUGIN_PREFIX);
+		return Plugin_Handled;
+	}
+	
+	if (GetCountOfPlayersChoosingBotClasses() > 0)
+	{
+		PrintToChat(client, "%s Someone is currently choosing the next team lineup.", PLUGIN_PREFIX);
+		return Plugin_Handled;
+	}
+	
+	int redTeamCount = GetHumanAndDefenderBotCount(TFTeam_Red);
+	
+	if (redTeamCount > 1)
+	{
+		PrintToChat(client, "%s You are not solo.", PLUGIN_PREFIX);
+		return Plugin_Handled;
+	}
+	
+	//Should only be able to call this while solo, so current team count should always be 1
+	ShowDefenderBotTeamSetupMenu(client, _, true, redbots_manager_defender_team_size.IntValue - redTeamCount);
 	
 	return Plugin_Handled;
 }
@@ -839,6 +999,24 @@ public Action Listener_TournamentPlayerReadystate(int client, const char[] comma
 					PrintToChat(client, "%s You're going too fast!", PLUGIN_PREFIX);
 					
 					//Give more time to ready dawg
+					return Plugin_Handled;
+				}
+				
+#if defined CHANGETEAM_RESTRICTIONS
+				float botBanTime = g_flEnableBotsCooldown[client] - GetGameTime();
+				
+				if (botBanTime > 0.0)
+				{
+					ReplyToCommand(client, "%s You cannot start the bots at this time.", PLUGIN_PREFIX);
+					LogAction(client, -1, "MANAGER_MODE_READY_BOTS: %L tried to start the bots on cooldown. (%f seconds)", client, botBanTime);
+					
+					return Plugin_Handled;
+				}
+#endif
+				
+				if (GetCountOfPlayersChoosingBotClasses() > 0)
+				{
+					PrintToChat(client, "%s Someone is currently choosing the next team lineup.", PLUGIN_PREFIX);
 					return Plugin_Handled;
 				}
 				
@@ -1072,6 +1250,17 @@ int GetHumanAndDefenderBotCount(TFTeam team)
 	return count;
 }
 
+int GetCountOfPlayersChoosingBotClasses()
+{
+	int count = 0;
+	
+	for (int i = 1; i <= MaxClients; i++)
+		if (IsClientInGame(i) && g_bChoosingBotClasses[i])
+			count++;
+	
+	return count;
+}
+
 /* Used to check players last command input
 Usually for preventing palyers from sending a command multiple times in a single frame */
 bool ShouldProcessCommand(int client)
@@ -1083,14 +1272,14 @@ bool ShouldProcessCommand(int client)
 	return true;
 }
 
-void RemoveAllDefenderBots(char[] reason = "", bool bFinalWave = false)
+void RemoveAllDefenderBots(char[] reason = "", bool bDanceInstead = false)
 {
 	for (int i = 1; i <= MaxClients; i++)
 	{
 		if (IsClientInGame(i) && g_bIsDefenderBot[i])
 		{
 			//We dance on the final wave instead
-			if (bFinalWave)
+			if (bDanceInstead)
 			{
 				MakePlayerDance(i);
 				continue;
@@ -1200,8 +1389,26 @@ void SetupSniperSpotHints()
 	}
 }
 
-void UpdateChosenBotTeamComposition()
+void UpdateChosenBotTeamComposition(int caller = -1)
 {
+	//A player has already chosen their team, don't let it change
+	if (g_bBotClassesLocked)
+	{
+		if (caller != -1)
+			PrintToChat(caller, "%s Bot team lineup is locked for the next game.");
+		
+		return;
+	}
+	
+	//If someone is selecting the team, don't change it
+	if (GetCountOfPlayersChoosingBotClasses() > 0)
+	{
+		if (caller != -1)
+			PrintToChat(caller, "%s Someone is currently choosing the bot team lineup.");
+		
+		return;
+	}
+	
 	g_adtChosenBotClasses.Clear();
 	
 	int newBotsToAdd = redbots_manager_defender_team_size.IntValue - GetHumanAndDefenderBotCount(TFTeam_Red);
@@ -1232,9 +1439,10 @@ void UpdateChosenBotTeamComposition()
 	
 	delete adtClassPref;
 	
-#if defined TESTING_ONLY
-	PrintToChatAll("[UpdateChosenBotTeamComposition] Bot lineup changed");
-#endif
+	if (caller != -1)
+		PrintToChatAll("%s %N changed the bot team lineup", PLUGIN_PREFIX, caller);
+	else
+		PrintToChatAll("%s Bot lineup changed", PLUGIN_PREFIX);
 }
 
 void AddBotsFromChosenTeamComposition()
@@ -1246,6 +1454,9 @@ void AddBotsFromChosenTeamComposition()
 		g_adtChosenBotClasses.GetString(i, class, sizeof(class));
 		AddDefenderTFBot(1, class, "red", "expert");
 	}
+	
+	//Once we add them it's not locked anymore
+	g_bBotClassesLocked = false;
 	
 	PrintToChatAll("%s Added %d bot(s).", PLUGIN_PREFIX, g_adtChosenBotClasses.Length);
 }
