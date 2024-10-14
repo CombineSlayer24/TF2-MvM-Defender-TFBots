@@ -8,7 +8,7 @@ public const int QUALITY_STRANGE = 11;
 public const int QUALITY_HAUNTED = 13;
 public const int QUALITY_COLLECTORS = 14;
 
-public const int MAX_UNUSUAL_EFFECTS = 349;
+public const int MAX_UNUSUAL_EFFECTS = 363;
 
 // For Presets
 enum struct CosmeticSet
@@ -289,6 +289,8 @@ public const int ALLCLASS_HATS[] = {
 	1899,	// World Traveler
 	31132,	// Wrap-A-Khamon
 	31443,	// Brand Loyalist
+	31469,	// Fleet Commander
+	31470,	// Triboniophorus Gentlemannus
 	// Unreleased Hats
 	1193,	// Never Forget Cap
 	1192,	// Mannanas Cap
@@ -320,7 +322,8 @@ public const int ALLCLASS_GLASSES[] = {
 	486,	// Summer Shades
 	1033,	// TF2VRH
 	30569,	// Tomb Readers
-	30140	// Virtual Viewfinder
+	30140,	// Virtual Viewfinder
+	31471,	// Spider Sights
 };
 public const int ALLCLASS_BEARD[] = {
 	31062,	// Bread Biter
@@ -939,7 +942,8 @@ public const int SPECIFIC_SCOUT_HATS[] = {
 	30809,	// Wing Mann
 	30019,	// Ye Oiled Baker Boy
 	107,	// Ye Olde Baker Boy
-	31459	// Commonwealth Commando
+	31459,	// Commonwealth Commando
+	31480,	// Strikeout
 };
 public const int SPECIFIC_SCOUT_GLASSES[] = {
 	30027,	// Bolt Boy
@@ -994,7 +998,8 @@ public const int SPECIFIC_SCOUT_TORSO[] = {
 	30178,	// Weight Room Warmer
 	30990,	// Wipe Oout Wraps
 	31460,	// Tanker's Top
-	815		// Champ Stamp
+	815,	// Champ Stamp
+	31479	// School Nuisance
 };
 public const int SPECIFIC_SCOUT_BACK[] = {
 	30751,	// Batter's Backup
@@ -1338,7 +1343,9 @@ public const int SPECIFIC_PYRO_HATS[] = {
 	182,	// Pyro Helm
 	753,	// Waxy Wayfinder
 	31094,	// Winter Wrap Up
-	937		// Wraith Wrap
+	937,	// Wraith Wrap
+	31472,	// Duality of Mantle
+	31477,	// Sear Seer
 };
 public const int SPECIFIC_PYRO_GLASSES[] = {
 	30901,	// D-eye-monds
@@ -1389,7 +1396,8 @@ public const int SPECIFIC_PYRO_GRENADES[] = {
 	641,	// Ornament Armament
 	768,	// Professor's Pineapple
 	30818,	// Socked and Loaded
-	31220	// Trickster's Treats
+	31220,	// Trickster's Treats
+	31478	// Chiromancer's Kit
 };
 public const int SPECIFIC_PYRO_BACK[] = {
 	30090,	// Backpack Broiler
@@ -1515,7 +1523,9 @@ public const int SPECIFIC_DEMO_HATS[] = {
 	31371,	// Blast Bowl
 	31391,	// Thunder Dome
 	31422,	// Nightcap
-	31461	// Vaudeville Visor
+	31461,	// Vaudeville Visor
+	31488,	// Badlands Bandido
+	31489	// Defaced Detonator
 };
 public const int SPECIFIC_DEMO_GLASSES[] = {
 	295,	// TTG Glasses
@@ -1617,7 +1627,9 @@ public const int SPECIFIC_HEAVY_HEAD[] = {
 	30866,	// Warhood
 	30885,	// Nuke
 	31305,	// Road Rage
-	31368	// Brother Mann
+	31368,	// Brother Mann
+	31481,	// Hellish Overlord
+	31482	// Strigoi Stare
 };
 public const int SPECIFIC_HEAVY_HEADSKIN[] = {
 	380,	// Large Luchadore
@@ -1744,7 +1756,8 @@ public const int SPECIFIC_HEAVY_SHIRT[] = {
 	31346,	// Heavy Heating
 	31369,	// Heavy Metal
 	31435,	// Bigger Mann on Campus
-	31453	// Brute's Braces
+	31453,	// Brute's Braces
+	31483 	// Dusk Duster
 };
 public const int SPECIFIC_HEAVY_MISC[] = {
 	524,	// Purity Fist (arms)
@@ -1857,7 +1870,8 @@ public const int SPECIFIC_ENGY_HATS[] = {
 	379,	// Western Wear
 	30805,	// Wide-Brimmed Bandito
 	1012,	// Wilson Weave
-	31094	// Winter Wrap Up
+	31094,	// Winter Wrap Up
+	31484,	// Mannhattan Protect
 };
 public const int SPECIFIC_ENGY_GLASSES[] = {
 	591,	// Brainiac Goggles
@@ -1909,7 +1923,8 @@ public const int SPECIFIC_ENGY_SHIRT[] = {
 	814,	// Triad Trinket
 	31334,	// Underminer's Overcoat
 	31264,	// Western Wraps
-	30635	// Wild West Waistcoat
+	30635,	// Wild West Waistcoat
+	31485	// Nuclear Necessity
 };
 public const int SPECIFIC_ENGY_BACK[] = {
 	30992,	// Cold Case
@@ -1918,7 +1933,8 @@ public const int SPECIFIC_ENGY_BACK[] = {
 	30403,	// Joe-on-the-Go
 	30821,	// Packable Provisions
 	31032,	// Puggyback
-	30749	// Winter Backup
+	30749,	// Winter Backup
+	31486	// Contaminated Carryall
 };
 public const int SPECIFIC_ENGY_PANTS[] = {
 	30113,	// Flared Frontiersman
@@ -1950,7 +1966,8 @@ public const int SPECIFIC_ENGY_BELT[] = {
 	30023,	// Teddy Robobelt
 	30086,	// Trash Toter
 	30909,	// Tropical Toad
-	520	// Wingstick
+	520,	// Wingstick
+	31487	// Delldozer
 };
 public const int SPECIFIC_ENGY_FEET[] = {
 	30409,	// Lonesome Loafers
@@ -1974,6 +1991,8 @@ public const int SPECIFIC_ENGY_FEET[] = {
 // LEFT ON Gentleman's Ushanka
 public const int SPECIFIC_MEDIC_HEAD[] = {
 	303,	// Berliner's Bucket Helm
+
+	31475,	// Witch Doctor
 };
 public const int SPECIFIC_MEDIC_HATS[] = {
 	50,		// Prussian Pickelhaube
@@ -1990,6 +2009,8 @@ public const int SPECIFIC_MEDIC_HATS[] = {
 	398,	// Doctor's Sack
 	616,	// Surgeon's Stahlhelm
 	778,	// Gentleman's Ushanka
+	31472,	// Duality of Mantle
+	31476,	// Surgeon General
 };
 public const int SPECIFIC_MEDIC_GLASSES[] = {
 	657,	// Nine-Pipe Problem
@@ -2013,6 +2034,9 @@ int GetCosmeticStyles( int iEntity )
 	int iIndex = GetEntProp( iEntity, Prop_Send, "m_iItemDefinitionIndex" );
 	switch ( iIndex )
 	{
+		case 31489:	return 1; 	// Defaced Detonator
+		case 31488:	return 1; 	// Badlands Bandido
+		case 31469:	return 1; 	// Fleet Commander
 		case 657:	return 1; 	// Nine-Pipe Problem
 		case 315:	return 1;	// Blighted Beak
 		case 31031:	return 1;	// Wise Whiskers
@@ -2226,7 +2250,11 @@ int GetCosmeticStyles( int iEntity )
 		case 31371:	return 1;	// Blast Bowl
 		case 31080:	return 1;	// Convict Cap
 		case 988:	return 1;	// Barnstormer
+		case 31478:	return 1;	// Chiromancer's Kit
+		case 31483:	return 1;	// Dusk Duster
 
+		case 31487:	return 2; 	// Delldozer
+		case 31482:	return 2; 	// Strigoi Stare
 		case 31334:	return 2;	// Underminer's Overcoat
 		case 31425:	return 2;	// Clue Hairdo
 		case 31333:	return 2;	// Arctic Mole
@@ -2288,6 +2316,8 @@ int GetCosmeticStyles( int iEntity )
 		case 701:	return 3;	// Liquor Locker
 		case 31445:	return 3;	// Daring Dell
 		case 31298:	return 3;	// More Gun Marshal
+		case 31477:	return 3; 	// Sear Seer
+		case 31476:	return 3;	// Surgeon General
 
 		case 31284:	return 4;	// Boston Brain Bucket
 		case 31285:	return 4;	// Pest's Pads
@@ -2310,6 +2340,22 @@ bool IsPaintableHat( int iEntity )
 	switch ( iIndex )
 	{
 		//case :	return true; 	// 
+		case 31486:	return true;	// Contaminated Carryall
+		case 31485:	return true;	// Nuclear Necessity
+		case 31484:	return true;	// Mannhattan Protect
+		case 31476:	return true;	// Surgeon General
+		case 31475:	return true;	// Witch Doctor
+		case 31483:	return true;	// Dusk Duster
+		case 31481:	return true; 	// Hellish Overlord
+		case 31482:	return true; 	// Strigoi Stare
+		case 31488:	return true; 	// Badlands Bandido
+		case 31478:	return true;	// Chiromancer's Kit
+		case 31477:	return true; 	// Sear Seer
+		case 31480:	return true; 	// Strikeout
+		case 31471:	return true; 	// Spider Sights
+		case 31479:	return true; 	// School Nuisance
+		case 31470:	return true; 	// Triboniophorus Gentlemannus
+		case 31469:	return true; 	// Fleet Commander
 		case 778:	return true; 	// Gentleman's Ushanka
 		case 770:	return true; 	// Surgeon's Side Satchel
 		case 657:	return true; 	// Nine-Pipe Problem
