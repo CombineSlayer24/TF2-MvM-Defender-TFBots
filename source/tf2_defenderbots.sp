@@ -20,8 +20,6 @@ Author: ★ Officer Spy ★
 #pragma semicolon 1
 #pragma newdecls required
 
-//#define TESTING_ONLY
-
 #if defined TESTING_ONLY
 	#include <morecolors> // Debug compilation only
 #endif
@@ -147,7 +145,7 @@ public Plugin myinfo =
 	name = "[TF2] TFBots (MVM) with Manager",
 	author = "Officer Spy",
 	description = "Bot Management",
-	version = "1.4.0",
+	version = "1.4.1",
 	url = "https://github.com/OfficerSpy/TF2-MvM-Defender-TFBots"
 };
 
@@ -801,15 +799,16 @@ public Action Command_ChooseBotClasses(int client, int args)
 	}
 	
 	int redTeamCount = GetHumanAndDefenderBotCount(TFTeam_Red);
+	int defenderTeamSize = redbots_manager_defender_team_size.IntValue;
 	
-	if (redTeamCount > 1)
+	if (redTeamCount >= defenderTeamSize)
 	{
 		PrintToChat(client, "%s You are not solo.", PLUGIN_PREFIX);
 		return Plugin_Handled;
 	}
 	
 	//Should only be able to call this while solo, so current team count should always be 1
-	ShowDefenderBotTeamSetupMenu(client, _, true, redbots_manager_defender_team_size.IntValue - redTeamCount);
+	ShowDefenderBotTeamSetupMenu(client, _, true, defenderTeamSize - redTeamCount);
 	
 	return Plugin_Handled;
 }
