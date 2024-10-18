@@ -1989,7 +1989,7 @@ public const int SPECIFIC_ENGY_FEET[] = {
 30052,	// Byte'd Beak
 */
 
-// LEFT ON Gentleman's Ushanka
+// LEFT ON Ze Ubermensch
 public const int SPECIFIC_MEDIC_HEAD[] = {
 	303,	// Berliner's Bucket Helm
 	30095,	// Das Hazmattenhatten
@@ -2011,16 +2011,24 @@ public const int SPECIFIC_MEDIC_HATS[] = {
 	398,	// Doctor's Sack
 	616,	// Surgeon's Stahlhelm
 	778,	// Gentleman's Ushanka
+	853,	// Crafty Hair
 	867,	// Combat Medic's Crusher Cap
+	1012,	// Wilson Weave
 	1039,	// Weather Master
 	30041,	// Halogen Head Lamp
 	30042,	// Platinum Pickelhaube
 	30043,	// Virus Doctor
 	30045,	// Titanium Tyrolean
+	30069,	// Powdered Practitioner
 	30097,	// Das Ubersternmann
 	30109,	// Das Naggenvatcher
 	30121,	// Das Maddendoktor
 	30136,	// Baron von Havenaplane
+	30187,	// Slick Cut
+	30311,	// Nunhood
+	30318,	// Mann of Reason
+	30351,	// Teutonic Toque
+	30378,	// Heer's Helmets
 
 	31472,	// Duality of Mantle
 	31476,	// Surgeon General
@@ -2028,21 +2036,36 @@ public const int SPECIFIC_MEDIC_HATS[] = {
 public const int SPECIFIC_MEDIC_GLASSES[] = {
 	657,	// Nine-Pipe Problem
 	30050,	// Steam Pipe
+	30085,	// Macho Mann
 };
 public const int SPECIFIC_MEDIC_BEARD[] = {
 	144,	// Medic Mask
 	647,	// All-Father
 	826,	// Medi-Mask
+	986,	// Mutton Mann
 	30046,	// Practitioner's Processing Mask
+	30186,	// A Brush with Death
+	30323,	// Ruffled Ruprecht
+	30349,	// Fashionable Megalomaniac
+	30410,	// Ze Ubermensch
 };
 public const int SPECIFIC_MEDIC_SHIRT[] = {
 	621,	// Surgeon's Stethoscope
 	639,	// bowtie
 	769,	// Quadwrangler
 	878,	// Foppish Physician
+	936,	// Exorcizor
 	978,	// Der Wintermantel
 	982,	// Doc's Holiday
 	30098,	// Das Metalmeatencasen
+	30137,	// Das Fantzipantzen
+	30171,	// Medical Mystery
+	30190,	// Ward
+	30312,	// Angel of Death
+	30350,	// Dough Puncher
+	30356,	// Heat of Winter
+	30361,	// Colonel's Coat
+	30365,	// Smock Surgeon
 };
 public const int SPECIFIC_MEDIC_BELT[] = {
 	770,	// Surgeon's Side Satchel
@@ -2051,6 +2074,9 @@ public const int SPECIFIC_MEDIC_BELT[] = {
 	30096,	// Das Feelinbeterbager
 };
 
+public const int SPECIFIC_MEDIC_FEET[] = {
+	30379,	// Gaiter Guards
+};
 // Returns the ellgible cosmetics that has multiple styles
 int GetCosmeticStyles( int iEntity )
 {
@@ -2365,7 +2391,23 @@ bool IsPaintableHat( int iEntity )
 	int iIndex = GetEntProp( iEntity, Prop_Send, "m_iItemDefinitionIndex" );
 	switch ( iIndex )
 	{
-		//case :	return true; 	//
+		//case :	return true; 	// 
+		case 30410:	return true; 	// Ze Ubermensch
+		case 30379:	return true; 	// Gaiter Guards
+		case 30378:	return true; 	// Heer's Helmet
+		case 30365:	return true; 	// Smock Surgeon
+		case 30361:	return true; 	// Colonel's Coat
+		case 30356:	return true; 	// Heat of Winter
+		case 30351:	return true; 	// Teutonic Toque
+		case 30350:	return true; 	// Dough Puncher
+		case 30349:	return true; 	// Fashionable Megalomaniac
+		case 30323:	return true; 	// Ruffled Ruprecht
+		case 30318:	return true; 	// Mann of Reason
+		case 30311:	return true; 	// Nunhood
+		case 30190:	return true; 	// Ward
+		case 30187:	return true; 	// Slick Cut
+		case 30186:	return true; 	// A Brush with Death
+		case 30137:	return true; 	// Das Fantzipantzen
 		case 30136:	return true; 	// Baron von Havenaplane
 		case 30121:	return true; 	// Das Maddendoktor
 		case 30097:	return true; 	// Das Ubersternmann
