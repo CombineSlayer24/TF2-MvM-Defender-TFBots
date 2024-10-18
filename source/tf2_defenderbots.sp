@@ -25,7 +25,7 @@ Author: ★ Officer Spy ★
 #endif
 
 #define MOD_REQUEST_CREDITS
-#define MOD_CUSTOM_ATTRIBUTES
+// #define MOD_CUSTOM_ATTRIBUTES
 #define MOD_ROLL_THE_DICE_REVAMPED
 
 #define METHOD_MVM_UPGRADES
