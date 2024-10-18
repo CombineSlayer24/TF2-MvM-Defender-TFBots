@@ -1986,11 +1986,13 @@ public const int SPECIFIC_ENGY_FEET[] = {
 620,	// Couvre Corner
 754,	// Scrap Pack
 843,	// Medic Mech-Bag
+30052,	// Byte'd Beak
 */
 
 // LEFT ON Gentleman's Ushanka
 public const int SPECIFIC_MEDIC_HEAD[] = {
 	303,	// Berliner's Bucket Helm
+	30095,	// Das Hazmattenhatten
 
 	31475,	// Witch Doctor
 };
@@ -2009,23 +2011,44 @@ public const int SPECIFIC_MEDIC_HATS[] = {
 	398,	// Doctor's Sack
 	616,	// Surgeon's Stahlhelm
 	778,	// Gentleman's Ushanka
+	867,	// Combat Medic's Crusher Cap
+	1039,	// Weather Master
+	30041,	// Halogen Head Lamp
+	30042,	// Platinum Pickelhaube
+	30043,	// Virus Doctor
+	30045,	// Titanium Tyrolean
+	30097,	// Das Ubersternmann
+	30109,	// Das Naggenvatcher
+	30121,	// Das Maddendoktor
+	30136,	// Baron von Havenaplane
+
 	31472,	// Duality of Mantle
 	31476,	// Surgeon General
 };
 public const int SPECIFIC_MEDIC_GLASSES[] = {
 	657,	// Nine-Pipe Problem
+	30050,	// Steam Pipe
 };
 public const int SPECIFIC_MEDIC_BEARD[] = {
 	144,	// Medic Mask
 	647,	// All-Father
+	826,	// Medi-Mask
+	30046,	// Practitioner's Processing Mask
 };
 public const int SPECIFIC_MEDIC_SHIRT[] = {
 	621,	// Surgeon's Stethoscope
 	639,	// bowtie
 	769,	// Quadwrangler
+	878,	// Foppish Physician
+	978,	// Der Wintermantel
+	982,	// Doc's Holiday
+	30098,	// Das Metalmeatencasen
 };
 public const int SPECIFIC_MEDIC_BELT[] = {
 	770,	// Surgeon's Side Satchel
+	828,	// Archimedes
+	30048,	// Mecha-Medes
+	30096,	// Das Feelinbeterbager
 };
 
 // Returns the ellgible cosmetics that has multiple styles
@@ -2252,7 +2275,10 @@ int GetCosmeticStyles( int iEntity )
 		case 988:	return 1;	// Barnstormer
 		case 31478:	return 1;	// Chiromancer's Kit
 		case 31483:	return 1;	// Dusk Duster
+		case 878:	return 1;	// Foppish Physician
+		case 978:	return 1;	// Der Wintermantel
 
+		case 982:	return 2;	// Doc's Holiday
 		case 31487:	return 2; 	// Delldozer
 		case 31482:	return 2; 	// Strigoi Stare
 		case 31334:	return 2;	// Underminer's Overcoat
@@ -2339,7 +2365,22 @@ bool IsPaintableHat( int iEntity )
 	int iIndex = GetEntProp( iEntity, Prop_Send, "m_iItemDefinitionIndex" );
 	switch ( iIndex )
 	{
-		//case :	return true; 	// 
+		//case :	return true; 	//
+		case 30136:	return true; 	// Baron von Havenaplane
+		case 30121:	return true; 	// Das Maddendoktor
+		case 30097:	return true; 	// Das Ubersternmann
+		case 30096:	return true; 	// Das Feelinbeterbager
+		case 30095:	return true; 	// Das Hazmattenhatten
+		case 30052:	return true;	// Byte'd Beak
+		case 30042:	return true;	// Platinum Pickelhaube
+		case 30043:	return true;	// Virus Doctor
+		case 30045:	return true;	// Titanium Tyrolean
+		case 30046:	return true;	// Practitioner's Processing Mask
+		case 30048:	return true;	// Mecha-Medes
+		case 878:	return true;	// Foppish Physician
+		case 978:	return true;	// Der Wintermantel
+		case 982:	return true;	// Doc's Holiday
+		case 826:	return true;	// Medi-Mask
 		case 31486:	return true;	// Contaminated Carryall
 		case 31485:	return true;	// Nuclear Necessity
 		case 31484:	return true;	// Mannhattan Protect
