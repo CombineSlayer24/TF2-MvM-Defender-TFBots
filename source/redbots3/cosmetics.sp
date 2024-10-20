@@ -849,6 +849,13 @@ public const CosmeticSet CS_PRESET_HEAVY[] = {
 	{ 989, 990, 991 },			// Aqua Teen Hunger Heavy Set
 	{ 330, 946, -1 }			// Coupe D'isaster, Siberian Sophisticate
 };
+public const CosmeticSet CS_PRESET_MEDIC[] = {
+	{ 30755, 30756, 30773 },	// Berlin Brain Bowl, Bunnyhopper's Ballistics Vest, Surgical Survivalist
+	{ 30595, 30365, 30379 },	// medic_unknown_mann, Smock Surgeon, Gaiter Guards
+	{ 30378, 30792, 826 },		// Heer's Helmet, Colossal Cranium, Medi-Mask
+	{ 30862, 30906, 144 },		// Field Practice, Vitals Vest, Medic Mask
+
+};
 public const CosmeticSet CS_PRESET_F2P[] = {
 	{ 261, 744, 166 },			// Mann Co. Cap, Pyrovision Goggles, Mercenary
 	{ 940, 744, 166 },			// Ghostly Gibus, Pyrovision Goggles, Mercenary
@@ -1993,6 +2000,9 @@ public const int SPECIFIC_ENGY_FEET[] = {
 public const int SPECIFIC_MEDIC_HEAD[] = {
 	303,	// Berliner's Bucket Helm
 	30095,	// Das Hazmattenhatten
+	30733,	// Teufort Knight
+	30786,	// Gauzed Gaze
+	30939,	// Coldfront Commander
 
 	31475,	// Witch Doctor
 };
@@ -2029,6 +2039,12 @@ public const int SPECIFIC_MEDIC_HATS[] = {
 	30318,	// Mann of Reason
 	30351,	// Teutonic Toque
 	30378,	// Heer's Helmets
+	30595,	// dec2014 medic_unknown_mann
+	30596,	// Surgeon's Shako
+	30625,	// Physician's Protector
+	30755,	// Berlin Brain Bowl
+	30862,	// Field Practice
+	30907,	// Battle Boonie
 
 	31472,	// Duality of Mantle
 	31476,	// Surgeon General
@@ -2037,6 +2053,7 @@ public const int SPECIFIC_MEDIC_GLASSES[] = {
 	657,	// Nine-Pipe Problem
 	30050,	// Steam Pipe
 	30085,	// Macho Mann
+	30792,	// Colossal Cranium
 };
 public const int SPECIFIC_MEDIC_BEARD[] = {
 	144,	// Medic Mask
@@ -2048,6 +2065,7 @@ public const int SPECIFIC_MEDIC_BEARD[] = {
 	30323,	// Ruffled Ruprecht
 	30349,	// Fashionable Megalomaniac
 	30410,	// Ze Ubermensch
+	31027,	// Miser's Muttonchops
 };
 public const int SPECIFIC_MEDIC_SHIRT[] = {
 	621,	// Surgeon's Stethoscope
@@ -2066,14 +2084,28 @@ public const int SPECIFIC_MEDIC_SHIRT[] = {
 	30356,	// Heat of Winter
 	30361,	// Colonel's Coat
 	30365,	// Smock Surgeon
+	30419,	// Chronoscarf
+	30626,	// Vascular Vestment
+	30750,	// Medical Monarch
+	30756,	// Bunnyhopper's Ballistics Vest
+	30817,	// Burly Beast
+	30906,	// Vitals Vest
+	30940,	// Coldfront Carapace
+	30982,	// Scourge of the Sky
+};
+public const int SPECIFIC_MEDIC_PANTS[] = {
+	30773,	// Surgical Survivalist
 };
 public const int SPECIFIC_MEDIC_BELT[] = {
 	770,	// Surgeon's Side Satchel
 	828,	// Archimedes
 	30048,	// Mecha-Medes
 	30096,	// Das Feelinbeterbager
+	30415,	// Medicine Manpurse
+	30728,	// Buttler
+	30813,	// Surgeon's Sidearms
+	30825,	// Santarchimedes
 };
-
 public const int SPECIFIC_MEDIC_FEET[] = {
 	30379,	// Gaiter Guards
 };
@@ -2303,6 +2335,7 @@ int GetCosmeticStyles( int iEntity )
 		case 31483:	return 1;	// Dusk Duster
 		case 878:	return 1;	// Foppish Physician
 		case 978:	return 1;	// Der Wintermantel
+		case 30750:	return 1;	// Medical Monarch
 
 		case 982:	return 2;	// Doc's Holiday
 		case 31487:	return 2; 	// Delldozer
@@ -2392,6 +2425,25 @@ bool IsPaintableHat( int iEntity )
 	switch ( iIndex )
 	{
 		//case :	return true; 	// 
+		case 31027:	return true; 	// Miser's Muttonchops
+		case 30982:	return true; 	// Scourge of the Sky
+		case 30939:	return true; 	// Coldfront Commander
+		case 30940:	return true; 	// Coldfront Carapace
+		case 30906:	return true; 	// Vitals Vest
+		case 30907:	return true; 	// Battle Boonie
+		case 30862:	return true; 	// Field Practice
+		case 30825:	return true; 	// Santarchimedes
+		case 30813:	return true; 	// Surgeon's Sidearms
+		case 30792:	return true; 	// Colossal Cranium
+		case 30786:	return true; 	// Gauzed Gaze
+		case 30773:	return true; 	// Surgical Survivalist
+		case 30755:	return true; 	// Berlin Brain Bowl
+		case 30756:	return true; 	// Bunnyhopper's Ballistics Vest
+		case 30750:	return true;	// Medical Monarch
+		case 30595:	return true;	// dec2014 medic_unknown_mann
+		case 30596:	return true;	// Surgeon's Shako
+		case 30625:	return true;	// Physician's Protector
+		case 30415:	return true; 	// Medicine Manpurse
 		case 30410:	return true; 	// Ze Ubermensch
 		case 30379:	return true; 	// Gaiter Guards
 		case 30378:	return true; 	// Heer's Helmet
@@ -3466,13 +3518,26 @@ void GiveBotCosmetics( int iClient )
 	int iRandHeavy_Pants 		= SPECIFIC_HEAVY_PANTS[ GetRandomInt( 0, sizeof( SPECIFIC_HEAVY_PANTS ) - 1 ) ];
 	int iRandHeavy_Feets 		= SPECIFIC_HEAVY_FEET[ GetRandomInt( 0, sizeof( SPECIFIC_HEAVY_FEET ) - 1 ) ];
 
+	// ENGINEER
+	int iRandEngy_HeadMisc		= SPECIFIC_ENGY_HEADMISC[ GetRandomInt( 0, sizeof( SPECIFIC_ENGY_HEADMISC ) - 1 ) ];
+	int iRandEngy_Head 			= SPECIFIC_ENGY_HEAD[ GetRandomInt( 0, sizeof( SPECIFIC_ENGY_HEAD ) - 1 ) ];
+	int iRandEngy_Hats		 	= SPECIFIC_ENGY_HATS[ GetRandomInt( 0, sizeof( SPECIFIC_ENGY_HATS ) - 1 ) ];
+	int iRandEngy_Glasses		= SPECIFIC_ENGY_GLASSES[ GetRandomInt( 0, sizeof( SPECIFIC_ENGY_GLASSES ) - 1 ) ];
+	int iRandEngy_Beard			= SPECIFIC_ENGY_BEARD[ GetRandomInt( 0, sizeof( SPECIFIC_ENGY_BEARD ) - 1 ) ];
+	int iRandEngy_Shirt			= SPECIFIC_ENGY_SHIRT[ GetRandomInt( 0, sizeof( SPECIFIC_ENGY_SHIRT ) - 1 ) ];
+	int iRandEngy_Back			= SPECIFIC_ENGY_BACK[ GetRandomInt( 0, sizeof( SPECIFIC_ENGY_BACK ) - 1 ) ];
+	int iRandEngy_Belt			= SPECIFIC_ENGY_BELT[ GetRandomInt( 0, sizeof( SPECIFIC_ENGY_BELT ) - 1 ) ];
+	int iRandEngy_Pants			= SPECIFIC_ENGY_PANTS[ GetRandomInt( 0, sizeof( SPECIFIC_ENGY_PANTS ) - 1 ) ];
+	int iRandEngy_Feet			= SPECIFIC_ENGY_FEET[ GetRandomInt( 0, sizeof( SPECIFIC_ENGY_FEET ) - 1 ) ];
+
 	int iSelectedCosmetics[ 3 ];
-	int iAllCosmetics[ 12 ];		// All class
+	int iSharedCosmetics[ 12 ];		// All class
 	int iScoutCosmetics[ 13 ];
 	int iSoldierCosmetics[ 15 ];
 	int iPyroCosmetics[ 14 ];
 	int iDemoManCosmetics[ 14 ];
 	int iHeavyCosmetics[ 13 ];
+	int iEngineerCosmetics[ 14 ];
 
 	TFClassType TFClass = TF2_GetPlayerClass( iClient );
 
@@ -3486,24 +3551,24 @@ void GiveBotCosmetics( int iClient )
 			// All Class
 			if ( iRandom <= 25 )
 			{
-				iAllCosmetics[ 1 ] = iRandHat;
-				iAllCosmetics[ 2 ] = iRandGlasses;
-				iAllCosmetics[ 3 ] = iRandBeard;
-				iAllCosmetics[ 4 ] = iRandMedal;
-				iAllCosmetics[ 5 ] = iRandTorso;
-				iAllCosmetics[ 6 ] = iRandBelt;
-				iAllCosmetics[ 7 ] = iRandPants;
-				iAllCosmetics[ 8 ] = iRandFeet;
-				iAllCosmetics[ 9 ] = iRandHatMisc;
-				iAllCosmetics[ 10 ] = iRandHead;
-				iAllCosmetics[ 11 ] = iRandFace;
+				iSharedCosmetics[ 1 ] = iRandHat;
+				iSharedCosmetics[ 2 ] = iRandGlasses;
+				iSharedCosmetics[ 3 ] = iRandBeard;
+				iSharedCosmetics[ 4 ] = iRandMedal;
+				iSharedCosmetics[ 5 ] = iRandTorso;
+				iSharedCosmetics[ 6 ] = iRandBelt;
+				iSharedCosmetics[ 7 ] = iRandPants;
+				iSharedCosmetics[ 8 ] = iRandFeet;
+				iSharedCosmetics[ 9 ] = iRandHatMisc;
+				iSharedCosmetics[ 10 ] = iRandHead;
+				iSharedCosmetics[ 11 ] = iRandFace;
 
 				int iIndex[ 11 ] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 };
 				ShuffleArray( iIndex, sizeof( iIndex ) );
 
 				for ( int i = 0; i < 3; ++i )
 				{
-					iSelectedCosmetics[ i ] = iAllCosmetics[ iIndex[ i ] ];
+					iSelectedCosmetics[ i ] = iSharedCosmetics[ iIndex[ i ] ];
 				/* 	
 					Check if head is selected, don't select hat, glasses, or beard
 					TODO: Instead of doing this
@@ -3515,18 +3580,18 @@ void GiveBotCosmetics( int iClient )
 					{
 						if ( iIndex[ i ] == 10 ) 
 						{
-							iAllCosmetics[ 1 ] = 0;
-							iAllCosmetics[ 2 ] = 0;
-							iAllCosmetics[ 11 ] = 0;
+							iSharedCosmetics[ 1 ] = 0;
+							iSharedCosmetics[ 2 ] = 0;
+							iSharedCosmetics[ 11 ] = 0;
 						}
 						// If hat, glasses, beard or face is selected, don't select head
 						else if ( iIndex[ i ] == 1 || iIndex[ i ] == 2 || iIndex[ i ] == 3 || iIndex[ i ] == 11 ) 
 						{
-							iAllCosmetics[ 10 ] = 0;
+							iSharedCosmetics[ 10 ] = 0;
 						}
 					}
 
-					if ( iSelectedCosmetics[ i ] && iAllCosmetics[ i ] != 1 ) // Make sure it's not invalid
+					if ( iSelectedCosmetics[ i ] && iSharedCosmetics[ i ] != 1 ) // Make sure it's not invalid
 					{
 						TF2_CreateHat( iClient, iSelectedCosmetics[ i ], QUALITY_UNIQUE, iIndex[ i ] == 1 || iIndex[ i ] == 10 );
 					}
@@ -3769,6 +3834,55 @@ void GiveBotCosmetics( int iClient )
 						CPrintToChatAll( "BOT: {fuchsia}%s{default}, Selected {green}Heavy {default}specific cosmetics.", clientName )
 					#endif
 				}
+
+				if ( TFClass == TFClass_Engineer )
+				{
+					iEngineerCosmetics[ 1 ] = IsChance( 75 ) ? iRandEngy_Head : iRandHead;
+					iEngineerCosmetics[ 2 ] = IsChance( 75 ) ? iRandEngy_Hats : iRandHat;
+					iEngineerCosmetics[ 3 ] = IsChance( 75 ) ? iRandEngy_Glasses : iRandGlasses;
+					iEngineerCosmetics[ 4 ] = IsChance( 75 ) ? iRandEngy_Beard: iRandBeard;
+					iEngineerCosmetics[ 5 ] = iRandMedal;
+					iEngineerCosmetics[ 6 ] = IsChance( 75 ) ? iRandEngy_Shirt : iRandTorso;
+					iEngineerCosmetics[ 7 ] = iRandHeavy_Misc;
+					iEngineerCosmetics[ 8 ] = IsChance( 75 ) ? iRandEngy_Belt : iRandBelt;
+					iEngineerCosmetics[ 9 ] = IsChance( 75 ) ? iRandEngy_Pants : iRandPants;
+					iEngineerCosmetics[ 10 ] = IsChance( 75 ) ? iRandEngy_Feet : iRandFeet;
+					iEngineerCosmetics[ 11 ] = iRandHatMisc;
+					iEngineerCosmetics[ 12 ] = IsChance( 25 ) ? iRandEngy_HeadMisc : iRandFace;
+					iEngineerCosmetics[ 13 ] = iRandEngy_Back;
+
+					int iIndex[ 13 ] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13 };
+					ShuffleArray( iIndex, sizeof( iIndex ) );
+
+					for ( int i = 0; i < 3; ++i )
+					{
+						iSelectedCosmetics[ i ] = iEngineerCosmetics[ iIndex[ i ] ];
+						if ( iSelectedCosmetics[ i ] )
+						{
+							if ( iIndex[ i ] == 1 ) 
+							{
+								iEngineerCosmetics[ 2 ] = 0;
+								iEngineerCosmetics[ 3 ] = 0;
+								iEngineerCosmetics[ 4 ] = 0;
+								iEngineerCosmetics[ 12 ] = 0;
+							}
+							// If hat(2), glasses(3), beard(4) or face(12) is selected, don't select head
+							else if ( iIndex[ i ] == 2 || iIndex[ i ] == 3 || iIndex[ i ] == 4 || iIndex[ i ] == 12 ) 
+							{
+								iEngineerCosmetics[ 1 ] = 0;
+							}
+						}
+
+						if ( iSelectedCosmetics[ i ] && iEngineerCosmetics[ i ] != 1 )
+						{
+							TF2_CreateHat( iClient, iSelectedCosmetics[ i ], QUALITY_UNIQUE, iIndex[ i ] == 2 );
+						}
+					}
+
+					#if defined TESTING_ONLY
+						CPrintToChatAll( "BOT: {fuchsia}%s{default}, Selected {green}Heavy {default}specific cosmetics.", clientName )
+					#endif
+				}
 			}
 		}
 	}
@@ -3778,15 +3892,15 @@ void GiveBotCosmetics( int iClient )
 		{
 			switch ( TF2_GetPlayerClass( iClient ) )
 			{
-				case TFClass_Scout: 	FetchClassForCosmetics( iClient, "Scout" );
-				case TFClass_Soldier: 	FetchClassForCosmetics( iClient, "Soldier" );
-				case TFClass_Pyro: 		FetchClassForCosmetics( iClient, "Pyro" );
-				case TFClass_DemoMan: 	FetchClassForCosmetics( iClient, "Demoman" );
-				case TFClass_Heavy: 	FetchClassForCosmetics( iClient, "HeavyWeapons" );
-				case TFClass_Engineer: 	FetchClassForCosmetics( iClient, "Engineer" );
-				case TFClass_Medic: 	FetchClassForCosmetics( iClient, "Medic" );
-				case TFClass_Sniper: 	FetchClassForCosmetics( iClient, "Sniper" );
-				case TFClass_Spy: 		FetchClassForCosmetics( iClient, "Spy" );
+				case TFClass_Scout: 	FetchClassForPreSet( iClient, "Scout" );
+				case TFClass_Soldier: 	FetchClassForPreSet( iClient, "Soldier" );
+				case TFClass_Pyro: 		FetchClassForPreSet( iClient, "Pyro" );
+				case TFClass_DemoMan: 	FetchClassForPreSet( iClient, "Demoman" );
+				case TFClass_Heavy: 	FetchClassForPreSet( iClient, "HeavyWeapons" );
+				case TFClass_Engineer: 	FetchClassForPreSet( iClient, "Engineer" );
+				case TFClass_Medic: 	FetchClassForPreSet( iClient, "Medic" );
+				case TFClass_Sniper: 	FetchClassForPreSet( iClient, "Sniper" );
+				case TFClass_Spy: 		FetchClassForPreSet( iClient, "Spy" );
 			}
 
 			#if defined TESTING_ONLY
@@ -3795,7 +3909,7 @@ void GiveBotCosmetics( int iClient )
 		}
 		else if ( iRandom <= 90 )
 		{
-			FetchClassForCosmetics( iClient, "F2P" );
+			FetchClassForPreSet( iClient, "F2P" );
 			#if defined TESTING_ONLY
 				CPrintToChatAll( "BOT: {fuchsia}%s{default}, Selected {green}F2P {default}set.", clientName )
 			#endif
@@ -3826,7 +3940,7 @@ void ApplyCosmetics(int iClient, const CosmeticSet[] presetCosmetics, int iRandI
 	}
 }
 
-void FetchClassForCosmetics( int iClient, char[] iClass )
+void FetchClassForPreSet( int iClient, char[] iClass )
 {
 	bool bIsHalloween = TF2_IsHolidayActive( TFHoliday_HalloweenOrFullMoon );
 	int randIndex;
@@ -3858,6 +3972,11 @@ void FetchClassForCosmetics( int iClient, char[] iClass )
 	{
 		randIndex = GetRandomInt( 0, sizeof( CS_PRESET_HEAVY ) / sizeof( CosmeticSet ) - 1 );
 		ApplyCosmetics( iClient, CS_PRESET_HEAVY, randIndex );
+	}
+	else if ( StrEqual( iClass, "Medic", false ) ) 
+	{
+		randIndex = GetRandomInt( 0, sizeof( CS_PRESET_MEDIC ) / sizeof( CosmeticSet ) - 1 );
+		ApplyCosmetics( iClient, CS_PRESET_MEDIC, randIndex );
 	}
 	else if ( StrEqual( iClass, "F2P", false ) ) 
 	{
