@@ -1996,7 +1996,7 @@ public const int SPECIFIC_ENGY_FEET[] = {
 30052,	// Byte'd Beak
 */
 
-// LEFT ON Ze Ubermensch
+// LEFT ON Harry
 public const int SPECIFIC_MEDIC_HEAD[] = {
 	303,	// Berliner's Bucket Helm
 	30095,	// Das Hazmattenhatten
@@ -2045,6 +2045,7 @@ public const int SPECIFIC_MEDIC_HATS[] = {
 	30755,	// Berlin Brain Bowl
 	30862,	// Field Practice
 	30907,	// Battle Boonie
+	31028,	// Snowcapped
 
 	31472,	// Duality of Mantle
 	31476,	// Surgeon General
@@ -2105,6 +2106,7 @@ public const int SPECIFIC_MEDIC_BELT[] = {
 	30728,	// Buttler
 	30813,	// Surgeon's Sidearms
 	30825,	// Santarchimedes
+	31033,	// Harry
 };
 public const int SPECIFIC_MEDIC_FEET[] = {
 	30379,	// Gaiter Guards
@@ -2373,6 +2375,7 @@ int GetCosmeticStyles( int iEntity )
 		case 31345:	return 2;	// Ol' Reliable
 		case 31346:	return 2;	// Heavy Heating
 		case 31368:	return 2;	// Brother Mann
+		case 31033:	return 2; 	// Harry
 
 		case 31426:	return 3;	// Sleuth Suit
 		case 31374:	return 3;	// Hazard Handler
@@ -2425,6 +2428,8 @@ bool IsPaintableHat( int iEntity )
 	switch ( iIndex )
 	{
 		//case :	return true; 	// 
+		case 31033:	return true; 	// Harry
+		case 31028:	return true; 	// Snowcapped
 		case 31027:	return true; 	// Miser's Muttonchops
 		case 30982:	return true; 	// Scourge of the Sky
 		case 30939:	return true; 	// Coldfront Commander
