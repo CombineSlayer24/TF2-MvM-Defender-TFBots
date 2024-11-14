@@ -3070,8 +3070,8 @@ void GiveBotCosmetics( int iClient )
 	int iPyroCosmetics[ 14 ];
 	int iDemoManCosmetics[ 14 ];
 	int iHeavyCosmetics[ 13 ];
-	int iEngineerCosmetics[ 14 ];
-	int iMedicCosmetics[ 13 ];
+	int iEngineerCosmetics[ 13 ];
+	int iMedicCosmetics[ 12 ];
 
 	TFClassType TFClass = TF2_GetPlayerClass( iClient );
 
