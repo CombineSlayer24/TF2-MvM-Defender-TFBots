@@ -1528,181 +1528,23 @@ public const int SPECIFIC_DEMO_FEET[] = {
 991,	// Hunger Force
 30563,	// Jungle Booty
 */
-public const int SPECIFIC_HEAVY_HEAD[] = {
-	145,
-	1187,
-	30645,
-	30733,
-	30815,
-	30866,
-	30885,
-	31305,
-	31368,
-	31481,
-	31482	
-};
-public const int SPECIFIC_HEAVY_HEADSKIN[] = {
-	380,
-	585,
-	31191	
-};
-public const int SPECIFIC_HEAVY_HATS[] = {
-	49,
-	96,
-	97,
-	185,
-	246,
-	254,
-	290,
-	292,
-	309,
-	313,
-	330,
-	358,
-	378,
-	427,
-	478,
-	515,
-	517,
-	535,
-	601,
-	603,
-	613,
-	635,
-	821,
-	840,
-	853,
-	866,
-	876,
-	952,
-	985,
-	989,
-	1012,
-	1018,
-	1087,
-	30013,
-	30049,
-	30054,
-	30081,
-	30094,
-	30122,
-	30315,
-	30344,
-	30346,
-	30369,
-	30374,
-	30545,
-	30588,
-	30589,
-	30644,
-	30653,
-	30811,
-	30812,
-	30887,
-	30911,
-	30912,
-	30959,
-	30981,
-	31008,
-	31029,
-	31052,
-	31080,
-	31106,
-	31178,
-	31190,
-	31255,
-	31267,
-	31304,
-	31345,
-	31402,
-	31403,
-	31434,
-	31452	
-};
-public const int SPECIFIC_HEAVY_GLASSES[] = {
-	479,
-	30085,
-	30141,
-	30368,
-	30831	
-};
-public const int SPECIFIC_HEAVY_BEARD[] = {
-	485,
-	647, 	
-	986,
-	30164,
-	30165,
-	30345,
-	30401,
-	30482,
-	30960,
-	31163	
-};
-public const int SPECIFIC_HEAVY_SHIRT[] = {
-	777,
-	814,
-	925,
-	946,
-	30074,
-	30138,
-	30178,
-	30342,
-	30364,
-	30550,
-	30556,
-	30557,
-	30633,
-	30745,
-	30747,
-	30803,
-	30873,
-	30913,
-	30914,
-	30980,
-	31030,
-	31053,
-	31179,
-	31268,
-	31346,
-	31369,
-	31435,
-	31453,
-	31483 	
-};
-public const int SPECIFIC_HEAVY_MISC[] = {
-	524,
-	757,
-	643,
-	815,
-	1088,
-	30080,
-	30012,
-	30910,
-	1189,
-	30108,
-	31079,
-	31306	
-};
-public const int SPECIFIC_HEAVY_BELT[] = {
-	392,
-	1028,
-	1097,
-	30079,
-	30728,
-	31123	
-};
-public const int SPECIFIC_HEAVY_PANTS[] = {
-	1188,
-	30319,
-	30343,
-	30372,
-	31180,
-	31370	
-};
-public const int SPECIFIC_HEAVY_FEET[] = {
-	990,
-	30354	
-};
+public const int SPECIFIC_HEAVY_HEAD[] = { 145, 1187, 30645, 30733, 30815, 30866, 30885, 31305, 31368, 31481, 31482	};
+public const int SPECIFIC_HEAVY_HEADSKIN[] = { 380, 585, 31191 };
+public const int SPECIFIC_HEAVY_HATS[] = { 49, 96, 97, 185, 246, 254, 290, 292, 309, 313, 330, 358, 378, 427, 478,
+										515, 517, 535, 601, 603, 613, 635, 821, 840, 853, 866, 876, 952, 985, 989, 1012, 
+										1018, 1087, 30013, 30049, 30054, 30081, 30094, 30122, 30315, 30344, 30346, 30369, 30374, 
+										30545, 30588, 30589, 30644, 30653, 30811, 30812, 30887, 30911, 30912, 30959, 
+										30981, 31008, 31029, 31052, 31080, 31106, 31178, 31190, 31255, 
+										31267, 31304, 31345, 31402, 31403, 31434, 31452	};
+public const int SPECIFIC_HEAVY_GLASSES[] = { 479, 30085, 30141, 30368, 30831 };
+public const int SPECIFIC_HEAVY_BEARD[] = { 485, 647, 986, 30164, 30165, 30345, 30401, 30482, 30960, 31163 };
+public const int SPECIFIC_HEAVY_SHIRT[] = { 777, 814, 925, 946, 30074, 30138, 30178, 30342, 30364, 30550, 30556,
+ 										30557, 30633, 30745, 30747, 30803, 30873, 30913, 30914, 30980, 
+										31030, 31053, 31179, 31268, 31346, 31369, 31435, 31453, 31483 };
+public const int SPECIFIC_HEAVY_MISC[] = { 524, 757, 643, 815, 1088, 30080, 30012, 30910, 1189, 30108, 31079, 31306 };
+public const int SPECIFIC_HEAVY_BELT[] = { 392, 1028, 1097, 30079, 30728, 31123	};
+public const int SPECIFIC_HEAVY_PANTS[] = { 1188, 30319, 30343, 30372, 31180, 31370	};
+public const int SPECIFIC_HEAVY_FEET[] = { 990, 30354 };
 //-----------------------------------------------
 // ENGINEER
 //-----------------------------------------------
@@ -1710,183 +1552,22 @@ public const int SPECIFIC_HEAVY_FEET[] = {
 /*
 31223,	// Hook, Line, and Thinker
 */
-public const int SPECIFIC_ENGY_HEADMISC[] = {
-	30707,
-	30806,
-	31394,
-	31150	
-};
-public const int SPECIFIC_ENGY_HEAD[] = {
-	31333,
-	30420,
-	533,
-	30592,
-	30099,
-	384,
-	30733	
-};
-public const int SPECIFIC_ENGY_HATS[] = {
-	30884, 	
-	988,
-	382,
-	31175,
-	31049,
-	590,
-	322,
-	31425,
-	853,
-	31375,
-	31445,
-	30051,
-	31011,
-	31297,
-	31074,
-	95,
-	30871,
-	631,
-	31374,
-	31114,
-	436,
-	148,
-	338,
-	1010,
-	31272,
-	48,
-	31298,
-	399,
-	30406,
-	605,
-	30031,
-	30846,
-	31097,
-	178,
-	30682,
-	31331,
-	31106,
-	31098,
-	118,
-	94,
-	30044,
-	31046,
-	30035,
-	848,
-	31254,
-	30336,
-	31064,
-	30930,
-	628,
-	1017,
-	31148,
-	379,
-	30805,
-	1012,
-	31094,
-	31484,
-};
-public const int SPECIFIC_ENGY_GLASSES[] = {
-	591,
-	389,
-	30872,
-	30085,
-	30831,
-	31189,
-	30168	
-};
-public const int SPECIFIC_ENGY_BEARD[] = {
-	647, 	
-	30165,
-	30681,
-	30322,
-	30172,
-	1009,
-	30407,
-	986,
-	31163,
-	30347,
-	30164,
-	31031	
-};
-public const int SPECIFIC_ENGY_SHIRT[] = {
-	30884,
-	30377,
-	31446,
-	31373,
-	815,
-	31395,
-	31332,
-	30367,
-	30785,
-	31444,
-	30330,
-	30408,
-	30804,
-	30412,
-	30590,
-	30539,
-	30698,
-	30655,
-	31426,
-	925,
-	30605,
-	30402,
-	30337,
-	814,
-	31334,
-	31264,
-	30635,
-	31485	
-};
-public const int SPECIFIC_ENGY_BACK[] = {
-	30992,
-	31151,
-	784,
-	30403,
-	30821,
-	31032,
-	30749,
-	31486	
-};
-public const int SPECIFIC_ENGY_PANTS[] = {
-	30113,
-	755	
-};
-public const int SPECIFIC_ENGY_BELT[] = {
-	31012,
-	30167,
-	606,
-	30728,
-	30593,
-	30908,
-	948,
-	30087,
-	30056,
-	30341,
-	30680,
-	30481,
-	646,
-	30654,
-	31013,
-	1089,
-	519,
-	823,
-	30070,
-	1008,
-	670,
-	386,
-	30023,
-	30086,
-	30909,
-	520,
-	31487	
-};
-public const int SPECIFIC_ENGY_FEET[] = {
-	30409,
-	484,
-	30675,
-	30543,
-	30629,
-	734	
-};
+public const int SPECIFIC_ENGY_HEADMISC[] = { 30707, 30806, 31394, 31150 };
+public const int SPECIFIC_ENGY_HEAD[] = { 31333, 30420, 533, 30592, 30099, 384, 30733 };
+public const int SPECIFIC_ENGY_HATS[] = { 30884, 988, 382, 31175, 31049, 590, 322, 31425, 853, 31375, 
+										31445, 30051, 31011, 31297, 31074, 95, 30871, 631, 31374, 31114, 
+										436, 148, 338, 1010, 31272, 48, 31298, 399, 30406, 605, 30031, 
+										30846, 31097, 178, 30682, 31331, 31106, 31098, 118, 94, 30044, 31046, 30035, 
+										848, 31254, 30336, 31064, 30930, 628, 1017, 31148, 379, 30805, 1012, 31094, 31484 };
+public const int SPECIFIC_ENGY_GLASSES[] = { 591, 389, 30872, 30085, 30831, 31189, 30168 };
+public const int SPECIFIC_ENGY_BEARD[] = { 647, 30165, 30681, 30322, 30172, 1009, 30407, 986, 31163, 30347, 30164, 31031 };
+public const int SPECIFIC_ENGY_SHIRT[] = { 30884, 30377, 31446, 31373, 815, 31395, 31332, 30367, 30785, 31444, 30330,
+										30408, 30804, 30412, 30590, 30539, 30698, 30655, 31426, 925, 30605, 30402, 30337, 814, 31334, 31264, 30635, 31485 };
+public const int SPECIFIC_ENGY_BACK[] = { 30992, 31151, 784, 30403, 30821, 31032, 30749, 31486 };
+public const int SPECIFIC_ENGY_PANTS[] = { 30113, 755 };
+public const int SPECIFIC_ENGY_BELT[] = { 31012, 30167, 606, 30728, 30593, 30908, 948, 30087, 30056, 30341, 30680, 30481, 646, 
+										30654, 31013, 1089, 519, 823, 30070, 1008, 670, 386, 30023, 30086, 30909, 520, 31487 };
+public const int SPECIFIC_ENGY_FEET[] = { 30409, 484, 30675, 30543, 30629, 734 };
 //-----------------------------------------------
 // MEDIC
 //-----------------------------------------------
@@ -1899,144 +1580,19 @@ public const int SPECIFIC_ENGY_FEET[] = {
 30052,	// Byte'd Beak
 31400,	// Main Cast (Feet)
 */
-public const int SPECIFIC_MEDIC_HEAD[] = {
-	303,
-	30095,
-	30733,
-	30786,
-	30939,
-	31475,
-	31122,
-	31421,
-	31456
-};
-public const int SPECIFIC_MEDIC_HATS[] = {
-	50,
-	101,
-	104,
-	177,
-	184,
-	323,
-	363,
-	378,
-	381,
-	383,
-	388,
-	398,
-	616,
-	778,
-	853,
-	867,
-	1012,
-	1039,
-	30041,
-	30042,
-	30043,
-	30045,
-	30069,
-	30097,
-	30109,
-	30121,
-	30136,
-	30187,
-	30311,
-	30318,
-	30351,
-	30378,
-	30595,
-	30596,
-	30625,
-	30755,
-	30862,
-	30907,
-	31028,
-	31034,
-	31472,
-	31476,
-	31176,
-	31224,
-	31265,
-	31300,
-	31344,
-	31399,
-	31401
-};
-public const int SPECIFIC_MEDIC_GLASSES[] = {
-	657,
-	30050,
-	30085,
-	30792,
-	31121,
-	31454	// Hat
-};
-public const int SPECIFIC_MEDIC_BEARD[] = {
-	144,
-	647,
-	826,
-	986,
-	30046,
-	30186,
-	30323,
-	30349,
-	30410,
-	31027,
-	31077,
-	31163
-};
-public const int SPECIFIC_MEDIC_SHIRT[] = {
-	621,
-	639,
-	769,
-	878,
-	936,
-	978,
-	982,
-	30098,
-	30137,
-	30171,
-	30190,
-	30312,
-	30350,
-	30356,
-	30361,
-	30365,
-	30419,
-	30626,
-	30750,
-	30756,
-	30817,
-	30906,
-	30940,
-	30982,
-	31078,
-	31266,
-	31299,
-	31343,
-	31364,
-	31420,
-	31455,
-	31456
-};
-public const int SPECIFIC_MEDIC_PANTS[] = {
-	30773,
-	31177,
-};
-public const int SPECIFIC_MEDIC_BELT[] = {
-	770,
-	828,
-	30048,
-	30096,
-	30415,
-	30728,
-	30813,
-	30825,
-	31033,
-	31099,
-	31365,
-};
-public const int SPECIFIC_MEDIC_FEET[] = {
-	30379,
-};
+public const int SPECIFIC_MEDIC_HEAD[] = { 303, 30095, 30733, 30786, 30939, 31475, 31122, 31421 };
+public const int SPECIFIC_MEDIC_HATS[] = { 50, 101, 104, 177, 184, 323, 363, 378, 381, 383, 388, 398, 616, 778, 853, 867, 
+										1012, 1039, 30041, 30042, 30043, 30045, 30069, 30097, 30109, 30121, 30136, 
+										30187, 30311, 30318, 30351, 30378, 30595, 30596, 30625, 30755, 30862, 30907, 
+										31028, 31034, 31472, 31476, 31176, 31224, 31265, 31300, 31344, 31399, 31401 };
+public const int SPECIFIC_MEDIC_GLASSES[] = { 657, 30050, 30085, 30792, 31121, 31454 };
+public const int SPECIFIC_MEDIC_BEARD[] = { 144, 647, 826, 986, 30046, 30186, 30323, 30349, 30410, 31027, 31077, 31163 };
+public const int SPECIFIC_MEDIC_SHIRT[] = { 621, 639, 769, 878, 936, 978, 982, 30098, 30137, 30171, 30190, 30312, 30350, 30356, 
+										30361, 30365, 30419, 30626, 30750, 30756, 30817, 30906, 30940, 30982, 
+										31078, 31266, 31299, 31343, 31364, 31420, 31455, 31456 };
+public const int SPECIFIC_MEDIC_PANTS[] = { 30773, 31177 };
+public const int SPECIFIC_MEDIC_BELT[] = { 770, 828, 30048, 30096, 30415, 30728, 30813, 30825, 31033, 31099, 31365 };
+public const int SPECIFIC_MEDIC_FEET[] = { 30379 };
 
 // Returns the ellgible cosmetics that has multiple styles
 int GetCosmeticStyles( int iEntity )
@@ -2274,7 +1830,6 @@ int GetCosmeticStyles( int iEntity )
 		case 978: 	return 1;
 		case 30750: return 1;
 
-		case 31456:	return 2;
 		case 31454:	return 2;
 		case 31344:	return 2;
 		case 31343:	return 2;
@@ -2368,9 +1923,7 @@ bool IsPaintableHat( int iEntity )
 	int iIndex = GetEntProp( iEntity, Prop_Send, "m_iItemDefinitionIndex" );
 	switch ( iIndex )
 	{
-		case :	return true;
 		case 31456:	return true;
-		case 31456	return true;
 		case 31455:	return true;
 		case 31454:	return true;
 		case 31421:	return true;
@@ -3500,6 +3053,16 @@ void GiveBotCosmetics( int iClient )
 	int iRandEngy_Pants			= SPECIFIC_ENGY_PANTS[ GetRandomInt( 0, sizeof( SPECIFIC_ENGY_PANTS ) - 1 ) ];
 	int iRandEngy_Feet			= SPECIFIC_ENGY_FEET[ GetRandomInt( 0, sizeof( SPECIFIC_ENGY_FEET ) - 1 ) ];
 
+	// MEDIC
+	int iRandMedic_Head		= SPECIFIC_MEDIC_HEAD[ GetRandomInt( 0, sizeof( SPECIFIC_MEDIC_HEAD ) - 1 ) ];
+	int iRandMedic_Hats		= SPECIFIC_MEDIC_HATS[ GetRandomInt( 0, sizeof( SPECIFIC_MEDIC_HATS ) - 1 ) ];
+	int iRandMedic_Glasses	= SPECIFIC_MEDIC_GLASSES[ GetRandomInt( 0, sizeof( SPECIFIC_MEDIC_GLASSES ) - 1 ) ];
+	int iRandMedic_Beard	= SPECIFIC_MEDIC_BEARD[ GetRandomInt( 0, sizeof( SPECIFIC_MEDIC_BEARD ) - 1 ) ];
+	int iRandMedic_Shirt	= SPECIFIC_MEDIC_SHIRT[ GetRandomInt( 0, sizeof( SPECIFIC_MEDIC_SHIRT ) - 1 ) ];
+	int iRandMedic_Pants	= SPECIFIC_MEDIC_PANTS[ GetRandomInt( 0, sizeof( SPECIFIC_MEDIC_PANTS ) - 1 ) ];
+	int iRandMedic_Belt		= SPECIFIC_MEDIC_BELT[ GetRandomInt( 0, sizeof( SPECIFIC_MEDIC_BELT ) - 1 ) ];
+	int iRandMedic_Feet		= SPECIFIC_MEDIC_FEET[ GetRandomInt( 0, sizeof( SPECIFIC_MEDIC_FEET ) - 1 ) ];
+
 	int iSelectedCosmetics[ 3 ];
 	int iSharedCosmetics[ 12 ];		// All class
 	int iScoutCosmetics[ 13 ];
@@ -3508,6 +3071,7 @@ void GiveBotCosmetics( int iClient )
 	int iDemoManCosmetics[ 14 ];
 	int iHeavyCosmetics[ 13 ];
 	int iEngineerCosmetics[ 14 ];
+	int iMedicCosmetics[ 13 ];
 
 	TFClassType TFClass = TF2_GetPlayerClass( iClient );
 
@@ -3813,15 +3377,14 @@ void GiveBotCosmetics( int iClient )
 					iEngineerCosmetics[ 4 ] = IsChance( 75 ) ? iRandEngy_Beard: iRandBeard;
 					iEngineerCosmetics[ 5 ] = iRandMedal;
 					iEngineerCosmetics[ 6 ] = IsChance( 75 ) ? iRandEngy_Shirt : iRandTorso;
-					iEngineerCosmetics[ 7 ] = iRandHeavy_Misc;
-					iEngineerCosmetics[ 8 ] = IsChance( 75 ) ? iRandEngy_Belt : iRandBelt;
-					iEngineerCosmetics[ 9 ] = IsChance( 75 ) ? iRandEngy_Pants : iRandPants;
-					iEngineerCosmetics[ 10 ] = IsChance( 75 ) ? iRandEngy_Feet : iRandFeet;
-					iEngineerCosmetics[ 11 ] = iRandHatMisc;
-					iEngineerCosmetics[ 12 ] = IsChance( 25 ) ? iRandEngy_HeadMisc : iRandFace;
-					iEngineerCosmetics[ 13 ] = iRandEngy_Back;
+					iEngineerCosmetics[ 7 ] = IsChance( 75 ) ? iRandEngy_Belt : iRandBelt;
+					iEngineerCosmetics[ 8 ] = IsChance( 75 ) ? iRandEngy_Pants : iRandPants;
+					iEngineerCosmetics[ 9 ] = IsChance( 75 ) ? iRandEngy_Feet : iRandFeet;
+					iEngineerCosmetics[ 10 ] = iRandHatMisc;
+					iEngineerCosmetics[ 11 ] = IsChance( 25 ) ? iRandEngy_HeadMisc : iRandFace;
+					iEngineerCosmetics[ 12 ] = iRandEngy_Back;
 
-					int iIndex[ 13 ] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13 };
+					int iIndex[ 12 ] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 };
 					ShuffleArray( iIndex, sizeof( iIndex ) );
 
 					for ( int i = 0; i < 3; ++i )
@@ -3834,10 +3397,10 @@ void GiveBotCosmetics( int iClient )
 								iEngineerCosmetics[ 2 ] = 0;
 								iEngineerCosmetics[ 3 ] = 0;
 								iEngineerCosmetics[ 4 ] = 0;
-								iEngineerCosmetics[ 12 ] = 0;
+								iEngineerCosmetics[ 11 ] = 0;
 							}
-							// If hat(2), glasses(3), beard(4) or face(12) is selected, don't select head
-							else if ( iIndex[ i ] == 2 || iIndex[ i ] == 3 || iIndex[ i ] == 4 || iIndex[ i ] == 12 ) 
+							// If hat(2), glasses(3), beard(4) or face(11) is selected, don't select head
+							else if ( iIndex[ i ] == 2 || iIndex[ i ] == 3 || iIndex[ i ] == 4 || iIndex[ i ] == 11 ) 
 							{
 								iEngineerCosmetics[ 1 ] = 0;
 							}
@@ -3850,7 +3413,54 @@ void GiveBotCosmetics( int iClient )
 					}
 
 					#if defined TESTING_ONLY
-						CPrintToChatAll( "BOT: {fuchsia}%s{default}, Selected {green}Heavy {default}specific cosmetics.", clientName )
+						CPrintToChatAll( "BOT: {fuchsia}%s{default}, Selected {green}Engineer {default}specific cosmetics.", clientName )
+					#endif
+				}
+
+				if ( TFClass == TFClass_Medic )
+				{
+					iMedicCosmetics[ 1 ] = IsChance( 75 ) ? iRandMedic_Head : iRandHead;
+					iMedicCosmetics[ 2 ] = IsChance( 75 ) ? iRandMedic_Hats : iRandHat;
+					iMedicCosmetics[ 3 ] = IsChance( 75 ) ? iRandMedic_Glasses : iRandGlasses;
+					iMedicCosmetics[ 4 ] = IsChance( 75 ) ? iRandMedic_Beard: iRandBeard;
+					iMedicCosmetics[ 5 ] = iRandMedal;
+					iMedicCosmetics[ 6 ] = IsChance( 75 ) ? iRandMedic_Shirt : iRandTorso;
+					iMedicCosmetics[ 7 ] = IsChance( 75 ) ? iRandMedic_Belt : iRandBelt;
+					iMedicCosmetics[ 8 ] = IsChance( 75 ) ? iRandMedic_Pants : iRandPants;
+					iMedicCosmetics[ 9 ] = IsChance( 75 ) ? iRandMedic_Feet : iRandFeet;
+					iMedicCosmetics[ 10 ] = iRandHatMisc;
+					iMedicCosmetics[ 11 ] = iRandFace;
+
+					int iIndex[ 11 ] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 };
+					ShuffleArray( iIndex, sizeof( iIndex ) );
+
+					for ( int i = 0; i < 3; ++i )
+					{
+						iSelectedCosmetics[ i ] = iMedicCosmetics[ iIndex[ i ] ];
+						if ( iSelectedCosmetics[ i ] )
+						{
+							if ( iIndex[ i ] == 1 ) 
+							{
+								iMedicCosmetics[ 2 ] = 0;
+								iMedicCosmetics[ 3 ] = 0;
+								iMedicCosmetics[ 4 ] = 0;
+								iMedicCosmetics[ 11 ] = 0;
+							}
+							// If hat(2), glasses(3), beard(4) or face(11) is selected, don't select head
+							else if ( iIndex[ i ] == 2 || iIndex[ i ] == 3 || iIndex[ i ] == 4 || iIndex[ i ] == 11 ) 
+							{
+								iMedicCosmetics[ 1 ] = 0;
+							}
+						}
+
+						if ( iSelectedCosmetics[ i ] && iMedicCosmetics[ i ] != 1 )
+						{
+							TF2_CreateHat( iClient, iSelectedCosmetics[ i ], QUALITY_UNIQUE, iIndex[ i ] == 2 );
+						}
+					}
+
+					#if defined TESTING_ONLY
+						CPrintToChatAll( "BOT: {fuchsia}%s{default}, Selected {green}Medic {default}specific cosmetics.", clientName )
 					#endif
 				}
 			}
