@@ -966,14 +966,6 @@ public const int SPECIFIC_SCOUT_FEET[] = {
 // unused
 //240,	// Worms Gear (Includes Grenades)
 //121		// Web Easteregg Medal (medal)
-/*
-315,	// Blighted Beak
-467,	// Medic MtG Hat
-620,	// Couvre Corner
-754,	// Scrap Pack
-843,	// Medic Mech-Bag
-30052,	// Byte'd Beak
-*/
 
 public const int SPECIFIC_SOLDIER_HEAD[] = {
 	1090,
@@ -1905,9 +1897,8 @@ public const int SPECIFIC_ENGY_FEET[] = {
 754,	// Scrap Pack
 843,	// Medic Mech-Bag
 30052,	// Byte'd Beak
+31400,	// Main Cast (Feet)
 */
-
-// LEFT ON SODA CAP
 public const int SPECIFIC_MEDIC_HEAD[] = {
 	303,
 	30095,
@@ -1916,6 +1907,8 @@ public const int SPECIFIC_MEDIC_HEAD[] = {
 	30939,
 	31475,
 	31122,
+	31421,
+	31456
 };
 public const int SPECIFIC_MEDIC_HATS[] = {
 	50,
@@ -1963,6 +1956,10 @@ public const int SPECIFIC_MEDIC_HATS[] = {
 	31176,
 	31224,
 	31265,
+	31300,
+	31344,
+	31399,
+	31401
 };
 public const int SPECIFIC_MEDIC_GLASSES[] = {
 	657,
@@ -1970,6 +1967,7 @@ public const int SPECIFIC_MEDIC_GLASSES[] = {
 	30085,
 	30792,
 	31121,
+	31454	// Hat
 };
 public const int SPECIFIC_MEDIC_BEARD[] = {
 	144,
@@ -1983,7 +1981,7 @@ public const int SPECIFIC_MEDIC_BEARD[] = {
 	30410,
 	31027,
 	31077,
-	31163,
+	31163
 };
 public const int SPECIFIC_MEDIC_SHIRT[] = {
 	621,
@@ -2011,6 +2009,13 @@ public const int SPECIFIC_MEDIC_SHIRT[] = {
 	30940,
 	30982,
 	31078,
+	31266,
+	31299,
+	31343,
+	31364,
+	31420,
+	31455,
+	31456
 };
 public const int SPECIFIC_MEDIC_PANTS[] = {
 	30773,
@@ -2027,6 +2032,7 @@ public const int SPECIFIC_MEDIC_BELT[] = {
 	30825,
 	31033,
 	31099,
+	31365,
 };
 public const int SPECIFIC_MEDIC_FEET[] = {
 	30379,
@@ -2038,307 +2044,318 @@ int GetCosmeticStyles( int iEntity )
 	int iIndex = GetEntProp( iEntity, Prop_Send, "m_iItemDefinitionIndex" );
 	switch ( iIndex )
 	{
-		case 31265:	return 1; 	// Soda Cap
-		case 31099:	return 1; 	// Pocket-Medes
-		case 31177:	return 1; 	// Night Ward
-		case 31489:	return 1; 	// Defaced Detonator
-		case 31488:	return 1; 	// Badlands Bandido
-		case 31469:	return 1; 	// Fleet Commander
-		case 657:	return 1; 	// Nine-Pipe Problem
-		case 315:	return 1;	// Blighted Beak
-		case 31031:	return 1;	// Wise Whiskers
-		case 30336:	return 1;	// Trencher's Topper
-		case 31254:	return 1;	// Train of Thought
-		case 755:	return 1;	// Texas Half-Pants
-		case 30634:	return 1;	// Sheriff's Stetson
-		case 31272:	return 1;	// Lawnmaker
-		case 31114:	return 1;	// Head of Defense
-		case 389:	return 1;	// Googly Gazer
-		case 31150:	return 1;	// Goblineer
-		case 31332:	return 1;	// Cool Warm Sweater
-		case 590:	return 1;	// Brainiac Hairpiece
-		case 382:	return 1;	// Big Country
-		case 31012:	return 1;	// Aim Assistant
-		case 31304:	return 1;	// Horror Shawl
-		case 31268:	return 1;	// Combat Casual
-		case 31267:	return 1;	// Squatter's Right
-		case 31191:	return 1;	// Two Punch Mann
-		case 31123:	return 1;	// Mamma Kiev
-		case 31052:	return 1;	// Mediterranean Mercenary
-		case 30981:	return 1;	// Starboard Crusader
-		case 31029:	return 1;	// Cool Capuchon
-		case 30369:	return 1;	// Eliminators Safeguard
-		case 1028:	return 1;	// Samson Skewer
-		case 821:	return 1;	// Soviet Gentleman
-		case 610:	return 1;	// One-Man Army
-		case 478:	return 1;	// Copper's Hard Top
-		case 31422:	return 1;	// Nightcap
-		case 31393:	return 1;	// Mad Lad
-		case 31372:	return 1;	// Shrapnel Shell
-		case 31307:	return 1;	// Alcoholic Automaton
-		case 31100:	return 1;	// Spiky Viking
-		case 31037:	return 1;	// Dynamite Abs
-		case 30373:	return 1;	// Toowoomba Tunic
-		case 830:	return 1;	// Bearded Bombardier
-		case 120:	return 1;	// Scotsman's Stove Pipe
-		case 976:	return 1;	// Winter Wonderland Wrap
-		case 761:	return 1;	// Triclops
-		case 30168:	return 1;	// Special Eyes
-		case 31143:	return 1;	// Seared Sorcerer
-		case 31464:	return 1;	// Scorched Earth Stompers
-		case 31004:	return 1;	// Pyro in Chinatown
-		case 31026:	return 1;	// Pocket Pardner
-		case 950:	return 1;	// Nose Candy
-		case 31463:	return 1;	// Invisible Flame
-		case 31432:	return 1;	// Impact Impaler
-		case 31065:	return 1;	// Head of the Dead
-		case 31357:	return 1;	// Flame Warrior
-		case 31108:	return 1;	// Fire Fighter
-		case 30724:	return 1;	// Fear Monger
-		case 31253:	return 1;	// Elf Ignition
-		case 30367:	return 1;	// Cute Suit
-		case 30162:	return 1;	// Bone Dome
-		case 1073:	return 1;	// War on Smissmas Battle Hood
-		case 829:	return 1;	// War Pig
-		case 31220:	return 1;	// Trickster's Treats
-		case 31200:	return 1;	// Thousand-Yard Stare
-		case 844:	return 1;	// Tin Pot
-		case 980:	return 1;	// Soldier's Slope Scopers
-		case 31387:	return 1;	// Shortness Of Breath
-		case 31147:	return 1;	// Semi-Tame Trapper's Hat
-		case 30069:	return 1;	// Powdered Practitioner
-		case 30870:	return 1;	// Patriot's Pouches
-		case 440:	return 1;	// Lord Cockswain's Novelty Mutton Chops and Pipe
-		case 1021:	return 1;	// Doe-Boy
-		case 31277:	return 1;	// Detective
-		case 948:	return 1;	// Deadliest Duckling
-		case 31312:	return 1;	// Cranial Cowl
-		case 31450:	return 1;	// Pathfinder
-		case 31451:	return 1;	// Justice Johns
-		case 31449:	return 1;	// Control Patrol
-		case 13742:	return 1;	// Operation Magnetic Mayhem Barely Benign Bismutotantalite 2024
-		case 13739:	return 1;	// Operation Magnetic Mayhem Fiendish Fuchsite 2024
-		case 13741:	return 1;	// Operation Magnetic Mayhem Humanitarian Hiddenite 2024
-		case 13743:	return 1;	// Operation Magnetic Mayhem Treasured Tourmaline 2024
-		case 31442:	return 1;	// Botler 2000
-		case 30727:	return 1;	// Caped Crusader
-		case 31146:	return 1;	// Calamitous Cauldron
-		case 31335:	return 1;	// Bulb Bonnet
-		case 719:	return 1;	// Battle Bob
-		case 647: 	return 1;	// All-Father
-		case 31211:	return 1;	// Twister Topper
-		case 31294:	return 1;	// Starlight Sorcerer
-		case 785:	return 1;	// Robot Chicken Hat
-		case 31276:	return 1;	// Chaser
-		case 30746:	return 1;	// Well Wrapped Hat
-		case 420:	return 1;	// Aperture Labs Hardhat
-		case 617:	return 1;	// Backwards Ballcap
-		case 760:	return 1;	// Front Runner
-		case 722:	return 1;	// Fast Leaner
-		case 31437:	return 1;	// Bonk Beanie
-		case 31116:	return 1;	// Soda Specs
-		case 30339:	return 1;	// Killer's Kit
-		case 31379:	return 1;	// Stealth Bomber
-		case 1040:	return 1;	// Bacteria Blocker
-		case 652:	return 1;	// Big Elfin Deal
-		case 30027:	return 1;	// Bolt Boy
-		case 451:	return 1;	// Bonk Boy
-		case 653:	return 1;	// Bootie Time
-		case 31042:	return 1;	// Bottle Cap
-		case 853:	return 1;	// Crafty Hair
-		case 30189:	return 1;	// Frenchman's Formals
-		case 30078:	return 1;	// Greased Lightning
-		case 31129:	return 1;	// A Handsome Handy Thing
-		case 858:	return 1;	// Hanger-On Hood
-		case 453:	return 1;	// Hero's Tail
-		case 31406:	return 1;	// Last Laugh
-		case 31303:	return 1;	// Masked Fiend
-		case 31258:	return 1;	// Seasonal Employee
-		case 31282:	return 1;	// Throttlehead
-		case 814:	return 1;	// Triad Trinket
-		case 1012:	return 1;	// Wilson Weave
-		case 12988:	return 1;	// Anniversary Annihilation Caregiving Corundum 2022
-		case 12990:	return 1;	// Anniversary Annihilation Dastardly Diamond 2022
-		case 12989:	return 1;	// Anniversary Annihilation Heroistic Heart 2022
-		case 12987:	return 1; 	// Anniversary Annihilation Soul-Binding Star 2022
-		case 31060:	return 1;	// Binoculus
-		case 12706:	return 1;	// Binary Blackout Juvenile's Jade 2021
-		case 12707:	return 1;	// Binary Blackout Marvellous Moonstone 2021
-		case 31218:	return 1;	// Bone Cone
-		case 30571:	return 1;	// Brimstone
-		case 671:	return 1;	// Brown Bomber
-		case 1014:	return 1;	// Brutal Bouffant
-		case 31164:	return 1;	// Candy Cantlers
-		case 125:	return 1;	// Cheater's Lament
-		case 31091:	return 1;	// Citizen Cane
-		case 31386:	return 1;	// Clown's Cover-Up
-		case 942:	return 1;	// Cockfighter
-		case 1034:	return 1;	// Conspiracy Cap
-		case 30175:	return 1;	// Cotton Head
-		case 31208:	return 1;	// Creepy Crawlers
-		case 30058:	return 1;	// Crosslinker's Coil
-		case 31417:	return 1;	// Dapper Dickens
-		case 30357:	return 1;	// Dark Falkirk Helm
-		case 30997:	return 1;	// deadbeats
-		case 31134:	return 1;	// Eye-See-You
-		case 31172:	return 1;	// Festive Fascinator
-		case 31327:	return 1;	// Festive Rack
-		case 31088:	return 1;	// Gingerbread Mann
-		case 31090:	return 1;	// Globetrotter
-		case 31135:	return 1;	// Handsome Devil
-		case 868:	return 1;	// Heroic Companion Badge
-		case 12660:	return 1;	// Hexadecimal Horrors Macabre Memento 2021
-		case 12661:	return 1;	// Hexadecimal Horrors Moonlit Magnate 2021
-		case 31103:	return 1;	// Hypno-Eyes
-		case 31125:	return 1;	// Impish Ears
-		case 31105:	return 1;	// Loaf Loafers
-		case 10448:	return 1;	// Madness vs Machines Boundless Heart 2019
-		case 10442:	return 1;	// Madness vs Machines Burnished Beryl 2019
-		case 10443:	return 1;	// Madness vs Machines Grandiose Garnet 2019
-		case 10444:	return 1;	// Madness vs Machines Tempered Tourmaline 2019
-		case 10445:	return 1;	// Madness vs Machines Royal Rhodonite 2019
-		case 10446:	return 1;	// Madness vs Machines Chaotic Crystal 2019
-		case 10447:	return 1;	// Madness vs Machines Hopeful Heart 2019
-		case 10449:	return 1;	// Madness vs Machines Pinnacle of Ingenuity 2019
-		case 816:	return 1;	// Marxman
-		case 11430:	return 1;	// Mashed Mediocrity Player 2020
-		case 11431:	return 1;	// Mashed Mediocrity Creator 2020
-		case 11432:	return 1;	// Mashed Mediocrity Helper 2020
-		case 10653:	return 1;	// Memes vs Machines Player 2019
-		case 10654:	return 1;	// Memes vs Machines Creator 2019
-		case 30352:	return 1;	// Mustachioed Mann
-		case 31245:	return 1;	// Oh Deer!
-		case 13566:	return 1;	// Operation Firmware Frenzy Star of the Company 2023
-		case 13493:	return 1;	// Operation Galvanized Gauntlet Shimmering Souvenir 2023
-		case 13494:	return 1;	// Operation Galvanized Gauntlet Bejeweled Bounty 2023
-		case 13495:	return 1;	// Operation Galvanized Gauntlet Opulent Ornament 2023
-		case 13337:	return 1;	// Operation Last Laugh Bruised Johnstone 2023
-		case 13339:	return 1;	// Operation Last Laugh Alluring Artifact 2023
-		case 13335:	return 1;	// Operation Last Laugh Copper Chicanery 2023
-		case 13336:	return 1;	// Operation Last Laugh Happy Spud 2023
-		case 30743:	return 1;	// Patriot Peak
-		case 12827:	return 1;	// Peculiar Pandemonium Luxurious Lepidolite 2022
-		case 12828:	return 1;	// Peculiar Pandemonium Mesmerizing Morganite 2022
-		case 12829:	return 1;	// Peculiar Pandemonium Pink Diamond 2022
-		case 13322:	return 1;	// Potato Of Labor
-		case 1035:	return 1;	// Public Accessor
-		case 12888:	return 1;	// Rewired Rampage Gem of Generosity 2022
-		case 12884:	return 1;	// Rewired Rampage Reverse-Engineered Ruby 2022
-		case 12887:	return 1;	// Rewired Rampage Sophisticated Sapphire 2022
-		case 30623:	return 1;	// Rotation Sensation
-		case 611:	return 1;	// Salty Dog
-		case 31219:	return 1;	// Scariest Mask EVER
-		case 31214:	return 1;	// Second-Head Headwear
-		case 12249:	return 1;	// Starched Silliness Potato Lookalike 2021
-		case 12250:	return 1;	// Starched Silliness Super Spud 2021
-		case 12251:	return 1;	// Starched Silliness Curious Carbon 2021
-		case 492:	return 1;	// Summer Hat
-		case 9228:	return 1;	// TF2Maps 72hr TF2Jam Summer Participant 2016
-		case 9592:	return 1;	// TF2Maps 72hr TF2Jam Summer Participant 2017
-		case 9322:	return 1;	// TF2Maps 72hr TF2Jam Winter Participant 2017
-		case 10015:	return 1;	// TF2Maps Ray of Sunshine 2018
-		case 10977:	return 1;	// TF2Maps Ray of Sunshine 2019
-		case 11803:	return 1;	// TF2Maps Ray of Sunshine 2020
-		case 12992:	return 1;	// TF2Maps Ray of Sunshine 2022
-		case 10046:	return 1;	// TF2Maps 72hr TF2Jam Summer Participant 2018
-		case 10996:	return 1;	// TF2Maps 72hr TF2Jam Summer Participant 2019
-		case 12991:	return 1;	// TF2Maps 72hr TF2Jam Summer Participant 2022
-		case 11802:	return 1;	// TF2Maps 72hr TF2Jam Participant 2020
-		case 12791:	return 1;	// TF2Maps 72hr TF2Jam Participant 2021
-		case 13509:	return 1;	// TF2Maps 72hr TF2Jam Participant 2023
-		case 9613:	return 1;	// TF2Maps Charitable Heart 2017
-		case 12790:	return 1;	// TF2Maps Charitable Heart 2021
-		case 13508: return 1;	// TF2Maps Charitable Heart 2023
-		case 1033:	return 1;	// TF2VRH
-		case 11612:	return 1;	// Titanium Tank Chromatic Cardioid 2020
-		case 11611:	return 1;	// Titanium Tank Gilded Giver 2020
-		case 31323:	return 1;	// Trapper's Flap
-		case 31132:	return 1;	// Wrap-A-Khamon
-		case 31371:	return 1;	// Blast Bowl
-		case 31080:	return 1;	// Convict Cap
-		case 988:	return 1;	// Barnstormer
-		case 31478:	return 1;	// Chiromancer's Kit
-		case 31483:	return 1;	// Dusk Duster
-		case 878:	return 1;	// Foppish Physician
-		case 978:	return 1;	// Der Wintermantel
-		case 30750:	return 1;	// Medical Monarch
+		case 31456: return 1;
+		case 31421: return 1;
+		case 31401: return 1;
+		case 31399: return 1;
+		case 31266: return 1;
+		case 31265: return 1;
+		case 31099: return 1;
+		case 31177: return 1;
+		case 31489: return 1;
+		case 31488: return 1;
+		case 31469: return 1;
+		case 657: 	return 1;
+		case 315: 	return 1;
+		case 31031: return 1;
+		case 30336: return 1;
+		case 31254: return 1;
+		case 755: 	return 1;
+		case 30634: return 1;
+		case 31272: return 1;
+		case 31114: return 1;
+		case 389: 	return 1;
+		case 31150: return 1;
+		case 31332: return 1;
+		case 590: 	return 1;
+		case 382: 	return 1;
+		case 31012: return 1;
+		case 31304: return 1;
+		case 31268: return 1;
+		case 31267: return 1;
+		case 31191: return 1;
+		case 31123: return 1;
+		case 31052: return 1;
+		case 30981: return 1;
+		case 31029: return 1;
+		case 30369: return 1;
+		case 1028: 	return 1;
+		case 821: 	return 1;
+		case 610: 	return 1;
+		case 478: 	return 1;
+		case 31422: return 1;
+		case 31393: return 1;
+		case 31372: return 1;
+		case 31307: return 1;
+		case 31100: return 1;
+		case 31037: return 1;
+		case 30373: return 1;
+		case 830: 	return 1;
+		case 120: 	return 1;
+		case 976: 	return 1;
+		case 761: 	return 1;
+		case 30168: return 1;
+		case 31143: return 1;
+		case 31464: return 1;
+		case 31004: return 1;
+		case 31026: return 1;
+		case 950: 	return 1;
+		case 31463: return 1;
+		case 31432: return 1;
+		case 31065: return 1;
+		case 31357: return 1;
+		case 31108: return 1;
+		case 30724: return 1;
+		case 31253: return 1;
+		case 30367: return 1;
+		case 30162: return 1;
+		case 1073: 	return 1;
+		case 829: 	return 1;
+		case 31220: return 1;
+		case 31200: return 1;
+		case 844: 	return 1;
+		case 980: 	return 1;
+		case 31387: return 1;
+		case 31147: return 1;
+		case 30069: return 1;
+		case 30870: return 1;
+		case 440: 	return 1;
+		case 1021: 	return 1;
+		case 31277: return 1;
+		case 948: 	return 1;
+		case 31312: return 1;
+		case 31450: return 1;
+		case 31451: return 1;
+		case 31449: return 1;
+		case 13742: return 1;
+		case 13739: return 1;
+		case 13741: return 1;
+		case 13743: return 1;
+		case 31442: return 1;
+		case 30727: return 1;
+		case 31146: return 1;
+		case 31335: return 1;
+		case 719: 	return 1;
+		case 647: 	return 1;
+		case 31211: return 1;
+		case 31294: return 1;
+		case 785: 	return 1;
+		case 31276: return 1;
+		case 30746: return 1;
+		case 420: 	return 1;
+		case 617: 	return 1;
+		case 760: 	return 1;
+		case 722: 	return 1;
+		case 31437: return 1;
+		case 31116: return 1;
+		case 30339: return 1;
+		case 31379: return 1;
+		case 1040: 	return 1;
+		case 652: 	return 1;
+		case 30027: return 1;
+		case 451: 	return 1;
+		case 653: 	return 1;
+		case 31042: return 1;
+		case 853: 	return 1;
+		case 30189: return 1;
+		case 30078: return 1;
+		case 31129: return 1;
+		case 858: 	return 1;
+		case 453: 	return 1;
+		case 31406: return 1;
+		case 31303: return 1;
+		case 31258: return 1;
+		case 31282: return 1;
+		case 814: 	return 1;
+		case 1012: 	return 1;
+		case 12988: return 1;
+		case 12990: return 1;
+		case 12989: return 1;
+		case 12987: return 1;
+		case 31060: return 1;
+		case 12706: return 1;
+		case 12707: return 1;
+		case 31218: return 1;
+		case 30571: return 1;
+		case 671: 	return 1;
+		case 1014: 	return 1;
+		case 31164: return 1;
+		case 125: 	return 1;
+		case 31091: return 1;
+		case 31386: return 1;
+		case 942: 	return 1;
+		case 1034: 	return 1;
+		case 30175: return 1;
+		case 31208: return 1;
+		case 30058: return 1;
+		case 31417: return 1;
+		case 30357: return 1;
+		case 30997: return 1;
+		case 31134: return 1;
+		case 31172: return 1;
+		case 31327: return 1;
+		case 31088: return 1;
+		case 31090: return 1;
+		case 31135: return 1;
+		case 868: 	return 1;
+		case 12660: return 1;
+		case 12661: return 1;
+		case 31103: return 1;
+		case 31125: return 1;
+		case 31105: return 1;
+		case 10448: return 1;
+		case 10442: return 1;
+		case 10443: return 1;
+		case 10444: return 1;
+		case 10445: return 1;
+		case 10446: return 1;
+		case 10447: return 1;
+		case 10449: return 1;
+		case 816: 	return 1;
+		case 11430: return 1;
+		case 11431: return 1;
+		case 11432: return 1;
+		case 10653: return 1;
+		case 10654: return 1;
+		case 30352: return 1;
+		case 31245: return 1;
+		case 13566: return 1;
+		case 13493: return 1;
+		case 13494: return 1;
+		case 13495: return 1;
+		case 13337: return 1;
+		case 13339: return 1;
+		case 13335: return 1;
+		case 13336: return 1;
+		case 30743: return 1;
+		case 12827: return 1;
+		case 12828: return 1;
+		case 12829: return 1;
+		case 13322: return 1;
+		case 1035: 	return 1;
+		case 12888: return 1;
+		case 12884: return 1;
+		case 12887: return 1;
+		case 30623: return 1;
+		case 611: 	return 1;
+		case 31219: return 1;
+		case 31214: return 1;
+		case 12249: return 1;
+		case 12250: return 1;
+		case 12251: return 1;
+		case 492: 	return 1;
+		case 9228: 	return 1;
+		case 9592: 	return 1;
+		case 9322: 	return 1;
+		case 10015: return 1;
+		case 10977: return 1;
+		case 11803: return 1;
+		case 12992: return 1;
+		case 10046: return 1;
+		case 10996: return 1;
+		case 12991: return 1;
+		case 11802: return 1;
+		case 12791: return 1;
+		case 13509: return 1;
+		case 9613: 	return 1;
+		case 12790: return 1;
+		case 13508: return 1;
+		case 1033: 	return 1;
+		case 11612: return 1;
+		case 11611: return 1;
+		case 31323: return 1;
+		case 31132: return 1;
+		case 31371: return 1;
+		case 31080: return 1;
+		case 988: 	return 1;
+		case 31478: return 1;
+		case 31483: return 1;
+		case 878: 	return 1;
+		case 978: 	return 1;
+		case 30750: return 1;
 
-		case 982:	return 2;	// Doc's Holiday
-		case 31487:	return 2; 	// Delldozer
-		case 31482:	return 2; 	// Strigoi Stare
-		case 31334:	return 2;	// Underminer's Overcoat
-		case 31425:	return 2;	// Clue Hairdo
-		case 31333:	return 2;	// Arctic Mole
-		case 31079:	return 2;	// Soviet Strongmann
-		case 31392:	return 2;	// Stunt Suit
-		case 30104:	return 2;	// Graybanns
-		case 30397:	return 2;	// Bruiser's Bandanna
-		case 31022:	return 2;	// Juvenile's Jumper
-		case 31184:	return 2;	// Manndatory Attire
-		case 52:	return 2;	// Batter's Helmet
-		case 30083:	return 2;	// Caffeine Cooler
-		case 31081:	return 2;	// Fuel Injector
-		case 31415:	return 2;	// Boarder's Beanie
-		case 31416:	return 2;	// Cozy Cover-Up
-		case 31261:	return 2;	// Decorated Veteran
-		case 279:	return 2;	// Ghastly Gibus 2010
-		case 31216:	return 2;	// Hat Outta Hell
-		case 334:	return 2;	// Treasure Hat 3 (Hat of Undeniable Wealth And Respect)
-		case 817:	return 2;	// Human Cannonball
-		case 31295:	return 2;	// Onimann
-		case 576:	return 2;	// Spine-Chilling Skull 2011
-		case 31209:	return 2;	// Spooky Head-Bouncers
-		case 31431:	return 2;	// Masked Loyalty
-		case 316:	return 2;	// Pyromancer's Mask
-		case 776:	return 2;	// Bird-Man of Aberdeen
-		case 31309:	return 2;	// Bombard Brigadier
-		case 31341:	return 2;	// Plaid Lad
-		case 31342:	return 2;	// Glasgow Bankroll
-		case 31391:	return 2;	// Thunder Dome
-		case 380:	return 2;	// Large Luchadore
-		case 31345:	return 2;	// Ol' Reliable
-		case 31346:	return 2;	// Heavy Heating
-		case 31368:	return 2;	// Brother Mann
-		case 31033:	return 2; 	// Harry
+		case 31456:	return 2;
+		case 31454:	return 2;
+		case 31344:	return 2;
+		case 31343:	return 2;
+		case 982:	return 2;
+		case 31300:	return 2;
+		case 31487:	return 2;
+		case 31482:	return 2;
+		case 31334:	return 2;
+		case 31425:	return 2;
+		case 31333:	return 2;
+		case 31079:	return 2;
+		case 31392:	return 2;
+		case 30104:	return 2;
+		case 30397:	return 2;
+		case 31022:	return 2;
+		case 31184:	return 2;
+		case 52:	return 2;
+		case 30083:	return 2;
+		case 31081:	return 2;
+		case 31415:	return 2;
+		case 31416:	return 2;
+		case 31261:	return 2;
+		case 279:	return 2;
+		case 31216:	return 2;
+		case 334:	return 2;
+		case 817:	return 2;
+		case 31295:	return 2;
+		case 576:	return 2;
+		case 31209:	return 2;
+		case 31431:	return 2;
+		case 316:	return 2;
+		case 776:	return 2;
+		case 31309:	return 2;
+		case 31341:	return 2;
+		case 31342:	return 2;
+		case 31391:	return 2;
+		case 380:	return 2;
+		case 31345:	return 2;
+		case 31346:	return 2;
+		case 31368:	return 2;
+		case 31033:	return 2;
 
-		case 31426:	return 3;	// Sleuth Suit
-		case 31374:	return 3;	// Hazard Handler
-		case 31444:	return 3;	// Desk Engineer
-		case 777:	return 3;	// Apparatchik's Apparel
-		case 30309:	return 3;	// Dead of Night
-		case 31217:	return 3;	// Goalkeeper
-		case 983:	return 3;	// Digital Divulger
-		case 150:	return 3;	// Troublemaker's Tossle Cap
-		case 31378:	return 3;	// Close Quarters Cover
-		case 31023:	return 3;	// Millennial Mercenary
-		case 30735:	return 3;	// Sidekick's Side Slick
-		case 31056:	return 3;	// Speedy Scoundrel
-		case 927:	return 3;	// Boo Balloon
-		case 31213:	return 3;	// Eyequarium
-		case 31252:	return 3;	// Festive Frames
-		case 116:	return 3;	// Ghastly Gibus (?)
-		case 31242:	return 3;	// Gnome Dome
-		case 31061:	return 3;	// Pocket Halloween Boss
-		case 30607:	return 3;	// Pocket Raiders
-		case 984:	return 3;	// Tough Stuff Muffs
-		case 1011:	return 3;	// Tux
-		case 949:	return 3;	// DethKapp
-		case 783:	return 3;	// HazMat Headcase
-		case 390:	return 3;	// Reggaelator
-		case 701:	return 3;	// Liquor Locker
-		case 31445:	return 3;	// Daring Dell
-		case 31298:	return 3;	// More Gun Marshal
-		case 31477:	return 3; 	// Sear Seer
-		case 31476:	return 3;	// Surgeon General
+		case 31400:	return 3;
+		case 31426:	return 3;
+		case 31374:	return 3;
+		case 31444:	return 3;
+		case 777:	return 3;
+		case 30309:	return 3;
+		case 31217:	return 3;
+		case 983:	return 3;
+		case 150:	return 3;
+		case 31378:	return 3;
+		case 31023:	return 3;
+		case 30735:	return 3;
+		case 31056:	return 3;
+		case 927:	return 3;
+		case 31213:	return 3;
+		case 31252:	return 3;
+		case 116:	return 3;
+		case 31242:	return 3;
+		case 31061:	return 3;
+		case 30607:	return 3;
+		case 984:	return 3;
+		case 1011:	return 3;
+		case 949:	return 3;
+		case 783:	return 3;
+		case 390:	return 3;
+		case 701:	return 3;
+		case 31445:	return 3;
+		case 31298:	return 3;
+		case 31477:	return 3;
+		case 31476:	return 3;
 
-		case 31284:	return 4;	// Boston Brain Bucket
-		case 31285:	return 4;	// Pest's Pads
-		case 31293:	return 4;	// Beaten And Bruised
-		case 875:	return 4;	// Menpo
+		case 31284:	return 4;
+		case 31285:	return 4;
+		case 31293:	return 4;
+		case 875:	return 4;
 		
-		case 31419:	return 5;	// Wanderer's Wool
+		case 31419:	return 5;
 
-		case 1126:	return 10;	// Duck Badge (WTF, 10 styles????)
+		case 1126:	return 10;
 		default:	return false;
 	}
 }
@@ -2351,7 +2368,22 @@ bool IsPaintableHat( int iEntity )
 	int iIndex = GetEntProp( iEntity, Prop_Send, "m_iItemDefinitionIndex" );
 	switch ( iIndex )
 	{
-		//case :	return true;
+		case :	return true;
+		case 31456:	return true;
+		case 31456	return true;
+		case 31455:	return true;
+		case 31454:	return true;
+		case 31421:	return true;
+		case 31420:	return true;
+		case 31401:	return true;
+		case 31400:	return true;
+		case 31399:	return true;
+		case 31364:	return true;
+		case 31344:	return true;
+		case 31343:	return true;
+		case 31300:	return true;
+		case 31299:	return true;
+		case 31266:	return true;
 		case 31265:	return true;
 		case 31177:	return true;
 		case 31176:	return true;
