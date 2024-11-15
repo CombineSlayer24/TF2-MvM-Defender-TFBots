@@ -757,9 +757,44 @@ public const CosmeticSet CS_PRESET_HEAVY[] = {
 public const CosmeticSet CS_PRESET_MEDIC[] = {
 	{ 30755, 30756, 30773 },	// Berlin Brain Bowl, Bunnyhopper's Ballistics Vest, Surgical Survivalist
 	{ 30595, 30365, 30379 },	// medic_unknown_mann, Smock Surgeon, Gaiter Guards
+	{ 30187, 30085, 30817 },	// Slick Cut, Macho Mann, Burly Beast
+	{ 31401, 31121, 30982 },	// Power Spike, Flatliner, Scourge of the Sky
+	{ 30121, 31078, 30813 },	// Das Maddendoktor, Derangement Garment, Surgeon's Sidearm
+	{ 31265, 31266, 31442 },	// Soda Cap, Fizzy Pharmacist, Botler 2000
+	{ 30351, 30350, 31454 },	// Teutonic Toque, Dough Puncher, Free Mann's Fashion
+	{ 30095, 30096, 31455 },	// Das Hazmattenhatten, Das Feelinbeterbager, Hazardous Environment Vest
+	{ 31401, 31454, 31455 },	// Power Spike, Free Mann's Fashion, Hazardous Environment Vest
+	{ 30311, 30311, 30186 },	// Nunhood, Angel of Death, A Brush with Death
+	{ 30043, 30052, 30356 },	// Virus Doctor, Byte'd Beak, Heat of Winter
+	{ 31028, 30309, 30415 },	// Snowcapped, Dead Of Night, Medicine Manpurse
+	{ 30833, 31177, 31343 },	// Woolen Warmer, Night Ward, Wooly Pulli
+	{ 30808, 31454, 30750 },	// Class Crown, Free Mann's Fashion, Medical Monarch
+	{ 30907, 30323, 30906 },	// Battle Boonie, Ruffled Ruprecht, Vitals Vest
+	{ 31454, 31365, 31455 },	// Free Mann's Fashion, Medical Emergancy, Hazardous Environment Vest
+	{ 30862, 30906, 30096 },	// Field Practice, Vitals Vest, Das Feelinbeterbager
 	{ 30378, 30792, 826 },		// Heer's Helmet, Colossal Cranium, Medi-Mask
 	{ 30862, 30906, 144 },		// Field Practice, Vitals Vest, Medic Mask
+	{ 381, 30773, 31364 },		// Mountain Cap, Surgical Survivalist, Uber-Wear
+	{ 381, 30349, 31364 },		// Mountain Cap, Fashionable Megalomaniac, Uber-Wear
+	{ 101, 30569, 30982 },		// Vintage Tyrolean, Tomb Readers, Scourge of the Sky
+	{ 31300, 31299, 826 },		// Victorian Villainy, Lavish Labwear, Medi-Mask
+	{ 867, 31364, 30379 },		// Combat Medic's Crusher Cap, Uber-Wear, Gaiter Guards
+	{ -1, 31454, 31455 },		// Free Mann's Fashion, Hazardous Environment Vest
+	{ 30939, 30940, -1 },		// Coldfront Commander, Coldfront Carapace
+	{ 30127, 486, 982 },		// Das Gutenkutteharen, Summer Shades, Doc's Holiday
+	{ 50, 657, 30356 }			// Prussian Pickelhaube, Nine-Pipe Problem, Heat Of Winter
 
+};
+public const CosmeticSet CS_PRESET_MEDIC_HALLOWEEN[] = {
+	{ 30237, 30419, 30982 },	// Medimedes, Chronoscarf, 
+	{ 30487, 30488, 30486 },	// Hundekopf, Kriegsmaschine-9000, Herzensbrecher
+	{ 30489, 30490, 30229 },	// Transylvanian Toupe, Vampiric Vesture, Lo-Grav Loafers
+	{ 30232, 30263, 30197 },	// Das Blutliebhaber, Vicar's Vestments, second opinion
+	{ 30233, 31078, 30197 },	// Trepanabotomizer, Derangement Garment, second opinion
+	{ 30297, 30356, 30379 },	// Magical Mercenary, Heat of Winter, Gaiter Guards
+	{ 30233, 31077, 5622 },		// Trepanabotomizer, Madmann's Muzzle, Zombie Medic
+	{ 31131, 927, 869 },		// Sir Pumpkinton, Boo Balloon, Rump-o'-Lantern
+	{ 552, 553, 554 },			// Einstein, Dr Gogglestache, Emerald Jarate
 };
 public const CosmeticSet CS_PRESET_F2P[] = {
 	{ 261, 744, 166 },			// Mann Co. Cap, Pyrovision Goggles, Mercenary
@@ -794,351 +829,32 @@ public const CosmeticSet CS_PRESET_F2P_HALLOWEEN[] = {
 //-----------------------------------------------
 // SCOUT
 //-----------------------------------------------
-public const int SPECIFIC_SCOUT_HEAD[] = {
-	31406,
-	30867,
-	31023,
-	30573,
-	30394,
-	30735,
-	30733,
-	31282
-};
-public const int SPECIFIC_SCOUT_HATS[] = {
-	52,
-	30767,
-	30718,
-	617,
-	111,
-	30059,
-	652,
-	30977,
-	249,
-	31437,
-	106,
-	30030,
-	31284,
-	31042,
-	31366,
-	31117,
-	853,
-	765,
-	30686,
-	539,
-	780,
-	30636,
-	31197,
-	760,
-	30078,
-	858,
-	31000,
-	30769,
-	633,
-	453,
-	219,
-	30811,
-	30428,
-	30993,
-	846,
-	30332,
-	30326,
-	31056,
-	31283,
-	346,
-	30479,
-	150,
-	30930,
-	788,
-	174,
-	1012,
-	30809,
-	30019,
-	107,
-	31459,
-	31480
-};
-public const int SPECIFIC_SCOUT_GLASSES[] = {
-	30027,
-	451,
-	30661,
-	30085,
-	31303,
-	468,
-	30831,
-	31116,
-	630
-};
-public const int SPECIFIC_SCOUT_BEARD[] = {
-	31081,
-	986,
-	31163
-};
-public const int SPECIFIC_SCOUT_TORSO[] = {
-	30736,
-	30076,
-	30884,
-	30873,
-	30077,
-	30770,
-	30134,
-	722,
-	30637,
-	30185,
-	30189,
-	31302,
-	31436,
-	30888,
-	31022,
-	30325,
-	31196,
-	31339,
-	30426,
-	31043,
-	31118,
-	31367,
-	31281,
-	31258,
-	30395,
-	30875,
-	925,
-	30552,
-	30685,
-	30376,
-	1026,
-	827,
-	814,
-	30178,
-	30990,
-	31460,
-	815,
-	31479
-};
-public const int SPECIFIC_SCOUT_BACK[] = {
-	30751,
-	707,
-	30083,
-	781,
-	30824,
-	31195,
-	30084,
-	491,
-	30869,
-	859,
-	30849,
-	1075,
-	30820,
-	31119
-};
-public const int SPECIFIC_SCOUT_BELT[] = {
-	30167,
-	30728,
-	30564
-};
-public const int SPECIFIC_SCOUT_PANTS[] = {
-	30991,
-	30719,
-	30060,
-	31285,
-	30889
-};
-public const int SPECIFIC_SCOUT_FEET[] = {
-	540,
-	30561,
-	653,
-	30551,
-	1016,
-	490,
-	30890,
-	30575,
-	30754,
-	1032,
-	30999,
-	30358,
-	924,
-	857,
-	30771,
-	734,
-	347
-};
+public const int SPECIFIC_SCOUT_HEAD[] = { 31406, 30867, 31023, 30573, 30394, 30735, 30733, 31282 };
+public const int SPECIFIC_SCOUT_HATS[] = { 52, 30767, 30718, 617, 111, 30059, 652, 30977, 249, 31437, 106, 30030, 31284, 31042, 31366, 31117, 853, 765, 30686, 539, 780, 30636, 31197, 760, 30078, 858, 31000, 30769, 633, 453, 219, 30811, 30428, 30993, 846, 30332, 30326, 31056, 31283, 346, 30479, 150, 30930, 788, 174, 1012, 30809, 30019, 107, 31459, 31480 };
+public const int SPECIFIC_SCOUT_GLASSES[] = { 30027, 451, 30661, 30085, 31303, 468, 30831, 31116, 630 };
+public const int SPECIFIC_SCOUT_BEARD[] = { 31081, 986, 31163 };
+public const int SPECIFIC_SCOUT_TORSO[] = { 30736, 30076, 30884, 30873, 30077, 30770, 30134, 722, 30637, 30185, 30189, 31302, 31436, 30888, 31022, 30325, 31196, 31339, 30426, 31043, 31118, 31367, 31281, 31258, 30395, 30875, 925, 30552, 30685, 30376, 1026, 827, 814, 30178, 30990, 31460, 815, 31479 };
+public const int SPECIFIC_SCOUT_BACK[] = { 30751, 707, 30083, 781, 30824, 31195, 30084, 491, 30869, 859, 30849, 1075, 30820, 31119 };
+public const int SPECIFIC_SCOUT_BELT[] = { 30167, 30728, 30564 };
+public const int SPECIFIC_SCOUT_PANTS[] = { 30991, 30719, 30060, 31285, 30889 };
+public const int SPECIFIC_SCOUT_FEET[] = { 540, 30561, 653, 30551, 1016, 490, 30890, 30575, 30754, 1032, 30999, 30358, 924, 857, 30771, 734, 347 };
 //-----------------------------------------------
 // SOLDIER
 //-----------------------------------------------
 // unused
 //240,	// Worms Gear (Includes Grenades)
 //121		// Web Easteregg Medal (medal)
-
-public const int SPECIFIC_SOLDIER_HEAD[] = {
-	1090,
-	1091,
-	30969,
-	31335,
-	31449,
-	31312,
-	349,
-	391,
-	575,
-	30733
-};
-public const int SPECIFIC_SOLDIER_HATS[] = {
-	445,
-	719,
-	31112,
-	31057,
-	434,
-	31113,
-	31146,
-	30116,
-	945,
-	250,
-	31025,
-	31378,
-	30071,
-	30553,
-	721,
-	31024,
-	853,
-	30899,
-	764,
-	31045,
-	31277,
-	1021,
-	31035,
-	31069,
-	31256,
-	339,
-	31310,
-	30026,
-	395,
-	1093,
-	227,
-	30338,
-	631,
-	31111,
-	30978,
-	30708,
-	732,
-	417,
-	152,
-	439,
-	701,
-	30885,
-	30390,
-	31199,
-	31147,
-	31095,
-	31044,
-	30811,
-	30069,
-	31071,
-	30120,
-	31198,
-	30548,
-	183,
-	30897,
-	30578,
-	30984,
-	30314,
-	980,
-	54,
-	31106,
-	616,
-	98,
-	30017,
-	251,
-	31002,
-	378,
-	31200,
-	844,
-	30316,
-	99,
-	30014,
-	30114,
-	31003,
-	30887,
-	829,
-	1073,
-	30118,
-	1063
-};
-public const int SPECIFIC_SOLDIER_GLASSES[] = {
-	360,
-	30085,
-	30831
-};
-public const int SPECIFIC_SOLDIER_BEARD[] = {
-	647, 	
-	30165,
-	30477,
-	440,
-	30335,
-	875,
-	30554,
-	986,
-	31163,
-	30033,
-	852,
-	30164
-};
-public const int SPECIFIC_SOLDIER_COAT[] = {
-	30331,
-	30131,
-	30727,
-	30388,
-	31276,
-	30126,
-	30601,
-	31450,
-	30744,
-	30747,
-	30129,
-	650,
-	31070,
-	30898,
-	31418,
-	30983
-};
-public const int SPECIFIC_SOLDIER_SHIRT[] = {
-	936,
-	446,
-	30142,
-	30870
-};
-public const int SPECIFIC_SOLDIER_GRENADES[] = {
-	30886,
-	922,
-	731,
-	948,
-	30853,
-	30822,
-	641,
-	768,
-	31220,
-	1074
-};
-public const int SPECIFIC_SOLDIER_BELT[] = {
-	30728,
-	30818,
-	30115,
-	30985,
-	31388
-};
-public const int SPECIFIC_SOLDIER_PANTS[] = {
-	31451,
-	30339,
-	30392,
-	31379
-};
-public const int SPECIFIC_SOLDIER_POCKET[] = {
-	30896,
-	30130,
-	392,
-	31311
-};
-public const int SPECIFIC_SOLDIER_FEET[] = {
-	30558,
-	30117,
-	734
-};
+public const int SPECIFIC_SOLDIER_HEAD[] = { 1090, 1091, 30969, 31335, 31449, 31312, 349, 391, 575, 30733 };
+public const int SPECIFIC_SOLDIER_HATS[] = { 445, 719, 31112, 31057, 434, 31113, 31146, 30116, 945, 250, 31025, 31378, 30071, 30553, 721, 31024, 853, 30899, 764, 31045, 31277, 1021, 31035, 31069, 31256, 339, 31310, 30026, 395, 1093, 227, 30338, 631, 31111, 30978, 30708, 732, 417, 152, 439, 701, 30885, 30390, 31199, 31147, 31095, 31044, 30811, 30069, 31071, 30120, 31198, 30548, 183, 30897, 30578, 30984, 30314, 980, 54, 31106, 616, 98, 30017, 251, 31002, 378, 31200, 844, 30316, 99, 30014, 30114, 31003, 30887, 829, 1073, 30118, 1063 };
+public const int SPECIFIC_SOLDIER_GLASSES[] = { 360, 30085, 30831 };
+public const int SPECIFIC_SOLDIER_BEARD[] = { 647, 30165, 30477, 440, 30335, 875, 30554, 986, 31163, 30033, 852, 30164 };
+public const int SPECIFIC_SOLDIER_COAT[] = { 30331, 30131, 30727, 30388, 31276, 30126, 30601, 31450, 30744, 30747, 30129, 650, 31070, 30898, 31418, 30983 };
+public const int SPECIFIC_SOLDIER_SHIRT[] = { 936, 446, 30142, 30870 };
+public const int SPECIFIC_SOLDIER_GRENADES[] = { 30886, 922, 731, 948, 30853, 30822, 641, 768, 31220, 1074 };
+public const int SPECIFIC_SOLDIER_BELT[] = { 30728, 30818, 30115, 30985, 31388 };
+public const int SPECIFIC_SOLDIER_PANTS[] = { 31451, 30339, 30392, 31379 };
+public const int SPECIFIC_SOLDIER_POCKET[] = { 30896, 30130, 392, 31311 };
+public const int SPECIFIC_SOLDIER_FEET[] = { 30558, 30117, 734 };
 //-----------------------------------------------
 // PYRO
 //-----------------------------------------------
@@ -1158,131 +874,17 @@ public const int SPECIFIC_SOLDIER_FEET[] = {
 761,	// Triclops (full head)
 31221,	// Wandering Wraith (full head)
 */
-public const int SPECIFIC_PYRO_HEAD_REPLACE[] = {
-	30163,
-	30859,
-	5759,
-	31007,
-	30717,
-	30582,
-	30304,
-	1038,
-	30799,
-	30367,
-	31389,
-	30724,
-	30036,
-	31144,
-	30721,
-	335,
-	783,
-	31065,
-	570,
-	30075,
-	31431,
-	30475,
-	31006,
-	1124,
-	30684,
-	950,
-	30652,
-	31076,
-	30835,
-	30032,
-	31222,
-	30538,
-	976		
-};
+public const int SPECIFIC_PYRO_HEAD_REPLACE[] = { 30163, 30859, 5759, 31007, 30717, 30582, 30304, 1038, 30799, 30367, 31389, 30724, 30036, 31144, 30721, 335, 783, 31065, 570, 30075, 31431, 30475, 31006, 1124, 30684, 950, 30652, 31076, 30835, 30032, 31222, 30538, 976 };
 public const int SPECIFIC_PYRO_HATS[] = { 30662, 854, 213, 615, 30057, 30162, 105, 31185, 597, 30091, 30936, 30987, 30937, 30063, 30418, 394, 30800, 435, 949, 30025, 31253, 30903, 31108, 31462, 31359, 30038, 627, 31357, 31107, 377, 31432, 612, 321, 31041, 30028, 248, 1031, 247, 30139, 31329, 30811, 30022, 318, 31296, 51, 30040, 30580, 31186, 30039, 102, 31143, 31066, 30399, 30555, 31390, 481, 30327, 151, 31064, 182, 753, 31094, 937, 31472, 31477 };
-public const int SPECIFIC_PYRO_GLASSES[] = {
-	30901,
-	31096,
-	30053,
-	30176,
-	31004,
-	30831,
-	387,
-	30168	
-};
-public const int SPECIFIC_PYRO_NECKLESS[] = {
-	336,
-	787		
-};
-public const int SPECIFIC_PYRO_BEARD[] = {
-	316,
-	175		
-};
-public const int SPECIFIC_PYRO_SHIRT[] = {
-	30716,
-	936,
-	31328,
-	30986,
-	31463,
-	31263,
-	30400,
-	30544,
-	30581,
-	31358,
-	30092,
-	30062,
-	30826,
-	30583,
-	31433,
-	30169,
-	31051,
-	31188	
-};
-public const int SPECIFIC_PYRO_GRENADES[] = {
-	30886,
-	922,
-	746,
-	632,
-	948,
-	30822,
-	651,
-	641,
-	768,
-	30818,
-	31220,
-	31478	
-};
-public const int SPECIFIC_PYRO_BACK[] = {
-	30090,
-	938,
-	30900,
-	30819,
-	30417,
-	30398,
-	31187,
-	745,
-	30663,
-	596,
-	1072,
-	842,
-	856,
-	820,
-	30904,
-	754,
-	30020,
-	31050,
-	30321,
-	30308	
-};
-public const int SPECIFIC_PYRO_BELT[] = {
-	30167,
-	30728,
-	30902,
-	31047,
-	31026	
-};
-public const int SPECIFIC_PYRO_PANTS[] = {
-	30819,
-	31464,
-	31464	
-};
-public const int SPECIFIC_PYRO_FEET[] = {
-	30905	
-};
+public const int SPECIFIC_PYRO_GLASSES[] = { 30901, 31096, 30053, 30176, 31004, 30831, 387, 30168 };
+public const int SPECIFIC_PYRO_NECKLESS[] = { 336, 787 };
+public const int SPECIFIC_PYRO_BEARD[] = { 316, 175 };
+public const int SPECIFIC_PYRO_SHIRT[] = { 30716, 936, 31328, 30986, 31463, 31263, 30400, 30544, 30581, 31358, 30092, 30062, 30826, 30583, 31433, 30169, 31051, 31188 };
+public const int SPECIFIC_PYRO_GRENADES[] = { 30886, 922, 746, 632, 948, 30822, 651, 641, 768, 30818, 31220, 31478 };
+public const int SPECIFIC_PYRO_BACK[] = { 30090, 938, 30900, 30819, 30417, 30398, 31187, 745, 30663, 596, 1072, 842, 856, 820, 30904, 754, 30020, 31050, 30321, 30308 };
+public const int SPECIFIC_PYRO_BELT[] = { 30167, 30728, 30902, 31047, 31026 };
+public const int SPECIFIC_PYRO_PANTS[] = { 30819, 31464, 31464 };
+public const int SPECIFIC_PYRO_FEET[] = { 30905	};
 //-----------------------------------------------
 // DEMO
 //-----------------------------------------------
@@ -1291,154 +893,14 @@ public const int SPECIFIC_PYRO_FEET[] = {
 30305,	// Sub Zero Suit (conflicts with pants)
 31392,	// Stunt Suit
 */
-public const int SPECIFIC_DEMO_HEAD[] = {
-	514,
-	30733,
-	30863,
-	30979,
-	703,
-	30082,
-	30723,
-	30733,
-	30863,
-	30979,
-	31307	
-};
-public const int SPECIFIC_DEMO_HATS[] = {
-	47,
-	100,
-	120,
-	146,
-	179,
-	216,
-	255,
-	259,
-	306,
-	342,
-	359,
-	388,
-	390,
-	403,
-	465,
-	604,
-	607,
-	631,
-	786,
-	876,
-	935,
-	1012,
-	30016,
-	30021,
-	30024,
-	30029,
-	30034,
-	30037,
-	30064,
-	30105,
-	30106,
-	30112,
-	30180,
-	30334,
-	30340,
-	30393,
-	30429,
-	30547,
-	30586,
-	30604,
-	30627,
-	30807,
-	30823,
-	30830,
-	30836,
-	30887,
-	30421,
-	30628,
-	30779,
-	30977,
-	31038,
-	31057,
-	31100,
-	31106,
-	31115,
-	31182,
-	31273,
-	31308,
-	31309,
-	31341,
-	31371,
-	31391,
-	31422,
-	31461,
-	31488,
-	31489	
-};
-public const int SPECIFIC_DEMO_GLASSES[] = {
-	295,
-	709,
-	1019,
-	30010,
-	30085,
-	30430,
-	30831,
-	30945	
-};
-public const int SPECIFIC_DEMO_BEARD[] = {
-	647, 	
-	830,
-	875,
-	986,
-	30011,
-	31017,
-	31040,
-	31163	
-};
-public const int SPECIFIC_DEMO_SHIRT[] = {
-	925,
-	30110,
-	30124,
-	30178,
-	30179,
-	30348,
-	30366,
-	30373,
-	30480,
-	30550,
-	31037,
-	31274,
-	31342,
-	31423	
-};
-public const int SPECIFIC_DEMO_GRENADES[] = {
-	618,
-	641,
-	768,
-	845,
-	922,
-	948,
-	30431,
-	30541,
-	30822,
-	30886,
-	31039,
-	31220,
-	31372,
-	31393	
-};
-public const int SPECIFIC_DEMO_BACK[] = {
-	771,
-	874,
-	30055,
-	30107,
-	30788,
-	30973	
-};
-public const int SPECIFIC_DEMO_BELT[] = {
-	708,
-	776,
-	30073,
-	30363,
-	30818	
-};
+public const int SPECIFIC_DEMO_HEAD[] = { 514, 30733, 30863, 30979, 703, 30082, 30723, 30733, 30863, 30979, 31307 };
+public const int SPECIFIC_DEMO_HATS[] = { 47, 100, 120, 146, 179, 216, 255, 259, 306, 342, 359, 388, 390, 403, 465, 604, 607, 631, 786, 876, 935, 1012, 30016, 30021, 30024, 30029, 30034, 30037, 30064, 30105, 30106, 30112, 30180, 30334, 30340, 30393, 30429, 30547, 30586, 30604, 30627, 30807, 30823, 30830, 30836, 30887, 30421, 30628, 30779, 30977, 31038, 31057, 31100, 31106, 31115, 31182, 31273, 31308, 31309, 31341, 31371, 31391, 31422, 31461, 31488, 31489 };
+public const int SPECIFIC_DEMO_GLASSES[] = { 295, 709, 1019, 30010, 30085, 30430, 30831, 30945 };
+public const int SPECIFIC_DEMO_BEARD[] = { 647, 830, 875, 986, 30011, 31017, 31040, 31163 };
+public const int SPECIFIC_DEMO_SHIRT[] = { 925, 30110, 30124, 30178, 30179, 30348, 30366, 30373, 30480, 30550, 31037, 31274, 31342, 31423 };
+public const int SPECIFIC_DEMO_GRENADES[] = { 618, 641, 768, 845, 922, 948, 30431, 30541, 30822, 30886, 31039, 31220, 31372, 31393 };
+public const int SPECIFIC_DEMO_BACK[] = { 771, 874, 30055, 30107, 30788, 30973 };
+public const int SPECIFIC_DEMO_BELT[] = { 708, 776, 30073, 30363, 30818	};
 public const int SPECIFIC_DEMO_PANTS[] = { 979, 30061, 30555, 30742, 31275, 31424 };
 public const int SPECIFIC_DEMO_FEET[] = { 734, 1016, 30333, 30358, 30587 };
 //-----------------------------------------------
@@ -1449,15 +911,15 @@ public const int SPECIFIC_DEMO_FEET[] = { 734, 1016, 30333, 30358, 30587 };
 991,	// Hunger Force
 30563,	// Jungle Booty
 */
-public const int SPECIFIC_HEAVY_HEAD[] = { 145, 1187, 30645, 30733, 30815, 30866, 30885, 31305, 31368, 31481, 31482	};
+public const int SPECIFIC_HEAVY_HEAD[] = { 145, 1187, 30645, 30733, 30815, 30866, 30885, 31305, 31368, 31481, 31482 };
 public const int SPECIFIC_HEAVY_HEADSKIN[] = { 380, 585, 31191 };
-public const int SPECIFIC_HEAVY_HATS[] = { 49, 96, 97, 185, 246, 254, 290, 292, 309, 313, 330, 358, 378, 427, 478, 515, 517, 535, 601, 603, 613, 635, 821, 840, 853, 866, 876, 952, 985, 989, 1012, 1018, 1087, 30013, 30049, 30054, 30081, 30094, 30122, 30315, 30344, 30346, 30369, 30374, 30545, 30588, 30589, 30644, 30653, 30811, 30812, 30887, 30911, 30912, 30959, 30981, 31008, 31029, 31052, 31080, 31106, 31178, 31190, 31255, 31267, 31304, 31345, 31402, 31403, 31434, 31452	};
+public const int SPECIFIC_HEAVY_HATS[] = { 49, 96, 97, 185, 246, 254, 290, 292, 309, 313, 330, 358, 378, 427, 478, 515, 517, 535, 601, 603, 613, 635, 821, 840, 853, 866, 876, 952, 985, 989, 1012, 1018, 1087, 30013, 30049, 30054, 30081, 30094, 30122, 30315, 30344, 30346, 30369, 30374, 30545, 30588, 30589, 30644, 30653, 30811, 30812, 30887, 30911, 30912, 30959, 30981, 31008, 31029, 31052, 31080, 31106, 31178, 31190, 31255, 31267, 31304, 31345, 31402, 31403, 31434, 31452 };
 public const int SPECIFIC_HEAVY_GLASSES[] = { 479, 30085, 30141, 30368, 30831 };
 public const int SPECIFIC_HEAVY_BEARD[] = { 485, 647, 986, 30164, 30165, 30345, 30401, 30482, 30960, 31163 };
 public const int SPECIFIC_HEAVY_SHIRT[] = { 777, 814, 925, 946, 30074, 30138, 30178, 30342, 30364, 30550, 30556, 30557, 30633, 30745, 30747, 30803, 30873, 30913, 30914, 30980, 31030, 31053, 31179, 31268, 31346, 31369, 31435, 31453, 31483 };
 public const int SPECIFIC_HEAVY_MISC[] = { 524, 757, 643, 815, 1088, 30080, 30012, 30910, 1189, 30108, 31079, 31306 };
 public const int SPECIFIC_HEAVY_BELT[] = { 392, 1028, 1097, 30079, 30728, 31123	};
-public const int SPECIFIC_HEAVY_PANTS[] = { 1188, 30319, 30343, 30372, 31180, 31370	};
+public const int SPECIFIC_HEAVY_PANTS[] = { 1188, 30319, 30343, 30372, 31180, 31370 };
 public const int SPECIFIC_HEAVY_FEET[] = { 990, 30354 };
 //-----------------------------------------------
 // ENGINEER
@@ -1751,7 +1213,6 @@ int GetCosmeticStyles( int iEntity )
 		case 31184:	return 2;
 		case 52:	return 2;
 		case 30083:	return 2;
-		case 31081:	return 2;
 		case 31415:	return 2;
 		case 31416:	return 2;
 		case 31261:	return 2;
@@ -1812,6 +1273,7 @@ int GetCosmeticStyles( int iEntity )
 		case 875:	return 4;
 		
 		case 31419:	return 5;
+		case 31081:	return 5;
 
 		case 1126:	return 10;
 		default:	return false;
@@ -3458,7 +2920,8 @@ void FetchClassForPreSet( int iClient, char[] iClass )
 	}
 	else if ( StrEqual( iClass, "Medic", false ) ) 
 	{
-		randIndex = GetRandomInt( 0, sizeof( CS_PRESET_MEDIC ) / sizeof( CosmeticSet ) - 1 );
+		randIndex = bIsHalloween ? GetRandomInt( 0, sizeof( CS_PRESET_MEDIC_HALLOWEEN ) / sizeof( CosmeticSet ) - 1 ) :
+								   GetRandomInt( 0, sizeof( CS_PRESET_MEDIC ) / sizeof( CosmeticSet ) - 1 );
 		ApplyCosmetics( iClient, CS_PRESET_MEDIC, randIndex );
 	}
 	else if ( StrEqual( iClass, "F2P", false ) ) 
