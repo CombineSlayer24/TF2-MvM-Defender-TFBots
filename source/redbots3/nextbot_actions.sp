@@ -203,48 +203,25 @@ public Action CTFBotMainAction_SelectMoreDangerousThreat(BehaviorAction action, 
 		return Plugin_Changed;
 	}
 	
-	CKnownEntity biggestThreat = NULL_KNOWN_ENTITY;
-	bool isImmediateThreat1 = IsImmediateThreat(me, threat1);
-	bool isImmediateThreat2 = IsImmediateThreat(me, threat2);
+	int iThreat1 = threat1.GetEntity();
+	int iThreat2 = threat2.GetEntity();
+	float rangeSq1 = nextbot.GetRangeSquaredTo(iThreat1);
+	float rangeSq2 = nextbot.GetRangeSquaredTo(iThreat2);
 	
-	if (isImmediateThreat1 && !isImmediateThreat2)
+	//Target the closest visible
+	if (rangeSq1 < rangeSq2 && TF2_IsLineOfFireClear4(me, iThreat1))
 	{
-		biggestThreat = threat1;
-	}
-	else if (!isImmediateThreat1 && isImmediateThreat2)
-	{
-		biggestThreat = threat2;
-	}
-	
-	if (biggestThreat != NULL_KNOWN_ENTITY)
-	{
-		if (BaseEntity_IsPlayer(biggestThreat.GetEntity()))
-		{
-			//Target the healer
-			knownEntity = GetHealerOfThreat(nextbot, biggestThreat);
-		}
-		else
-		{
-			//Target the threat
-			knownEntity = biggestThreat;
-		}
-		
-		return Plugin_Changed;
-	}
-	
-	//Either both are immediately dangerous, or neither one of them are
-	
-	biggestThreat = SelectCloserThreat(nextbot, threat1, threat1);
-	
-	if (BaseEntity_IsPlayer(biggestThreat.GetEntity()))
-	{
-		//For players, target their healer first if they have one
-		knownEntity = GetHealerOfThreat(nextbot, biggestThreat);
+		knownEntity = threat1;
 	}
 	else
 	{
-		//We target the closest threat to us
-		knownEntity = biggestThreat;
+		knownEntity = threat2;
+	}
+	
+	if (BaseEntity_IsPlayer(knownEntity.GetEntity()))
+	{
+		//Target the healer
+		knownEntity = GetHealerOfThreat(nextbot, knownEntity);
 	}
 	
 	// PrintToChatAll("CTFBotMainAction_SelectMoreDangerousThreat");
@@ -531,6 +508,60 @@ public Action CTFBotSniperLurk_SelectMoreDangerousThreat(BehaviorAction action, 
 	
 	//Return NULL so the normal threat targetting happens
 	knownEntity = NULL_KNOWN_ENTITY;
+	
+	int iThreat1 = threat1.GetEntity();
+	
+	if (BaseEntity_IsPlayer(iThreat1) && TF2_IsLineOfFireClear4(me, iThreat1))
+	{
+		int enemyWeapon = BaseCombatCharacter_GetActiveWeapon(iThreat1);
+		
+		if (enemyWeapon != -1)
+		{
+			int enemyWepID = TF2Util_GetWeaponID(enemyWeapon);
+			
+			if (WeaponID_IsSniperRifle(enemyWepID))
+			{
+				//This sniper ain't gonna snipe me
+				knownEntity = threat1;
+				return Plugin_Changed;
+			}
+			else if (enemyWepID == TF_WEAPON_MEDIGUN)
+			{
+				if (GetEntPropEnt(enemyWeapon, Prop_Send, "m_hHealingTarget") != -1 || GetEntPropFloat(enemyWeapon, Prop_Send, "m_flChargeLevel") >= 1.0)
+				{
+					//Healers should die first, ideally before they pop
+					knownEntity = threat1;
+					return Plugin_Changed;
+				}
+			}
+		}
+	}
+	
+	int iThreat2 = threat2.GetEntity();
+	
+	if (BaseEntity_IsPlayer(iThreat2) && TF2_IsLineOfFireClear4(me, iThreat2))
+	{
+		int enemyWeapon = BaseCombatCharacter_GetActiveWeapon(iThreat2);
+		
+		if (enemyWeapon != -1)
+		{
+			int enemyWepID = TF2Util_GetWeaponID(enemyWeapon);
+			
+			if (WeaponID_IsSniperRifle(enemyWepID))
+			{
+				knownEntity = threat2;
+				return Plugin_Changed;
+			}
+			else if (enemyWepID == TF_WEAPON_MEDIGUN)
+			{
+				if (GetEntPropEnt(enemyWeapon, Prop_Send, "m_hHealingTarget") != -1 || GetEntPropFloat(enemyWeapon, Prop_Send, "m_flChargeLevel") >= 1.0)
+				{
+					knownEntity = threat2;
+					return Plugin_Changed;
+				}
+			}
+		}
+	}
 	
 	return Plugin_Changed;
 }
@@ -3025,6 +3056,12 @@ bool CTFBotDefenderAttack_SelectTarget(int actor, bool bBombCarrierOnly = false)
 	//Found a valid target, update
 	if (target != -1)
 	{
+		//Go after the healer first
+		int healer = GetHealerOfPlayer(target, true);
+		
+		if (healer != -1)
+			target = healer;
+		
 		m_iAttackTarget[actor] = target;
 		return true;
 	}
@@ -5100,6 +5137,14 @@ void UtilizeCompressionBlast(int client, INextBot bot, const CKnownEntity threat
 				return;
 			}
 			
+			if (TF2_IsPlayerInCondition(iThreat, TFCond_Charging))
+			{
+				//Shove chargers away from us
+				g_iSubtractiveButtons[client] |= IN_ATTACK;
+				VS_PressAltFireButton(client);
+				return;
+			}
+			
 			if (TF2_HasTheFlag(iThreat) && GetVectorDistance(threatOrigin, GetBombHatchPosition()) <= 100.0)
 			{
 				//Shove the bomb carrier off the hatch
@@ -5460,32 +5505,4 @@ void GetFlameThrowerAimForTank(int tank, float aimPos[3])
 {
 	aimPos = WorldSpaceCenter(tank);
 	aimPos[2] += 90.0;
-}
-
-bool IsImmediateThreat(int client, const CKnownEntity threat)
-{
-	if (!threat.IsVisibleRecently())
-		return false;
-	
-	int iThreat = threat.GetEntity();
-	
-	if (!TF2_IsLineOfFireClear4(client, iThreat))
-		return false;
-	
-	float myAbsOrigin[3]; GetClientAbsOrigin(client, myAbsOrigin);
-	float lastKnownPos[3]; threat.GetLastKnownPosition(lastKnownPos);
-	
-	float to[3]; SubtractVectors(myAbsOrigin, lastKnownPos, to);
-	float threatRange = NormalizeVector(to, to);
-	
-	const float nearbyRange = 500.0;
-	
-	//Nearby threats are always dangerous
-	if (threatRange < nearbyRange)
-		return true;
-	
-	if (!BaseEntity_IsPlayer(iThreat))
-		return false;
-	
-	return false;
 }
