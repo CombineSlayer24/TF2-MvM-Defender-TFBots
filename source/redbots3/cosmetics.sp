@@ -583,6 +583,7 @@ public const CosmeticSet CS_PRESET_SCOUT_HALLOWEEN[] = {
 	{ 30300, 547, 30536 },		// Haunted Hat, B-ankh!, Cursed Cruise
 	{ 31104, 5617, -1 },		// BreadCrab, Zombie Scout
 	{ 115, 707, 30076 },		// Mildly Disturbing Halloween Mask, Boston Boom-Bringer, Bigg Mann On Campus
+	{ 546, 547, 31226 },		// Wrap Battler, B-ankh!, Corpse Carrier
 	{ 546, 547, 5617 },			// Wrap Battler, B-ankh!, Zombie Scout
 	{ 278, 5617, -1 },			// Horseless Headless Horseman's Head, Zombie Scout
 	{ 546, 547, 548 }			// Wrap Battler, B-ankh!, Futankhamun
@@ -2440,8 +2441,8 @@ void GiveBotCosmetics( int iClient )
 
 	TFClassType TFClass = TF2_GetPlayerClass( iClient );
 
-	// 65% chance to pick Randomized Cosmetic Sets
-	if ( iRandom <= 65 )
+	// 40% chance to pick Randomized Cosmetic Sets
+	if ( iRandom <= 40 )
 	{
 		if ( TFClass == TFClass_Scout || TFClass == TFClass_Soldier || TFClass == TFClass_Pyro 
 		|| TFClass == TFClass_DemoMan || TFClass == TFClass_Heavy || TFClass == TFClass_Engineer
@@ -2837,15 +2838,15 @@ void GiveBotCosmetics( int iClient )
 		{
 			switch ( TF2_GetPlayerClass( iClient ) )
 			{
-				case TFClass_Scout: 	FetchClassForPreSet( iClient, "Scout" );
-				case TFClass_Soldier: 	FetchClassForPreSet( iClient, "Soldier" );
-				case TFClass_Pyro: 		FetchClassForPreSet( iClient, "Pyro" );
-				case TFClass_DemoMan: 	FetchClassForPreSet( iClient, "Demoman" );
-				case TFClass_Heavy: 	FetchClassForPreSet( iClient, "HeavyWeapons" );
-				case TFClass_Engineer: 	FetchClassForPreSet( iClient, "Engineer" );
-				case TFClass_Medic: 	FetchClassForPreSet( iClient, "Medic" );
-				case TFClass_Sniper: 	FetchClassForPreSet( iClient, "Sniper" );
-				case TFClass_Spy: 		FetchClassForPreSet( iClient, "Spy" );
+				case TFClass_Scout: 	PresetCosmeticSet( iClient, "Scout" );
+				case TFClass_Soldier: 	PresetCosmeticSet( iClient, "Soldier" );
+				case TFClass_Pyro: 		PresetCosmeticSet( iClient, "Pyro" );
+				case TFClass_DemoMan: 	PresetCosmeticSet( iClient, "Demoman" );
+				case TFClass_Heavy: 	PresetCosmeticSet( iClient, "HeavyWeapons" );
+				case TFClass_Engineer: 	PresetCosmeticSet( iClient, "Engineer" );
+				case TFClass_Medic: 	PresetCosmeticSet( iClient, "Medic" );
+				case TFClass_Sniper: 	PresetCosmeticSet( iClient, "Sniper" );
+				case TFClass_Spy: 		PresetCosmeticSet( iClient, "Spy" );
 			}
 
 			#if defined TESTING_ONLY
@@ -2854,7 +2855,7 @@ void GiveBotCosmetics( int iClient )
 		}
 		else if ( iRandom <= 90 )
 		{
-			FetchClassForPreSet( iClient, "F2P" );
+			PresetCosmeticSet( iClient, "F2P" );
 			#if defined TESTING_ONLY
 				CPrintToChatAll( "BOT: {fuchsia}%s{default}, Selected {green}F2P {default}set.", clientName )
 			#endif
@@ -2868,7 +2869,7 @@ void GiveBotCosmetics( int iClient )
 	}
 }
 
-void ApplyCosmetics(int iClient, const CosmeticSet[] presetCosmetics, int iRandIndex) 
+/* void ApplyCosmetics(int iClient, const CosmeticSet[] presetCosmetics, int iRandIndex) 
 {
 	if ( presetCosmetics[ iRandIndex ].iHat != -1 ) 
 	{
@@ -2931,19 +2932,22 @@ void FetchClassForPreSet( int iClient, char[] iClass )
 		ApplyCosmetics( iClient, bIsHalloween ? CS_PRESET_F2P_HALLOWEEN : CS_PRESET_F2P, randIndex );
 	}
 }
-
-/* void PresetCosmeticSet( int iClient, char[] iClass ) 
+*/
+void PresetCosmeticSet( int iClient, char[] iClass ) 
 {
-	int iScoutRand 				= GetRandomInt( 0, sizeof( CS_PRESET_SCOUT ) / sizeof( CosmeticSet ) - 1 );
-	int iScoutHalloRand 		= GetRandomInt( 0, sizeof( CS_PRESET_SCOUT_HALLOWEEN ) / sizeof( CosmeticSet ) - 1 );
-	int iSoldierRand 			= GetRandomInt( 0, sizeof( CS_PRESET_SOLDIER ) / sizeof( CosmeticSet ) - 1 );
-	int iSoldierHalloRand 		= GetRandomInt( 0, sizeof( CS_PRESET_SOLDIER_HALLOWEEN ) / sizeof( CosmeticSet ) - 1 );
-	int iPyroRand 				= GetRandomInt( 0, sizeof( CS_PRESET_PYRO ) / sizeof( CosmeticSet ) - 1 );
-	int iPyroHalloRand 			= GetRandomInt( 0, sizeof( CS_PRESET_PYRO_HALLOWEEN ) / sizeof( CosmeticSet ) - 1 );
-	int iDemoRand 				= GetRandomInt( 0, sizeof( CS_PRESET_DEMOMAN ) / sizeof( CosmeticSet ) - 1 );
-	int iHeavyRand 				= GetRandomInt( 0, sizeof( CS_PRESET_HEAVY ) / sizeof( CosmeticSet ) - 1 );
-	int iF2PRand 				= GetRandomInt( 0, sizeof( CS_PRESET_F2P ) / sizeof( CosmeticSet ) - 1 );
-	int iF2PHalloRand 			= GetRandomInt( 0, sizeof( CS_PRESET_F2P_HALLOWEEN ) / sizeof( CosmeticSet ) - 1 );
+	
+	int iScoutRand 				= GetRandomInt( 0, sizeof( CS_PRESET_SCOUT ) - 1);
+	int iScoutHalloRand 		= GetRandomInt( 0, sizeof( CS_PRESET_SCOUT_HALLOWEEN ) - 1 );
+	int iSoldierRand 			= GetRandomInt( 0, sizeof( CS_PRESET_SOLDIER ) - 1 );
+	int iSoldierHalloRand 		= GetRandomInt( 0, sizeof( CS_PRESET_SOLDIER_HALLOWEEN ) - 1 );
+	int iPyroRand 				= GetRandomInt( 0, sizeof( CS_PRESET_PYRO ) - 1 );
+	int iPyroHalloRand 			= GetRandomInt( 0, sizeof( CS_PRESET_PYRO_HALLOWEEN ) - 1 );
+	int iDemoRand 				= GetRandomInt( 0, sizeof( CS_PRESET_DEMOMAN ) - 1 );
+	int iHeavyRand 				= GetRandomInt( 0, sizeof( CS_PRESET_HEAVY ) - 1 );
+	int iMedicRand 				= GetRandomInt( 0, sizeof( CS_PRESET_MEDIC ) - 1 );
+	int iMedicHalloRand 		= GetRandomInt( 0, sizeof( CS_PRESET_MEDIC_HALLOWEEN ) - 1 );
+	int iF2PRand 				= GetRandomInt( 0, sizeof( CS_PRESET_F2P ) - 1 );
+	int iF2PHalloRand 			= GetRandomInt( 0, sizeof( CS_PRESET_F2P_HALLOWEEN ) - 1 );
 	int iHalloweenChance 		= IsChance( 60 );
 	bool bIsHalloween 			= TF2_IsHolidayActive( TFHoliday_HalloweenOrFullMoon )
 
@@ -3094,6 +3098,42 @@ void FetchClassForPreSet( int iClient, char[] iClass )
 		}
 	}
 
+	if ( StrEqual( iClass, "Medic", false ) ) 
+	{
+		if ( bIsHalloween && iHalloweenChance )
+		{
+			if ( CS_PRESET_MEDIC_HALLOWEEN[ iMedicHalloRand ].iHat != -1 )
+			{
+				TF2_CreateHat( iClient, CS_PRESET_MEDIC_HALLOWEEN[ iMedicHalloRand ].iHat, QUALITY_UNIQUE, true );
+			}
+
+			for ( int i = 0; i < 2; ++i )
+			{
+				int iCosmeticID = ( i == 0 ) ? CS_PRESET_MEDIC_HALLOWEEN[ iMedicHalloRand ].iCosmetic1 : CS_PRESET_MEDIC_HALLOWEEN[ iMedicHalloRand ].iCosmetic2;
+				if ( iCosmeticID != -1 )
+				{
+					TF2_CreateHat( iClient, iCosmeticID, QUALITY_UNIQUE );
+				}
+			}
+		}
+		else
+		{
+			if ( CS_PRESET_MEDIC[ iMedicRand ].iHat != -1 )
+			{
+				TF2_CreateHat( iClient, CS_PRESET_MEDIC[ iMedicRand ].iHat, QUALITY_UNIQUE, true );
+			}
+
+			for ( int i = 0; i < 2; ++i )
+			{
+				int iCosmeticID = ( i == 0 ) ? CS_PRESET_MEDIC[ iMedicRand ].iCosmetic1 : CS_PRESET_MEDIC[ iMedicRand ].iCosmetic2;
+				if ( iCosmeticID != -1 )
+				{
+					TF2_CreateHat( iClient, iCosmeticID, QUALITY_UNIQUE );
+				}
+			}
+		}
+	}
+
 	if ( StrEqual( iClass, "F2P", false ) ) 
 	{
 		if ( bIsHalloween && iHalloweenChance )
@@ -3129,7 +3169,7 @@ void FetchClassForPreSet( int iClient, char[] iClass )
 			}
 		}
 	}
-} */
+}
 
 //	Qualities //
 // Normal = 0
