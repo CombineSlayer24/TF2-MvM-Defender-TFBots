@@ -535,7 +535,7 @@ public const CosmeticSet CS_PRESET_SCOUT[] = {
 	{ 31437, 31436, 30991 },	// Bonk Beanie, Isotopic Insulator, Blizzard Britches	(NOTE: This one has some clipping, but who tf cares.)
 	{ 30868, 31406, 30888 },	// Legendary Lid, Last Laugh, Jungle Jersey
 	{ 30743, 30685, 30104 },	// Patriot Peak, Thrilling Tracksuit, Graybanns
-	{ 30066, 30309, 30104 },	// Brotherhood Of Arms, Dead of Night, Graybanns
+	//{ 30066, 30309, 30104 },	// Brotherhood Of Arms, Dead of Night, Graybanns
 	{ 30767, 31081, 30185 },	// Airdog, Fuel Injector, Flapjack
 	{ 31459, 31460, 30104 },	// Commonwealth Commando, Tanker's Top, Graybanns
 	{ 31197, 31195, 31196 },	// Fried Batter, Fast Food, Meal Dealer
@@ -544,8 +544,8 @@ public const CosmeticSet CS_PRESET_SCOUT[] = {
 	{ 31326, 30309, 30427 },	// Lumbercap, Dead of Night, Argyle Ace
 	{ 30479, 1026, 30889 },		// Thirst Blood, Tomb Wrapper, Transparent Trousers
 	{ 1014, 30890, 31281 },		// Brutal Bouffant, Forest Footwear, Ripped Rider
-	{ 126, 30104, 30309 },		// L4D Hat, Graybanns, Dead of Night
-	{ 30362, 30085, 296 },		// THe Law, The Macho Mann, TTG Badge (License to maim)
+	//{ 126, 30104, 30309 },		// L4D Hat, Graybanns, Dead of Night
+	//{ 30362, 30085, 296 },		// THe Law, The Macho Mann, TTG Badge (License to maim)
 	{ 324, 31217, 31302 },		// Flipped Trilby, Goalkeeper, Imp's Imprint
 	{ 31168, 987, 31022 },		// Towering Pillar of Beanies, Merc's Muffler, Juvenile's Jumper
 	{ 765, 30185, 30068 },		// Cross-Comm Express, FlapJack, Breakneck Baggies
@@ -612,7 +612,7 @@ public const CosmeticSet CS_PRESET_SOLDIER[] = {
 	{ 445, 30388, 30392 },		// Armored Authority, Classified Coif, Man in Slacks
 	{ 31325, 30331, 641 },		// Colonel Kringle, Antarctic Parka, Ornament Armament
 	{ 945, 30853, 30388 },		// Chief Constable, FlakCatcher, Classified Coif
-	{ 126, 30309, 30068 },		// L4D Hat, Dead Of Night, Breakneck Baggies
+	//{ 126, 30309, 30068 },		// L4D Hat, Dead Of Night, Breakneck Baggies
 	{ 31310, 446, 31311 },		// Firearm Protector, Fancy Dress Uniform, Safety Stripes
 	{ 666, 30747, 30818 },		// B.M.O.C., Gift Bringer, Socked And Loaded
 	{ 30477, 631, 30392 },		// Lone Survivor, Hat with No Name, Man in Slacks
@@ -664,8 +664,8 @@ public const CosmeticSet CS_PRESET_PYRO[] = {
 	{ 247, 30089, 31065 },		// Old Guadalajara, El Muchacho, Head of the Dead
 	{ 30038, 30032, 842 },		// Firewall Helmet, Rusty Reaper, Pyrobotics Pack
 	{ 126, 30309, 31464 },		// L4D Hat, Dead Of Night, Scorched Earth Stompers
-	{ 126, 30104, 30309 },		// L4D Hat, Graybanns, Dead of Night
-	{ 30066, 30309, 486 },		// BrotherHood of Arms, Dead Of Night, Summer Shades
+	//{ 126, 30104, 30309 },		// L4D Hat, Graybanns, Dead of Night
+	//{ 30066, 30309, 486 },		// BrotherHood of Arms, Dead Of Night, Summer Shades
 	{ 394, 30169, 30417 },		// Connoisseur's Cap, Trickster's Turnout Gear, Frymaster
 	{ 30304, 30305, -1 },		// Blizzard Breather, Sub Zero Suit
 	{ 126, 570, 30305 },		// L4D Hat, Last Breath, Sub Zero Suit
@@ -690,8 +690,8 @@ public const CosmeticSet CS_PRESET_DEMOMAN[] = {
 	{ 30628, 31274, 31275 },	// Outta' Sight, Hawaiian hangover, Barefoot Brawler
 	{ 30979, 30945, 30555 },	// Frag Proof Fragger, Blast Blocker, EOTL_demopants
 	{ 30393, 30373, 30104 },	// Razor Cut, Toowoomba Tunic, Graybanns
-	{ 30066, 30104, 30178 },	// Brotherhood of Arms, Graybanns, Weight Room Warmer
-	{ 30066, 30104, 30309 },	// Brotherhood of Arms, Graybanns, Dead of Night
+	//{ 30066, 30104, 30178 },	// Brotherhood of Arms, Graybanns, Weight Room Warmer
+	//{ 30066, 30104, 30309 },	// Brotherhood of Arms, Graybanns, Dead of Night
 	{ 30105, 30107, 30124 },	// Black Watch, Gaelic Golf Bag, Gaelic garb
 	{ 31115, 31392, 30945 },	// Hazard Headgear, Stunt Suit, Blast Blocker
 	{ 30421, 30541, 30550 },	// Frontier Djustice, EOTL_demo_dynamite, EOTL_hiphunter_jacket
@@ -707,7 +707,7 @@ public const CosmeticSet CS_PRESET_DEMOMAN[] = {
 	{ 146, 31037, 30068 },		// Demoman Hallmark, Dynamite Abs, Breakneck Baggies
 	{ 359, 30348, 30742 },		// Demo Kabuto, Bushi-Dou, Shin Shredders
 	{ 30016, 31307, 845 },		// FF-0, Alcoholic Automaton, Battery Bandolier
-	{ 126, 30104, 30309 },		// L4D Hat, Graybanns, Dead of Night
+	//{ 126, 30104, 30309 },		// L4D Hat, Graybanns, Dead of Night
 	{ 30421, 30788, 734 },		// Frontier Djustice, Demo's Dustcatcher, Teufort Tooth Kicker
 	{ 30180, 31037, 925 },		// Pirate Bandana, Dynamite Abs, Spooky Sleeves
 	{ 342, 30124, 874 },		// Prince Tavish's Crown, Gaelic Garb, King of Scotland Cape
@@ -723,7 +723,7 @@ public const CosmeticSet CS_PRESET_HEAVY[] = {
 	{ 30866, 30557, 30368 },	// Warhood, EOTL_sheavyshirt, War Goggles
 	{ 30644, 30645, 30803 },	// White Russian, El Duderino, Heavy Tourism
 	{ 30912, 30343, 30913 },	// Commando Elite, Gone Commando, Siberian Tigerstripe
-	{ 30066, 30104, 30309 },	// Brotherhood of Arms, Graybanns, Dead of Night
+	//{ 30066, 30104, 30309 },	// Brotherhood of Arms, Graybanns, Dead of Night
 	{ 30369, 30913, 30372 },	// Eliminators Safeguard, Siberian Tigerstripe, Combat Slacks
 	{ 30885, 30873, 30563 },	// Nuke, Airborne Attire, Jungle Booty
 	{ 30885, 30873, 30343 },	// Nuke, Airborne Attire, Gone Commando
@@ -739,7 +739,7 @@ public const CosmeticSet CS_PRESET_HEAVY[] = {
 	{ 30959, 30960, 777 },		// Sinner's Shade, Wild West Whiskers, Apparatchik's Apparel
 	{ 1087, 1088, 30372 },		// Wolfenstien Set
 	{ 126, 30165, 30104 },		// L4D Hat, Cuban Bristle Crisis, Graybanns
-	{ 126, 30104, 30309 },		// L4D Hat, Graybanns, Dead of Night
+	//{ 126, 30104, 30309 },		// L4D Hat, Graybanns, Dead of Night
 	{ 145, 30165, 31453 },		// Heavy Hair, Cuban Bristle Crisis, Brute's Braces
 	{ 30549, 30550, 486 },		// EOTL_hiphunter_hat, EOTL_hiphunter_jacket, Summer Shades
 	{ 821, 31030, 30319 },		// Soviet Gentleman, Paka Parka, Mann Of the House
@@ -784,7 +784,6 @@ public const CosmeticSet CS_PRESET_MEDIC[] = {
 	{ 30939, 30940, -1 },		// Coldfront Commander, Coldfront Carapace
 	{ 30127, 486, 982 },		// Das Gutenkutteharen, Summer Shades, Doc's Holiday
 	{ 50, 657, 30356 }			// Prussian Pickelhaube, Nine-Pipe Problem, Heat Of Winter
-
 };
 public const CosmeticSet CS_PRESET_MEDIC_HALLOWEEN[] = {
 	{ 30237, 30419, 30982 },	// Medimedes, Chronoscarf, 
@@ -797,19 +796,67 @@ public const CosmeticSet CS_PRESET_MEDIC_HALLOWEEN[] = {
 	{ 31131, 927, 869 },		// Sir Pumpkinton, Boo Balloon, Rump-o'-Lantern
 	{ 552, 553, 554 },			// Einstein, Dr Gogglestache, Emerald Jarate
 };
+public const CosmeticSet CS_PRESET_SNIPER[] = {
+	{ 30955, 31314, 31363 },	// Handsome Hitman, Hunting Cloak, Preventative Measure
+	{ 31362, 31314, 31363 },	// Cranium Cover, Hunting Cloak, Preventative Measure
+	{ 30375, 30892, 31363 },	// Deep Cover Operator, Conspicuous Camouflage, Preventative Measure
+	{ 634, 30892, 30891 },		// Point And Shoot, Conspicuous Camouflage, Cammy Jammies
+	{ 31417, 30599, 955 },		// Dapper Dickens, dec2014 hunter_vest, Tuxxy
+	{ 981, 30310, 30397 },		// Cold Killer, Snow Scoper, Bruiser's Bandanna
+	{ 626, 30170, 30424 },		// Swagman's Swatter, Chronomancer, Triggerman's Tacticals
+	{ 981, 30310, 393 },		// Cold Killer, Snow Scoper, Villain's Veil
+};
 public const CosmeticSet CS_PRESET_F2P[] = {
 	{ 261, 744, 166 },			// Mann Co. Cap, Pyrovision Goggles, Mercenary
 	{ 940, 744, 166 },			// Ghostly Gibus, Pyrovision Goggles, Mercenary
 	{ 941, 744, 655 },			// Skull Island Topper, Pyrovision Goggles, Spirit of Giving
 	{ 537, 166, 744 },			// TF Birthday Hat 2011, Mercenary, Pyrovision Goggles
+	{ 941, 583, -1 },			// Skull Island Topper, Bombinomicon
 	{ 263, 166, -1 },			// Ellis Hat, Mercenary
 	{ 537, 166, -1 },			// TF Birthday Hat 2011, Mercenary
-	{ 537, -1, -1 }			// TF Birthday Hat 2011
+	{ 537, -1, -1 }				// TF Birthday Hat 2011
 };
 public const CosmeticSet CS_PRESET_F2P_HALLOWEEN[] = {
 	{ 581, 655, -1 },			// MONOCULUS!, Spirit of Giving
 	{ 278, 166, -1 },			// HHH Head, Mercenary
 	{ 115, 166, -1 }			// Mildly Disturbing Halloween Mask, Mercenary
+};
+
+public const CosmeticSet CS_PRESET_GENERIC[] = {
+	{ 30066, 30104, 30178 },	// Brotherhood of Arms, Graybanns, Weight Room Warmer
+	{ 31415, 30309, 31416 },	// Boarder's Beanie, Dead Of Night, Cozy Cover-Up
+	{ 30623, 30309, 30104 },	// Rotation Sensation, Dead Of Night, Graybanns
+	{ 30549, 30309, 30551 },	// EOTL_hiphunter_hat, Dead Of Night, EOTL_hiphunter_boots
+	{ 30877, 31127, 31471 },	// Hunter in Darkness, Gourd Grin, Spider Sights
+	{ 31131, 31127, 31103 },	// Sir Pumpkinton, Gourd Grin, Hypno-Eyes
+	{ 31104, 31062, 31105 },	// Breadcrab, Bread Bitter, Loaf Loafers
+	{ 30838, 30309, 30068 },	// Head Prize, Dead Of Night, Breakneck Baggies
+	{ 30838, 30104, 30397 },	// Head Prize, Graybanns, Bruiser's Bandanna
+	{ 30066, 31103, 5075 },		// BrotherHood of Arms, Hypno-Eyes, Something Special For Someone Special (Wearable)
+	{ 30549, 343, 30551 },		// EOTL_hiphunter_hat, Friendly Item, EOTL_hiphunter_boots
+	{ 126, 30104, 30309 },		// L4D Hat, Graybanns, Dead of Night
+	{ 30066, 30309, 486 },		// BrotherHood of Arms, Dead Of Night, Summer Shades
+	{ 126, 30309, 30068 },		// L4D Hat, Dead Of Night, Breakneck Baggies
+	{ 30362, 30085, 296 },		// THe Law, The Macho Mann, TTG Badge (License to maim)
+	{ 31246, 31252, 987 },		// Giftcrafter, Festive Frames, Merc's Muffler
+	{ 30623, 30309, 143 },		// Rotation Sensation, Dead Of Night, OSX Item
+	{ 30067, 125, 31060 },		// Well-Rounded Rifleman, Honest Halo, BINOCULUS
+	{ 260, 30309, 30569 },		// Wiki Cap, Dead Of Night, Tomb Readers
+	{ 30700, 953, 31018 },		// Duck Billed Hatypus, Saxxy Clapper Badge, Polar Pal
+	{ 817, 1033, 31184 },		// Human Cannonball, TF2VRH, Manndatory Attire
+	{ 31166, 31260, -1 },		// Smissmass Sorcerer, Elf-Made Bandanna
+	{ 30838, 30104, -1 },		// Head Prize, Graybanns
+	{ 614, 31086, 955 },		// Hot Dogger, Pebbles the Penguin, Tuxxy
+	{ 30928, 143, 541 },		// Balloonihoodie, OSX Item, Merc's Pride Scarf
+	{ -1, -1, 31442 }, 			// Botler 2000
+	{ 30700, -1, -1 },			// Duck Billed Hatypus
+	{ 126, 125, 541 },			// L4D Hat, OSX Item, Merc's Pride Scarf
+	{ 471, 125, 343 },			// Loyalty Reward, OSX Item, Friendly Item
+	{ 1173, -1, -1 }, 			// Unusual Cap
+	{ 470, 486, -1 }, 			// Lo-Fi Longwave, Summer Shades
+	{ 341, 486, -1 },			// A Rather Festive Tree, Summer Shades
+	{ 470, -1, -1 }, 			// Lo-Fi Longwave
+	{ 126, -1, -1 },			// L4D Hat
 };
 
 
@@ -959,6 +1006,22 @@ public const int SPECIFIC_MEDIC_SHIRT[] = { 621, 639, 769, 878, 936, 978, 982, 3
 public const int SPECIFIC_MEDIC_PANTS[] = { 30773, 31177 };
 public const int SPECIFIC_MEDIC_BELT[] = { 770, 828, 30048, 30096, 30415, 30728, 30813, 30825, 31033, 31099, 31365 };
 public const int SPECIFIC_MEDIC_FEET[] = { 30379 };
+
+//-----------------------------------------------
+// SNIPER
+//-----------------------------------------------
+/*
+
+public const int SPECIFIC_SNIPER_HEAD[] = { };
+public const int SPECIFIC_SNIPER_HATS[] = { };
+public const int SPECIFIC_SNIPER_GLASSES[] = { };
+public const int SPECIFIC_SNIPER_BEARD[] = { };
+public const int SPECIFIC_SNIPER_SHIRT[] = { };
+public const int SPECIFIC_SNIPER_VEST[] = { };
+public const int SPECIFIC_SNIPER_PANTS[] = { };
+public const int SPECIFIC_SNIPER_BELT[] = { };
+public const int SPECIFIC_SNIPER_FEET[] = { };
+*/
 
 // Returns the ellgible cosmetics that has multiple styles
 int GetCosmeticStyles( int iEntity )
@@ -2838,15 +2901,15 @@ void GiveBotCosmetics( int iClient )
 		{
 			switch ( TF2_GetPlayerClass( iClient ) )
 			{
-				case TFClass_Scout: 	PresetCosmeticSet( iClient, "Scout" );
-				case TFClass_Soldier: 	PresetCosmeticSet( iClient, "Soldier" );
-				case TFClass_Pyro: 		PresetCosmeticSet( iClient, "Pyro" );
-				case TFClass_DemoMan: 	PresetCosmeticSet( iClient, "Demoman" );
-				case TFClass_Heavy: 	PresetCosmeticSet( iClient, "HeavyWeapons" );
-				case TFClass_Engineer: 	PresetCosmeticSet( iClient, "Engineer" );
-				case TFClass_Medic: 	PresetCosmeticSet( iClient, "Medic" );
-				case TFClass_Sniper: 	PresetCosmeticSet( iClient, "Sniper" );
-				case TFClass_Spy: 		PresetCosmeticSet( iClient, "Spy" );
+				case TFClass_Scout: 	FetchClassForPreSet( iClient, "Scout" );
+				case TFClass_Soldier: 	FetchClassForPreSet( iClient, "Soldier" );
+				case TFClass_Pyro: 		FetchClassForPreSet( iClient, "Pyro" );
+				case TFClass_DemoMan: 	FetchClassForPreSet( iClient, "Demoman" );
+				case TFClass_Heavy: 	FetchClassForPreSet( iClient, "HeavyWeapons" );
+				case TFClass_Engineer: 	FetchClassForPreSet( iClient, "Engineer" );
+				case TFClass_Medic: 	FetchClassForPreSet( iClient, "Medic" );
+				case TFClass_Sniper: 	FetchClassForPreSet( iClient, "Sniper" );
+				case TFClass_Spy: 		FetchClassForPreSet( iClient, "Spy" );
 			}
 
 			#if defined TESTING_ONLY
@@ -2855,21 +2918,31 @@ void GiveBotCosmetics( int iClient )
 		}
 		else if ( iRandom <= 90 )
 		{
-			PresetCosmeticSet( iClient, "F2P" );
+			FetchClassForPreSet( iClient, "F2P" );
 			#if defined TESTING_ONLY
 				CPrintToChatAll( "BOT: {fuchsia}%s{default}, Selected {green}F2P {default}set.", clientName )
 			#endif
 		}
 		else
 		{
-			#if defined TESTING_ONLY
-				CPrintToChatAll( "BOT: {fuchsia}%s{default}, Selected no sets (2007 player).", clientName )
-			#endif
+			if ( iRandom <= 25 )
+			{
+				FetchClassForPreSet( iClient, "Generic" );
+				#if defined TESTING_ONLY
+					CPrintToChatAll( "BOT: {fuchsia}%s{default}, Selected Generic Sets.", clientName )
+				#endif
+			}
+			else
+			{
+				#if defined TESTING_ONLY
+					CPrintToChatAll( "BOT: {fuchsia}%s{default}, Selected no sets (2007 player).", clientName )
+				#endif	
+			}
 		}
 	}
 }
 
-/* void ApplyCosmetics(int iClient, const CosmeticSet[] presetCosmetics, int iRandIndex) 
+void ApplyCosmetics(int iClient, const CosmeticSet[] presetCosmetics, int iRandIndex) 
 {
 	if ( presetCosmetics[ iRandIndex ].iHat != -1 ) 
 	{
@@ -2889,51 +2962,41 @@ void GiveBotCosmetics( int iClient )
 void FetchClassForPreSet( int iClient, char[] iClass )
 {
 	bool bIsHalloween = TF2_IsHolidayActive( TFHoliday_HalloweenOrFullMoon );
-	int randIndex;
+	int selectedPreset[1];
 
-	if ( StrEqual( iClass, "Scout", false ) ) 
+	if ( StrEqual( iClass, "Scout", false ) )
 	{
-		randIndex = bIsHalloween ? GetRandomInt( 0, sizeof( CS_PRESET_SCOUT_HALLOWEEN ) / sizeof( CosmeticSet ) - 1 ) :
-								   GetRandomInt( 0, sizeof( CS_PRESET_SCOUT ) / sizeof( CosmeticSet ) - 1 );
-		ApplyCosmetics( iClient, bIsHalloween ? CS_PRESET_SCOUT_HALLOWEEN : CS_PRESET_SCOUT, randIndex );
+		selectedPreset = bIsHalloween ? CS_PRESET_SCOUT_HALLOWEEN : CS_PRESET_SCOUT;
 	}
-	else if ( StrEqual( iClass, "Soldier", false ) ) 
+	else if ( StrEqual( iClass, "Soldier", false ) )
 	{
-		randIndex = bIsHalloween ? GetRandomInt( 0, sizeof( CS_PRESET_SOLDIER_HALLOWEEN ) / sizeof( CosmeticSet ) - 1 ) :
-								   GetRandomInt( 0, sizeof( CS_PRESET_SOLDIER ) / sizeof( CosmeticSet ) - 1 );
-		ApplyCosmetics( iClient, bIsHalloween ? CS_PRESET_SOLDIER_HALLOWEEN : CS_PRESET_SOLDIER, randIndex );
+		selectedPreset = bIsHalloween ? CS_PRESET_SOLDIER_HALLOWEEN : CS_PRESET_SOLDIER;
 	}
-	else if ( StrEqual( iClass, "Pyro", false ) ) 
+	else if ( StrEqual( iClass, "Pyro", false ) )
 	{
-		randIndex = bIsHalloween ? GetRandomInt( 0, sizeof( CS_PRESET_PYRO_HALLOWEEN ) / sizeof( CosmeticSet ) - 1 ) :
-								   GetRandomInt( 0, sizeof( CS_PRESET_PYRO ) / sizeof( CosmeticSet ) - 1 );
-		ApplyCosmetics( iClient, bIsHalloween ? CS_PRESET_PYRO_HALLOWEEN : CS_PRESET_PYRO, randIndex );
+		selectedPreset = bIsHalloween ? CS_PRESET_PYRO_HALLOWEEN : CS_PRESET_PYRO;
 	}
-	else if ( StrEqual( iClass, "Demoman", false ) ) 
+	else if ( StrEqual( iClass, "Demoman", false ) )
 	{
-		randIndex = GetRandomInt( 0, sizeof( CS_PRESET_DEMOMAN ) / sizeof( CosmeticSet ) - 1 );
-		ApplyCosmetics( iClient, CS_PRESET_DEMOMAN, randIndex );
+		selectedPreset = CS_PRESET_DEMOMAN;
 	}
-	else if ( StrEqual( iClass, "HeavyWeapons", false ) ) 
+	else if ( StrEqual( iClass, "HeavyWeapons", false ) )
 	{
-		randIndex = GetRandomInt( 0, sizeof( CS_PRESET_HEAVY ) / sizeof( CosmeticSet ) - 1 );
-		ApplyCosmetics( iClient, CS_PRESET_HEAVY, randIndex );
+		selectedPreset = CS_PRESET_HEAVY;
 	}
-	else if ( StrEqual( iClass, "Medic", false ) ) 
+	else if ( StrEqual( iClass, "F2P", false ) )
 	{
-		randIndex = bIsHalloween ? GetRandomInt( 0, sizeof( CS_PRESET_MEDIC_HALLOWEEN ) / sizeof( CosmeticSet ) - 1 ) :
-								   GetRandomInt( 0, sizeof( CS_PRESET_MEDIC ) / sizeof( CosmeticSet ) - 1 );
-		ApplyCosmetics( iClient, CS_PRESET_MEDIC, randIndex );
+		selectedPreset = bIsHalloween ? CS_PRESET_F2P_HALLOWEEN : CS_PRESET_F2P;
 	}
-	else if ( StrEqual( iClass, "F2P", false ) ) 
-	{
-		randIndex = bIsHalloween ? GetRandomInt( 0, sizeof( CS_PRESET_F2P_HALLOWEEN ) / sizeof( CosmeticSet ) - 1 ) :
-								   GetRandomInt( 0, sizeof( CS_PRESET_F2P ) / sizeof( CosmeticSet ) - 1 );
-		ApplyCosmetics( iClient, bIsHalloween ? CS_PRESET_F2P_HALLOWEEN : CS_PRESET_F2P, randIndex );
-	}
+
+	int iRandIndex = selectedPreset;
+
+	ApplyCosmetics( iClient, GetRandomInt( 0, sizeof( selectedPreset ) - 1 ), iRandIndex );
 }
-*/
-void PresetCosmeticSet( int iClient, char[] iClass ) 
+
+
+
+/* void PresetCosmeticSet( int iClient, char[] iClass ) 
 {
 	
 	int iScoutRand 				= GetRandomInt( 0, sizeof( CS_PRESET_SCOUT ) - 1);
@@ -2948,6 +3011,7 @@ void PresetCosmeticSet( int iClient, char[] iClass )
 	int iMedicHalloRand 		= GetRandomInt( 0, sizeof( CS_PRESET_MEDIC_HALLOWEEN ) - 1 );
 	int iF2PRand 				= GetRandomInt( 0, sizeof( CS_PRESET_F2P ) - 1 );
 	int iF2PHalloRand 			= GetRandomInt( 0, sizeof( CS_PRESET_F2P_HALLOWEEN ) - 1 );
+	int iGenericRand 			= GetRandomInt( 0, sizeof( CS_PRESET_GENERIC ) - 1 );
 	int iHalloweenChance 		= IsChance( 60 );
 	bool bIsHalloween 			= TF2_IsHolidayActive( TFHoliday_HalloweenOrFullMoon )
 
@@ -3169,7 +3233,25 @@ void PresetCosmeticSet( int iClient, char[] iClass )
 			}
 		}
 	}
-}
+
+	if ( StrEqual( iClass, "Generic", false ) ) 
+	{
+
+		if ( CS_PRESET_GENERIC[ iGenericRand ].iHat != -1 )
+		{
+			TF2_CreateHat( iClient, CS_PRESET_GENERIC[ iGenericRand ].iHat, QUALITY_UNIQUE, true );
+		}
+
+		for ( int i = 0; i < 2; ++i )
+		{
+			int iCosmeticID = ( i == 0 ) ? CS_PRESET_GENERIC[ iGenericRand ].iCosmetic1 : CS_PRESET_GENERIC[ iGenericRand ].iCosmetic2;
+			if ( iCosmeticID != -1 )
+			{
+				TF2_CreateHat( iClient, iCosmeticID, QUALITY_UNIQUE );
+			}
+		}
+	}
+} */
 
 //	Qualities //
 // Normal = 0
@@ -3208,8 +3290,10 @@ int TF2_CreateHat( int iClient, int iIndex, int iQuality, bool bIsUnusual = fals
 		bool bCantBeUnusual = false;
 		bool bIsHalloween = TF2_IsHolidayActive( TFHoliday_HalloweenOrFullMoon )
 
-		if ( IsChance( 10 ) )
+		// Chance for a Strange
+ 		if ( IsChance( 25 ) )
 		{
+			// Is this really needed?
 			if ( iQuality == QUALITY_VINTAGE || iQuality == QUALITY_GENUINE 
 			|| iQuality == QUALITY_HAUNTED || iQuality == QUALITY_UNUSUAL
 			|| iQuality == QUALITY_COMMUNITY || iQuality == QUALITY_COLLECTORS )
@@ -3217,18 +3301,16 @@ int TF2_CreateHat( int iClient, int iIndex, int iQuality, bool bIsUnusual = fals
 				// Remove "Kill Eater" attrbute
 				TF2Attrib_RemoveByName( iHat, "kill eater" )
 			}
-			else if ( IsChance( 25 ) )
-			{
-				// Set item to strange
-				iQuality = QUALITY_STRANGE;
-				TF2Attrib_SetByName( iHat, "kill eater", view_as<float>( GetRandomInt( 0, 9000 ) ) );
-			}
+
+			// Set item to strange
+			iQuality = QUALITY_STRANGE;
+			TF2Attrib_SetByName( iHat, "kill eater", view_as<float>( GetRandomInt( 0, 9000 ) ) );
 		}
 
 		if ( iQuality != QUALITY_UNUSUAL && iQuality != QUALITY_STRANGE )
 		{
 			// If the hat isn't Unusual or strange, give other qualities
-			if ( IsChance( 32 ) )
+			if ( IsChance( 30 ) )
 			{
 				// Genuine quality
 				iQuality = QUALITY_GENUINE;
@@ -3247,7 +3329,7 @@ int TF2_CreateHat( int iClient, int iIndex, int iQuality, bool bIsUnusual = fals
 				iQuality = QUALITY_HAUNTED;
 				bCantBeUnusual = true;
 			}
-			else if ( IsChance( 8 ) && ( iIndex != 1158 && iIndex != 1173 && iIndex != 30559 ) )
+			else if ( IsChance( 4 ) && ( iIndex != 1158 && iIndex != 1173 && iIndex != 30559 ) )
 			{
 				// Community Sparkle quality
 				iQuality = QUALITY_COMMUNITY;
@@ -3303,9 +3385,9 @@ int TF2_CreateHat( int iClient, int iIndex, int iQuality, bool bIsUnusual = fals
 			TF2Attrib_SetByName( iHat, "attach particle effect", GetRandomInt( 1, MAX_UNUSUAL_EFFECTS ) + 0.0 );
 		}
 		
+		// Remove unusual effects on certain hats
 		if ( bHatCannotBeUnusual )
 		{ 
-			// Remove unusual effects on certain hats
 			TF2Attrib_RemoveByName( iHat, "attach particle effect" )
 		}
 
@@ -3333,6 +3415,13 @@ int TF2_CreateHat( int iClient, int iIndex, int iQuality, bool bIsUnusual = fals
 //		{
 //			TF2Attrib_SetByName( iHat, "limited quantity item", 1.0 );
 //		}
+
+		// Random Chance for footstep spells
+		if ( bIsHalloween && IsChance( 10 ) )
+		{
+			int randomFootSpell = GetRandomInt( 1, 7 );
+			TF2Attrib_SetByName( iHat, "SPELL: set Halloween footstep type", g_SpellFootprints[ randomFootSpell ][ 0 ] );	// Primary color
+		}
 
 		// Finalize hat creation
 		SetEntData( iHat, iPropInfoQuality, iQuality );
