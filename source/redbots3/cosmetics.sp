@@ -2962,40 +2962,103 @@ void ApplyCosmetics(int iClient, const CosmeticSet[] presetCosmetics, int iRandI
 void FetchClassForPreSet( int iClient, char[] iClass )
 {
 	bool bIsHalloween = TF2_IsHolidayActive( TFHoliday_HalloweenOrFullMoon );
-	int selectedPreset[1];
+	int randIndex;
 
-	if ( StrEqual( iClass, "Scout", false ) )
+	if ( StrEqual( iClass, "Scout", false ) ) 
 	{
-		selectedPreset = bIsHalloween ? CS_PRESET_SCOUT_HALLOWEEN : CS_PRESET_SCOUT;
+		randIndex = bIsHalloween ? GetRandomInt( 0, sizeof( CS_PRESET_SCOUT_HALLOWEEN ) - 1 ) :
+								   GetRandomInt( 0, sizeof( CS_PRESET_SCOUT ) - 1 );
+		ApplyCosmetics( iClient, bIsHalloween ? CS_PRESET_SCOUT_HALLOWEEN : CS_PRESET_SCOUT, randIndex );
 	}
-	else if ( StrEqual( iClass, "Soldier", false ) )
+	else if ( StrEqual( iClass, "Soldier", false ) ) 
 	{
-		selectedPreset = bIsHalloween ? CS_PRESET_SOLDIER_HALLOWEEN : CS_PRESET_SOLDIER;
+		randIndex = bIsHalloween ? GetRandomInt( 0, sizeof( CS_PRESET_SOLDIER_HALLOWEEN ) - 1 ) :
+								   GetRandomInt( 0, sizeof( CS_PRESET_SOLDIER ) - 1 );
+		ApplyCosmetics( iClient, bIsHalloween ? CS_PRESET_SOLDIER_HALLOWEEN : CS_PRESET_SOLDIER, randIndex );
 	}
-	else if ( StrEqual( iClass, "Pyro", false ) )
+	else if ( StrEqual( iClass, "Pyro", false ) ) 
 	{
-		selectedPreset = bIsHalloween ? CS_PRESET_PYRO_HALLOWEEN : CS_PRESET_PYRO;
+		randIndex = bIsHalloween ? GetRandomInt( 0, sizeof( CS_PRESET_PYRO_HALLOWEEN ) - 1 ) :
+								   GetRandomInt( 0, sizeof( CS_PRESET_PYRO ) - 1 );
+		ApplyCosmetics( iClient, bIsHalloween ? CS_PRESET_PYRO_HALLOWEEN : CS_PRESET_PYRO, randIndex );
 	}
-	else if ( StrEqual( iClass, "Demoman", false ) )
+	else if ( StrEqual( iClass, "Demoman", false ) ) 
 	{
-		selectedPreset = CS_PRESET_DEMOMAN;
+		randIndex = GetRandomInt( 0, sizeof( CS_PRESET_DEMOMAN ) - 1 );
+		ApplyCosmetics( iClient, CS_PRESET_DEMOMAN, randIndex );
 	}
-	else if ( StrEqual( iClass, "HeavyWeapons", false ) )
+	else if ( StrEqual( iClass, "HeavyWeapons", false ) ) 
 	{
-		selectedPreset = CS_PRESET_HEAVY;
+		randIndex = GetRandomInt( 0, sizeof( CS_PRESET_HEAVY ) - 1 );
+		ApplyCosmetics( iClient, CS_PRESET_HEAVY, randIndex );
 	}
-	else if ( StrEqual( iClass, "F2P", false ) )
+	else if ( StrEqual( iClass, "Generic", false ) ) 
 	{
-		selectedPreset = bIsHalloween ? CS_PRESET_F2P_HALLOWEEN : CS_PRESET_F2P;
+		randIndex = GetRandomInt( 0, sizeof( CS_PRESET_GENERIC ) - 1 );
+		ApplyCosmetics( iClient, CS_PRESET_GENERIC, randIndex );
 	}
-
-	int iRandIndex = selectedPreset;
-
-	ApplyCosmetics( iClient, GetRandomInt( 0, sizeof( selectedPreset ) - 1 ), iRandIndex );
+	else if ( StrEqual( iClass, "Medic", false ) ) 
+	{
+		randIndex = bIsHalloween ? GetRandomInt( 0, sizeof( CS_PRESET_MEDIC_HALLOWEEN ) - 1 ) :
+								   GetRandomInt( 0, sizeof( CS_PRESET_MEDIC ) - 1 );
+		ApplyCosmetics( iClient, CS_PRESET_MEDIC, randIndex );
+	}
+	else if ( StrEqual( iClass, "F2P", false ) ) 
+	{
+		randIndex = bIsHalloween ? GetRandomInt( 0, sizeof( CS_PRESET_F2P_HALLOWEEN ) - 1 ) :
+								   GetRandomInt( 0, sizeof( CS_PRESET_F2P ) - 1 );
+		ApplyCosmetics( iClient, bIsHalloween ? CS_PRESET_F2P_HALLOWEEN : CS_PRESET_F2P, randIndex );
+	}
 }
 
+// WIP !!!!!!!!!!!!!!!!!!!!!
+/* void FetchClassForPreSet( int iClient, char[] iClass )
+{
+	bool bIsHalloween = TF2_IsHolidayActive( TFHoliday_HalloweenOrFullMoon );
+	CosmeticSet selectedPreset;
 
+	if ( StrEqual( iClass, "Scout", false ) ) 
+	{
+		selectedPreset = bIsHalloween ? CS_PRESET_SCOUT_HALLOWEEN[ GetRandomInt( 0, sizeof( CS_PRESET_SCOUT_HALLOWEEN ) - 1 ) ] :
+									CS_PRESET_SCOUT[ GetRandomInt( 0, sizeof( CS_PRESET_SCOUT ) - 1 ) ];
+	}
+	else if ( StrEqual( iClass, "Soldier", false ) ) 
+	{
+		selectedPreset = bIsHalloween ? CS_PRESET_SOLDIER_HALLOWEEN[ GetRandomInt( 0, sizeof( CS_PRESET_SOLDIER_HALLOWEEN ) - 1 ) ] :
+									CS_PRESET_SOLDIER[ GetRandomInt( 0, sizeof( CS_PRESET_SOLDIER ) - 1 ) ];
+	}
+	else if ( StrEqual( iClass, "Pyro", false ) ) 
+	{
+		selectedPreset = bIsHalloween ? CS_PRESET_PYRO_HALLOWEEN[ GetRandomInt( 0, sizeof( CS_PRESET_PYRO_HALLOWEEN ) - 1 ) ] :
+									CS_PRESET_PYRO[ GetRandomInt( 0, sizeof( CS_PRESET_PYRO ) - 1 ) ];
+	}
+	else if ( StrEqual( iClass, "Demoman", false ) ) 
+	{
+		selectedPreset = CS_PRESET_DEMOMAN[ GetRandomInt( 0, sizeof( CS_PRESET_DEMOMAN ) - 1 ) ];
+	}
+	else if ( StrEqual( iClass, "HeavyWeapons", false ) ) 
+	{
+		selectedPreset = CS_PRESET_HEAVY[ GetRandomInt( 0, sizeof( CS_PRESET_HEAVY ) - 1 ) ];
+	}
+	else if ( StrEqual( iClass, "Generic", false ) ) 
+	{
+		selectedPreset = CS_PRESET_GENERIC[ GetRandomInt( 0, sizeof( CS_PRESET_GENERIC ) - 1 ) ];
+	}
+	else if ( StrEqual( iClass, "Medic", false ) ) 
+	{
+		selectedPreset = bIsHalloween ? CS_PRESET_MEDIC_HALLOWEEN[ GetRandomInt( 0, sizeof( CS_PRESET_MEDIC_HALLOWEEN ) - 1 ) ] :
+									CS_PRESET_MEDIC[ GetRandomInt( 0, sizeof( CS_PRESET_MEDIC ) - 1 ) ];
+	}
+	else if ( StrEqual( iClass, "F2P", false ) ) 
+	{
+		selectedPreset = bIsHalloween ? CS_PRESET_F2P_HALLOWEEN[ GetRandomInt( 0, sizeof( CS_PRESET_F2P_HALLOWEEN ) - 1 ) ] :
+									CS_PRESET_F2P[ GetRandomInt( 0, sizeof( CS_PRESET_F2P ) - 1 ) ];
+	}
 
+	ApplyCosmetics( iClient, selectedPreset, selectedPreset );
+} */
+
+// OLD !!!!!!!!!!!!!!!!!!!!!!!
 /* void PresetCosmeticSet( int iClient, char[] iClass ) 
 {
 	
