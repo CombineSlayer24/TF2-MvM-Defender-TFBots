@@ -800,11 +800,23 @@ public const CosmeticSet CS_PRESET_SNIPER[] = {
 	{ 30955, 31314, 31363 },	// Handsome Hitman, Hunting Cloak, Preventative Measure
 	{ 31362, 31314, 31363 },	// Cranium Cover, Hunting Cloak, Preventative Measure
 	{ 30375, 30892, 31363 },	// Deep Cover Operator, Conspicuous Camouflage, Preventative Measure
+	{ 30316, 30317, 30324 },	// Toy Soldier, Five-Month Shadow, Golden Garment
+	{ 39648, 39649, 39650 },	// Corona Australis, Final Frontiersman, Starduster
+	{ 30743, 30895, 30424 },	// Patriot Peak, Rifleman's Regalia, Triggerman's Tacticals
 	{ 634, 30892, 30891 },		// Point And Shoot, Conspicuous Camouflage, Cammy Jammies
 	{ 31417, 30599, 955 },		// Dapper Dickens, dec2014 hunter_vest, Tuxxy
 	{ 981, 30310, 30397 },		// Cold Killer, Snow Scoper, Bruiser's Bandanna
 	{ 626, 30170, 30424 },		// Swagman's Swatter, Chronomancer, Triggerman's Tacticals
+	{ 30066, 30310, 393 },		// Brotherhood of Arms, Snow Scoper, Villain's Veil
+	{ 31271, 31270, 815 },		// Hawaiian Hunter, Tropical Camo, Champ Stamp
+	{ 779, 30424, 30478 },		// Liquidator's Lid, Triggerman's Tacticals, Poacher's Safari Jacket
+	{ 779, 30423, 30550 },		// Liquidator's Lid, Scoper's Smoke, EOTL_hiphunter_jacket
+	{ 1095, 1094, 30373 },		// Dread Hiding Hood, Criminal Cloak, Toowoomba Tunic
+	{ 613, 30629, 30856 },		// Hat With No Name, Support Spurs, Down Under Duster
+	{ 518, 30100, 30371 },		// The Anger, Birdman of Australiacatraz, Archers Groundings
 	{ 981, 30310, 393 },		// Cold Killer, Snow Scoper, Villain's Veil
+	{ 314, 815, 814 },			// Crocleather Slouch, Champ Stamp, Triad Trinket
+	{ 117, 815, 814 },			// Ritzy Rick's Hair Fixative, Champ Stamp, Triad Trinket
 };
 public const CosmeticSet CS_PRESET_F2P[] = {
 	{ 261, 744, 166 },			// Mann Co. Cap, Pyrovision Goggles, Mercenary
@@ -2483,14 +2495,14 @@ void GiveBotCosmetics( int iClient )
 	int iRandEngy_Feet			= SPECIFIC_ENGY_FEET[ GetRandomInt( 0, sizeof( SPECIFIC_ENGY_FEET ) - 1 ) ];
 
 	// MEDIC
-	int iRandMedic_Head		= SPECIFIC_MEDIC_HEAD[ GetRandomInt( 0, sizeof( SPECIFIC_MEDIC_HEAD ) - 1 ) ];
-	int iRandMedic_Hats		= SPECIFIC_MEDIC_HATS[ GetRandomInt( 0, sizeof( SPECIFIC_MEDIC_HATS ) - 1 ) ];
-	int iRandMedic_Glasses	= SPECIFIC_MEDIC_GLASSES[ GetRandomInt( 0, sizeof( SPECIFIC_MEDIC_GLASSES ) - 1 ) ];
-	int iRandMedic_Beard	= SPECIFIC_MEDIC_BEARD[ GetRandomInt( 0, sizeof( SPECIFIC_MEDIC_BEARD ) - 1 ) ];
-	int iRandMedic_Shirt	= SPECIFIC_MEDIC_SHIRT[ GetRandomInt( 0, sizeof( SPECIFIC_MEDIC_SHIRT ) - 1 ) ];
-	int iRandMedic_Pants	= SPECIFIC_MEDIC_PANTS[ GetRandomInt( 0, sizeof( SPECIFIC_MEDIC_PANTS ) - 1 ) ];
-	int iRandMedic_Belt		= SPECIFIC_MEDIC_BELT[ GetRandomInt( 0, sizeof( SPECIFIC_MEDIC_BELT ) - 1 ) ];
-	int iRandMedic_Feet		= SPECIFIC_MEDIC_FEET[ GetRandomInt( 0, sizeof( SPECIFIC_MEDIC_FEET ) - 1 ) ];
+	int iRandMedic_Head			= SPECIFIC_MEDIC_HEAD[ GetRandomInt( 0, sizeof( SPECIFIC_MEDIC_HEAD ) - 1 ) ];
+	int iRandMedic_Hats			= SPECIFIC_MEDIC_HATS[ GetRandomInt( 0, sizeof( SPECIFIC_MEDIC_HATS ) - 1 ) ];
+	int iRandMedic_Glasses		= SPECIFIC_MEDIC_GLASSES[ GetRandomInt( 0, sizeof( SPECIFIC_MEDIC_GLASSES ) - 1 ) ];
+	int iRandMedic_Beard		= SPECIFIC_MEDIC_BEARD[ GetRandomInt( 0, sizeof( SPECIFIC_MEDIC_BEARD ) - 1 ) ];
+	int iRandMedic_Shirt		= SPECIFIC_MEDIC_SHIRT[ GetRandomInt( 0, sizeof( SPECIFIC_MEDIC_SHIRT ) - 1 ) ];
+	int iRandMedic_Pants		= SPECIFIC_MEDIC_PANTS[ GetRandomInt( 0, sizeof( SPECIFIC_MEDIC_PANTS ) - 1 ) ];
+	int iRandMedic_Belt			= SPECIFIC_MEDIC_BELT[ GetRandomInt( 0, sizeof( SPECIFIC_MEDIC_BELT ) - 1 ) ];
+	int iRandMedic_Feet			= SPECIFIC_MEDIC_FEET[ GetRandomInt( 0, sizeof( SPECIFIC_MEDIC_FEET ) - 1 ) ];
 
 	int iSelectedCosmetics[ 3 ];
 	int iSharedCosmetics[ 12 ];		// All class
@@ -2916,6 +2928,13 @@ void GiveBotCosmetics( int iClient )
 				CPrintToChatAll( "BOT: {fuchsia}%s{default}, Selected {green}Pre-made {default}set.", clientName )
 			#endif
 		}
+		else if ( iRandom <= 85 )
+		{
+			FetchClassForPreSet( iClient, "Generic" );
+			#if defined TESTING_ONLY
+				CPrintToChatAll( "BOT: {fuchsia}%s{default}, Selected {green}Generic {default}sets.", clientName )
+			#endif
+		}
 		else if ( iRandom <= 90 )
 		{
 			FetchClassForPreSet( iClient, "F2P" );
@@ -2925,19 +2944,9 @@ void GiveBotCosmetics( int iClient )
 		}
 		else
 		{
-			if ( iRandom <= 25 )
-			{
-				FetchClassForPreSet( iClient, "Generic" );
-				#if defined TESTING_ONLY
-					CPrintToChatAll( "BOT: {fuchsia}%s{default}, Selected Generic Sets.", clientName )
-				#endif
-			}
-			else
-			{
-				#if defined TESTING_ONLY
-					CPrintToChatAll( "BOT: {fuchsia}%s{default}, Selected no sets (2007 player).", clientName )
-				#endif	
-			}
+			#if defined TESTING_ONLY
+				CPrintToChatAll( "BOT: {fuchsia}%s{default}, Selected no sets (2007 player).", clientName )
+			#endif	
 		}
 	}
 }
@@ -3002,6 +3011,11 @@ void FetchClassForPreSet( int iClient, char[] iClass )
 		randIndex = bIsHalloween ? GetRandomInt( 0, sizeof( CS_PRESET_MEDIC_HALLOWEEN ) - 1 ) :
 								   GetRandomInt( 0, sizeof( CS_PRESET_MEDIC ) - 1 );
 		ApplyCosmetics( iClient, CS_PRESET_MEDIC, randIndex );
+	}
+	else if ( StrEqual( iClass, "Sniper", false ) ) 
+	{
+		randIndex = GetRandomInt( 0, sizeof( CS_PRESET_SNIPER ) - 1 );
+		ApplyCosmetics( iClient, CS_PRESET_SNIPER, randIndex );
 	}
 	else if ( StrEqual( iClass, "F2P", false ) ) 
 	{
