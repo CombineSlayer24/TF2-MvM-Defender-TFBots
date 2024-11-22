@@ -20,6 +20,8 @@ Author: ★ Officer Spy ★
 #pragma semicolon 1
 #pragma newdecls required
 
+#define TESTING_ONLY
+
 #if defined TESTING_ONLY
 	#include <morecolors> // Debug compilation only
 #endif
