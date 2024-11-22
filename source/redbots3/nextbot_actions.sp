@@ -205,11 +205,43 @@ public Action CTFBotMainAction_SelectMoreDangerousThreat(BehaviorAction action, 
 	
 	int iThreat1 = threat1.GetEntity();
 	int iThreat2 = threat2.GetEntity();
+	
+	//If we can only see one threat, then it's our best target
+	/* int oneVisible = FindOnlyOneVisibleEntity(me, iThreat1, iThreat2);
+	
+	if (oneVisible == iThreat1)
+	{
+		knownEntity = threat1;
+		return Plugin_Changed;
+	}
+	
+	if (oneVisible == iThreat2)
+	{
+		knownEntity = threat2;
+		return Plugin_Changed;
+	} */
+	
+	if (myWeapon != -1 && TF2Util_GetWeaponID(myWeapon) == TF_WEAPON_MINIGUN)
+	{
+		//Minigun deals 75% less damage against tanks so prioritize them least
+		if (IsBaseBoss(iThreat1) && !IsBaseBoss(iThreat2))
+		{
+			knownEntity = threat2;
+			return Plugin_Changed;
+		}
+		
+		if (!IsBaseBoss(iThreat1) && IsBaseBoss(iThreat2))
+		{
+			knownEntity = threat1;
+			return Plugin_Changed;
+		}
+	}
+	
 	float rangeSq1 = nextbot.GetRangeSquaredTo(iThreat1);
 	float rangeSq2 = nextbot.GetRangeSquaredTo(iThreat2);
 	
 	//Target the closest visible
-	if (rangeSq1 < rangeSq2 && TF2_IsLineOfFireClear4(me, iThreat1))
+	if (rangeSq1 < rangeSq2)
 	{
 		knownEntity = threat1;
 	}
@@ -1457,13 +1489,27 @@ public Action CTFBotGetHealth_Update(BehaviorAction action, int actor, float int
 	
 	INextBot myBot = CBaseNPC_GetNextBotOfEntity(actor);
 	
-	if (m_flRepathTime[actor] <= GetGameTime())
+	if (IsHealedByObject(actor))
 	{
-		m_flRepathTime[actor] = GetGameTime() + GetRandomFloat(0.9, 1.0);
-		m_pPath[actor].ComputeToPos(myBot, WorldSpaceCenter(m_iHealthPack[actor]));
+		int myWeapon = BaseCombatCharacter_GetActiveWeapon(actor);
+		
+		if (myWeapon != -1 && WeaponID_IsSniperRifle(TF2Util_GetWeaponID(myWeapon)) && !TF2_IsPlayerInCondition(actor, TFCond_Zoomed))
+		{
+			//Aim while healed by dispenser
+			VS_PressAltFireButton(actor);
+		}
 	}
-	
-	m_pPath[actor].Update(myBot);
+	else
+	{
+		//Path if not currently healed by dispenser
+		if (m_flRepathTime[actor] <= GetGameTime())
+		{
+			m_flRepathTime[actor] = GetGameTime() + GetRandomFloat(0.9, 1.0);
+			m_pPath[actor].ComputeToPos(myBot, WorldSpaceCenter(m_iHealthPack[actor]));
+		}
+		
+		m_pPath[actor].Update(myBot);
+	}
 	
 	CKnownEntity threat = myBot.GetVisionInterface().GetPrimaryKnownThreat(false);
 	
@@ -2313,7 +2359,7 @@ public Action CTFBotAttackTank_SelectMoreDangerousThreat(BehaviorAction action, 
 	int me = action.Actor;
 	int myWeapon = BaseCombatCharacter_GetActiveWeapon(me);
 	
-	if (myWeapon != -1 && (TF2Util_GetWeaponID(myWeapon) == TF_WEAPON_FLAMETHROWER || IsMeleeWeapon(myWeapon)))
+	if (myWeapon != -1 && IsMeleeWeapon(myWeapon))
 	{
 		//Close range weapons only target the closest threat
 		knownEntity = SelectCloserThreat(nextbot, threat1, threat2);
@@ -2321,7 +2367,7 @@ public Action CTFBotAttackTank_SelectMoreDangerousThreat(BehaviorAction action, 
 	}
 	
 	//Nearby enemies might try to kill us
-	const float notSafeRange = 250.0;
+	const float notSafeRange = FLAMETHROWER_REACH_RANGE;
 	
 	if (BaseEntity_IsPlayer(iThreat1))
 	{
@@ -2342,13 +2388,13 @@ public Action CTFBotAttackTank_SelectMoreDangerousThreat(BehaviorAction action, 
 	}
 	
 	//Our most dangerous threat should be the tank
-	if (iThreat1 == m_iTankTarget[me] && TF2_IsLineOfFireClear4(me, iThreat1))
+	if (iThreat1 == m_iTankTarget[me])
 	{
 		knownEntity = threat1;
 		return Plugin_Changed;
 	}
 	
-	if (iThreat2 == m_iTankTarget[me] && TF2_IsLineOfFireClear4(me, iThreat2))
+	if (iThreat2 == m_iTankTarget[me])
 	{
 		knownEntity = threat2;
 		return Plugin_Changed;
@@ -4916,22 +4962,22 @@ void EquipBestTankWeapon(int client)
 	TF2Util_SetPlayerActiveWeapon(client, best_weapon);
 }
 
-//Get the medic healing this threat
-//If we don't know about him yet or he has no healer, then we return the original threat
+/* Get the medic healing this threat only if we know about him and he's in our FOV
+otherwise return the original threat if there is no known healer right now */
 CKnownEntity GetHealerOfThreat(INextBot bot, const CKnownEntity threat)
 {
 	if (!threat)
 		return NULL_KNOWN_ENTITY;
 	
-	int threatEnt = threat.GetEntity();
+	int playerThreat = threat.GetEntity();
 	
-	for (int i = 0; i < TF2_GetNumHealers(threatEnt); i++)
+	for (int i = 0; i < TF2_GetNumHealers(playerThreat); i++)
 	{
-		int healer = TF2Util_GetPlayerHealer(threatEnt, i);
+		int playerHealer = TF2Util_GetPlayerHealer(playerThreat, i);
 		
-		if (healer != -1 && BaseEntity_IsPlayer(healer))
+		if (playerHealer != -1 && BaseEntity_IsPlayer(playerHealer))
 		{
-			CKnownEntity knownHealer = bot.GetVisionInterface().GetKnown(threatEnt);
+			CKnownEntity knownHealer = bot.GetVisionInterface().GetKnown(playerHealer);
 			
 			if (knownHealer && knownHealer.IsVisibleInFOVNow())
 				return knownHealer;
@@ -5120,6 +5166,12 @@ void UtilizeCompressionBlast(int client, INextBot bot, const CKnownEntity threat
 	if (threat == NULL_KNOWN_ENTITY)
 		return;
 	
+	if (redbots_manager_bot_reflect_skill.IntValue < 1)
+		return;
+	
+	if (redbots_manager_bot_reflect_chance.FloatValue < 100.0 && TransientlyConsistentRandomValue(client, 1.0) > redbots_manager_bot_reflect_chance.FloatValue / 100.0)
+		return;
+	
 	int iThreat = threat.GetEntity();
 	
 	if (BaseEntity_IsPlayer(iThreat))
@@ -5155,31 +5207,31 @@ void UtilizeCompressionBlast(int client, INextBot bot, const CKnownEntity threat
 		}
 	}
 	
+	if (redbots_manager_bot_reflect_skill.IntValue < 2)
+		return;
+	
 	//Enhanced projectile airblast
-	if (enhancedStage > 0)
+	int myTeam = GetClientTeam(client);
+	float myEyePos[3]; GetClientEyePosition(client, myEyePos);
+	int ent = -1;
+	
+	while ((ent = FindEntityByClassname(ent, "tf_projectile_*")) != -1)
 	{
-		int myTeam = GetClientTeam(client);
-		float myEyePos[3]; GetClientEyePosition(client, myEyePos);
-		int ent = -1;
+		if (BaseEntity_GetTeamNumber(ent) == myTeam)
+			continue;
 		
-		while ((ent = FindEntityByClassname(ent, "tf_projectile_*")) != -1)
+		if (!CanBeReflected(ent))
+			continue;
+		
+		float origin[3]; BaseEntity_GetLocalOrigin(ent, origin);
+		float vec[3]; MakeVectorFromPoints(origin, myEyePos, vec);
+		
+		//Airblast the projectile if we are actually facing towards it
+		if (GetVectorLength(vec) < 150.0)
 		{
-			if (BaseEntity_GetTeamNumber(ent) == myTeam)
-				continue;
-			
-			if (!CanBeReflected(ent))
-				continue;
-			
-			float origin[3]; BaseEntity_GetLocalOrigin(ent, origin);
-			float vec[3]; MakeVectorFromPoints(origin, myEyePos, vec);
-			
-			//Airblast the projectile if we are actually facing towards it
-			if (GetVectorLength(vec) < 150.0)
-			{
-				g_iSubtractiveButtons[client] |= IN_ATTACK;
-				VS_PressAltFireButton(client);
-				return;
-			}
+			g_iSubtractiveButtons[client] |= IN_ATTACK;
+			VS_PressAltFireButton(client);
+			return;
 		}
 	}
 }
@@ -5429,7 +5481,7 @@ bool CanBuyUpgradesNow(int client)
 	return true;
 }
 
-/* float TransientlyConsistentRandomValue(int client, float period = 10.0, int seedValue = 0)
+float TransientlyConsistentRandomValue(int client, float period = 10.0, int seedValue = 0)
 {
 	CNavArea area = CBaseCombatCharacter(client).GetLastKnownArea();
 	
@@ -5439,7 +5491,7 @@ bool CanBuyUpgradesNow(int client)
 	int timeMod = RoundToFloor(GetGameTime() / period) + 1;
 	
 	return FloatAbs(Cosine(float(seedValue + (client * area.GetID() * timeMod))));
-} */
+}
 
 bool IsFailureImminent(int client)
 {
