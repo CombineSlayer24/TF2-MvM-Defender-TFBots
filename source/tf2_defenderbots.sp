@@ -111,6 +111,7 @@ ConVar redbots_manager_bot_reflect_skill;
 ConVar redbots_manager_bot_reflect_chance;
 ConVar redbots_manager_bot_hear_spy_range;
 ConVar redbots_manager_extra_bots;
+ConVar redbots_manager_allow_random_cosmetics;
 
 #if defined MOD_REQUEST_CREDITS
 ConVar redbots_manager_bot_request_credits;
@@ -183,6 +184,7 @@ public void OnPluginStart()
 	redbots_manager_bot_reflect_chance = CreateConVar("redbots_manager_bot_reflect_chance", "100.0", _, FCVAR_NOTIFY);
 	redbots_manager_bot_hear_spy_range = CreateConVar("sm_redbots_manager_bot_hear_spy_range", "3000.0", _, FCVAR_NOTIFY);
 	redbots_manager_extra_bots = CreateConVar("sm_redbots_manager_extra_bots", "1", "How many more bots we are allowed to request beyond the team size", FCVAR_NOTIFY);
+	redbots_manager_allow_random_cosmetics = CreateConVar("sm_redbots_manager_allow_random_cosmetics", "1", "Should bots equip random cosmetics? NOTE: Server may crash with this enabled, having this disabled will still use cosmetics, but only as sets.", FCVAR_NOTIFY);
 	
 #if defined MOD_REQUEST_CREDITS
 	redbots_manager_bot_request_credits = CreateConVar("sm_redbots_manager_bot_request_credits", "1", _, FCVAR_NOTIFY);

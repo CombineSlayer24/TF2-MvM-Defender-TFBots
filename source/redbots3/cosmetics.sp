@@ -2405,7 +2405,6 @@ public Action Timer_ApplyCosmetics( Handle timer, int client )
 void GiveBotCosmetics( int iClient )
 {
 	int iRandom = GetRandomInt( 1, 100 );
-
 	char clientName[ MAX_NAME_LENGTH ]; GetClientName( iClient, clientName, sizeof( clientName ) ) ;
 
 	// ALL CLASS
@@ -2519,391 +2518,413 @@ void GiveBotCosmetics( int iClient )
 	// 40% chance to pick Randomized Cosmetic Sets
 	if ( iRandom <= 40 )
 	{
-		if ( TFClass == TFClass_Scout || TFClass == TFClass_Soldier || TFClass == TFClass_Pyro 
-		|| TFClass == TFClass_DemoMan || TFClass == TFClass_Heavy || TFClass == TFClass_Engineer
-		|| TFClass == TFClass_Medic || TFClass == TFClass_Sniper || TFClass == TFClass_Spy )
+		if ( redbots_manager_allow_random_cosmetics.BoolValue )
 		{
-			// All Class
-			if ( iRandom <= 25 )
+			if ( TFClass == TFClass_Scout || TFClass == TFClass_Soldier || TFClass == TFClass_Pyro 
+			|| TFClass == TFClass_DemoMan || TFClass == TFClass_Heavy || TFClass == TFClass_Engineer
+			|| TFClass == TFClass_Medic || TFClass == TFClass_Sniper || TFClass == TFClass_Spy )
 			{
-				iSharedCosmetics[ 1 ] = iRandHat;
-				iSharedCosmetics[ 2 ] = iRandGlasses;
-				iSharedCosmetics[ 3 ] = iRandBeard;
-				iSharedCosmetics[ 4 ] = iRandMedal;
-				iSharedCosmetics[ 5 ] = iRandTorso;
-				iSharedCosmetics[ 6 ] = iRandBelt;
-				iSharedCosmetics[ 7 ] = iRandPants;
-				iSharedCosmetics[ 8 ] = iRandFeet;
-				iSharedCosmetics[ 9 ] = iRandHatMisc;
-				iSharedCosmetics[ 10 ] = iRandHead;
-				iSharedCosmetics[ 11 ] = iRandFace;
-
-				int iIndex[ 11 ] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 };
-				ShuffleArray( iIndex, sizeof( iIndex ) );
-
-				for ( int i = 0; i < 3; ++i )
+				// All Class
+				if ( iRandom <= 25 )
 				{
-					iSelectedCosmetics[ i ] = iSharedCosmetics[ iIndex[ i ] ];
-				/* 	
-					Check if head is selected, don't select hat, glasses, or beard
-					TODO: Instead of doing this
-					let's just check to see if there's no cosmetic conflicts.
-					This will save a lot of headache of cosmetic arrangement
-					Like hats with glasses... 
-				*/
-					if ( iSelectedCosmetics[ i ] )
-					{
-						if ( iIndex[ i ] == 10 ) 
-						{
-							iSharedCosmetics[ 1 ] = 0;
-							iSharedCosmetics[ 2 ] = 0;
-							iSharedCosmetics[ 11 ] = 0;
-						}
-						// If hat, glasses, beard or face is selected, don't select head
-						else if ( iIndex[ i ] == 1 || iIndex[ i ] == 2 || iIndex[ i ] == 3 || iIndex[ i ] == 11 ) 
-						{
-							iSharedCosmetics[ 10 ] = 0;
-						}
-					}
-
-					if ( iSelectedCosmetics[ i ] && iSharedCosmetics[ i ] != 1 ) // Make sure it's not invalid
-					{
-						TF2_CreateHat( iClient, iSelectedCosmetics[ i ], QUALITY_UNIQUE, iIndex[ i ] == 1 || iIndex[ i ] == 10 );
-					}
-				}
-
-				#if defined TESTING_ONLY
-					CPrintToChatAll( "BOT: {fuchsia}%s{default}, Selected {green}All-Class {default}specific cosmetics.", clientName )
-				#endif
-			}
-			else
-			{
-				if ( TFClass == TFClass_Scout )
-				{
-					iScoutCosmetics[ 1 ] = IsChance( 75 ) ? iRandScout_Head : iRandHead;
-					iScoutCosmetics[ 2 ] = IsChance( 75 ) ? iRandScout_Hats : iRandHat;
-					iScoutCosmetics[ 3 ] = IsChance( 75 ) ? iRandScout_Glasses : iRandGlasses;
-					iScoutCosmetics[ 4 ] = IsChance( 75 ) ? iRandScout_Beard: iRandBeard;
-					iScoutCosmetics[ 5 ] = iRandMedal;
-					iScoutCosmetics[ 6 ] = IsChance( 75 ) ? iRandScout_Torso : iRandTorso;
-					iScoutCosmetics[ 7 ] = iRandScout_Back;
-					iScoutCosmetics[ 8 ] = IsChance( 75 ) ? iRandScout_Belt : iRandBelt;
-					iScoutCosmetics[ 9 ] = IsChance( 75 ) ? iRandScout_Pants : iRandPants;
-					iScoutCosmetics[ 10 ] = IsChance( 75 ) ? iRandScout_Feet : iRandFeet;
-					iScoutCosmetics[ 11 ] = iRandHatMisc;
-					iScoutCosmetics[ 12 ] = iRandFace;
-
-					int iIndex[ 12 ] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 };
-					ShuffleArray( iIndex, sizeof( iIndex ) );
-
-					for ( int i = 0; i < 3; ++i )
-					{
-						iSelectedCosmetics[ i ] = iScoutCosmetics[ iIndex[ i ] ];
-
-						// If head is selected, do not equip Hats, Glasses, Beard, Hat Misc, Face
-						if ( iSelectedCosmetics[ i ] )
-						{
-							if ( iIndex[ i ] == 1 ) 
-							{
-								iScoutCosmetics[ 2 ] = 0;
-								iScoutCosmetics[ 3 ] = 0;
-								iScoutCosmetics[ 4 ] = 0;
-								//iScoutCosmetics[ 11 ] = 0;
-								iScoutCosmetics[ 12 ] = 0;
-							}
-							// If hat(2), glasses(3), beard(4), face(12) is selected, don't select head
-							else if ( iIndex[ i ] == 2 || iIndex[ i ] == 3 || iIndex[ i ] == 4 || iIndex[ i ] == 12 ) 
-							{
-								iScoutCosmetics[ 1 ] = 0;
-							}
-						}
-							
-						if ( iSelectedCosmetics[ i ] && iScoutCosmetics[ i ] != 1 )
-						{
-							TF2_CreateHat( iClient, iSelectedCosmetics[ i ], QUALITY_UNIQUE, iIndex[ i ] == 2 );
-						}
-					}
-
-					#if defined TESTING_ONLY
-						CPrintToChatAll( "BOT: {fuchsia}%s{default}, Selected {green}Scout {default}specific cosmetics.", clientName )
-					#endif
-				}
-				
-				if ( TFClass == TFClass_Soldier )
-				{
-					iSoldierCosmetics[ 1 ] = IsChance( 75 ) ? iRandSoldier_Head : iRandHead;
-					iSoldierCosmetics[ 2 ] = IsChance( 75 ) ? iRandSoldier_Hats : iRandHat;
-					iSoldierCosmetics[ 3 ] = IsChance( 75 ) ? iRandSoldier_Glasses : iRandGlasses;
-					iSoldierCosmetics[ 4 ] = IsChance( 75 ) ? iRandSoldier_Beard: iRandBeard;
-					iSoldierCosmetics[ 5 ] = iRandMedal;
-					iSoldierCosmetics[ 6 ] = IsChance( 75 ) ? iRandSoldier_Coat : iRandTorso;
-					iSoldierCosmetics[ 7 ] = iRandSoldier_Shirt
-					iSoldierCosmetics[ 8 ] = iRandSoldier_Grenades;
-					iSoldierCosmetics[ 9 ] = IsChance( 75 ) ? iRandSoldier_Belt : iRandBelt;
-					iSoldierCosmetics[ 10 ] = IsChance( 75 ) ? iRandSoldier_Pants : iRandPants;
-					iSoldierCosmetics[ 11 ] = IsChance( 75 ) ? iRandSoldier_Feet : iRandFeet;
-					iSoldierCosmetics[ 12 ] = iRandSoldier_Pocket;
-					iSoldierCosmetics[ 13 ] = iRandHatMisc;
-					iSoldierCosmetics[ 14 ] = iRandFace;
-
-					int iIndex[ 14 ] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14 };
-					ShuffleArray( iIndex, sizeof( iIndex ) );
-
-					for ( int i = 0; i < 3; ++i )
-					{
-						iSelectedCosmetics[ i ] = iSoldierCosmetics[ iIndex[ i ] ];
-
-						if ( iSelectedCosmetics[ i ] )
-						{
-							if ( iIndex[ i ] == 1 ) 
-							{
-								iSoldierCosmetics[ 2 ] = 0;
-								iSoldierCosmetics[ 3 ] = 0;
-								iSoldierCosmetics[ 4 ] = 0;
-								iSoldierCosmetics[ 14 ] = 0;
-							}
-							// If hat(2), glasses(3), beard(4) or face(14) is selected, don't select head
-							else if ( iIndex[ i ] == 2 || iIndex[ i ] == 3 || iIndex[ i ] == 4 || iIndex[ i ] == 14 ) 
-							{
-								iSoldierCosmetics[ 1 ] = 0;
-							}
-						}
-
-						if ( iSelectedCosmetics[ i ] && iSoldierCosmetics[ i ] != 1 )
-						{
-							TF2_CreateHat( iClient, iSelectedCosmetics[ i ], QUALITY_UNIQUE, iIndex[ i ] == 2 );
-						}
-					}
-
-					#if defined TESTING_ONLY
-						CPrintToChatAll( "BOT: {fuchsia}%s{default}, Selected {green}Soldier {default}specific cosmetics.", clientName )
-					#endif
-				}
-				
-				if ( TFClass == TFClass_Pyro )
-				{
-					iPyroCosmetics[ 1 ] = IsChance( 75 ) ? iRandPyro_HeadReplace : iRandHead;
-					iPyroCosmetics[ 2 ] = IsChance( 75 ) ? iRandPyro_Hats : iRandHat;
-					iPyroCosmetics[ 3 ] = IsChance( 75 ) ? iRandPyro_Glasses : iRandGlasses;
-					iPyroCosmetics[ 4 ] = IsChance( 75 ) ? iRandPyro_Beard: iRandBeard;
-					iPyroCosmetics[ 5 ] = iRandMedal;
-					iPyroCosmetics[ 6 ] = IsChance( 75 ) ? iRandPyro_Shirt : iRandTorso;
-					iPyroCosmetics[ 7 ] = iRandPyro_Back;
-					iPyroCosmetics[ 8 ] = iRandPyro_Grenades;
-					iPyroCosmetics[ 9 ] = IsChance( 75 ) ? iRandPyro_Belt : iRandBelt;
-					iPyroCosmetics[ 10 ] = IsChance( 75 ) ? iRandPyro_Pants : iRandPants;
-					iPyroCosmetics[ 11 ] = IsChance( 75 ) ? iRandPyro_Feet : iRandFeet;
-					iPyroCosmetics[ 12 ] = IsChance( 75 ) ? iRandPyro_Neckless : iRandHatMisc;
-					iPyroCosmetics[ 13 ] = iRandFace;
-
-					int iIndex[ 13 ] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13 };
-					ShuffleArray( iIndex, sizeof( iIndex ) );
-
-					for ( int i = 0; i < 3; ++i )
-					{
-						iSelectedCosmetics[ i ] = iPyroCosmetics[ iIndex[ i ] ];
-						if ( iSelectedCosmetics[ i ] && iPyroCosmetics[ i ] != 1 )
-						{
-							TF2_CreateHat( iClient, iSelectedCosmetics[ i ], QUALITY_UNIQUE, iIndex[ i ] == 2 );
-						}
-					}
-
-					#if defined TESTING_ONLY
-						CPrintToChatAll( "BOT: {fuchsia}%s{default}, Selected {green}Pyro {default}specific cosmetics.", clientName )
-					#endif
-				}
-				
-				if ( TFClass == TFClass_DemoMan )
-				{
-					iDemoManCosmetics[ 1 ] = IsChance( 75 ) ? iRandDemo_HeadReplace : iRandHead;
-					iDemoManCosmetics[ 2 ] = IsChance( 75 ) ? iRandDemo_Hats : iRandHat;
-					iDemoManCosmetics[ 3 ] = IsChance( 75 ) ? iRandDemo_Glasses : iRandGlasses;
-					iDemoManCosmetics[ 4 ] = IsChance( 75 ) ? iRandDemo_Beard: iRandBeard;
-					iDemoManCosmetics[ 5 ] = iRandMedal;
-					iDemoManCosmetics[ 6 ] = IsChance( 75 ) ? iRandDemo_Shirt : iRandTorso;
-					iDemoManCosmetics[ 7 ] = iRandDemo_Back;
-					iDemoManCosmetics[ 8 ] = iRandDemo_Grenades;
-					iDemoManCosmetics[ 9 ] = IsChance( 75 ) ? iRandDemo_Belt : iRandBelt;
-					iDemoManCosmetics[ 10 ] = IsChance( 75 ) ? iRandDemo_Pants : iRandPants;
-					iDemoManCosmetics[ 11 ] = IsChance( 75 ) ? iRandDemo_Feet : iRandFeet;
-					iDemoManCosmetics[ 12 ] = iRandHatMisc;
-					iDemoManCosmetics[ 13 ] = iRandFace;
-
-					int iIndex[ 12 ] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 };
-					ShuffleArray( iIndex, sizeof( iIndex ) );
-
-					for ( int i = 0; i < 3; ++i )
-					{
-						iSelectedCosmetics[ i ] = iDemoManCosmetics[ iIndex[ i ] ];
-						if ( iSelectedCosmetics[ i ] )
-						{
-							if ( iIndex[ i ] == 1 ) 
-							{
-								iDemoManCosmetics[ 2 ] = 0;
-								iDemoManCosmetics[ 3 ] = 0;
-								iDemoManCosmetics[ 4 ] = 0;
-								iDemoManCosmetics[ 13 ] = 0;
-							}
-							// If hat(2), glasses(3), beard(4) or face(13) is selected, don't select head
-							else if ( iIndex[ i ] == 2 || iIndex[ i ] == 3 || iIndex[ i ] == 4 || iIndex[ i ] == 13) 
-							{
-								iDemoManCosmetics[ 1 ] = 0;
-							}
-						}
-
-						if ( iSelectedCosmetics[ i ] && iDemoManCosmetics[ i ] != 1 )
-						{
-							TF2_CreateHat( iClient, iSelectedCosmetics[ i ], QUALITY_UNIQUE, iIndex[ i ] == 2 );
-						}
-					}
-
-					#if defined TESTING_ONLY
-						CPrintToChatAll( "BOT: {fuchsia}%s{default}, Selected {green}DemoMan {default}specific cosmetics.", clientName )
-					#endif
-				}
-
-				if ( TFClass == TFClass_Heavy )
-				{
-					iHeavyCosmetics[ 1 ] = IsChance( 75 ) ? iRandHeavy_Head : iRandHead;
-					iHeavyCosmetics[ 2 ] = IsChance( 75 ) ? iRandHeavy_Hats : iRandHat;
-					iHeavyCosmetics[ 3 ] = IsChance( 75 ) ? iRandHeavy_Glasses : iRandGlasses;
-					iHeavyCosmetics[ 4 ] = IsChance( 75 ) ? iRandHeavy_Beard: iRandBeard;
-					iHeavyCosmetics[ 5 ] = iRandMedal;
-					iHeavyCosmetics[ 6 ] = IsChance( 75 ) ? iRandHeavy_Shirt : iRandTorso;
-					iHeavyCosmetics[ 7 ] = iRandHeavy_Misc;
-					iHeavyCosmetics[ 8 ] = IsChance( 75 ) ? iRandHeavy_Belt : iRandBelt;
-					iHeavyCosmetics[ 9 ] = IsChance( 75 ) ? iRandHeavy_Pants : iRandPants;
-					iHeavyCosmetics[ 10 ] = IsChance( 75 ) ? iRandHeavy_Feets : iRandFeet;
-					iHeavyCosmetics[ 11 ] = iRandHatMisc;
-					iHeavyCosmetics[ 12 ] = IsChance( 25 ) ? iRandHeavy_HeadSkin : iRandFace;
-
-					int iIndex[ 12 ] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 };
-					ShuffleArray( iIndex, sizeof( iIndex ) );
-
-					for ( int i = 0; i < 3; ++i )
-					{
-						iSelectedCosmetics[ i ] = iHeavyCosmetics[ iIndex[ i ] ];
-						if ( iSelectedCosmetics[ i ] )
-						{
-							if ( iIndex[ i ] == 1 ) 
-							{
-								iHeavyCosmetics[ 2 ] = 0;
-								iHeavyCosmetics[ 3 ] = 0;
-								iHeavyCosmetics[ 4 ] = 0;
-								iHeavyCosmetics[ 12 ] = 0;
-							}
-							// If hat(2), glasses(3), beard(4) or face(12) is selected, don't select head
-							else if ( iIndex[ i ] == 2 || iIndex[ i ] == 3 || iIndex[ i ] == 4 || iIndex[ i ] == 12 ) 
-							{
-								iHeavyCosmetics[ 1 ] = 0;
-							}
-						}
-
-						if ( iSelectedCosmetics[ i ] && iHeavyCosmetics[ i ] != 1 )
-						{
-							TF2_CreateHat( iClient, iSelectedCosmetics[ i ], QUALITY_UNIQUE, iIndex[ i ] == 2 );
-						}
-					}
-
-					#if defined TESTING_ONLY
-						CPrintToChatAll( "BOT: {fuchsia}%s{default}, Selected {green}Heavy {default}specific cosmetics.", clientName )
-					#endif
-				}
-
-				if ( TFClass == TFClass_Engineer )
-				{
-					iEngineerCosmetics[ 1 ] = IsChance( 75 ) ? iRandEngy_Head : iRandHead;
-					iEngineerCosmetics[ 2 ] = IsChance( 75 ) ? iRandEngy_Hats : iRandHat;
-					iEngineerCosmetics[ 3 ] = IsChance( 75 ) ? iRandEngy_Glasses : iRandGlasses;
-					iEngineerCosmetics[ 4 ] = IsChance( 75 ) ? iRandEngy_Beard: iRandBeard;
-					iEngineerCosmetics[ 5 ] = iRandMedal;
-					iEngineerCosmetics[ 6 ] = IsChance( 75 ) ? iRandEngy_Shirt : iRandTorso;
-					iEngineerCosmetics[ 7 ] = IsChance( 75 ) ? iRandEngy_Belt : iRandBelt;
-					iEngineerCosmetics[ 8 ] = IsChance( 75 ) ? iRandEngy_Pants : iRandPants;
-					iEngineerCosmetics[ 9 ] = IsChance( 75 ) ? iRandEngy_Feet : iRandFeet;
-					iEngineerCosmetics[ 10 ] = iRandHatMisc;
-					iEngineerCosmetics[ 11 ] = IsChance( 25 ) ? iRandEngy_HeadMisc : iRandFace;
-					iEngineerCosmetics[ 12 ] = iRandEngy_Back;
-
-					int iIndex[ 12 ] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 };
-					ShuffleArray( iIndex, sizeof( iIndex ) );
-
-					for ( int i = 0; i < 3; ++i )
-					{
-						iSelectedCosmetics[ i ] = iEngineerCosmetics[ iIndex[ i ] ];
-						if ( iSelectedCosmetics[ i ] )
-						{
-							if ( iIndex[ i ] == 1 ) 
-							{
-								iEngineerCosmetics[ 2 ] = 0;
-								iEngineerCosmetics[ 3 ] = 0;
-								iEngineerCosmetics[ 4 ] = 0;
-								iEngineerCosmetics[ 11 ] = 0;
-							}
-							// If hat(2), glasses(3), beard(4) or face(11) is selected, don't select head
-							else if ( iIndex[ i ] == 2 || iIndex[ i ] == 3 || iIndex[ i ] == 4 || iIndex[ i ] == 11 ) 
-							{
-								iEngineerCosmetics[ 1 ] = 0;
-							}
-						}
-
-						if ( iSelectedCosmetics[ i ] && iEngineerCosmetics[ i ] != 1 )
-						{
-							TF2_CreateHat( iClient, iSelectedCosmetics[ i ], QUALITY_UNIQUE, iIndex[ i ] == 2 );
-						}
-					}
-
-					#if defined TESTING_ONLY
-						CPrintToChatAll( "BOT: {fuchsia}%s{default}, Selected {green}Engineer {default}specific cosmetics.", clientName )
-					#endif
-				}
-
-				if ( TFClass == TFClass_Medic )
-				{
-					iMedicCosmetics[ 1 ] = IsChance( 75 ) ? iRandMedic_Head : iRandHead;
-					iMedicCosmetics[ 2 ] = IsChance( 75 ) ? iRandMedic_Hats : iRandHat;
-					iMedicCosmetics[ 3 ] = IsChance( 75 ) ? iRandMedic_Glasses : iRandGlasses;
-					iMedicCosmetics[ 4 ] = IsChance( 75 ) ? iRandMedic_Beard: iRandBeard;
-					iMedicCosmetics[ 5 ] = iRandMedal;
-					iMedicCosmetics[ 6 ] = IsChance( 75 ) ? iRandMedic_Shirt : iRandTorso;
-					iMedicCosmetics[ 7 ] = IsChance( 75 ) ? iRandMedic_Belt : iRandBelt;
-					iMedicCosmetics[ 8 ] = IsChance( 75 ) ? iRandMedic_Pants : iRandPants;
-					iMedicCosmetics[ 9 ] = IsChance( 75 ) ? iRandMedic_Feet : iRandFeet;
-					iMedicCosmetics[ 10 ] = iRandHatMisc;
-					iMedicCosmetics[ 11 ] = iRandFace;
+					iSharedCosmetics[ 1 ] = iRandHat;
+					iSharedCosmetics[ 2 ] = iRandGlasses;
+					iSharedCosmetics[ 3 ] = iRandBeard;
+					iSharedCosmetics[ 4 ] = iRandMedal;
+					iSharedCosmetics[ 5 ] = iRandTorso;
+					iSharedCosmetics[ 6 ] = iRandBelt;
+					iSharedCosmetics[ 7 ] = iRandPants;
+					iSharedCosmetics[ 8 ] = iRandFeet;
+					iSharedCosmetics[ 9 ] = iRandHatMisc;
+					iSharedCosmetics[ 10 ] = iRandHead;
+					iSharedCosmetics[ 11 ] = iRandFace;
 
 					int iIndex[ 11 ] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 };
 					ShuffleArray( iIndex, sizeof( iIndex ) );
 
 					for ( int i = 0; i < 3; ++i )
 					{
-						iSelectedCosmetics[ i ] = iMedicCosmetics[ iIndex[ i ] ];
+						iSelectedCosmetics[ i ] = iSharedCosmetics[ iIndex[ i ] ];
+					/* 	
+						Check if head is selected, don't select hat, glasses, or beard
+						TODO: Instead of doing this
+						let's just check to see if there's no cosmetic conflicts.
+						This will save a lot of headache of cosmetic arrangement
+						Like hats with glasses... 
+					*/
 						if ( iSelectedCosmetics[ i ] )
 						{
-							if ( iIndex[ i ] == 1 ) 
+							if ( iIndex[ i ] == 10 ) 
 							{
-								iMedicCosmetics[ 2 ] = 0;
-								iMedicCosmetics[ 3 ] = 0;
-								iMedicCosmetics[ 4 ] = 0;
-								iMedicCosmetics[ 11 ] = 0;
+								iSharedCosmetics[ 1 ] = 0;
+								iSharedCosmetics[ 2 ] = 0;
+								iSharedCosmetics[ 11 ] = 0;
 							}
-							// If hat(2), glasses(3), beard(4) or face(11) is selected, don't select head
-							else if ( iIndex[ i ] == 2 || iIndex[ i ] == 3 || iIndex[ i ] == 4 || iIndex[ i ] == 11 ) 
+							// If hat, glasses, beard or face is selected, don't select head
+							else if ( iIndex[ i ] == 1 || iIndex[ i ] == 2 || iIndex[ i ] == 3 || iIndex[ i ] == 11 ) 
 							{
-								iMedicCosmetics[ 1 ] = 0;
+								iSharedCosmetics[ 10 ] = 0;
 							}
 						}
 
-						if ( iSelectedCosmetics[ i ] && iMedicCosmetics[ i ] != 1 )
+						if ( iSelectedCosmetics[ i ] && iSharedCosmetics[ i ] != 1 ) // Make sure it's not invalid
 						{
-							TF2_CreateHat( iClient, iSelectedCosmetics[ i ], QUALITY_UNIQUE, iIndex[ i ] == 2 );
+							TF2_CreateHat( iClient, iSelectedCosmetics[ i ], QUALITY_UNIQUE, iIndex[ i ] == 1 || iIndex[ i ] == 10 );
 						}
 					}
 
 					#if defined TESTING_ONLY
-						CPrintToChatAll( "BOT: {fuchsia}%s{default}, Selected {green}Medic {default}specific cosmetics.", clientName )
+						CPrintToChatAll( "BOT: {fuchsia}%s{default}, Selected {green}All-Class {default}specific cosmetics.", clientName )
 					#endif
 				}
+				else
+				{
+					if ( TFClass == TFClass_Scout )
+					{
+						iScoutCosmetics[ 1 ] = IsChance( 75 ) ? iRandScout_Head : iRandHead;
+						iScoutCosmetics[ 2 ] = IsChance( 75 ) ? iRandScout_Hats : iRandHat;
+						iScoutCosmetics[ 3 ] = IsChance( 75 ) ? iRandScout_Glasses : iRandGlasses;
+						iScoutCosmetics[ 4 ] = IsChance( 75 ) ? iRandScout_Beard: iRandBeard;
+						iScoutCosmetics[ 5 ] = iRandMedal;
+						iScoutCosmetics[ 6 ] = IsChance( 75 ) ? iRandScout_Torso : iRandTorso;
+						iScoutCosmetics[ 7 ] = iRandScout_Back;
+						iScoutCosmetics[ 8 ] = IsChance( 75 ) ? iRandScout_Belt : iRandBelt;
+						iScoutCosmetics[ 9 ] = IsChance( 75 ) ? iRandScout_Pants : iRandPants;
+						iScoutCosmetics[ 10 ] = IsChance( 75 ) ? iRandScout_Feet : iRandFeet;
+						iScoutCosmetics[ 11 ] = iRandHatMisc;
+						iScoutCosmetics[ 12 ] = iRandFace;
+
+						int iIndex[ 12 ] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 };
+						ShuffleArray( iIndex, sizeof( iIndex ) );
+
+						for ( int i = 0; i < 3; ++i )
+						{
+							iSelectedCosmetics[ i ] = iScoutCosmetics[ iIndex[ i ] ];
+
+							// If head is selected, do not equip Hats, Glasses, Beard, Hat Misc, Face
+							if ( iSelectedCosmetics[ i ] )
+							{
+								if ( iIndex[ i ] == 1 ) 
+								{
+									iScoutCosmetics[ 2 ] = 0;
+									iScoutCosmetics[ 3 ] = 0;
+									iScoutCosmetics[ 4 ] = 0;
+									//iScoutCosmetics[ 11 ] = 0;
+									iScoutCosmetics[ 12 ] = 0;
+								}
+								// If hat(2), glasses(3), beard(4), face(12) is selected, don't select head
+								else if ( iIndex[ i ] == 2 || iIndex[ i ] == 3 || iIndex[ i ] == 4 || iIndex[ i ] == 12 ) 
+								{
+									iScoutCosmetics[ 1 ] = 0;
+								}
+							}
+								
+							if ( iSelectedCosmetics[ i ] && iScoutCosmetics[ i ] != 1 )
+							{
+								TF2_CreateHat( iClient, iSelectedCosmetics[ i ], QUALITY_UNIQUE, iIndex[ i ] == 2 );
+							}
+						}
+
+						#if defined TESTING_ONLY
+							CPrintToChatAll( "BOT: {fuchsia}%s{default}, Selected {green}Scout {default}specific cosmetics.", clientName )
+						#endif
+					}
+					
+					if ( TFClass == TFClass_Soldier )
+					{
+						iSoldierCosmetics[ 1 ] = IsChance( 75 ) ? iRandSoldier_Head : iRandHead;
+						iSoldierCosmetics[ 2 ] = IsChance( 75 ) ? iRandSoldier_Hats : iRandHat;
+						iSoldierCosmetics[ 3 ] = IsChance( 75 ) ? iRandSoldier_Glasses : iRandGlasses;
+						iSoldierCosmetics[ 4 ] = IsChance( 75 ) ? iRandSoldier_Beard: iRandBeard;
+						iSoldierCosmetics[ 5 ] = iRandMedal;
+						iSoldierCosmetics[ 6 ] = IsChance( 75 ) ? iRandSoldier_Coat : iRandTorso;
+						iSoldierCosmetics[ 7 ] = iRandSoldier_Shirt
+						iSoldierCosmetics[ 8 ] = iRandSoldier_Grenades;
+						iSoldierCosmetics[ 9 ] = IsChance( 75 ) ? iRandSoldier_Belt : iRandBelt;
+						iSoldierCosmetics[ 10 ] = IsChance( 75 ) ? iRandSoldier_Pants : iRandPants;
+						iSoldierCosmetics[ 11 ] = IsChance( 75 ) ? iRandSoldier_Feet : iRandFeet;
+						iSoldierCosmetics[ 12 ] = iRandSoldier_Pocket;
+						iSoldierCosmetics[ 13 ] = iRandHatMisc;
+						iSoldierCosmetics[ 14 ] = iRandFace;
+
+						int iIndex[ 14 ] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14 };
+						ShuffleArray( iIndex, sizeof( iIndex ) );
+
+						for ( int i = 0; i < 3; ++i )
+						{
+							iSelectedCosmetics[ i ] = iSoldierCosmetics[ iIndex[ i ] ];
+
+							if ( iSelectedCosmetics[ i ] )
+							{
+								if ( iIndex[ i ] == 1 ) 
+								{
+									iSoldierCosmetics[ 2 ] = 0;
+									iSoldierCosmetics[ 3 ] = 0;
+									iSoldierCosmetics[ 4 ] = 0;
+									iSoldierCosmetics[ 14 ] = 0;
+								}
+								// If hat(2), glasses(3), beard(4) or face(14) is selected, don't select head
+								else if ( iIndex[ i ] == 2 || iIndex[ i ] == 3 || iIndex[ i ] == 4 || iIndex[ i ] == 14 ) 
+								{
+									iSoldierCosmetics[ 1 ] = 0;
+								}
+							}
+
+							if ( iSelectedCosmetics[ i ] && iSoldierCosmetics[ i ] != 1 )
+							{
+								TF2_CreateHat( iClient, iSelectedCosmetics[ i ], QUALITY_UNIQUE, iIndex[ i ] == 2 );
+							}
+						}
+
+						#if defined TESTING_ONLY
+							CPrintToChatAll( "BOT: {fuchsia}%s{default}, Selected {green}Soldier {default}specific cosmetics.", clientName )
+						#endif
+					}
+					
+					if ( TFClass == TFClass_Pyro )
+					{
+						iPyroCosmetics[ 1 ] = IsChance( 75 ) ? iRandPyro_HeadReplace : iRandHead;
+						iPyroCosmetics[ 2 ] = IsChance( 75 ) ? iRandPyro_Hats : iRandHat;
+						iPyroCosmetics[ 3 ] = IsChance( 75 ) ? iRandPyro_Glasses : iRandGlasses;
+						iPyroCosmetics[ 4 ] = IsChance( 75 ) ? iRandPyro_Beard: iRandBeard;
+						iPyroCosmetics[ 5 ] = iRandMedal;
+						iPyroCosmetics[ 6 ] = IsChance( 75 ) ? iRandPyro_Shirt : iRandTorso;
+						iPyroCosmetics[ 7 ] = iRandPyro_Back;
+						iPyroCosmetics[ 8 ] = iRandPyro_Grenades;
+						iPyroCosmetics[ 9 ] = IsChance( 75 ) ? iRandPyro_Belt : iRandBelt;
+						iPyroCosmetics[ 10 ] = IsChance( 75 ) ? iRandPyro_Pants : iRandPants;
+						iPyroCosmetics[ 11 ] = IsChance( 75 ) ? iRandPyro_Feet : iRandFeet;
+						iPyroCosmetics[ 12 ] = IsChance( 75 ) ? iRandPyro_Neckless : iRandHatMisc;
+						iPyroCosmetics[ 13 ] = iRandFace;
+
+						int iIndex[ 13 ] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13 };
+						ShuffleArray( iIndex, sizeof( iIndex ) );
+
+						for ( int i = 0; i < 3; ++i )
+						{
+							iSelectedCosmetics[ i ] = iPyroCosmetics[ iIndex[ i ] ];
+							if ( iSelectedCosmetics[ i ] && iPyroCosmetics[ i ] != 1 )
+							{
+								TF2_CreateHat( iClient, iSelectedCosmetics[ i ], QUALITY_UNIQUE, iIndex[ i ] == 2 );
+							}
+						}
+
+						#if defined TESTING_ONLY
+							CPrintToChatAll( "BOT: {fuchsia}%s{default}, Selected {green}Pyro {default}specific cosmetics.", clientName )
+						#endif
+					}
+					
+					if ( TFClass == TFClass_DemoMan )
+					{
+						iDemoManCosmetics[ 1 ] = IsChance( 75 ) ? iRandDemo_HeadReplace : iRandHead;
+						iDemoManCosmetics[ 2 ] = IsChance( 75 ) ? iRandDemo_Hats : iRandHat;
+						iDemoManCosmetics[ 3 ] = IsChance( 75 ) ? iRandDemo_Glasses : iRandGlasses;
+						iDemoManCosmetics[ 4 ] = IsChance( 75 ) ? iRandDemo_Beard: iRandBeard;
+						iDemoManCosmetics[ 5 ] = iRandMedal;
+						iDemoManCosmetics[ 6 ] = IsChance( 75 ) ? iRandDemo_Shirt : iRandTorso;
+						iDemoManCosmetics[ 7 ] = iRandDemo_Back;
+						iDemoManCosmetics[ 8 ] = iRandDemo_Grenades;
+						iDemoManCosmetics[ 9 ] = IsChance( 75 ) ? iRandDemo_Belt : iRandBelt;
+						iDemoManCosmetics[ 10 ] = IsChance( 75 ) ? iRandDemo_Pants : iRandPants;
+						iDemoManCosmetics[ 11 ] = IsChance( 75 ) ? iRandDemo_Feet : iRandFeet;
+						iDemoManCosmetics[ 12 ] = iRandHatMisc;
+						iDemoManCosmetics[ 13 ] = iRandFace;
+
+						int iIndex[ 12 ] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 };
+						ShuffleArray( iIndex, sizeof( iIndex ) );
+
+						for ( int i = 0; i < 3; ++i )
+						{
+							iSelectedCosmetics[ i ] = iDemoManCosmetics[ iIndex[ i ] ];
+							if ( iSelectedCosmetics[ i ] )
+							{
+								if ( iIndex[ i ] == 1 ) 
+								{
+									iDemoManCosmetics[ 2 ] = 0;
+									iDemoManCosmetics[ 3 ] = 0;
+									iDemoManCosmetics[ 4 ] = 0;
+									iDemoManCosmetics[ 13 ] = 0;
+								}
+								// If hat(2), glasses(3), beard(4) or face(13) is selected, don't select head
+								else if ( iIndex[ i ] == 2 || iIndex[ i ] == 3 || iIndex[ i ] == 4 || iIndex[ i ] == 13) 
+								{
+									iDemoManCosmetics[ 1 ] = 0;
+								}
+							}
+
+							if ( iSelectedCosmetics[ i ] && iDemoManCosmetics[ i ] != 1 )
+							{
+								TF2_CreateHat( iClient, iSelectedCosmetics[ i ], QUALITY_UNIQUE, iIndex[ i ] == 2 );
+							}
+						}
+
+						#if defined TESTING_ONLY
+							CPrintToChatAll( "BOT: {fuchsia}%s{default}, Selected {green}DemoMan {default}specific cosmetics.", clientName )
+						#endif
+					}
+
+					if ( TFClass == TFClass_Heavy )
+					{
+						iHeavyCosmetics[ 1 ] = IsChance( 75 ) ? iRandHeavy_Head : iRandHead;
+						iHeavyCosmetics[ 2 ] = IsChance( 75 ) ? iRandHeavy_Hats : iRandHat;
+						iHeavyCosmetics[ 3 ] = IsChance( 75 ) ? iRandHeavy_Glasses : iRandGlasses;
+						iHeavyCosmetics[ 4 ] = IsChance( 75 ) ? iRandHeavy_Beard: iRandBeard;
+						iHeavyCosmetics[ 5 ] = iRandMedal;
+						iHeavyCosmetics[ 6 ] = IsChance( 75 ) ? iRandHeavy_Shirt : iRandTorso;
+						iHeavyCosmetics[ 7 ] = iRandHeavy_Misc;
+						iHeavyCosmetics[ 8 ] = IsChance( 75 ) ? iRandHeavy_Belt : iRandBelt;
+						iHeavyCosmetics[ 9 ] = IsChance( 75 ) ? iRandHeavy_Pants : iRandPants;
+						iHeavyCosmetics[ 10 ] = IsChance( 75 ) ? iRandHeavy_Feets : iRandFeet;
+						iHeavyCosmetics[ 11 ] = iRandHatMisc;
+						iHeavyCosmetics[ 12 ] = IsChance( 25 ) ? iRandHeavy_HeadSkin : iRandFace;
+
+						int iIndex[ 12 ] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 };
+						ShuffleArray( iIndex, sizeof( iIndex ) );
+
+						for ( int i = 0; i < 3; ++i )
+						{
+							iSelectedCosmetics[ i ] = iHeavyCosmetics[ iIndex[ i ] ];
+							if ( iSelectedCosmetics[ i ] )
+							{
+								if ( iIndex[ i ] == 1 ) 
+								{
+									iHeavyCosmetics[ 2 ] = 0;
+									iHeavyCosmetics[ 3 ] = 0;
+									iHeavyCosmetics[ 4 ] = 0;
+									iHeavyCosmetics[ 12 ] = 0;
+								}
+								// If hat(2), glasses(3), beard(4) or face(12) is selected, don't select head
+								else if ( iIndex[ i ] == 2 || iIndex[ i ] == 3 || iIndex[ i ] == 4 || iIndex[ i ] == 12 ) 
+								{
+									iHeavyCosmetics[ 1 ] = 0;
+								}
+							}
+
+							if ( iSelectedCosmetics[ i ] && iHeavyCosmetics[ i ] != 1 )
+							{
+								TF2_CreateHat( iClient, iSelectedCosmetics[ i ], QUALITY_UNIQUE, iIndex[ i ] == 2 );
+							}
+						}
+
+						#if defined TESTING_ONLY
+							CPrintToChatAll( "BOT: {fuchsia}%s{default}, Selected {green}Heavy {default}specific cosmetics.", clientName )
+						#endif
+					}
+
+					if ( TFClass == TFClass_Engineer )
+					{
+						iEngineerCosmetics[ 1 ] = IsChance( 75 ) ? iRandEngy_Head : iRandHead;
+						iEngineerCosmetics[ 2 ] = IsChance( 75 ) ? iRandEngy_Hats : iRandHat;
+						iEngineerCosmetics[ 3 ] = IsChance( 75 ) ? iRandEngy_Glasses : iRandGlasses;
+						iEngineerCosmetics[ 4 ] = IsChance( 75 ) ? iRandEngy_Beard: iRandBeard;
+						iEngineerCosmetics[ 5 ] = iRandMedal;
+						iEngineerCosmetics[ 6 ] = IsChance( 75 ) ? iRandEngy_Shirt : iRandTorso;
+						iEngineerCosmetics[ 7 ] = IsChance( 75 ) ? iRandEngy_Belt : iRandBelt;
+						iEngineerCosmetics[ 8 ] = IsChance( 75 ) ? iRandEngy_Pants : iRandPants;
+						iEngineerCosmetics[ 9 ] = IsChance( 75 ) ? iRandEngy_Feet : iRandFeet;
+						iEngineerCosmetics[ 10 ] = iRandHatMisc;
+						iEngineerCosmetics[ 11 ] = IsChance( 25 ) ? iRandEngy_HeadMisc : iRandFace;
+						iEngineerCosmetics[ 12 ] = iRandEngy_Back;
+
+						int iIndex[ 12 ] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 };
+						ShuffleArray( iIndex, sizeof( iIndex ) );
+
+						for ( int i = 0; i < 3; ++i )
+						{
+							iSelectedCosmetics[ i ] = iEngineerCosmetics[ iIndex[ i ] ];
+							if ( iSelectedCosmetics[ i ] )
+							{
+								if ( iIndex[ i ] == 1 ) 
+								{
+									iEngineerCosmetics[ 2 ] = 0;
+									iEngineerCosmetics[ 3 ] = 0;
+									iEngineerCosmetics[ 4 ] = 0;
+									iEngineerCosmetics[ 11 ] = 0;
+								}
+								// If hat(2), glasses(3), beard(4) or face(11) is selected, don't select head
+								else if ( iIndex[ i ] == 2 || iIndex[ i ] == 3 || iIndex[ i ] == 4 || iIndex[ i ] == 11 ) 
+								{
+									iEngineerCosmetics[ 1 ] = 0;
+								}
+							}
+
+							if ( iSelectedCosmetics[ i ] && iEngineerCosmetics[ i ] != 1 )
+							{
+								TF2_CreateHat( iClient, iSelectedCosmetics[ i ], QUALITY_UNIQUE, iIndex[ i ] == 2 );
+							}
+						}
+
+						#if defined TESTING_ONLY
+							CPrintToChatAll( "BOT: {fuchsia}%s{default}, Selected {green}Engineer {default}specific cosmetics.", clientName )
+						#endif
+					}
+
+					if ( TFClass == TFClass_Medic )
+					{
+						iMedicCosmetics[ 1 ] = IsChance( 75 ) ? iRandMedic_Head : iRandHead;
+						iMedicCosmetics[ 2 ] = IsChance( 75 ) ? iRandMedic_Hats : iRandHat;
+						iMedicCosmetics[ 3 ] = IsChance( 75 ) ? iRandMedic_Glasses : iRandGlasses;
+						iMedicCosmetics[ 4 ] = IsChance( 75 ) ? iRandMedic_Beard: iRandBeard;
+						iMedicCosmetics[ 5 ] = iRandMedal;
+						iMedicCosmetics[ 6 ] = IsChance( 75 ) ? iRandMedic_Shirt : iRandTorso;
+						iMedicCosmetics[ 7 ] = IsChance( 75 ) ? iRandMedic_Belt : iRandBelt;
+						iMedicCosmetics[ 8 ] = IsChance( 75 ) ? iRandMedic_Pants : iRandPants;
+						iMedicCosmetics[ 9 ] = IsChance( 75 ) ? iRandMedic_Feet : iRandFeet;
+						iMedicCosmetics[ 10 ] = iRandHatMisc;
+						iMedicCosmetics[ 11 ] = iRandFace;
+
+						int iIndex[ 11 ] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 };
+						ShuffleArray( iIndex, sizeof( iIndex ) );
+
+						for ( int i = 0; i < 3; ++i )
+						{
+							iSelectedCosmetics[ i ] = iMedicCosmetics[ iIndex[ i ] ];
+							if ( iSelectedCosmetics[ i ] )
+							{
+								if ( iIndex[ i ] == 1 ) 
+								{
+									iMedicCosmetics[ 2 ] = 0;
+									iMedicCosmetics[ 3 ] = 0;
+									iMedicCosmetics[ 4 ] = 0;
+									iMedicCosmetics[ 11 ] = 0;
+								}
+								// If hat(2), glasses(3), beard(4) or face(11) is selected, don't select head
+								else if ( iIndex[ i ] == 2 || iIndex[ i ] == 3 || iIndex[ i ] == 4 || iIndex[ i ] == 11 ) 
+								{
+									iMedicCosmetics[ 1 ] = 0;
+								}
+							}
+
+							if ( iSelectedCosmetics[ i ] && iMedicCosmetics[ i ] != 1 )
+							{
+								TF2_CreateHat( iClient, iSelectedCosmetics[ i ], QUALITY_UNIQUE, iIndex[ i ] == 2 );
+							}
+						}
+
+						#if defined TESTING_ONLY
+							CPrintToChatAll( "BOT: {fuchsia}%s{default}, Selected {green}Medic {default}specific cosmetics.", clientName )
+						#endif
+					}
+				}
+			}
+		}
+		else
+		{
+			if ( iRandom <= 80 )
+			{
+				DoCosmeticPreset( iClient, "Default" ); // Standard Presets (Class)
+			}
+			else if ( iRandom <= 85 )
+			{
+				DoCosmeticPreset( iClient, "Generic" );	// All Class Presets
+			}
+			else if ( iRandom <= 90 )
+			{
+				DoCosmeticPreset( iClient, "F2P" );	// F2P presets
+			}
+			else
+			{
+				DoCosmeticPreset( iClient, "None" ); // Nothing
 			}
 		}
 	}
@@ -2911,42 +2932,19 @@ void GiveBotCosmetics( int iClient )
 	{
 		if ( iRandom <= 80 )
 		{
-			switch ( TF2_GetPlayerClass( iClient ) )
-			{
-				case TFClass_Scout: 	FetchClassForPreSet( iClient, "Scout" );
-				case TFClass_Soldier: 	FetchClassForPreSet( iClient, "Soldier" );
-				case TFClass_Pyro: 		FetchClassForPreSet( iClient, "Pyro" );
-				case TFClass_DemoMan: 	FetchClassForPreSet( iClient, "Demoman" );
-				case TFClass_Heavy: 	FetchClassForPreSet( iClient, "HeavyWeapons" );
-				case TFClass_Engineer: 	FetchClassForPreSet( iClient, "Engineer" );
-				case TFClass_Medic: 	FetchClassForPreSet( iClient, "Medic" );
-				case TFClass_Sniper: 	FetchClassForPreSet( iClient, "Sniper" );
-				case TFClass_Spy: 		FetchClassForPreSet( iClient, "Spy" );
-			}
-
-			#if defined TESTING_ONLY
-				CPrintToChatAll( "BOT: {fuchsia}%s{default}, Selected {green}Pre-made {default}set.", clientName )
-			#endif
+			DoCosmeticPreset( iClient, "Default" ); // Standard Presets (Class)
 		}
 		else if ( iRandom <= 85 )
 		{
-			FetchClassForPreSet( iClient, "Generic" );
-			#if defined TESTING_ONLY
-				CPrintToChatAll( "BOT: {fuchsia}%s{default}, Selected {green}Generic {default}sets.", clientName )
-			#endif
+			DoCosmeticPreset( iClient, "Generic" );	// All Class Presets
 		}
 		else if ( iRandom <= 90 )
 		{
-			FetchClassForPreSet( iClient, "F2P" );
-			#if defined TESTING_ONLY
-				CPrintToChatAll( "BOT: {fuchsia}%s{default}, Selected {green}F2P {default}set.", clientName )
-			#endif
+			DoCosmeticPreset( iClient, "F2P" );	// F2P presets
 		}
 		else
 		{
-			#if defined TESTING_ONLY
-				CPrintToChatAll( "BOT: {fuchsia}%s{default}, Selected no sets (2007 player).", clientName )
-			#endif	
+			DoCosmeticPreset( iClient, "None" ); // Nothing
 		}
 	}
 }
@@ -2968,56 +2966,102 @@ void ApplyCosmetics(int iClient, const CosmeticSet[] presetCosmetics, int iRandI
 	}
 }
 
-void FetchClassForPreSet( int iClient, char[] iClass )
+void DoCosmeticPreset( int iClient, char[] cType = "Default" )
+{
+	char clientName[ MAX_NAME_LENGTH ]; GetClientName( iClient, clientName, sizeof( clientName ) ) ;
+
+	if ( StrEqual( cType, "Default", false ) )
+	{
+		switch ( TF2_GetPlayerClass( iClient ) )
+		{
+			case TFClass_Scout: 	FetchClassForPreSet( iClient, "Scout" );
+			case TFClass_Soldier: 	FetchClassForPreSet( iClient, "Soldier" );
+			case TFClass_Pyro: 		FetchClassForPreSet( iClient, "Pyro" );
+			case TFClass_DemoMan: 	FetchClassForPreSet( iClient, "Demoman" );
+			case TFClass_Heavy: 	FetchClassForPreSet( iClient, "HeavyWeapons" );
+			case TFClass_Engineer: 	FetchClassForPreSet( iClient, "Engineer" );
+			case TFClass_Medic: 	FetchClassForPreSet( iClient, "Medic" );
+			case TFClass_Sniper: 	FetchClassForPreSet( iClient, "Sniper" );
+			case TFClass_Spy: 		FetchClassForPreSet( iClient, "Spy" );
+		}
+
+		#if defined TESTING_ONLY
+			CPrintToChatAll( "BOT: {fuchsia}%s{default}, Selected {green}Pre-made {default}set.", clientName )
+		#endif
+	}
+	else if ( StrEqual( cType, "Generic", false ) )
+	{
+		FetchClassForPreSet( iClient, "Generic" );
+		#if defined TESTING_ONLY
+			CPrintToChatAll( "BOT: {fuchsia}%s{default}, Selected {green}Generic {default}sets.", clientName )
+		#endif
+	}
+	else if ( StrEqual( cType, "F2P", false ) )
+	{
+		FetchClassForPreSet( iClient, "F2P" );
+		#if defined TESTING_ONLY
+			CPrintToChatAll( "BOT: {fuchsia}%s{default}, Selected {green}F2P {default}set.", clientName )
+		#endif
+	}
+	else if ( StrEqual( cType, "None", false ) )
+	{
+		// Literally nothing, nada, just for testing you brute!
+		#if defined TESTING_ONLY
+			CPrintToChatAll( "BOT: {fuchsia}%s{default}, Selected no sets (2007 player).", clientName )
+		#endif	
+	}
+}
+
+void FetchClassForPreSet( int iClient, char[] cClass )
 {
 	bool bIsHalloween = TF2_IsHolidayActive( TFHoliday_HalloweenOrFullMoon );
 	int randIndex;
 
-	if ( StrEqual( iClass, "Scout", false ) ) 
+	if ( StrEqual( cClass, "Scout", false ) )
 	{
 		randIndex = bIsHalloween ? GetRandomInt( 0, sizeof( CS_PRESET_SCOUT_HALLOWEEN ) - 1 ) :
 								   GetRandomInt( 0, sizeof( CS_PRESET_SCOUT ) - 1 );
 		ApplyCosmetics( iClient, bIsHalloween ? CS_PRESET_SCOUT_HALLOWEEN : CS_PRESET_SCOUT, randIndex );
 	}
-	else if ( StrEqual( iClass, "Soldier", false ) ) 
+	else if ( StrEqual( cClass, "Soldier", false ) ) 
 	{
 		randIndex = bIsHalloween ? GetRandomInt( 0, sizeof( CS_PRESET_SOLDIER_HALLOWEEN ) - 1 ) :
 								   GetRandomInt( 0, sizeof( CS_PRESET_SOLDIER ) - 1 );
 		ApplyCosmetics( iClient, bIsHalloween ? CS_PRESET_SOLDIER_HALLOWEEN : CS_PRESET_SOLDIER, randIndex );
 	}
-	else if ( StrEqual( iClass, "Pyro", false ) ) 
+	else if ( StrEqual( cClass, "Pyro", false ) ) 
 	{
 		randIndex = bIsHalloween ? GetRandomInt( 0, sizeof( CS_PRESET_PYRO_HALLOWEEN ) - 1 ) :
 								   GetRandomInt( 0, sizeof( CS_PRESET_PYRO ) - 1 );
 		ApplyCosmetics( iClient, bIsHalloween ? CS_PRESET_PYRO_HALLOWEEN : CS_PRESET_PYRO, randIndex );
 	}
-	else if ( StrEqual( iClass, "Demoman", false ) ) 
+	else if ( StrEqual( cClass, "Demoman", false ) ) 
 	{
 		randIndex = GetRandomInt( 0, sizeof( CS_PRESET_DEMOMAN ) - 1 );
 		ApplyCosmetics( iClient, CS_PRESET_DEMOMAN, randIndex );
 	}
-	else if ( StrEqual( iClass, "HeavyWeapons", false ) ) 
+	else if ( StrEqual( cClass, "HeavyWeapons", false ) ) 
 	{
 		randIndex = GetRandomInt( 0, sizeof( CS_PRESET_HEAVY ) - 1 );
 		ApplyCosmetics( iClient, CS_PRESET_HEAVY, randIndex );
 	}
-	else if ( StrEqual( iClass, "Generic", false ) ) 
+	else if ( StrEqual( cClass, "Generic", false ) ) 
 	{
 		randIndex = GetRandomInt( 0, sizeof( CS_PRESET_GENERIC ) - 1 );
 		ApplyCosmetics( iClient, CS_PRESET_GENERIC, randIndex );
 	}
-	else if ( StrEqual( iClass, "Medic", false ) ) 
+	else if ( StrEqual( cClass, "Medic", false ) ) 
 	{
 		randIndex = bIsHalloween ? GetRandomInt( 0, sizeof( CS_PRESET_MEDIC_HALLOWEEN ) - 1 ) :
 								   GetRandomInt( 0, sizeof( CS_PRESET_MEDIC ) - 1 );
 		ApplyCosmetics( iClient, CS_PRESET_MEDIC, randIndex );
 	}
-	else if ( StrEqual( iClass, "Sniper", false ) ) 
+	else if ( StrEqual( cClass, "Sniper", false ) ) 
 	{
 		randIndex = GetRandomInt( 0, sizeof( CS_PRESET_SNIPER ) - 1 );
 		ApplyCosmetics( iClient, CS_PRESET_SNIPER, randIndex );
 	}
-	else if ( StrEqual( iClass, "F2P", false ) ) 
+	else if ( StrEqual( cClass, "F2P", false ) ) 
 	{
 		randIndex = bIsHalloween ? GetRandomInt( 0, sizeof( CS_PRESET_F2P_HALLOWEEN ) - 1 ) :
 								   GetRandomInt( 0, sizeof( CS_PRESET_F2P ) - 1 );
