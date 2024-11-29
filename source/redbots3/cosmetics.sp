@@ -535,7 +535,6 @@ public const CosmeticSet CS_PRESET_SCOUT[] = {
 	{ 31437, 31436, 30991 },	// Bonk Beanie, Isotopic Insulator, Blizzard Britches	(NOTE: This one has some clipping, but who tf cares.)
 	{ 30868, 31406, 30888 },	// Legendary Lid, Last Laugh, Jungle Jersey
 	{ 30743, 30685, 30104 },	// Patriot Peak, Thrilling Tracksuit, Graybanns
-	//{ 30066, 30309, 30104 },	// Brotherhood Of Arms, Dead of Night, Graybanns
 	{ 30767, 31081, 30185 },	// Airdog, Fuel Injector, Flapjack
 	{ 31459, 31460, 30104 },	// Commonwealth Commando, Tanker's Top, Graybanns
 	{ 31197, 31195, 31196 },	// Fried Batter, Fast Food, Meal Dealer
@@ -544,14 +543,13 @@ public const CosmeticSet CS_PRESET_SCOUT[] = {
 	{ 31326, 30309, 30427 },	// Lumbercap, Dead of Night, Argyle Ace
 	{ 30479, 1026, 30889 },		// Thirst Blood, Tomb Wrapper, Transparent Trousers
 	{ 1014, 30890, 31281 },		// Brutal Bouffant, Forest Footwear, Ripped Rider
-	//{ 126, 30104, 30309 },		// L4D Hat, Graybanns, Dead of Night
-	//{ 30362, 30085, 296 },		// THe Law, The Macho Mann, TTG Badge (License to maim)
 	{ 324, 31217, 31302 },		// Flipped Trilby, Goalkeeper, Imp's Imprint
 	{ 31168, 987, 31022 },		// Towering Pillar of Beanies, Merc's Muffler, Juvenile's Jumper
 	{ 765, 30185, 30068 },		// Cross-Comm Express, FlapJack, Breakneck Baggies
 	{ 846, 30027, 30770 },		// Robot Running Man, Bolt Boy, Courtly Cuirass
 	{ 31117, 30068, 827 },		// California Cap, Breakneck Baggies, Track Terrorizer
-	{ -1, 30888, 30889 },		// Nothing, Jungle Jersey, Transparent Trousers
+	{ 31127, 983, 30552 },		// Gourd Grin, Digit Divulger, EOTL_thermal_sleeves
+	{ -1, 30888, 30889 },		// Jungle Jersey, Transparent Trousers
 	{ 31417, 722, 9908 },		// Dapper Dickens, Fast Learner, Canteen Crasher Gold Uber Medal 2018
 	{ 30884, 492, 486 },		// Aloha Apparel, Summer Hat, Summer Shades
 	{ 30801, 924, 925 },		// Spooktacles, Spooky Shoes, Spooky Sleeves
@@ -664,8 +662,6 @@ public const CosmeticSet CS_PRESET_PYRO[] = {
 	{ 247, 30089, 31065 },		// Old Guadalajara, El Muchacho, Head of the Dead
 	{ 30038, 30032, 842 },		// Firewall Helmet, Rusty Reaper, Pyrobotics Pack
 	{ 126, 30309, 31464 },		// L4D Hat, Dead Of Night, Scorched Earth Stompers
-	//{ 126, 30104, 30309 },		// L4D Hat, Graybanns, Dead of Night
-	//{ 30066, 30309, 486 },		// BrotherHood of Arms, Dead Of Night, Summer Shades
 	{ 394, 30169, 30417 },		// Connoisseur's Cap, Trickster's Turnout Gear, Frymaster
 	{ 30304, 30305, -1 },		// Blizzard Breather, Sub Zero Suit
 	{ 126, 570, 30305 },		// L4D Hat, Last Breath, Sub Zero Suit
@@ -690,8 +686,6 @@ public const CosmeticSet CS_PRESET_DEMOMAN[] = {
 	{ 30628, 31274, 31275 },	// Outta' Sight, Hawaiian hangover, Barefoot Brawler
 	{ 30979, 30945, 30555 },	// Frag Proof Fragger, Blast Blocker, EOTL_demopants
 	{ 30393, 30373, 30104 },	// Razor Cut, Toowoomba Tunic, Graybanns
-	//{ 30066, 30104, 30178 },	// Brotherhood of Arms, Graybanns, Weight Room Warmer
-	//{ 30066, 30104, 30309 },	// Brotherhood of Arms, Graybanns, Dead of Night
 	{ 30105, 30107, 30124 },	// Black Watch, Gaelic Golf Bag, Gaelic garb
 	{ 31115, 31392, 30945 },	// Hazard Headgear, Stunt Suit, Blast Blocker
 	{ 30421, 30541, 30550 },	// Frontier Djustice, EOTL_demo_dynamite, EOTL_hiphunter_jacket
@@ -701,13 +695,13 @@ public const CosmeticSet CS_PRESET_DEMOMAN[] = {
 	{ 30429, 30430, 30431 },	// Allbrero, Seeing Double, Six Pack Abs
 	{ 30180, 30373, 30061 },	// Pirate Bandana, Toowoomba Tunic, Tartantaloons
 	{ 30180, 30373, 31037 },	// Pirate Bandana, Toowoomba Tunic, Dynamite Abs
+	{ 31273, 31307, 30945 },	// Head Banger, Alcoholic Automaton, Blast Blocker
 	{ 30340, 1016, 30178 },		// Stylish DeGroot, Buck Turner All-Stars, Weight Room Warmer
 	{ 306, 30179, 30085 },		// Scotch Bonnet, Hurt Locher, Macho Mann
 	{ 306, 30179, 30363 },		// Scotch Bonnet, Hurt Locher, Juggernaut Jacket
 	{ 146, 31037, 30068 },		// Demoman Hallmark, Dynamite Abs, Breakneck Baggies
 	{ 359, 30348, 30742 },		// Demo Kabuto, Bushi-Dou, Shin Shredders
 	{ 30016, 31307, 845 },		// FF-0, Alcoholic Automaton, Battery Bandolier
-	//{ 126, 30104, 30309 },		// L4D Hat, Graybanns, Dead of Night
 	{ 30421, 30788, 734 },		// Frontier Djustice, Demo's Dustcatcher, Teufort Tooth Kicker
 	{ 30180, 31037, 925 },		// Pirate Bandana, Dynamite Abs, Spooky Sleeves
 	{ 342, 30124, 874 },		// Prince Tavish's Crown, Gaelic Garb, King of Scotland Cape
@@ -723,7 +717,6 @@ public const CosmeticSet CS_PRESET_HEAVY[] = {
 	{ 30866, 30557, 30368 },	// Warhood, EOTL_sheavyshirt, War Goggles
 	{ 30644, 30645, 30803 },	// White Russian, El Duderino, Heavy Tourism
 	{ 30912, 30343, 30913 },	// Commando Elite, Gone Commando, Siberian Tigerstripe
-	//{ 30066, 30104, 30309 },	// Brotherhood of Arms, Graybanns, Dead of Night
 	{ 30369, 30913, 30372 },	// Eliminators Safeguard, Siberian Tigerstripe, Combat Slacks
 	{ 30885, 30873, 30563 },	// Nuke, Airborne Attire, Jungle Booty
 	{ 30885, 30873, 30343 },	// Nuke, Airborne Attire, Gone Commando
@@ -739,13 +732,13 @@ public const CosmeticSet CS_PRESET_HEAVY[] = {
 	{ 30959, 30960, 777 },		// Sinner's Shade, Wild West Whiskers, Apparatchik's Apparel
 	{ 1087, 1088, 30372 },		// Wolfenstien Set
 	{ 126, 30165, 30104 },		// L4D Hat, Cuban Bristle Crisis, Graybanns
-	//{ 126, 30104, 30309 },		// L4D Hat, Graybanns, Dead of Night
 	{ 145, 30165, 31453 },		// Heavy Hair, Cuban Bristle Crisis, Brute's Braces
 	{ 30549, 30550, 486 },		// EOTL_hiphunter_hat, EOTL_hiphunter_jacket, Summer Shades
 	{ 821, 31030, 30319 },		// Soviet Gentleman, Paka Parka, Mann Of the House
 	{ 96, 30401, 30633 },		// Officer's Ushanka, Yuri's Revenge, Commissar's Coat
 	{ 1187, 1188, 1189 },		// Yeti Set
 	{ 97, 30079, 30745 },		// Tough Guy's Toque, Red Army Robin, Siberian Sweater
+	{ 31481, 1088, 524 },		// Hellish Overlord, Die Regime-Panzerung, Purity Fist
 	{ 666, 647, 30747 },		// B.M.O.C, All-father, Gift Bringer
 	{ 613, 757, 30080 },		// Gym Rat, Toss-Proof Towel, Heavy-Weight Champ
 	{ 952, 30104, 946 },		// Brock's Locks, Graybanns, Siberian Sophisticate
@@ -754,6 +747,41 @@ public const CosmeticSet CS_PRESET_HEAVY[] = {
 	{ 427, 814, 815 },			// Capone's Capper, Triad Trinket, Champ Stamp
 	{ 989, 990, 991 },			// Aqua Teen Hunger Heavy Set
 	{ 330, 946, -1 }			// Coupe D'isaster, Siberian Sophisticate
+};
+public const CosmeticSet CS_PRESET_ENGINEER[] = {
+	{ 31374, 31373, 30749 },	// Hazard Handler, Cargo Constructor, Winter Backup
+	{ 30634, 30629, 30635 },	// Sheriff's Stetson, Support Spurs, Wild West Waistcoat
+	{ 30546, 30347, 30539 },	// EOTL_FURCAP, Scotch Saver, EOTL_Insulated_innovator
+	{ 30833, 30543, 30539 },	// Woolen Warmer, EOTL_winter_pants, EOTL_Insulated_innovator
+	{ 31049, 31487, 30675 },	// Brain Interface, Delldozer, Roboot
+	{ 31094, 31264, 30168 },	// Winter Wrap Up, Western Wraps, Special Eyes
+	{ 31114, 31487, 30675 },	// Head of Defense, Delldozer, Roboot
+	{ 30805, 30804, 30113 },	// Wide-Brimmed Bandito, El Paso Poncho, Flared Frontiersman
+	{ 30930, 30408, 30168 },	// Trucker's Topper, Egghead's Overalls, Special Eyes
+	{ 30336, 30377, 30168 },	// Trencher's Topper, Antarctic Researcher, Special Eyes
+	{ 30336, 30698, 30168 },	// Trencher's Topper, Iron Lung, Special Eyes
+	{ 30592, 30591, 30590 },	// DEC2014 Detective Set
+	{ 31333, 31334, 30086 },	// Arctic Mole, Underminer's Overcoat, Trash Toter
+	{ 31049, 30367, 31189 },	// Brain Interface, Cute Suit, Sightliner
+	{ 31484, 31485, 31486 },	// Mannhattan Protect Set
+	{ 30977, 30543, 30412 },	// Antarctic Eyewear, EOTL_winter_pants, Endothermic Exowear
+	{ 338, 30322, 30539 },		// Industrial Festivizer, Face Full of Festive, EOTL_Insulated_innovator
+	{ 492, 30070, 30884 },		// Summer Hat, Pocket Pyro, Aloha Apparel
+	{ 148, 31264, 30165 },		// Engineer Welding Mask, Western Wraps, Cuban Bristle Crisis
+	{ 30119, 30884, 486 },		// Federal Casemaker, Aloha Apparel, Summer Shades
+	{ 30420, 30785, -1 },		// Danger, Dad Duds
+	{ 31425, 31426, -1 },		// Clue Hairdo, Sleuth Suit
+	{ 31148, 30330, -1 },		// Wavefinder, Dogfighter
+	{ 48, 30337, 30347 },		// Mining Light, Trencher's Tunic, Scotch Saver
+	{ 30406, 815, 814 },		// Peacenik's Ponytail, Champ Stamp, Triad Trinket
+	{ 382, 30590, 784 },		// Big Country, engineer_detectiveholster, Idea Tube
+	{ 94, 606, 784 },			// Texas Ten Gallon, Builder's Blueprints, Idea Tube
+};
+public const CosmeticSet CS_PRESET_ENGINEER_HALLOWEEN[] = {
+	{ 30300, 30497, 31373 },	// Haunted Hat, Ghost Of Spies Checked Past, Cargo Constructor
+	{ 30297, 30412, 31103 },	// Magical Mercenary, Endothermic Exowear, Hypno-Eyes
+	{ 31140, 30923, 31032 },	// pug mug, Sledder's Sidekick, puggyback
+	{ 31293, 30510, 5621 },		// Soul of 'Spenser's Past, Zombie Engineer
 };
 public const CosmeticSet CS_PRESET_MEDIC[] = {
 	{ 30755, 30756, 30773 },	// Berlin Brain Bowl, Bunnyhopper's Ballistics Vest, Surgical Survivalist
@@ -803,6 +831,8 @@ public const CosmeticSet CS_PRESET_SNIPER[] = {
 	{ 30316, 30317, 30324 },	// Toy Soldier, Five-Month Shadow, Golden Garment
 	{ 39648, 39649, 39650 },	// Corona Australis, Final Frontiersman, Starduster
 	{ 30743, 30895, 30424 },	// Patriot Peak, Rifleman's Regalia, Triggerman's Tacticals
+	{ 31458, 31314, 30424 },	// Aimframe, Hunting Cloak, Triggerman's Tacticals
+	{ 30423, 30309, 30599 },	// Scoper's Smoke, Dead of Night, dec2014 hunter_vest
 	{ 634, 30892, 30891 },		// Point And Shoot, Conspicuous Camouflage, Cammy Jammies
 	{ 31417, 30599, 955 },		// Dapper Dickens, dec2014 hunter_vest, Tuxxy
 	{ 981, 30310, 30397 },		// Cold Killer, Snow Scoper, Bruiser's Bandanna
@@ -814,6 +844,7 @@ public const CosmeticSet CS_PRESET_SNIPER[] = {
 	{ 1095, 1094, 30373 },		// Dread Hiding Hood, Criminal Cloak, Toowoomba Tunic
 	{ 631, 30629, 30856 },		// Hat With No Name, Support Spurs, Down Under Duster
 	{ 518, 30100, 30371 },		// The Anger, Birdman of Australiacatraz, Archers Groundings
+	{ 400, 30397, 31120 },		// Desert Marauder, Bruiser's Bandanna, Jarmaments
 	{ 981, 30310, 393 },		// Cold Killer, Snow Scoper, Villain's Veil
 	{ 314, 815, 814 },			// Crocleather Slouch, Champ Stamp, Triad Trinket
 	{ 117, 815, 814 },			// Ritzy Rick's Hair Fixative, Champ Stamp, Triad Trinket
@@ -845,6 +876,7 @@ public const CosmeticSet CS_PRESET_GENERIC[] = {
 	{ 30838, 30309, 30068 },	// Head Prize, Dead Of Night, Breakneck Baggies
 	{ 30838, 30104, 30397 },	// Head Prize, Graybanns, Bruiser's Bandanna
 	{ 30066, 31103, 5075 },		// BrotherHood of Arms, Hypno-Eyes, Something Special For Someone Special (Wearable)
+	{ 126, 30104, 30397 },		// L4D Hat, Graybanns, Bruiser's Bandanna
 	{ 30549, 343, 30551 },		// EOTL_hiphunter_hat, Friendly Item, EOTL_hiphunter_boots
 	{ 126, 30104, 30309 },		// L4D Hat, Graybanns, Dead of Night
 	{ 30066, 30309, 486 },		// BrotherHood of Arms, Dead Of Night, Summer Shades
@@ -1022,18 +1054,20 @@ public const int SPECIFIC_MEDIC_FEET[] = { 30379 };
 //-----------------------------------------------
 // SNIPER
 //-----------------------------------------------
-/*
 
-public const int SPECIFIC_SNIPER_HEAD[] = { };
-public const int SPECIFIC_SNIPER_HATS[] = { };
-public const int SPECIFIC_SNIPER_GLASSES[] = { };
-public const int SPECIFIC_SNIPER_BEARD[] = { };
+// Let on HAT WITH NO NAME
+/* public const int SPECIFIC_SNIPER_HEAD[] = { 518, };
+public const int SPECIFIC_SNIPER_HATS[] = { 53, 109, 110, 117, 158, 181, 229, 314, 344, 400
+, 600, 626, 631 };
+public const int SPECIFIC_SNIPER_GLASSES[] = { 534 };
+public const int SPECIFIC_SNIPER_BEARD[] = { 393 };
+public const int SPECIFIC_SNIPER_MISC[] = { 618 };
 public const int SPECIFIC_SNIPER_SHIRT[] = { };
 public const int SPECIFIC_SNIPER_VEST[] = { };
 public const int SPECIFIC_SNIPER_PANTS[] = { };
 public const int SPECIFIC_SNIPER_BELT[] = { };
-public const int SPECIFIC_SNIPER_FEET[] = { };
-*/
+public const int SPECIFIC_SNIPER_FEET[] = { }; */
+
 
 // Returns the ellgible cosmetics that has multiple styles
 int GetCosmeticStyles( int iEntity )
@@ -1041,236 +1075,238 @@ int GetCosmeticStyles( int iEntity )
 	int iIndex = GetEntProp( iEntity, Prop_Send, "m_iItemDefinitionIndex" );
 	switch ( iIndex )
 	{
-		case 31456: return 1;
-		case 31421: return 1;
-		case 31401: return 1;
-		case 31399: return 1;
-		case 31266: return 1;
-		case 31265: return 1;
-		case 31099: return 1;
-		case 31177: return 1;
-		case 31489: return 1;
-		case 31488: return 1;
-		case 31469: return 1;
-		case 657: 	return 1;
-		case 315: 	return 1;
-		case 31031: return 1;
-		case 30336: return 1;
-		case 31254: return 1;
-		case 755: 	return 1;
-		case 30634: return 1;
-		case 31272: return 1;
-		case 31114: return 1;
-		case 389: 	return 1;
-		case 31150: return 1;
-		case 31332: return 1;
-		case 590: 	return 1;
-		case 382: 	return 1;
-		case 31012: return 1;
-		case 31304: return 1;
-		case 31268: return 1;
-		case 31267: return 1;
-		case 31191: return 1;
-		case 31123: return 1;
-		case 31052: return 1;
-		case 30981: return 1;
-		case 31029: return 1;
-		case 30369: return 1;
-		case 1028: 	return 1;
-		case 821: 	return 1;
-		case 610: 	return 1;
-		case 478: 	return 1;
-		case 31422: return 1;
-		case 31393: return 1;
-		case 31372: return 1;
-		case 31307: return 1;
-		case 31100: return 1;
-		case 31037: return 1;
-		case 30373: return 1;
-		case 830: 	return 1;
-		case 120: 	return 1;
-		case 976: 	return 1;
-		case 761: 	return 1;
-		case 30168: return 1;
-		case 31143: return 1;
-		case 31464: return 1;
-		case 31004: return 1;
-		case 31026: return 1;
-		case 950: 	return 1;
-		case 31463: return 1;
-		case 31432: return 1;
-		case 31065: return 1;
-		case 31357: return 1;
-		case 31108: return 1;
-		case 30724: return 1;
-		case 31253: return 1;
-		case 30367: return 1;
-		case 30162: return 1;
-		case 1073: 	return 1;
-		case 829: 	return 1;
-		case 31220: return 1;
-		case 31200: return 1;
-		case 844: 	return 1;
-		case 980: 	return 1;
-		case 31387: return 1;
-		case 31147: return 1;
-		case 30069: return 1;
-		case 30870: return 1;
-		case 440: 	return 1;
-		case 1021: 	return 1;
-		case 31277: return 1;
-		case 948: 	return 1;
-		case 31312: return 1;
-		case 31450: return 1;
-		case 31451: return 1;
-		case 31449: return 1;
-		case 13742: return 1;
-		case 13739: return 1;
-		case 13741: return 1;
-		case 13743: return 1;
-		case 31442: return 1;
-		case 30727: return 1;
-		case 31146: return 1;
-		case 31335: return 1;
-		case 719: 	return 1;
-		case 647: 	return 1;
-		case 31211: return 1;
-		case 31294: return 1;
-		case 785: 	return 1;
-		case 31276: return 1;
-		case 30746: return 1;
-		case 420: 	return 1;
-		case 617: 	return 1;
-		case 760: 	return 1;
-		case 722: 	return 1;
-		case 31437: return 1;
-		case 31116: return 1;
-		case 30339: return 1;
-		case 31379: return 1;
-		case 1040: 	return 1;
-		case 652: 	return 1;
-		case 30027: return 1;
-		case 451: 	return 1;
-		case 653: 	return 1;
-		case 31042: return 1;
-		case 853: 	return 1;
-		case 30189: return 1;
-		case 30078: return 1;
-		case 31129: return 1;
-		case 858: 	return 1;
-		case 453: 	return 1;
-		case 31406: return 1;
-		case 31303: return 1;
-		case 31258: return 1;
-		case 31282: return 1;
-		case 814: 	return 1;
-		case 1012: 	return 1;
-		case 12988: return 1;
-		case 12990: return 1;
-		case 12989: return 1;
-		case 12987: return 1;
-		case 31060: return 1;
-		case 12706: return 1;
-		case 12707: return 1;
-		case 31218: return 1;
-		case 30571: return 1;
-		case 671: 	return 1;
-		case 1014: 	return 1;
-		case 31164: return 1;
-		case 125: 	return 1;
-		case 31091: return 1;
-		case 31386: return 1;
-		case 942: 	return 1;
-		case 1034: 	return 1;
-		case 30175: return 1;
-		case 31208: return 1;
-		case 30058: return 1;
-		case 31417: return 1;
-		case 30357: return 1;
-		case 30997: return 1;
-		case 31134: return 1;
-		case 31172: return 1;
-		case 31327: return 1;
-		case 31088: return 1;
-		case 31090: return 1;
-		case 31135: return 1;
-		case 868: 	return 1;
-		case 12660: return 1;
-		case 12661: return 1;
-		case 31103: return 1;
-		case 31125: return 1;
-		case 31105: return 1;
-		case 10448: return 1;
-		case 10442: return 1;
-		case 10443: return 1;
-		case 10444: return 1;
-		case 10445: return 1;
-		case 10446: return 1;
-		case 10447: return 1;
-		case 10449: return 1;
-		case 816: 	return 1;
-		case 11430: return 1;
-		case 11431: return 1;
-		case 11432: return 1;
-		case 10653: return 1;
-		case 10654: return 1;
-		case 30352: return 1;
-		case 31245: return 1;
-		case 13566: return 1;
-		case 13493: return 1;
-		case 13494: return 1;
-		case 13495: return 1;
-		case 13337: return 1;
-		case 13339: return 1;
-		case 13335: return 1;
-		case 13336: return 1;
-		case 30743: return 1;
-		case 12827: return 1;
-		case 12828: return 1;
-		case 12829: return 1;
-		case 13322: return 1;
-		case 1035: 	return 1;
-		case 12888: return 1;
-		case 12884: return 1;
-		case 12887: return 1;
-		case 30623: return 1;
-		case 611: 	return 1;
-		case 31219: return 1;
-		case 31214: return 1;
-		case 12249: return 1;
-		case 12250: return 1;
-		case 12251: return 1;
-		case 492: 	return 1;
-		case 9228: 	return 1;
-		case 9592: 	return 1;
-		case 9322: 	return 1;
-		case 10015: return 1;
-		case 10977: return 1;
-		case 11803: return 1;
-		case 12992: return 1;
-		case 10046: return 1;
-		case 10996: return 1;
-		case 12991: return 1;
-		case 11802: return 1;
-		case 12791: return 1;
-		case 13509: return 1;
-		case 9613: 	return 1;
-		case 12790: return 1;
-		case 13508: return 1;
-		case 1033: 	return 1;
-		case 11612: return 1;
-		case 11611: return 1;
-		case 31323: return 1;
-		case 31132: return 1;
-		case 31371: return 1;
-		case 31080: return 1;
-		case 988: 	return 1;
-		case 31478: return 1;
-		case 31483: return 1;
-		case 878: 	return 1;
-		case 978: 	return 1;
-		case 30750: return 1;
+		case 600:	return 1;
+		case 31456:	return 1;
+		case 31421:	return 1;
+		case 31401:	return 1;
+		case 31399:	return 1;
+		case 31266:	return 1;
+		case 31265:	return 1;
+		case 31099:	return 1;
+		case 31177:	return 1;
+		case 31489:	return 1;
+		case 31488:	return 1;
+		case 31469:	return 1;
+		case 657:	return 1;
+		case 315:	return 1;
+		case 31031:	return 1;
+		case 30336:	return 1;
+		case 31254:	return 1;
+		case 755:	return 1;
+		case 30634:	return 1;
+		case 31272:	return 1;
+		case 31114:	return 1;
+		case 389:	return 1;
+		case 31150:	return 1;
+		case 31332:	return 1;
+		case 590:	return 1;
+		case 382:	return 1;
+		case 31012:	return 1;
+		case 31304:	return 1;
+		case 31268:	return 1;
+		case 31267:	return 1;
+		case 31191:	return 1;
+		case 31123:	return 1;
+		case 31052:	return 1;
+		case 30981:	return 1;
+		case 31029:	return 1;
+		case 30369:	return 1;
+		case 1028:	return 1;
+		case 821:	return 1;
+		case 610:	return 1;
+		case 478:	return 1;
+		case 31422:	return 1;
+		case 31393:	return 1;
+		case 31372:	return 1;
+		case 31307:	return 1;
+		case 31100:	return 1;
+		case 31037:	return 1;
+		case 30373:	return 1;
+		case 830:	return 1;
+		case 120:	return 1;
+		case 976:	return 1;
+		case 761:	return 1;
+		case 30168:	return 1;
+		case 31143:	return 1;
+		case 31464:	return 1;
+		case 31004:	return 1;
+		case 31026:	return 1;
+		case 950:	return 1;
+		case 31463:	return 1;
+		case 31432:	return 1;
+		case 31065:	return 1;
+		case 31357:	return 1;
+		case 31108:	return 1;
+		case 30724:	return 1;
+		case 31253:	return 1;
+		case 30367:	return 1;
+		case 30162:	return 1;
+		case 1073:	return 1;
+		case 829:	return 1;
+		case 31220:	return 1;
+		case 31200:	return 1;
+		case 844:	return 1;
+		case 980:	return 1;
+		case 31387:	return 1;
+		case 31147:	return 1;
+		case 30069:	return 1;
+		case 30870:	return 1;
+		case 440:	return 1;
+		case 1021:	return 1;
+		case 31277:	return 1;
+		case 948:	return 1;
+		case 31312:	return 1;
+		case 31450:	return 1;
+		case 31451:	return 1;
+		case 31449:	return 1;
+		case 13742:	return 1;
+		case 13739:	return 1;
+		case 13741:	return 1;
+		case 13743:	return 1;
+		case 31442:	return 1;
+		case 30727:	return 1;
+		case 31146:	return 1;
+		case 31335:	return 1;
+		case 719:	return 1;
+		case 647:	return 1;
+		case 31211:	return 1;
+		case 31294:	return 1;
+		case 785:	return 1;
+		case 31276:	return 1;
+		case 30746:	return 1;
+		case 420:	return 1;
+		case 617:	return 1;
+		case 760:	return 1;
+		case 722:	return 1;
+		case 31437:	return 1;
+		case 31116:	return 1;
+		case 30339:	return 1;
+		case 31379:	return 1;
+		case 1040:	return 1;
+		case 652:	return 1;
+		case 30027:	return 1;
+		case 451:	return 1;
+		case 653:	return 1;
+		case 31042:	return 1;
+		case 853:	return 1;
+		case 30189:	return 1;
+		case 30078:	return 1;
+		case 31129:	return 1;
+		case 858:	return 1;
+		case 453:	return 1;
+		case 31406:	return 1;
+		case 31303:	return 1;
+		case 31258:	return 1;
+		case 31282:	return 1;
+		case 814:	return 1;
+		case 1012:	return 1;
+		case 12988:	return 1;
+		case 12990:	return 1;
+		case 12989:	return 1;
+		case 12987:	return 1;
+		case 31060:	return 1;
+		case 12706:	return 1;
+		case 12707:	return 1;
+		case 31218:	return 1;
+		case 30571:	return 1;
+		case 671:	return 1;
+		case 1014:	return 1;
+		case 31164:	return 1;
+		case 125:	return 1;
+		case 31091:	return 1;
+		case 31386:	return 1;
+		case 942:	return 1;
+		case 1034:	return 1;
+		case 30175:	return 1;
+		case 31208:	return 1;
+		case 30058:	return 1;
+		case 31417:	return 1;
+		case 30357:	return 1;
+		case 30997:	return 1;
+		case 31134:	return 1;
+		case 31172:	return 1;
+		case 31327:	return 1;
+		case 31088:	return 1;
+		case 31090:	return 1;
+		case 31135:	return 1;
+		case 868:	return 1;
+		case 12660:	return 1;
+		case 12661:	return 1;
+		case 31103:	return 1;
+		case 31125:	return 1;
+		case 31105:	return 1;
+		case 10448:	return 1;
+		case 10442:	return 1;
+		case 10443:	return 1;
+		case 10444:	return 1;
+		case 10445:	return 1;
+		case 10446:	return 1;
+		case 10447:	return 1;
+		case 10449:	return 1;
+		case 816:	return 1;
+		case 11430:	return 1;
+		case 11431:	return 1;
+		case 11432:	return 1;
+		case 10653:	return 1;
+		case 10654:	return 1;
+		case 30352:	return 1;
+		case 31245:	return 1;
+		case 13566:	return 1;
+		case 13493:	return 1;
+		case 13494:	return 1;
+		case 13495:	return 1;
+		case 13337:	return 1;
+		case 13339:	return 1;
+		case 13335:	return 1;
+		case 13336:	return 1;
+		case 30743:	return 1;
+		case 12827:	return 1;
+		case 12828:	return 1;
+		case 12829:	return 1;
+		case 13322:	return 1;
+		case 1035:	return 1;
+		case 12888:	return 1;
+		case 12884:	return 1;
+		case 12887:	return 1;
+		case 30623:	return 1;
+		case 611:	return 1;
+		case 31219:	return 1;
+		case 31214:	return 1;
+		case 12249:	return 1;
+		case 12250:	return 1;
+		case 12251:	return 1;
+		case 492:	return 1;
+		case 9228:	return 1;
+		case 9592:	return 1;
+		case 9322:	return 1;
+		case 10015:	return 1;
+		case 10977:	return 1;
+		case 11803:	return 1;
+		case 12992:	return 1;
+		case 10046:	return 1;
+		case 10996:	return 1;
+		case 12991:	return 1;
+		case 11802:	return 1;
+		case 12791:	return 1;
+		case 13509:	return 1;
+		case 9613:	return 1;
+		case 12790:	return 1;
+		case 13508:	return 1;
+		case 1033:	return 1;
+		case 11612:	return 1;
+		case 11611:	return 1;
+		case 31323:	return 1;
+		case 31132:	return 1;
+		case 31371:	return 1;
+		case 31080:	return 1;
+		case 988:	return 1;
+		case 31478:	return 1;
+		case 31483:	return 1;
+		case 878:	return 1;
+		case 978:	return 1;
+		case 30750:	return 1;
 
+		case 393:	return 2;
 		case 31454:	return 2;
 		case 31344:	return 2;
 		case 31343:	return 2;
@@ -1364,6 +1400,17 @@ bool IsPaintableHat( int iEntity )
 	int iIndex = GetEntProp( iEntity, Prop_Send, "m_iItemDefinitionIndex" );
 	switch ( iIndex )
 	{
+		//case :	return true;
+		case 626:	return true;
+		case 600:	return true;
+		case 518:	return true;
+		case 400:	return true;
+		case 393:	return true;
+		case 344:	return true;
+		case 181:	return true;
+		case 158:	return true;
+		case 110:	return true;
+		case 53:	return true;
 		case 31456:	return true;
 		case 31455:	return true;
 		case 31454:	return true;
@@ -3045,10 +3092,11 @@ void FetchClassForPreSet( int iClient, char[] cClass )
 		randIndex = GetRandomInt( 0, sizeof( CS_PRESET_HEAVY ) - 1 );
 		ApplyCosmetics( iClient, CS_PRESET_HEAVY, randIndex );
 	}
-	else if ( StrEqual( cClass, "Generic", false ) ) 
+	else if ( StrEqual( cClass, "Engineer", false ) ) 
 	{
-		randIndex = GetRandomInt( 0, sizeof( CS_PRESET_GENERIC ) - 1 );
-		ApplyCosmetics( iClient, CS_PRESET_GENERIC, randIndex );
+		randIndex = bIsHalloween ? GetRandomInt( 0, sizeof( CS_PRESET_ENGINEER_HALLOWEEN ) - 1 ) :
+								   GetRandomInt( 0, sizeof( CS_PRESET_ENGINEER ) - 1 );
+		ApplyCosmetics( iClient, bIsHalloween ? CS_PRESET_ENGINEER_HALLOWEEN : CS_PRESET_ENGINEER, randIndex );
 	}
 	else if ( StrEqual( cClass, "Medic", false ) ) 
 	{
@@ -3060,6 +3108,11 @@ void FetchClassForPreSet( int iClient, char[] cClass )
 	{
 		randIndex = GetRandomInt( 0, sizeof( CS_PRESET_SNIPER ) - 1 );
 		ApplyCosmetics( iClient, CS_PRESET_SNIPER, randIndex );
+	}
+	else if ( StrEqual( cClass, "Generic", false ) ) 
+	{
+		randIndex = GetRandomInt( 0, sizeof( CS_PRESET_GENERIC ) - 1 );
+		ApplyCosmetics( iClient, CS_PRESET_GENERIC, randIndex );
 	}
 	else if ( StrEqual( cClass, "F2P", false ) ) 
 	{
