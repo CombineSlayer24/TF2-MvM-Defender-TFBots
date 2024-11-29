@@ -812,7 +812,7 @@ public const CosmeticSet CS_PRESET_SNIPER[] = {
 	{ 779, 30424, 30478 },		// Liquidator's Lid, Triggerman's Tacticals, Poacher's Safari Jacket
 	{ 779, 30423, 30550 },		// Liquidator's Lid, Scoper's Smoke, EOTL_hiphunter_jacket
 	{ 1095, 1094, 30373 },		// Dread Hiding Hood, Criminal Cloak, Toowoomba Tunic
-	{ 613, 30629, 30856 },		// Hat With No Name, Support Spurs, Down Under Duster
+	{ 631, 30629, 30856 },		// Hat With No Name, Support Spurs, Down Under Duster
 	{ 518, 30100, 30371 },		// The Anger, Birdman of Australiacatraz, Archers Groundings
 	{ 981, 30310, 393 },		// Cold Killer, Snow Scoper, Villain's Veil
 	{ 314, 815, 814 },			// Crocleather Slouch, Champ Stamp, Triad Trinket
