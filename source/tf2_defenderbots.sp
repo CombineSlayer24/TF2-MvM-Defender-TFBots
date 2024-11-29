@@ -88,6 +88,7 @@ static float m_flLastReadyInputTime[MAXPLAYERS + 1];
 
 //Config
 static ArrayList m_adtBotNames;
+static ArrayList m_adtSniperSpots;
 
 //Global entities
 int g_iPopulationManager = -1;
@@ -152,7 +153,7 @@ public Plugin myinfo =
 	name = "[TF2] TFBots (MVM) with Manager",
 	author = "Officer Spy",
 	description = "Bot Management",
-	version = "1.4.3",
+	version = "1.4.4",
 	url = "https://github.com/OfficerSpy/TF2-MvM-Defender-TFBots"
 };
 
@@ -272,6 +273,7 @@ public void OnPluginStart()
 	
 	g_adtChosenBotClasses = new ArrayList(TF2_CLASS_MAX_NAME_LENGTH);
 	m_adtBotNames = new ArrayList(MAX_NAME_LENGTH);
+	m_adtSniperSpots = new ArrayList(3);
 	
 	InitNextBotPathing();
 	
@@ -298,6 +300,7 @@ public void OnMapStart()
 	g_flNextReadyTime = 0.0;
 	g_bBotClassesLocked = false;
 	
+	Config_LoadMap();
 	Config_LoadBotNames();
 	CreateBotPreferenceMenu();
 }
@@ -469,6 +472,19 @@ public Action OnPlayerRunCmd(int client, int &buttons, int &impulse, float vel[3
 						if (IsPlayingHorn(myWeapon))
 							buttons &= ~IN_ATTACK;
 					}
+					case TF_WEAPON_REVOLVER:
+					{
+						if (CanRevolverHeadshot(myWeapon))
+						{
+							//Don;t fire if our shot won't be very accurate
+							//TODO: use the offset of m_flLastAccuracyCheck?
+							if (m_flNextSnipeFireTime[client] > GetGameTime())
+								buttons &= ~IN_ATTACK;
+							
+							if (buttons & IN_ATTACK)
+								m_flNextSnipeFireTime[client] = GetGameTime() + REVOLVER_ACCURACY_CHECK_COOLDOWN;
+						}
+					}
 				}
 			}
 			
@@ -517,7 +533,7 @@ public Action OnPlayerRunCmd(int client, int &buttons, int &impulse, float vel[3
 					}
 					else
 					{
-						if (threat && myBot.GetBodyInterface().IsHeadAimingOnTarget())
+						if (threat && threat.IsVisibleInFOVNow() && myBot.GetBodyInterface().IsHeadAimingOnTarget())
 						{
 							if (m_flNextSnipeFireTime[client] <= GetGameTime())
 								VS_PressFireButton(client);
@@ -1363,10 +1379,9 @@ static int m_iFindNameTries[MAXPLAYERS + 1];
 void SetRandomNameOnBot(int client)
 {
 	char newName[MAX_NAME_LENGTH]; GetRandomDefenderBotName(newName, sizeof(newName));
-	
 	const int maxTries = 10;
 	
-	if (DoesAnyPlayerUseThisName(newName) && m_iFindNameTries[client] < maxTries)
+	if (m_adtBotNames.Length > 0 && DoesAnyPlayerUseThisName(newName) && m_iFindNameTries[client] < maxTries)
 	{
 		m_iFindNameTries[client]++;
 		
@@ -1385,7 +1400,8 @@ void GetRandomDefenderBotName(char[] buffer, int maxlen)
 {
 	if (m_adtBotNames.Length == 0)
 	{
-		LogError("GetRandomDefenderBotName: No bot names were ever parsed!");
+		// LogError("GetRandomDefenderBotName: No bot names were ever parsed!");
+		strcopy(buffer, maxlen, "You forgot to give me a name!");
 		return;
 	}
 	
@@ -1448,13 +1464,32 @@ void AddBotsWithPresetTeamComp(int count = 6, int teamType = 0)
 
 void SetupSniperSpotHints()
 {
-	//TODO: replace this with our own hints to be spawned from config file
-	
-	int ent = -1;
-	
-	while ((ent = FindEntityByClassname(ent, "func_tfbot_hint")) != -1)
+	if (m_adtSniperSpots.Length > 0)
 	{
-		DispatchKeyValue(ent, "team", "0");
+		for (int i = 0; i < m_adtSniperSpots.Length; i++)
+		{
+			float vec[3]; m_adtSniperSpots.GetArray(i, vec);
+			int ent = CreateEntityByName("func_tfbot_hint");
+			
+			if (ent != -1)
+			{
+				DispatchKeyValueVector(ent, "origin", vec);
+				// DispatchKeyValue(ent, "targetname", "db_sniper");
+				DispatchKeyValue(ent, "team", "2");
+				DispatchKeyValue(ent, "hint", "0");
+				DispatchSpawn(ent);
+			}
+		}
+	}
+	else
+	{
+		//No custom hints specified, so we'll just override any existing ones
+		int ent = -1;
+		
+		while ((ent = FindEntityByClassname(ent, "func_tfbot_hint")) != -1)
+			DispatchKeyValue(ent, "team", "0");
+		
+		LogError("SetupSniperSpotHints: No hints specified by configuration, overriding other hint entities!");
 	}
 }
 
@@ -1584,9 +1619,43 @@ eMissionDifficulty GetMissionDifficulty()
 	return type;
 }
 
+void Config_LoadMap()
+{
+	m_adtSniperSpots.Clear();
+	
+	char mapName[PLATFORM_MAX_PATH]; GetCurrentMap(mapName, sizeof(mapName));
+	char filePath[PLATFORM_MAX_PATH]; BuildPath(Path_SM, filePath, sizeof(filePath), "configs/defenderbots/map/%s.cfg", mapName);
+	
+	KeyValues kv = new KeyValues("MapConfig");
+	
+	if (!kv.ImportFromFile(filePath))
+	{
+		CloseHandle(kv);
+		LogError("Config_LoadMap: File not found (%s)", filePath);
+		return;
+	}
+	
+	if (kv.JumpToKey("SniperSpot"))
+	{
+		do
+		{
+			float vec[3]; kv.GetVector("origin", vec);
+			m_adtSniperSpots.PushArray(vec);
+		} while (kv.GotoNextKey(false));
+		
+		kv.GoBack();
+	}
+	
+	CloseHandle(kv);
+	
+#if defined TESTING_ONLY
+	LogMessage("Config_LoadMap: Found %d locations for SniperSpot", m_adtSniperSpots.Length);
+#endif
+}
+
 void Config_LoadBotNames()
 {
-	char filePath[PLATFORM_MAX_PATH]; BuildPath(Path_SM, filePath, sizeof(filePath), "configs/defender_bots_manager/bot_names.txt");
+	char filePath[PLATFORM_MAX_PATH]; BuildPath(Path_SM, filePath, sizeof(filePath), "configs/defenderbots/bot_names.txt");
 	File hConfigFile = OpenFile(filePath, "r");
 	char currentLine[MAX_NAME_LENGTH + 1];
 	

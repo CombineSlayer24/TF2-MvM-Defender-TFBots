@@ -24,6 +24,9 @@
 //Raw value found in CTFBotMainAction::FireWeaponAtEnemy
 #define TFBOT_MELEE_ATTACK_RANGE	250.0
 
+//Raw value checked in CTFRevolver::GetDamageType
+#define REVOLVER_ACCURACY_CHECK_COOLDOWN	1.0
+
 #define SNIPER_REACTION_TIME	0.5
 
 enum //medigun_resist_types_t
@@ -95,11 +98,11 @@ char g_sPlayerUseMyNameResponse[][] =
 char g_sMissionDifficultyFilePaths[][] =
 {
 	"",
-	"configs/defender_bots_manager/mission/mission_normal.txt",
-	"configs/defender_bots_manager/mission/mission_intermediate.txt",
-	"configs/defender_bots_manager/mission/mission_advanced.txt",
-	"configs/defender_bots_manager/mission/mission_expert.txt",
-	"configs/defender_bots_manager/mission/mission_nightmare.txt"
+	"configs/defenderbots/mission/mission_normal.txt",
+	"configs/defenderbots/mission/mission_intermediate.txt",
+	"configs/defenderbots/mission/mission_advanced.txt",
+	"configs/defenderbots/mission/mission_expert.txt",
+	"configs/defenderbots/mission/mission_nightmare.txt"
 };
 
 char g_sBotTeamCompositions[][][] =
@@ -1366,6 +1369,17 @@ int GetNearestCurrencyPack(int client, const float max_distance = 999999.0)
 	}
 	
 	return bestEnt;
+}
+
+bool CanUsePrimayWeapon(int client)
+{
+	if (GetPlayerWeaponSlot(client, TFWeaponSlot_Primary) == -1)
+		return false;
+	
+	if (TF2_IsPlayerInCondition(client, TFCond_MeleeOnly))
+		return false;
+	
+	return true;
 }
 
 stock bool DoesAnyPlayerUseThisName(const char[] name)
