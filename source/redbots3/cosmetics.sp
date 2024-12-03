@@ -558,6 +558,7 @@ public const CosmeticSet CS_PRESET_SCOUT[] = {
 	{ 760, 30068, 827 }, 		// Front Runner, Breakneck Baggies, Track Terrorizer
 	{ 346, 347, 30552 },		// Superfan, Essential Accessories, Themral Tracker
 	{ 31366, 814, 815 },		// Brimmed Bootlegger, triad trinket, Champ Stamp
+	{ 652, 31258, 653 },		// Jingle Bell Set
 	{ 150, 722, 1016 },			// Troublemaker's Tossle Cap, Fast Learner, Buck Turner All-Stars
 	{ 346, 486, 347 },			// MNC Mascot Hat, Summer Shades, MNC Mascot Outfit
 	{ 760, 722, 983 }			// Front Runner, Fast Learner, Digit Divulger
@@ -627,9 +628,9 @@ public const CosmeticSet CS_PRESET_SOLDIER_HALLOWEEN[] = {
 	{ 31025, 31228, 30601 },	// Climbing Commander, Poopy Doe, Cold Snap Coat
 	{ 30294, 30896, 30558 },	// Larval Lid, Attack Packs, EOTL_Coldfront Curbstompers
 	{ 30239, 30388, 30853 },	// Freedom Feathers, Classified Coif, Flakcatcher
+	{ 30228, 30227, 30281 },	// Hidden Dragon, Faux Manchu, Shaolin Sash
 	{ 30521, 30497, 5618 },		// Hellhunter's Headpiece, Ghost of Spies Checked Past, Zombie Soldier
 	{ 31045, 31388, 5618 },		// Dancing Doe, Warlock's Warcloak, Zombie Soldier
-	{ 30228, 30227, 30281 },	// Hidden Dragon, Faux Manchu, Shaolin Sash
 	{ 30268, 30129, -1 },		// Spellbinder's Bonnet, Hornblower
 	{ -1, 31137, 30165 },		// War Blunder, Cuban Bristle Crisis
 	{ 555, 556, 557 },			// Idiot Box, Steel Pipes, Shoestring Budget
@@ -849,6 +850,47 @@ public const CosmeticSet CS_PRESET_SNIPER[] = {
 	{ 314, 815, 814 },			// Crocleather Slouch, Champ Stamp, Triad Trinket
 	{ 117, 815, 814 },			// Ritzy Rick's Hair Fixative, Champ Stamp, Triad Trinket
 };
+public const CosmeticSet CS_PRESET_SPY[] = {
+	{ 30753, 30752, 30085 },	// A Hat to Kill For, Chicago Overcoat, Macho Mann
+	{ 30743, 30569, 30777 },	// Patriot Peak, Tomb Readers, Lurking Legionnaire
+	{ 30375, 31278, 30068 },	// Deep Cover Operator, Tactical Turtleneck, Breakneck Baggies
+	{ 31337, 31336, 30068 },	// Frostbite Bonnet,Cold Blooded Coat, Breakneck Baggies
+	{ 31376, 31377, 31110 },	// Cleaner's Cap, Le Professionnel, Bird's Eye Viewer
+	{ 31194, 31124, 30467 },	// Crustaceous Cowl, Smoking Jacket, Spycrab
+	{ 31376, 31301, 30775 },	// Cleaner's Cap, Turncoat, Dead Head
+	{ 31323, 31338, 31172 },	// Trapper's Flap, Infiltrator's Insulation, Festive Fascinator
+	{ 31325, 31336, 31260 },	// Colonel Kringle, Cold Blooded Coat, Elf-Made Bandanna
+	{ 126, 30476, 30104 },		// L4D Hat, Lady Killer, Graybanns
+	{ 30128, 31427, 629 },		// Belgian Detective, Strasbourg Scholar, Spectre's Spectacles
+	{ 30123, 30132, 629 },		// Harmburg, Blood Banker, Spectre's Spectacles
+	{ 30404, 30405, 486 },		// Aviator Assassin, Sky Captain, Summer Shades
+	{ 30072, 30602, -1 },		// Pom-Pommed Provocateur, Puffy Provocateur
+	{ 31356, 30989, -1 },		// Brothers In Blues, Assassin's Attire
+	{ 31356, 30631, -1 },		// Brothers In Blues, Lurker's Leathers
+	{ 31396, 31397, -1 },		// Classic Criminal, Concealed Convict
+	{ 31473, 31474, -1 },		// Shadow Shroud, Nightfall Veil
+	{ 30748, 31338, -1 },		// Chill Chullo, Infiltrator's Insulation
+	{ 30798, 30797, -1 },		// Big Topper, Showstopper
+	{ 30182, 30183, -1 },		// Bugluar Set
+	{ 31428, 31427, -1 },		// Covert Covers, Strasbourg Scholar
+	{ -1, 31279, 31278 },		// Night Vision Gawkers, Tactical Turtleneck
+	{ 459, 763, 30132 },		// Cosa Nostra Cap, Sneaky Spats of Sneaking, Blood Banker
+	{ 223, 30125, 977 },		// Familiar Fez, Rogue's Brogues, Cut-Throat Concierge
+	{ 825, 763, 31448 },		// Hat of Cards, Sneaky Spats of Sneaking, Tuxedo Royale
+	{ 55, 31301, 814 },			// Fancy Fedora, Turncoat, triad trinket
+	{ 55, 782, 763 },			// Fancy Fedora, Business Casual, Sneaky Spats of Sneaking
+	{ 55, 782, 486 },			// Winglet Spy
+};
+public const CosmeticSet CS_PRESET_SPY_HALLOWEEN[] = {
+	{ 30261, 30260, 30283 },	// Candyman's Cap, Bountiful Bow, Foul Cowl
+	{ 30300, 30498, 5623 },		// Haunted Hat, Hooded Haunter, Zombie Spy
+	{ 30569, 30476, 5623 },		// Tomb Readers, Lady Killer, Zombie Spy
+	{ 31227, 30989, 927 },		// Gruesome Gourd, Assassin's Attire, Boo Balloon
+	{ 30297, 763, 31278 },		// Sneaky Spats of Sneaking, Tactical Turtleneck, Magical Mercenary
+	{ 841, 30848, 5623 },		// Stealth Steeler, Upgrade, Zombie Spy
+	{ 108, 30497 , -1 },		// Backbiter's Billycock, Ghost of Spies Checked Past
+	{ -1, 560, 5623 },			// Intangible Ascot, Zombie Spy
+};
 public const CosmeticSet CS_PRESET_F2P[] = {
 	{ 261, 744, 166 },			// Mann Co. Cap, Pyrovision Goggles, Mercenary
 	{ 940, 744, 166 },			// Ghostly Gibus, Pyrovision Goggles, Mercenary
@@ -864,7 +906,6 @@ public const CosmeticSet CS_PRESET_F2P_HALLOWEEN[] = {
 	{ 278, 166, -1 },			// HHH Head, Mercenary
 	{ 115, 166, -1 }			// Mildly Disturbing Halloween Mask, Mercenary
 };
-
 public const CosmeticSet CS_PRESET_GENERIC[] = {
 	{ 30066, 30104, 30178 },	// Brotherhood of Arms, Graybanns, Weight Room Warmer
 	{ 31415, 30309, 31416 },	// Boarder's Beanie, Dead Of Night, Cozy Cover-Up
@@ -875,6 +916,8 @@ public const CosmeticSet CS_PRESET_GENERIC[] = {
 	{ 31104, 31062, 31105 },	// Breadcrab, Bread Bitter, Loaf Loafers
 	{ 30838, 30309, 30068 },	// Head Prize, Dead Of Night, Breakneck Baggies
 	{ 30838, 30104, 30397 },	// Head Prize, Graybanns, Bruiser's Bandanna
+	{ 30643, 31103, 30309 },	// Potassium Bonnett, Hypno-Eyes, Dead of Night
+	{ 30067, 30068, 30104 },	// Well-Rounded Rifleman, Breakneck Baggies, Graybanns
 	{ 30066, 31103, 5075 },		// BrotherHood of Arms, Hypno-Eyes, Something Special For Someone Special (Wearable)
 	{ 126, 30104, 30397 },		// L4D Hat, Graybanns, Bruiser's Bandanna
 	{ 30549, 343, 30551 },		// EOTL_hiphunter_hat, Friendly Item, EOTL_hiphunter_boots
@@ -892,15 +935,26 @@ public const CosmeticSet CS_PRESET_GENERIC[] = {
 	{ 30838, 30104, -1 },		// Head Prize, Graybanns
 	{ 614, 31086, 955 },		// Hot Dogger, Pebbles the Penguin, Tuxxy
 	{ 30928, 143, 541 },		// Balloonihoodie, OSX Item, Merc's Pride Scarf
+	{ 30623, 143, 522 }, 		// Rotation Sensation, Earbuds, Deus Specs
+	{ 260, 30309, -1 },			// Wiki Cap, Dead of Night
 	{ -1, -1, 31442 }, 			// Botler 2000
 	{ 30700, -1, -1 },			// Duck Billed Hatypus
 	{ 126, 125, 541 },			// L4D Hat, OSX Item, Merc's Pride Scarf
 	{ 471, 125, 343 },			// Loyalty Reward, OSX Item, Friendly Item
+	{ 408, 486, 541 },			// Humanitarian's Hachimaki, Summer Shades, Merc's Pride Scarf
+	{ 30003, -1, -1 },			// Galvanized Gibus
+	{ 420, 486, 541 },			// Potato Hat, Summer Shades, Merc's Pride Scarf
+	{ 31168, -1, -1 },			// Towering Pillar of Beanies
 	{ 1173, -1, -1 }, 			// Unusual Cap
 	{ 470, 486, -1 }, 			// Lo-Fi Longwave, Summer Shades
 	{ 341, 486, -1 },			// A Rather Festive Tree, Summer Shades
+	{ 2122, -1, -1 },			// Grandmaster
+	{ 252, 619, -1 },			// Dr's Dapper Topper, Flair
+	{ 817, 955, -1 },			// Human Cannonball, Tuxxy
+	{ 1173, -1, -1 },			// Unusual Cap
 	{ 470, -1, -1 }, 			// Lo-Fi Longwave
 	{ 126, -1, -1 },			// L4D Hat
+	{ 420, -1, -1 }				// Potato Hat
 };
 
 
@@ -2957,46 +3011,37 @@ void GiveBotCosmetics( int iClient )
 		}
 		else
 		{
-			if ( iRandom <= 80 )
-			{
-				DoCosmeticPreset( iClient, "Default" ); // Standard Presets (Class)
-			}
-			else if ( iRandom <= 85 )
-			{
-				DoCosmeticPreset( iClient, "Generic" );	// All Class Presets
-			}
-			else if ( iRandom <= 90 )
-			{
-				DoCosmeticPreset( iClient, "F2P" );	// F2P presets
-			}
-			else
-			{
-				DoCosmeticPreset( iClient, "None" ); // Nothing
-			}
+			PickCosmeticSet( iClient, iRandom );
 		}
 	}
 	else // Pick Premade sets
 	{
-		if ( iRandom <= 80 )
-		{
-			DoCosmeticPreset( iClient, "Default" ); // Standard Presets (Class)
-		}
-		else if ( iRandom <= 85 )
-		{
-			DoCosmeticPreset( iClient, "Generic" );	// All Class Presets
-		}
-		else if ( iRandom <= 90 )
-		{
-			DoCosmeticPreset( iClient, "F2P" );	// F2P presets
-		}
-		else
-		{
-			DoCosmeticPreset( iClient, "None" ); // Nothing
-		}
+		PickCosmeticSet( iClient, iRandom );
 	}
 }
 
-void ApplyCosmetics(int iClient, const CosmeticSet[] presetCosmetics, int iRandIndex) 
+// Function to handle Cosmetic Presets
+void PickCosmeticSet( int iClient, int iRandom )
+{
+	if ( iRandom <= 80 )
+	{
+		DoCosmeticPreset( iClient, "Default" ); // Standard Presets (Class)
+	}
+	else if ( iRandom <= 85 )
+	{
+		DoCosmeticPreset( iClient, "Generic" ); // All Class Presets
+	}
+	else if ( iRandom <= 90 )
+	{
+		DoCosmeticPreset( iClient, "F2P" ); // F2P presets
+	}
+	else 
+	{
+		DoCosmeticPreset( iClient, "None" ); // Nothing
+	}
+}
+
+void ApplyCosmetics( int iClient, const CosmeticSet[] presetCosmetics, int iRandIndex )
 {
 	if ( presetCosmetics[ iRandIndex ].iHat != -1 ) 
 	{
@@ -3109,6 +3154,12 @@ void FetchClassForPreSet( int iClient, char[] cClass )
 		randIndex = GetRandomInt( 0, sizeof( CS_PRESET_SNIPER ) - 1 );
 		ApplyCosmetics( iClient, CS_PRESET_SNIPER, randIndex );
 	}
+	else if ( StrEqual( cClass, "Spy", false ) ) 
+	{
+		randIndex = bIsHalloween ? GetRandomInt( 0, sizeof( CS_PRESET_SPY_HALLOWEEN ) - 1 ) :
+								   GetRandomInt( 0, sizeof( CS_PRESET_SPY ) - 1 );
+		ApplyCosmetics( iClient, CS_PRESET_SPY, randIndex );
+	}
 	else if ( StrEqual( cClass, "Generic", false ) ) 
 	{
 		randIndex = GetRandomInt( 0, sizeof( CS_PRESET_GENERIC ) - 1 );
@@ -3167,264 +3218,6 @@ void FetchClassForPreSet( int iClient, char[] cClass )
 	}
 
 	ApplyCosmetics( iClient, selectedPreset, selectedPreset );
-} */
-
-// OLD !!!!!!!!!!!!!!!!!!!!!!!
-/* void PresetCosmeticSet( int iClient, char[] iClass ) 
-{
-	
-	int iScoutRand 				= GetRandomInt( 0, sizeof( CS_PRESET_SCOUT ) - 1);
-	int iScoutHalloRand 		= GetRandomInt( 0, sizeof( CS_PRESET_SCOUT_HALLOWEEN ) - 1 );
-	int iSoldierRand 			= GetRandomInt( 0, sizeof( CS_PRESET_SOLDIER ) - 1 );
-	int iSoldierHalloRand 		= GetRandomInt( 0, sizeof( CS_PRESET_SOLDIER_HALLOWEEN ) - 1 );
-	int iPyroRand 				= GetRandomInt( 0, sizeof( CS_PRESET_PYRO ) - 1 );
-	int iPyroHalloRand 			= GetRandomInt( 0, sizeof( CS_PRESET_PYRO_HALLOWEEN ) - 1 );
-	int iDemoRand 				= GetRandomInt( 0, sizeof( CS_PRESET_DEMOMAN ) - 1 );
-	int iHeavyRand 				= GetRandomInt( 0, sizeof( CS_PRESET_HEAVY ) - 1 );
-	int iMedicRand 				= GetRandomInt( 0, sizeof( CS_PRESET_MEDIC ) - 1 );
-	int iMedicHalloRand 		= GetRandomInt( 0, sizeof( CS_PRESET_MEDIC_HALLOWEEN ) - 1 );
-	int iF2PRand 				= GetRandomInt( 0, sizeof( CS_PRESET_F2P ) - 1 );
-	int iF2PHalloRand 			= GetRandomInt( 0, sizeof( CS_PRESET_F2P_HALLOWEEN ) - 1 );
-	int iGenericRand 			= GetRandomInt( 0, sizeof( CS_PRESET_GENERIC ) - 1 );
-	int iHalloweenChance 		= IsChance( 60 );
-	bool bIsHalloween 			= TF2_IsHolidayActive( TFHoliday_HalloweenOrFullMoon )
-
-	if ( StrEqual( iClass, "Scout", false ) ) 
-	{
-		// If Halloween, use Halloween specific presets
-		if ( bIsHalloween && iHalloweenChance )
-		{
-			// Add the add if the id is not -1
-			if ( CS_PRESET_SCOUT_HALLOWEEN[ iScoutHalloRand ].iHat != -1 )
-			{
-				TF2_CreateHat( iClient, CS_PRESET_SCOUT_HALLOWEEN[ iScoutHalloRand ].iHat, QUALITY_UNIQUE, true ); // Hats always unusual chance
-			}
-
-			// Loops between iCosmetic1 and iCosmetic2
-			// and add it if it's not -1
-			for ( int i = 0; i < 2; ++i )
-			{
-				int iCosmeticID = ( i == 0 ) ? CS_PRESET_SCOUT_HALLOWEEN[ iScoutHalloRand ].iCosmetic1 : CS_PRESET_SCOUT_HALLOWEEN[ iScoutHalloRand ].iCosmetic2;
-				if ( iCosmeticID != -1 )
-				{
-					TF2_CreateHat( iClient, iCosmeticID, QUALITY_UNIQUE );
-				}
-			}
-		}
-		else
-		{
-			if ( CS_PRESET_SCOUT[ iScoutRand ].iHat != -1 )
-			{
-				TF2_CreateHat( iClient, CS_PRESET_SCOUT[ iScoutRand ].iHat, QUALITY_UNIQUE, true ); // Hats always unusual chance
-			}
-
-			for ( int i = 0; i < 2; ++i )
-			{
-				int iCosmeticID = ( i == 0 ) ? CS_PRESET_SCOUT[ iScoutRand ].iCosmetic1 : CS_PRESET_SCOUT[ iScoutRand ].iCosmetic2;
-				if ( iCosmeticID != -1 )
-				{
-					TF2_CreateHat( iClient, iCosmeticID, QUALITY_UNIQUE );
-				}
-			}
-		}
-	}
-
-	if ( StrEqual( iClass, "Soldier", false ) ) 
-	{
-		if ( bIsHalloween && iHalloweenChance )
-		{
-			if ( CS_PRESET_SOLDIER_HALLOWEEN[ iSoldierHalloRand ].iHat != -1 )
-			{
-				TF2_CreateHat( iClient, CS_PRESET_SOLDIER_HALLOWEEN[ iSoldierHalloRand ].iHat, QUALITY_UNIQUE, true ); 
-			}
-
-			for ( int i = 0; i < 2; ++i )
-			{
-				int iCosmeticID = ( i == 0 ) ? CS_PRESET_SOLDIER_HALLOWEEN[ iSoldierHalloRand ].iCosmetic1 : CS_PRESET_SOLDIER_HALLOWEEN[ iSoldierHalloRand ].iCosmetic2;
-				if ( iCosmeticID != -1 )
-				{
-					TF2_CreateHat( iClient, iCosmeticID, QUALITY_UNIQUE );
-				}
-			}
-		}
-		else
-		{
-			if ( CS_PRESET_SOLDIER[ iSoldierRand ].iHat != -1 )
-			{
-				TF2_CreateHat( iClient, CS_PRESET_SOLDIER[ iSoldierRand ].iHat, QUALITY_UNIQUE, true );
-			}
-
-			for ( int i = 0; i < 2; ++i )
-			{
-				int iCosmeticID = ( i == 0 ) ? CS_PRESET_SOLDIER[ iSoldierRand ].iCosmetic1 : CS_PRESET_SOLDIER[ iSoldierRand ].iCosmetic2;
-				if ( iCosmeticID != -1 )
-				{
-					TF2_CreateHat( iClient, iCosmeticID, QUALITY_UNIQUE );
-				}
-			}
-		}
-	}
-
-	if ( StrEqual( iClass, "Pyro", false ) ) 
-	{
-		if ( bIsHalloween && iHalloweenChance )
-		{
-			if ( CS_PRESET_PYRO_HALLOWEEN[ iPyroHalloRand ].iHat != -1 )
-			{
-				TF2_CreateHat( iClient, CS_PRESET_PYRO_HALLOWEEN[ iPyroHalloRand ].iHat, QUALITY_UNIQUE, true );
-			}
-
-			for ( int i = 0; i < 2; ++i )
-			{
-				int iCosmeticID = ( i == 0 ) ? CS_PRESET_PYRO_HALLOWEEN[ iPyroHalloRand ].iCosmetic1 : CS_PRESET_PYRO_HALLOWEEN[ iPyroHalloRand ].iCosmetic2;
-				if ( iCosmeticID != -1 )
-				{
-					TF2_CreateHat( iClient, iCosmeticID, QUALITY_UNIQUE );
-				}
-			}
-		}
-		else
-		{
-			if ( CS_PRESET_PYRO[ iPyroRand ].iHat != -1 )
-			{
-				TF2_CreateHat( iClient, CS_PRESET_PYRO[ iPyroRand ].iHat, QUALITY_UNIQUE, true );
-			}
-
-			for ( int i = 0; i < 2; ++i )
-			{
-				int iCosmeticID = ( i == 0 ) ? CS_PRESET_PYRO[ iPyroRand ].iCosmetic1 : CS_PRESET_PYRO[ iPyroRand ].iCosmetic2;
-				if ( iCosmeticID != -1 )
-				{
-					TF2_CreateHat( iClient, iCosmeticID, QUALITY_UNIQUE );
-				}
-			}
-		}
-	}
-
-	if ( StrEqual( iClass, "Demoman", false ) ) 
-	{
-
-		if ( CS_PRESET_DEMOMAN[ iDemoRand ].iHat != -1 )
-		{
-			TF2_CreateHat( iClient, CS_PRESET_DEMOMAN[ iDemoRand ].iHat, QUALITY_UNIQUE, true );
-		}
-
-		for ( int i = 0; i < 2; ++i )
-		{
-			int iCosmeticID = ( i == 0 ) ? CS_PRESET_DEMOMAN[ iDemoRand ].iCosmetic1 : CS_PRESET_DEMOMAN[ iDemoRand ].iCosmetic2;
-			if ( iCosmeticID != -1 )
-			{
-				TF2_CreateHat( iClient, iCosmeticID, QUALITY_UNIQUE );
-			}
-		}
-	}
-
-	if ( StrEqual( iClass, "HeavyWeapons", false ) ) 
-	{
-		if ( CS_PRESET_HEAVY[ iHeavyRand ].iHat != -1 )
-		{
-			TF2_CreateHat( iClient, CS_PRESET_HEAVY[ iHeavyRand ].iHat, QUALITY_UNIQUE, true );
-		}
-
-		for ( int i = 0; i < 2; ++i )
-		{
-			int iCosmeticID = ( i == 0 ) ? CS_PRESET_HEAVY[ iHeavyRand ].iCosmetic1 : CS_PRESET_HEAVY[ iHeavyRand ].iCosmetic2;
-			if ( iCosmeticID != -1 )
-			{
-				TF2_CreateHat( iClient, iCosmeticID, QUALITY_UNIQUE );
-			}
-		}
-	}
-
-	if ( StrEqual( iClass, "Medic", false ) ) 
-	{
-		if ( bIsHalloween && iHalloweenChance )
-		{
-			if ( CS_PRESET_MEDIC_HALLOWEEN[ iMedicHalloRand ].iHat != -1 )
-			{
-				TF2_CreateHat( iClient, CS_PRESET_MEDIC_HALLOWEEN[ iMedicHalloRand ].iHat, QUALITY_UNIQUE, true );
-			}
-
-			for ( int i = 0; i < 2; ++i )
-			{
-				int iCosmeticID = ( i == 0 ) ? CS_PRESET_MEDIC_HALLOWEEN[ iMedicHalloRand ].iCosmetic1 : CS_PRESET_MEDIC_HALLOWEEN[ iMedicHalloRand ].iCosmetic2;
-				if ( iCosmeticID != -1 )
-				{
-					TF2_CreateHat( iClient, iCosmeticID, QUALITY_UNIQUE );
-				}
-			}
-		}
-		else
-		{
-			if ( CS_PRESET_MEDIC[ iMedicRand ].iHat != -1 )
-			{
-				TF2_CreateHat( iClient, CS_PRESET_MEDIC[ iMedicRand ].iHat, QUALITY_UNIQUE, true );
-			}
-
-			for ( int i = 0; i < 2; ++i )
-			{
-				int iCosmeticID = ( i == 0 ) ? CS_PRESET_MEDIC[ iMedicRand ].iCosmetic1 : CS_PRESET_MEDIC[ iMedicRand ].iCosmetic2;
-				if ( iCosmeticID != -1 )
-				{
-					TF2_CreateHat( iClient, iCosmeticID, QUALITY_UNIQUE );
-				}
-			}
-		}
-	}
-
-	if ( StrEqual( iClass, "F2P", false ) ) 
-	{
-		if ( bIsHalloween && iHalloweenChance )
-		{
-			if ( CS_PRESET_F2P_HALLOWEEN[ iF2PHalloRand ].iHat != -1 )
-			{
-				TF2_CreateHat( iClient, CS_PRESET_F2P_HALLOWEEN[ iF2PHalloRand ].iHat, QUALITY_UNIQUE, true );
-			}
-
-			for ( int i = 0; i < 2; ++i )
-			{
-				int iCosmeticID = ( i == 0 ) ? CS_PRESET_F2P_HALLOWEEN[ iF2PHalloRand ].iCosmetic1 : CS_PRESET_F2P_HALLOWEEN[ iF2PHalloRand ].iCosmetic2;
-				if ( iCosmeticID != -1 )
-				{
-					TF2_CreateHat( iClient, iCosmeticID, QUALITY_UNIQUE );
-				}
-			}
-		}
-		else
-		{
-			if ( CS_PRESET_F2P[ iF2PRand ].iHat != -1 )
-			{
-				TF2_CreateHat( iClient, CS_PRESET_F2P[ iF2PRand ].iHat, QUALITY_UNIQUE, true );
-			}
-
-			for ( int i = 0; i < 2; ++i )
-			{
-				int iCosmeticID = ( i == 0 ) ? CS_PRESET_F2P[ iF2PRand ].iCosmetic1 : CS_PRESET_F2P[ iF2PRand ].iCosmetic2;
-				if ( iCosmeticID != -1 )
-				{
-					TF2_CreateHat( iClient, iCosmeticID, QUALITY_UNIQUE );
-				}
-			}
-		}
-	}
-
-	if ( StrEqual( iClass, "Generic", false ) ) 
-	{
-
-		if ( CS_PRESET_GENERIC[ iGenericRand ].iHat != -1 )
-		{
-			TF2_CreateHat( iClient, CS_PRESET_GENERIC[ iGenericRand ].iHat, QUALITY_UNIQUE, true );
-		}
-
-		for ( int i = 0; i < 2; ++i )
-		{
-			int iCosmeticID = ( i == 0 ) ? CS_PRESET_GENERIC[ iGenericRand ].iCosmetic1 : CS_PRESET_GENERIC[ iGenericRand ].iCosmetic2;
-			if ( iCosmeticID != -1 )
-			{
-				TF2_CreateHat( iClient, iCosmeticID, QUALITY_UNIQUE );
-			}
-		}
-	}
 } */
 
 //	Qualities //
