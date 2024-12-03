@@ -541,6 +541,7 @@ public const CosmeticSet CS_PRESET_SCOUT[] = {
 	{ 31284, 31285, 31283 },	// Boston Brain Bucket, Pest's Pads, Team Player
 	{ 30119, 30873, 31135 },	// Federal Casemaker, Airborne Attire, Handsome Devil
 	{ 31326, 30309, 30427 },	// Lumbercap, Dead of Night, Argyle Ace
+	{ 31216, 31281, 31339 },	// Hat Outta Hell, Ripped Rider, Motley Sleeves
 	{ 30479, 1026, 30889 },		// Thirst Blood, Tomb Wrapper, Transparent Trousers
 	{ 1014, 30890, 31281 },		// Brutal Bouffant, Forest Footwear, Ripped Rider
 	{ 324, 31217, 31302 },		// Flipped Trilby, Goalkeeper, Imp's Imprint
@@ -562,6 +563,7 @@ public const CosmeticSet CS_PRESET_SCOUT[] = {
 	{ 150, 722, 1016 },			// Troublemaker's Tossle Cap, Fast Learner, Buck Turner All-Stars
 	{ 346, 486, 347 },			// MNC Mascot Hat, Summer Shades, MNC Mascot Outfit
 	{ 760, 722, 983 }			// Front Runner, Fast Learner, Digit Divulger
+
 };
 public const CosmeticSet CS_PRESET_SCOUT_HALLOWEEN[] = {
 	{ 30471, 30472, 30470 },	// Alien Cranium, Xeno Suit, Biomech Backpack
@@ -608,10 +610,10 @@ public const CosmeticSet CS_PRESET_SOLDIER[] = {
 	{ 31113, 30558, 30309 },	// Breach and Bomb, EOTL_Coldfront Curbstompers, Dead of Night
 	{ 31131, 31127, 31220 },	// Sir Pumpkinton, Gourd Grin, Trickster's Treats
 	{ 1185, 30165, 30085 },		// Saxton, Cuban Bristle Crisis, MAcho Mann
+	{ 1185, 30477, 31451 },		// Saxton Hat, Lone Survivor, Justice Johns
 	{ 445, 30388, 30392 },		// Armored Authority, Classified Coif, Man in Slacks
 	{ 31325, 30331, 641 },		// Colonel Kringle, Antarctic Parka, Ornament Armament
 	{ 945, 30853, 30388 },		// Chief Constable, FlakCatcher, Classified Coif
-	//{ 126, 30309, 30068 },		// L4D Hat, Dead Of Night, Breakneck Baggies
 	{ 31310, 446, 31311 },		// Firearm Protector, Fancy Dress Uniform, Safety Stripes
 	{ 666, 30747, 30818 },		// B.M.O.C., Gift Bringer, Socked And Loaded
 	{ 30477, 631, 30392 },		// Lone Survivor, Hat with No Name, Man in Slacks
@@ -631,6 +633,7 @@ public const CosmeticSet CS_PRESET_SOLDIER_HALLOWEEN[] = {
 	{ 30228, 30227, 30281 },	// Hidden Dragon, Faux Manchu, Shaolin Sash
 	{ 30521, 30497, 5618 },		// Hellhunter's Headpiece, Ghost of Spies Checked Past, Zombie Soldier
 	{ 31045, 31388, 5618 },		// Dancing Doe, Warlock's Warcloak, Zombie Soldier
+	{ 30548, 5618, 30983 },		// EOTL_soldier_garrison, Zombie Soldier, Veterans attire
 	{ 30268, 30129, -1 },		// Spellbinder's Bonnet, Hornblower
 	{ -1, 31137, 30165 },		// War Blunder, Cuban Bristle Crisis
 	{ 555, 556, 557 },			// Idiot Box, Steel Pipes, Shoestring Budget
@@ -697,6 +700,9 @@ public const CosmeticSet CS_PRESET_DEMOMAN[] = {
 	{ 30180, 30373, 30061 },	// Pirate Bandana, Toowoomba Tunic, Tartantaloons
 	{ 30180, 30373, 31037 },	// Pirate Bandana, Toowoomba Tunic, Dynamite Abs
 	{ 31273, 31307, 30945 },	// Head Banger, Alcoholic Automaton, Blast Blocker
+	{ 31385, 31127, 31393 },	// Mean Captain, Gourd Grin, Mad Lad
+	{ 31488, 30373, 30333 },	// Badlands Bandido, Toowoomba Tunic, Highland High Heels
+	{ 31309, 30085, 30366 },	// Bombard Brigadier, Macho Mann, Sangu Sleeves
 	{ 30340, 1016, 30178 },		// Stylish DeGroot, Buck Turner All-Stars, Weight Room Warmer
 	{ 306, 30179, 30085 },		// Scotch Bonnet, Hurt Locher, Macho Mann
 	{ 306, 30179, 30363 },		// Scotch Bonnet, Hurt Locher, Juggernaut Jacket
@@ -726,7 +732,9 @@ public const CosmeticSet CS_PRESET_HEAVY[] = {
 	{ 30743, 30980, 30108 },	// Patriot Peak, Tsar Platinum, Borscht Belt
 	{ 31355, 30074, 30372 },	// Full Metal Helmet, Tyurtlenek, Combat Slacks
 	{ 30344, 30368, 30343 },	// Bullet Buzz, War Goggles, Gone Commando
+	{ 30344, 30910, 30913 },	// Bullet Buzz, Heavy Harness, Siberian Tigerstripe
 	{ 30877, 30557, 30563 },	// Hunter in Darkness, EOTL_sheavyshirt, Jungle Booty
+	{ 30545, 30482, 30550 },	// EOTL_Flat_cap, The Unshaved Bear, EOTL_hiphunter_jacket
 	{ 1185, 30563, 30306 },		// Saxton, Jungle Booty, Dictator
 	{ 31267, 31268, 1028 },		// Squatter's Right, Combat Casual, Samson Skewer
 	{ 185, 30342, 30368 },		// Heavy Do-Rag, Heavy Lifter, War Goggles
@@ -740,6 +748,8 @@ public const CosmeticSet CS_PRESET_HEAVY[] = {
 	{ 1187, 1188, 1189 },		// Yeti Set
 	{ 97, 30079, 30745 },		// Tough Guy's Toque, Red Army Robin, Siberian Sweater
 	{ 31481, 1088, 524 },		// Hellish Overlord, Die Regime-Panzerung, Purity Fist
+	{ 31452, 31453, -1 },		// Crook's Cap, Brute's Braces
+	{ 30981, 30982, -1 },		// Starboard Crusader, Tsar Platinum
 	{ 666, 647, 30747 },		// B.M.O.C, All-father, Gift Bringer
 	{ 613, 757, 30080 },		// Gym Rat, Toss-Proof Towel, Heavy-Weight Champ
 	{ 952, 30104, 946 },		// Brock's Locks, Graybanns, Siberian Sophisticate
@@ -748,6 +758,16 @@ public const CosmeticSet CS_PRESET_HEAVY[] = {
 	{ 427, 814, 815 },			// Capone's Capper, Triad Trinket, Champ Stamp
 	{ 989, 990, 991 },			// Aqua Teen Hunger Heavy Set
 	{ 330, 946, -1 }			// Coupe D'isaster, Siberian Sophisticate
+};
+public const CosmeticSet CS_PRESET_HEAVY_HALLOWEEN[] = {
+	{ 30238, 31268, 30372 },	// Chicken Kiev, Combat Casual, Combat Slacks
+	{ 31142, 30217, 30534 },	// Mannvich, Ivan the Inedible, Immobile Suit
+	{ 30912, 30815, 5619 },		// Commando Elite, Mad Mask, Zombie Heavy
+	{ 30815, 5619, 30913 },		// Mad Mask, Zombie Heavy, Siberian Tigerstripe
+	{ 31345, 5619, 30368 },		// Ol' Reliable, Zombie Heavy, War Goggles
+	{ 31304, 5619, 30368 },		// Horror Shawl, Zombie Heavy, War Goggles
+	{ 932, 931, 930 },			// Fairy Set
+
 };
 public const CosmeticSet CS_PRESET_ENGINEER[] = {
 	{ 31374, 31373, 30749 },	// Hazard Handler, Cargo Constructor, Winter Backup
@@ -766,6 +786,7 @@ public const CosmeticSet CS_PRESET_ENGINEER[] = {
 	{ 31049, 30367, 31189 },	// Brain Interface, Cute Suit, Sightliner
 	{ 31484, 31485, 31486 },	// Mannhattan Protect Set
 	{ 30977, 30543, 30412 },	// Antarctic Eyewear, EOTL_winter_pants, Endothermic Exowear
+	{ 31298, 31264, 30113 },	// More Gun Marshal, Western Wraps, Flared Frontiersman
 	{ 338, 30322, 30539 },		// Industrial Festivizer, Face Full of Festive, EOTL_Insulated_innovator
 	{ 492, 30070, 30884 },		// Summer Hat, Pocket Pyro, Aloha Apparel
 	{ 148, 31264, 30165 },		// Engineer Welding Mask, Western Wraps, Cuban Bristle Crisis
@@ -811,6 +832,7 @@ public const CosmeticSet CS_PRESET_MEDIC[] = {
 	{ 867, 31364, 30379 },		// Combat Medic's Crusher Cap, Uber-Wear, Gaiter Guards
 	{ -1, 31454, 31455 },		// Free Mann's Fashion, Hazardous Environment Vest
 	{ 30939, 30940, -1 },		// Coldfront Commander, Coldfront Carapace
+	{ 31300, 31364, -1 },		// Victorian Villainy, Uber-Wear
 	{ 30127, 486, 982 },		// Das Gutenkutteharen, Summer Shades, Doc's Holiday
 	{ 50, 657, 30356 }			// Prussian Pickelhaube, Nine-Pipe Problem, Heat Of Winter
 };
@@ -822,6 +844,7 @@ public const CosmeticSet CS_PRESET_MEDIC_HALLOWEEN[] = {
 	{ 30233, 31078, 30197 },	// Trepanabotomizer, Derangement Garment, second opinion
 	{ 30297, 30356, 30379 },	// Magical Mercenary, Heat of Winter, Gaiter Guards
 	{ 30233, 31077, 5622 },		// Trepanabotomizer, Madmann's Muzzle, Zombie Medic
+	{ 31077, 31078, 5622 },		// Madmann's Muzzle, Derangement Garment, Zombie Medic
 	{ 31131, 927, 869 },		// Sir Pumpkinton, Boo Balloon, Rump-o'-Lantern
 	{ 552, 553, 554 },			// Einstein, Dr Gogglestache, Emerald Jarate
 };
@@ -834,6 +857,7 @@ public const CosmeticSet CS_PRESET_SNIPER[] = {
 	{ 30743, 30895, 30424 },	// Patriot Peak, Rifleman's Regalia, Triggerman's Tacticals
 	{ 31458, 31314, 30424 },	// Aimframe, Hunting Cloak, Triggerman's Tacticals
 	{ 30423, 30309, 30599 },	// Scoper's Smoke, Dead of Night, dec2014 hunter_vest
+	{ 31313, 30100, 30317 },	// Headhunter's Brim, Birdman of Australiacatraz, Five-Month Shadow
 	{ 634, 30892, 30891 },		// Point And Shoot, Conspicuous Camouflage, Cammy Jammies
 	{ 31417, 30599, 955 },		// Dapper Dickens, dec2014 hunter_vest, Tuxxy
 	{ 981, 30310, 30397 },		// Cold Killer, Snow Scoper, Bruiser's Bandanna
@@ -956,21 +980,6 @@ public const CosmeticSet CS_PRESET_GENERIC[] = {
 	{ 126, -1, -1 },			// L4D Hat
 	{ 420, -1, -1 }				// Potato Hat
 };
-
-
-// Returns the ellgible cosmetics that can be Unusual
-/* bool IsUnusualHat( int iEntity )
-{
-	int iIndex = GetEntProp( iEntity, Prop_Send, "m_iItemDefinitionIndex" );
-	switch ( iIndex )
-	{
-		// TODO: Instead for CosmeticSet, using Hat1 to deterime the first cosmetic
-		// is always unusual, and for CS hats or AllClass hats,
-		// we just list them here, and clean up the code mess from that.
-		default:	return false;
-	}
-} */
-
 
 //-----------------------------------------------
 // SCOUT
@@ -1455,6 +1464,10 @@ bool IsPaintableHat( int iEntity )
 	switch ( iIndex )
 	{
 		//case :	return true;
+		case 932:	return true;
+		case 931:	return true;
+		case 930:	return true;
+		case 30217:	return true;
 		case 626:	return true;
 		case 600:	return true;
 		case 518:	return true;
@@ -1732,7 +1745,7 @@ bool IsPaintableHat( int iEntity )
 		case 946:	return true;
 		case 840:	return true;
 		case 821:	return true;
-		case 777:	return true;
+		//case 777:	return true;
 		case 757:	return true;
 		case 30012:	return true;
 		case 603:	return true;
@@ -3134,8 +3147,9 @@ void FetchClassForPreSet( int iClient, char[] cClass )
 	}
 	else if ( StrEqual( cClass, "HeavyWeapons", false ) ) 
 	{
-		randIndex = GetRandomInt( 0, sizeof( CS_PRESET_HEAVY ) - 1 );
-		ApplyCosmetics( iClient, CS_PRESET_HEAVY, randIndex );
+		randIndex = bIsHalloween ? GetRandomInt( 0, sizeof( CS_PRESET_HEAVY_HALLOWEEN ) - 1 ) :
+								   GetRandomInt( 0, sizeof( CS_PRESET_HEAVY ) - 1 );
+		ApplyCosmetics( iClient, bIsHalloween ? CS_PRESET_HEAVY_HALLOWEEN : CS_PRESET_HEAVY, randIndex );
 	}
 	else if ( StrEqual( cClass, "Engineer", false ) ) 
 	{
@@ -3147,7 +3161,7 @@ void FetchClassForPreSet( int iClient, char[] cClass )
 	{
 		randIndex = bIsHalloween ? GetRandomInt( 0, sizeof( CS_PRESET_MEDIC_HALLOWEEN ) - 1 ) :
 								   GetRandomInt( 0, sizeof( CS_PRESET_MEDIC ) - 1 );
-		ApplyCosmetics( iClient, CS_PRESET_MEDIC, randIndex );
+		ApplyCosmetics( iClient, bIsHalloween ? CS_PRESET_MEDIC_HALLOWEEN : CS_PRESET_MEDIC, randIndex );
 	}
 	else if ( StrEqual( cClass, "Sniper", false ) ) 
 	{
@@ -3158,7 +3172,7 @@ void FetchClassForPreSet( int iClient, char[] cClass )
 	{
 		randIndex = bIsHalloween ? GetRandomInt( 0, sizeof( CS_PRESET_SPY_HALLOWEEN ) - 1 ) :
 								   GetRandomInt( 0, sizeof( CS_PRESET_SPY ) - 1 );
-		ApplyCosmetics( iClient, CS_PRESET_SPY, randIndex );
+		ApplyCosmetics( iClient, bIsHalloween ? CS_PRESET_SPY_HALLOWEEN : CS_PRESET_SPY, randIndex );
 	}
 	else if ( StrEqual( cClass, "Generic", false ) ) 
 	{
@@ -3252,7 +3266,6 @@ int TF2_CreateHat( int iClient, int iIndex, int iQuality, bool bIsUnusual = fals
 		int iPropInfoLevel = FindSendPropInfo( netClass, "m_iEntityLevel" );
 		int iNumStyles = GetCosmeticStyles( iHat );
 		bool bPaintable = IsPaintableHat( iHat );
-		//bool bIsUnusualHat = IsUnusualHat( iHat );
 		bool bHatCannotBeUnusual = CannotBeUnusual( iHat );
 		bool bCantBeUnusual = false;
 		bool bIsHalloween = TF2_IsHolidayActive( TFHoliday_HalloweenOrFullMoon )
@@ -3344,7 +3357,6 @@ int TF2_CreateHat( int iClient, int iIndex, int iQuality, bool bIsUnusual = fals
 			bCantBeUnusual = true;
 		}
 
-		//if ( bIsUnusualHat && !bCantBeUnusual && IsChance( 25 ) )
 		if ( bIsUnusual && !bCantBeUnusual && IsChance( 25 ) )
 		{
 			// Set the hat as unusual
