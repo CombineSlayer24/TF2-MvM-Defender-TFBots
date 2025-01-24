@@ -102,6 +102,7 @@ ConVar redbots_manager_kick_bots;
 ConVar redbots_manager_min_players;
 ConVar redbots_manager_defender_team_size;
 ConVar redbots_manager_ready_cooldown;
+ConVar redbots_manager_keep_bot_upgrades;
 ConVar redbots_manager_bot_upgrade_interval;
 ConVar redbots_manager_bot_use_upgrades;
 ConVar redbots_manager_bot_buyback_chance;
@@ -153,7 +154,7 @@ public Plugin myinfo =
 	name = "[TF2] TFBots (MVM) with Manager",
 	author = "Officer Spy",
 	description = "Bot Management",
-	version = "1.4.4",
+	version = "1.4.7",
 	url = "https://github.com/OfficerSpy/TF2-MvM-Defender-TFBots"
 };
 
@@ -175,13 +176,14 @@ public void OnPluginStart()
 	redbots_manager_min_players = CreateConVar("sm_redbots_manager_min_players", "3", "Minimum players for normal missions. Other difficulties are adjusted based on this value. Set to -1 to disable entirely.", FCVAR_NOTIFY, true, -1.0, true, float(MAXPLAYERS));
 	redbots_manager_defender_team_size = CreateConVar("sm_redbots_manager_defender_team_size", "6", _, FCVAR_NOTIFY);
 	redbots_manager_ready_cooldown = CreateConVar("sm_redbots_manager_ready_cooldown", "30.0", _, FCVAR_NOTIFY, true, 0.0);
+	redbots_manager_keep_bot_upgrades = CreateConVar("sm_redbots_manager_keep_bot_upgrades", "0", _, FCVAR_NOTIFY);
 	redbots_manager_bot_upgrade_interval = CreateConVar("sm_redbots_manager_bot_upgrade_interval", "-1", _, FCVAR_NOTIFY);
 	redbots_manager_bot_use_upgrades = CreateConVar("sm_redbots_manager_bot_use_upgrades", "1", "Enable bots to buy upgrades.", FCVAR_NOTIFY);
 	redbots_manager_bot_buyback_chance = CreateConVar("sm_redbots_manager_bot_buyback_chance", "5", "Chance for bots to buyback into the game.", FCVAR_NOTIFY);
 	redbots_manager_bot_buy_upgrades_chance = CreateConVar("sm_redbots_manager_bot_buy_upgrades_chance", "50", "Chance for bots to buy upgrades in the middle of a game.", FCVAR_NOTIFY);
 	redbots_manager_bot_max_tank_attackers = CreateConVar("sm_redbots_manager_bot_max_tank_attackers", "3", _, FCVAR_NOTIFY);
-	redbots_manager_bot_aim_skill = CreateConVar("sm_redbots_manager_bot_aim_skill", "2", _, FCVAR_NOTIFY);
-	redbots_manager_bot_reflect_skill = CreateConVar("sm_redbots_manager_bot_reflect_skill", "2", _, FCVAR_NOTIFY);
+	redbots_manager_bot_aim_skill = CreateConVar("sm_redbots_manager_bot_aim_skill", "0", _, FCVAR_NOTIFY);
+	redbots_manager_bot_reflect_skill = CreateConVar("sm_redbots_manager_bot_reflect_skill", "1", _, FCVAR_NOTIFY);
 	redbots_manager_bot_reflect_chance = CreateConVar("redbots_manager_bot_reflect_chance", "100.0", _, FCVAR_NOTIFY);
 	redbots_manager_bot_hear_spy_range = CreateConVar("sm_redbots_manager_bot_hear_spy_range", "3000.0", _, FCVAR_NOTIFY);
 	redbots_manager_extra_bots = CreateConVar("sm_redbots_manager_extra_bots", "1", "How many more bots we are allowed to request beyond the team size", FCVAR_NOTIFY);
@@ -218,6 +220,8 @@ public void OnPluginStart()
 #endif
 	
 	RegAdminCmd("sm_addbots", Command_AddBots, ADMFLAG_GENERIC);
+	RegAdminCmd("sm_purgebots", Command_RemoveAllBots, ADMFLAG_GENERIC);
+	RegAdminCmd("sm_botmanager_stop", Command_StopManagingBots, ADMFLAG_GENERIC);
 	RegAdminCmd("sm_view_bot_upgrades", Command_ViewBotUpgrades, ADMFLAG_GENERIC);
 	
 	AddCommandListener(Listener_TournamentPlayerReadystate, "tournament_player_readystate");
@@ -671,43 +675,43 @@ public Action Command_Votebots(int client, int args)
 {
 	if (g_bBotsEnabled)
 	{
-		PrintToChat(client, "%s Bots are already enabled for this round.", PLUGIN_PREFIX);
+		ReplyToCommand(client, "%s Bots are already enabled for this round.", PLUGIN_PREFIX);
 		return Plugin_Handled;
 	}
 	
 	if (redbots_manager_mode.IntValue != MANAGER_MODE_MANUAL_BOTS)
 	{
-		PrintToChat(client, "%s This is only allowed in MANAGER_MODE_MANUAL_BOTS.", PLUGIN_PREFIX);
+		ReplyToCommand(client, "%s This is only allowed in MANAGER_MODE_MANUAL_BOTS.", PLUGIN_PREFIX);
 		return Plugin_Handled;
 	}
 	
 	if (IsServerFull())
 	{
-		PrintToChat(client, "%s Server is at max capacity.", PLUGIN_PREFIX);
+		ReplyToCommand(client, "%s Server is at max capacity.", PLUGIN_PREFIX);
 		return Plugin_Handled;
 	}
 	
 	if (GameRules_GetRoundState() != RoundState_BetweenRounds)
 	{
-		PrintToChat(client, "%s This cannot be used at this time.", PLUGIN_PREFIX);
+		ReplyToCommand(client, "%s This cannot be used at this time.", PLUGIN_PREFIX);
 		return Plugin_Handled;
 	}
 	
 	if (IsVoteInProgress())
 	{
-		PrintToChat(client, "%s A vote is already in progress.", PLUGIN_PREFIX);
+		ReplyToCommand(client, "%s A vote is already in progress.", PLUGIN_PREFIX);
 		return Plugin_Handled;
 	}
 	
 	if (g_bChoosingBotClasses[client])
 	{
-		PrintToChat(client, "%s You are already choosing the next team lineup.", PLUGIN_PREFIX);
+		ReplyToCommand(client, "%s You are already choosing the next team lineup.", PLUGIN_PREFIX);
 		return Plugin_Handled;
 	}
 	
 	if (GetCountOfPlayersChoosingBotClasses() > 0)
 	{
-		PrintToChat(client, "%s Someone is currently choosing the next team lineup.", PLUGIN_PREFIX);
+		ReplyToCommand(client, "%s Someone is currently choosing the next team lineup.", PLUGIN_PREFIX);
 		return Plugin_Handled;
 	}
 	
@@ -734,13 +738,13 @@ public Action Command_Votebots(int client, int args)
 			}
 			else
 			{
-				PrintToChat(client, "%s RED team is full.", PLUGIN_PREFIX);
+				ReplyToCommand(client, "%s RED team is full.", PLUGIN_PREFIX);
 				return Plugin_Handled;
 			}
 		}
 		default:
 		{
-			PrintToChat(client, "%s You cannot use this command on this team.", PLUGIN_PREFIX);
+			ReplyToCommand(client, "%s You cannot use this command on this team.", PLUGIN_PREFIX);
 			return Plugin_Handled;
 		}
 	}
@@ -761,7 +765,7 @@ public Action Command_ShowBotChances(int client, int args)
 public Action Command_ShowNewBotTeamComposition(int client, int args)
 {
 	if (CreateDisplayPanelBotTeamComposition(client))
-		PrintToChat(client, "Use command !rerollbotclasses to reshuffle the bot class lineup.");
+		ReplyToCommand(client, "Use command !rerollbotclasses to reshuffle the bot class lineup.");
 	
 	return Plugin_Handled;
 }
@@ -771,7 +775,7 @@ public Action Command_RerollNewBotTeamComposition(int client, int args)
 #if !defined TESTING_ONLY
 	if (TF2_GetClientTeam(client) != TFTeam_Red)
 	{
-		PrintToChat(client, "%s Your team is not allowed to use this.", PLUGIN_PREFIX);
+		ReplyToCommand(client, "%s Your team is not allowed to use this.", PLUGIN_PREFIX);
 		return Plugin_Handled;
 	}
 #endif
@@ -784,21 +788,27 @@ public Action Command_RerollNewBotTeamComposition(int client, int args)
 
 public Action Command_JoinBluePlayWithBots(int client, int args)
 {
+	if (redbots_manager_mode.IntValue < MANAGER_MODE_MANUAL_BOTS)
+	{
+		ReplyToCommand(client, "%s Currently not allowed.", PLUGIN_PREFIX);
+		return Plugin_Handled;
+	}
+	
 	if (g_bBotsEnabled)
 	{
-		PrintToChat(client, "%s Bots are already enabled for this round.", PLUGIN_PREFIX);
+		ReplyToCommand(client, "%s Bots are already enabled for this round.", PLUGIN_PREFIX);
 		return Plugin_Handled;
 	}
 	
 	if (TF2_GetClientTeam(client) != TFTeam_Blue)
 	{
-		PrintToChat(client, "%s Your team is not allowed to use this.", PLUGIN_PREFIX);
+		ReplyToCommand(client, "%s Your team is not allowed to use this.", PLUGIN_PREFIX);
 		return Plugin_Handled;
 	}
 	
 	if (GetHumanAndDefenderBotCount(TFTeam_Red) > 0)
 	{
-		PrintToChat(client, "%s You cannot use this with players on RED team.", PLUGIN_PREFIX);
+		ReplyToCommand(client, "%s You cannot use this with players on RED team.", PLUGIN_PREFIX);
 		return Plugin_Handled;
 	}
 	
@@ -813,19 +823,19 @@ public Action Command_RequestExtraBot(int client, int args)
 {
 	if (!g_bBotsEnabled)
 	{
-		PrintToChat(client, "%s Bots aren't enabled.", PLUGIN_PREFIX);
+		ReplyToCommand(client, "%s Bots aren't enabled.", PLUGIN_PREFIX);
 		return Plugin_Handled;
 	}
 	
 	if (TF2_GetClientTeam(client) != TFTeam_Red)
 	{
-		PrintToChat(client, "%s Your team is not allowed to use this.", PLUGIN_PREFIX);
+		ReplyToCommand(client, "%s Your team is not allowed to use this.", PLUGIN_PREFIX);
 		return Plugin_Handled;
 	}
 	
 	if (IsServerFull())
 	{
-		PrintToChat(client, "%s It is currently not possible to add any more.", PLUGIN_PREFIX);
+		ReplyToCommand(client, "%s It is currently not possible to add any more.", PLUGIN_PREFIX);
 		return Plugin_Handled;
 	}
 	
@@ -833,12 +843,12 @@ public Action Command_RequestExtraBot(int client, int args)
 	
 	if (GetHumanAndDefenderBotCount(TFTeam_Red) >= defenderLimit)
 	{
-		PrintToChat(client, "%s You already have an additional unit.", PLUGIN_PREFIX);
+		ReplyToCommand(client, "%s You already have an additional bot.", PLUGIN_PREFIX);
 		return Plugin_Handled;
 	}
 	
 	AddBotsBasedOnPreferences(1);
-	PrintToChatAll("%s %N requested an additional unit.", PLUGIN_PREFIX, client);
+	PrintToChatAll("%s %N requested an additional bot.", PLUGIN_PREFIX, client);
 	
 	return Plugin_Handled;
 }
@@ -847,31 +857,31 @@ public Action Command_ChooseBotClasses(int client, int args)
 {
 	if (g_bBotsEnabled)
 	{
-		PrintToChat(client, "%s Bots are already enabled.", PLUGIN_PREFIX);
+		ReplyToCommand(client, "%s Bots are already enabled.", PLUGIN_PREFIX);
 		return Plugin_Handled;
 	}
 	
 	if (TF2_GetClientTeam(client) != TFTeam_Red)
 	{
-		PrintToChat(client, "%s Your team is not allowed to use this.", PLUGIN_PREFIX);
+		ReplyToCommand(client, "%s Your team is not allowed to use this.", PLUGIN_PREFIX);
 		return Plugin_Handled;
 	}
 	
 	if (g_bBotClassesLocked)
 	{
-		PrintToChat(client, "%s Someone has already chosen the lineup for the next game.", PLUGIN_PREFIX);
+		ReplyToCommand(client, "%s Someone has already chosen the lineup for the next game.", PLUGIN_PREFIX);
 		return Plugin_Handled;
 	}
 	
 	if (g_bChoosingBotClasses[client])
 	{
-		PrintToChat(client, "%s You are already choosing the next team lineup.", PLUGIN_PREFIX);
+		ReplyToCommand(client, "%s You are already choosing the next team lineup.", PLUGIN_PREFIX);
 		return Plugin_Handled;
 	}
 	
 	if (GetCountOfPlayersChoosingBotClasses() > 0)
 	{
-		PrintToChat(client, "%s Someone is currently choosing the next team lineup.", PLUGIN_PREFIX);
+		ReplyToCommand(client, "%s Someone is currently choosing the next team lineup.", PLUGIN_PREFIX);
 		return Plugin_Handled;
 	}
 	
@@ -880,7 +890,7 @@ public Action Command_ChooseBotClasses(int client, int args)
 	
 	if (redTeamCount >= defenderTeamSize)
 	{
-		PrintToChat(client, "%s You are not solo.", PLUGIN_PREFIX);
+		ReplyToCommand(client, "%s You are not solo.", PLUGIN_PREFIX);
 		return Plugin_Handled;
 	}
 	
@@ -916,6 +926,22 @@ public Action Command_AddBots(int client, int args)
 	}
 	
 	CreateDisplayMenuAddDefenderBots(client);
+	return Plugin_Handled;
+}
+
+public Action Command_RemoveAllBots(int client, int args)
+{
+	RemoveAllDefenderBots("Admin request");
+	ShowActivity2(client, "[SM] ", "%N purged all bots", client);
+	
+	return Plugin_Handled;
+}
+
+public Action Command_StopManagingBots(int client, int args)
+{
+	ManageDefenderBots(false);
+	ReplyToCommand(client, "Stopped manaing bots.");
+	
 	return Plugin_Handled;
 }
 
