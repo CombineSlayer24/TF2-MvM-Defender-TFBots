@@ -1,3 +1,6 @@
+#define CHOOSE_BOT_CLASSES_TIME	30
+#define CHOOSE_BOT_CLASSES_TIME_SHORT	15
+
 Menu g_hBotPreferenceMenu;
 static Menu m_hWeaponPrefClassMenu;
 static int m_iBotsLeftToChoose;
@@ -5,10 +8,10 @@ static int m_iBotsLeftToChoose;
 static char m_sSelectedClass[MAXPLAYERS + 1][16];
 static char m_sSelectedWeaponSlot[MAXPLAYERS + 1][10];
 
-bool StartBotVote(int callerClient)
+bool StartBotVote(int voteCaller)
 {
 	Menu vMenu = CreateMenu(MenuHandler_BotVote, MENU_ACTIONS_ALL);
-	SetMenuTitle(vMenu, "%N wants to enable bots for this round.\nBots will fill in for missing teammates.", callerClient);
+	SetMenuTitle(vMenu, "%N wants to enable bots for this round.\nBots will fill in for missing teammates.", voteCaller);
 	AddMenuItem(vMenu, "0", "Add bots for this game.");
 	AddMenuItem(vMenu, "1", "Don't add bots this game.");
 	SetMenuExitButton(vMenu, false);
@@ -22,7 +25,14 @@ bool StartBotVote(int callerClient)
 		if (IsClientInGame(i) && TF2_GetClientTeam(i) == TFTeam_Red)
 			players[total++] = i;
 	
-	return VoteMenu(vMenu, players, total, 15);
+	if (VoteMenu(vMenu, players, total, 15))
+	{
+		//Remember who started the vote
+		g_iUIDBotSummoner = GetClientUserId(voteCaller);
+		return true;
+	}
+	
+	return false;
 }
 
 void ShowDefenderBotTeamSetupMenu(int client, int itemPosition = 0, bool bInitialize = false, int numBotsToAdd = 0)
@@ -44,7 +54,7 @@ void ShowDefenderBotTeamSetupMenu(int client, int itemPosition = 0, bool bInitia
 	hMenu.AddItem("6", "Medic");
 	hMenu.AddItem("7", "Sniper");
 	hMenu.AddItem("8", "Spy");
-	hMenu.DisplayAt(client, itemPosition, MENU_TIME_FOREVER);
+	hMenu.DisplayAt(client, itemPosition, CHOOSE_BOT_CLASSES_TIME);
 	
 	if (bInitialize)
 		g_bChoosingBotClasses[client] = true;
@@ -76,7 +86,7 @@ void ShowDefenderBotTeamConfirmationMenu(int client)
 	hMenu.SetTitle("Your chosen team is %s\nDo you accept?", botClassesList);
 	hMenu.AddItem("0", "Yes");
 	hMenu.AddItem("1", "No");
-	hMenu.Display(client, MENU_TIME_FOREVER);
+	hMenu.Display(client, CHOOSE_BOT_CLASSES_TIME_SHORT);
 }
 
 void CreateBotPreferenceMenu()
@@ -646,10 +656,23 @@ static int MenuHandler_BotVote(Menu menu, MenuAction action, int param1, int par
 	{
 		case MenuAction_VoteEnd:
 		{
-			if (param1 == 0) //yes
+			if (param1 == 0)
+			{
+				//They said yes
 				ManageDefenderBots(true);
+			}
 			else if (param1 == 1)
+			{
+				//They said no
+				//Forget who called the vote as they were not able to summon bots
+				g_iUIDBotSummoner = 0;
+				
 				PrintToChatAll("%s Bot vote was unsuccessful!", PLUGIN_PREFIX);
+			}
+		}
+		case MenuAction_VoteCancel:
+		{
+			g_iUIDBotSummoner = 0;
 		}
 	}
 	
@@ -724,7 +747,11 @@ static int MenuHandler_DefenderBotTeamSetup(Menu menu, MenuAction action, int pa
 		case MenuAction_Cancel:
 		{
 			g_bChoosingBotClasses[param1] = false;
-			UpdateChosenBotTeamComposition();
+			
+			if (redbots_manager_bot_lineup_mode.IntValue == BOT_LINEUP_MODE_PREFERENCE_CHOOSE)
+				UpdateChosenBotTeamComposition();
+			
+			PrintToChatAll("%s %N is no longer selecting the bot team.", PLUGIN_PREFIX, param1);
 		}
 		case MenuAction_End:
 		{
@@ -747,7 +774,7 @@ static int MenuHandler_DefenderBotTeamConfirmation(Menu menu, MenuAction action,
 				{
 					g_bChoosingBotClasses[param1] = false;
 					g_bBotClassesLocked = true;
-					PrintToChat(param1, "%s Very well. Start the game to use this lineup.", PLUGIN_PREFIX);
+					PrintToChat(param1, "%s Very well. The next group of bots will use this lineup.", PLUGIN_PREFIX);
 				}
 				case 1:
 				{
@@ -758,7 +785,11 @@ static int MenuHandler_DefenderBotTeamConfirmation(Menu menu, MenuAction action,
 		case MenuAction_Cancel:
 		{
 			g_bChoosingBotClasses[param1] = false;
-			UpdateChosenBotTeamComposition();
+			
+			if (redbots_manager_bot_lineup_mode.IntValue == BOT_LINEUP_MODE_PREFERENCE_CHOOSE)
+				UpdateChosenBotTeamComposition();
+			
+			PrintToChatAll("%s %N is no longer selecting the bot team.", PLUGIN_PREFIX, param1);
 		}
 		case MenuAction_End:
 		{
