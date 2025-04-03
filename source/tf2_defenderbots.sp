@@ -20,7 +20,7 @@ Author: ★ Officer Spy ★
 #pragma semicolon 1
 #pragma newdecls required
 
-#define TESTING_ONLY
+//#define TESTING_ONLY
 
 #if defined TESTING_ONLY
 	#include <morecolors> // Debug compilation only
@@ -184,6 +184,7 @@ public void OnPluginStart()
 	redbots_manager_debug = CreateConVar("sm_redbots_manager_debug", "0", _, FCVAR_NONE);
 	redbots_manager_debug_actions = CreateConVar("sm_redbots_manager_debug_actions", "0", _, FCVAR_NONE);
 	redbots_manager_mode = CreateConVar("sm_redbots_manager_mode", "0", "What mode of the mod the use.", FCVAR_NOTIFY);
+	redbots_manager_bot_lineup_mode = CreateConVar("sm_redbots_manager_bot_lineup_mode", "0", "How bot team composition is decided.", FCVAR_NOTIFY);
 	redbots_manager_use_custom_loadouts = CreateConVar("sm_redbots_manager_use_custom_loadouts", "0", "Allow bots to equip random weapons.", FCVAR_NOTIFY);
 	redbots_manager_use_cosmetics = CreateConVar("sm_redbots_manager_use_cosmetics", "0", "Allow bots to equip random cosmetics.", FCVAR_NOTIFY);
 	redbots_manager_kick_bots = CreateConVar("sm_redbots_manager_kick_bots", "1", "Kick bots on wave failure/completion.", FCVAR_NOTIFY);
