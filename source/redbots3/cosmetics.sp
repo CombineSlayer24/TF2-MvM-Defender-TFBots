@@ -783,7 +783,7 @@ public const CosmeticSet CS_PRESET_HEAVY_HALLOWEEN[] = {
 
 };
 public const CosmeticSet CS_PRESET_ENGINEER[] = {
-	{ 31514, 31514, 30629 },	// Buck's Brim, Westcoat, Support Spurs
+	{ 31514, 31515, 30629 },	// Buck's Brim, Westcoat, Support Spurs
 	{ 31374, 31373, 30749 },	// Hazard Handler, Cargo Constructor, Winter Backup
 	{ 30634, 30629, 30635 },	// Sheriff's Stetson, Support Spurs, Wild West Waistcoat
 	{ 30546, 30347, 30539 },	// EOTL_FURCAP, Scotch Saver, EOTL_Insulated_innovator
