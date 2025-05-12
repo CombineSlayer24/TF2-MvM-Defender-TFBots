@@ -6,6 +6,7 @@
 #include <stocklib_officerspy/econ_item_view>
 #include <stocklib_officerspy/tf/tf_weaponbase>
 #include <stocklib_officerspy/tf/entity_capture_flag>
+#include <stocklib_officerspy/shared/util_shared>
 
 #define SENTRY_MAX_RANGE 1100.0
 
@@ -44,6 +45,13 @@ enum //medigun_weapontypes_t
 	MEDIGUN_QUICKFIX,
 	MEDIGUN_RESIST
 };
+
+enum struct BombInfo_t
+{
+	float vPosition[3];
+	float flMinBattleFront;
+	float flMaxBattleFront
+}
 
 enum
 {
@@ -128,6 +136,50 @@ char g_sRawPlayerClassNames[][] =
 	"",
 	"random"
 };
+
+static bool TraceFilter_TFBot(int entity, int contentsMask, StringMap data)
+{
+	//NextBotTraceFilterIgnoreActors
+	if (CBaseEntity(entity).IsCombatCharacter())
+		return false;
+	
+	//CTraceFilterIgnoreFriendlyCombatItems
+	int iPassEnt = -1;
+	data.GetValue("m_pPassEnt", iPassEnt);
+	
+	int iCollisionGroup;
+	data.GetValue("m_collisionGroup", iCollisionGroup);
+	
+	int iIgnoreTeam;
+	data.GetValue("m_iIgnoreTeam", iIgnoreTeam);
+	
+	if (BaseEntity_IsCombatItem(entity))
+	{
+		if (BaseEntity_GetTeamNumber(entity) == iIgnoreTeam)
+			return false;
+		
+		//m_bCallerIsProjectile is false here
+	}
+	
+	//CTraceFilterSimple as BaseClass of CTraceFilterIgnoreFriendlyCombatItems
+	if (!StandardFilterRules(entity, contentsMask))
+		return false;
+	
+	if (iPassEnt != -1)
+	{
+		if (!PassServerEntityFilter(entity, iPassEnt))
+			return false;
+	}
+	
+	if (!ShouldCollide(entity, iCollisionGroup, contentsMask))
+		return false;
+	
+	if (!TFGameRules_ShouldCollide(iCollisionGroup, BaseEntity_GetCollisionGroup(entity)))
+		return false;
+	
+	//CTraceFilterChain checks if both filters are true
+	return true;
+}
 
 void RefundPlayerUpgrades(int client)
 {
@@ -279,17 +331,6 @@ int GetMedigunType(int weapon)
 int GetResistType(int client)
 {
 	return GetEntProp(BaseCombatCharacter_GetActiveWeapon(client), Prop_Send, "m_nChargeResistType");
-}
-
-int GetLastDamageType(int client)
-{
-	static int offset = -1;
-	
-	if (offset == -1)
-		offset = FindSendPropInfo("CTFPlayer", "m_flMvMLastDamageTime") + 20; //m_LastDamageType
-	
-	// return ReadInt(GetEntityAddress(client) + view_as<Address>(offset));
-	return GetEntData(client, offset);
 }
 
 float[] WorldSpaceCenter(int entity)
@@ -1328,12 +1369,12 @@ bool IsHealedByObject(int client)
 //Return the only entity we can see, -2 if we can see them both
 int FindOnlyOneVisibleEntity(int client, int ent1, int ent2)
 {
-	if (!TF2_IsLineOfFireClear4(client, ent1))
+	if (!IsLineOfFireClearEntity(client, GetEyePosition(client), ent1))
 	{
 		return ent2;
 	}
 	
-	if (!TF2_IsLineOfFireClear4(client, ent2))
+	if (!IsLineOfFireClearEntity(client, GetEyePosition(client), ent2))
 	{
 		return ent1;
 	}
@@ -1373,13 +1414,140 @@ int GetNearestCurrencyPack(int client, const float max_distance = 999999.0)
 
 bool CanUsePrimayWeapon(int client)
 {
-	if (GetPlayerWeaponSlot(client, TFWeaponSlot_Primary) == -1)
+	int weapon = GetPlayerWeaponSlot(client, TFWeaponSlot_Primary);
+	
+	if (weapon == -1)
 		return false;
 	
-	if (TF2_IsPlayerInCondition(client, TFCond_MeleeOnly))
+	return Weapon_CanSwitchTo(client, weapon);
+}
+
+//CTFPlayer::CanAttack
+bool CanPlayerAttack(int client)
+{
+	//NOTE: for now we are only doing the checks we actually need
+	
+	if ((TF2_GetStealthNoAttackExpireTime(client) > GetGameTime() && !TF2_IsPlayerInCondition(client, TFCond_Stealthed)) || TF2_IsPlayerInCondition(client, TFCond_Cloaked))
+	{
+		return false;
+	}
+	
+	if (TF2_IsFeignDeathReady(client))
 		return false;
 	
 	return true;
+}
+
+//bool CTFBot::IsLineOfFireClear( const Vector &from, const Vector &to ) const
+bool IsLineOfFireClearPosition(int client, const float from[3], const float to[3])
+{
+	StringMap adtProperties = new StringMap();
+	adtProperties.SetValue("m_pPassEnt", client);
+	adtProperties.SetValue("m_collisionGroup", COLLISION_GROUP_NONE);
+	adtProperties.SetValue("m_iIgnoreTeam", GetClientTeam(client));
+	
+	TR_TraceRayFilter(from, to, MASK_SOLID_BRUSHONLY, RayType_EndPoint, TraceFilter_TFBot, adtProperties);
+	adtProperties.Close();
+	
+	return !TR_DidHit();
+}
+
+//bool CTFBot::IsLineOfFireClear( const Vector &from, CBaseEntity *who ) const
+bool IsLineOfFireClearEntity(int client, const float from[3], int who)
+{
+	StringMap adtProperties = new StringMap();
+	adtProperties.SetValue("m_pPassEnt", client);
+	adtProperties.SetValue("m_collisionGroup", COLLISION_GROUP_NONE);
+	adtProperties.SetValue("m_iIgnoreTeam", GetClientTeam(client));
+	
+	TR_TraceRayFilter(from, WorldSpaceCenter(who), MASK_SOLID_BRUSHONLY, RayType_EndPoint, TraceFilter_TFBot, adtProperties);
+	adtProperties.Close();
+	
+	return !TR_DidHit() || TR_GetEntityIndex() == who;
+}
+
+bool GetBombInfo(BombInfo_t info)
+{
+	int iAreaCount = TheNavAreas.Count;
+
+	//Check that this map has any nav areas
+	if (iAreaCount <= 0)
+		return false;
+
+	float hatch_dist = 0.0;
+	
+	for (int i = 0; i < (iAreaCount - 1); i++)
+	{
+		CTFNavArea area = view_as<CTFNavArea>(TheNavAreas.Get(i));
+		
+		//Skip spawn areas
+		if (area.HasAttributeTF(BLUE_SPAWN_ROOM) || area.HasAttributeTF(BLUE_SPAWN_ROOM))
+		{
+			//PrintToServer("Skip spawn area.. #%i", area.GetID());
+			continue;
+		}
+		
+		float m_flBombTargetDistance = GetTravelDistanceToBombTarget(area);
+		
+		hatch_dist = MaxFloat(MaxFloat(m_flBombTargetDistance, hatch_dist), 0.0);
+	}
+	
+	int closest_flag = INVALID_ENT_REFERENCE;
+	float closest_flag_pos[3];
+	
+	int flag = -1;
+	while ((flag = FindEntityByClassname(flag, "item_teamflag")) != -1)
+	{
+		//Ignore bombs not in play
+		if (GetEntProp(flag, Prop_Send, "m_nFlagStatus") == TF_FLAGINFO_HOME)
+			continue;
+		
+		//Ignore bombs not on our team
+		//if (GetEntProp(flag, Prop_Send, "m_iTeamNum") != view_as<int>(TFTeam_Blue))
+			//continue;
+			
+		float flag_pos[3];
+		
+		int owner = BaseEntity_GetOwnerEntity(flag);
+		
+		if (IsValidClientIndex(owner))
+		{
+			flag_pos = GetAbsOrigin(owner);
+		}
+		else
+		{
+			flag_pos = WorldSpaceCenter(flag);
+		}
+		
+		CTFNavArea area = view_as<CTFNavArea>(TheNavMesh.GetNearestNavArea(flag_pos));
+		
+		if (area == NULL_AREA)
+			continue;
+		
+		if (area.HasAttributeTF(BLUE_SPAWN_ROOM) || area.HasAttributeTF(BLUE_SPAWN_ROOM))
+			continue;
+		
+		float m_flBombTargetDistance = GetTravelDistanceToBombTarget(area);
+		
+		if (m_flBombTargetDistance < hatch_dist) 
+		{
+			closest_flag = flag;
+			hatch_dist = m_flBombTargetDistance;
+			closest_flag_pos = flag_pos;
+		}
+	}
+	
+	//float range_back = FindConVar("tf_bot_engineer_mvm_sentry_hint_bomb_backward_range").FloatValue;
+	//float range_fwd  = FindConVar("tf_bot_engineer_mvm_sentry_hint_bomb_forward_range").FloatValue;
+	
+	float range_fwd   = 2300.0;
+	float range_back  = 1000.0;
+	
+	info.vPosition = closest_flag_pos;
+	info.flMaxBattleFront = hatch_dist + range_back;
+	info.flMinBattleFront = hatch_dist - range_fwd;
+	
+	return (closest_flag != INVALID_ENT_REFERENCE);
 }
 
 stock bool DoesAnyPlayerUseThisName(const char[] name)
@@ -1620,13 +1788,8 @@ stock Address DereferencePointer(Address addr) {
 
 stock void TFBot_NoticeThreat(int tfbot, int threat)
 {
-	char sCode[PLATFORM_MAX_PATH];
-	
 	//UpdateDelayedThreatNotices is called in CTFBotTacticalMonitor::Update, but that behavior can be interrupted so we use it here to ensure he's noticed
-	FormatEx(sCode, sizeof(sCode), "self.DelayedThreatNotice(EntIndexToHScript(%d), 0.0); self.UpdateDelayedThreatNotices()", threat);
-	
-	SetVariantString(sCode);
-	AcceptEntityInput(tfbot, "RunScriptCode");
+	OSLib_RunScriptCode(tfbot, _, _, "self.DelayedThreatNotice(EntIndexToHScript(%d),0);self.UpdateDelayedThreatNotices()", threat);
 }
 
 stock void PrintToChatTeam(int team, const char[] format, any ...)
@@ -1638,7 +1801,7 @@ stock void PrintToChatTeam(int team, const char[] format, any ...)
 		if (IsClientInGame(i) && GetClientTeam(i) == team)
 		{
 			SetGlobalTransTarget(i);
-			VFormat(buffer, sizeof(buffer), format, 2);
+			VFormat(buffer, sizeof(buffer), format, 3);
 			PrintToChat(i, "%s", buffer);
 		}
 	}

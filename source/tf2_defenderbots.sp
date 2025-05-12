@@ -61,6 +61,7 @@ enum
 //Globals
 bool g_bLateLoad;
 bool g_bBotsEnabled;
+float g_flAddingBotTime;
 float g_flNextReadyTime;
 int g_iDetonatingPlayer = -1;
 ArrayList g_adtChosenBotClasses;
@@ -124,6 +125,7 @@ ConVar redbots_manager_bot_max_tank_attackers;
 ConVar redbots_manager_bot_aim_skill;
 ConVar redbots_manager_bot_reflect_skill;
 ConVar redbots_manager_bot_reflect_chance;
+ConVar redbots_manager_bot_backstab_skill;
 ConVar redbots_manager_bot_hear_spy_range;
 ConVar redbots_manager_bot_notice_spy_time;
 ConVar redbots_manager_extra_bots;
@@ -165,9 +167,9 @@ Address g_pMannVsMachineUpgrades;
 
 public Plugin myinfo =
 {
-	name = "[TF2] TFBots (MVM) with Manager",
+	name = "Defender TFBots",
 	author = "Officer Spy",
-	description = "Bot Management",
+	description = "TFBots that play Mann vs. Machine",
 	version = "1.4.9",
 	url = "https://github.com/OfficerSpy/TF2-MvM-Defender-TFBots"
 };
@@ -192,14 +194,15 @@ public void OnPluginStart()
 	redbots_manager_defender_team_size = CreateConVar("sm_redbots_manager_defender_team_size", "6", _, FCVAR_NOTIFY);
 	redbots_manager_ready_cooldown = CreateConVar("sm_redbots_manager_ready_cooldown", "30.0", _, FCVAR_NOTIFY, true, 0.0);
 	redbots_manager_keep_bot_upgrades = CreateConVar("sm_redbots_manager_keep_bot_upgrades", "0", _, FCVAR_NOTIFY);
-	redbots_manager_bot_upgrade_interval = CreateConVar("sm_redbots_manager_bot_upgrade_interval", "-1", _, FCVAR_NOTIFY);
+	redbots_manager_bot_upgrade_interval = CreateConVar("sm_redbots_manager_bot_upgrade_interval", "0.1", _, FCVAR_NOTIFY);
 	redbots_manager_bot_use_upgrades = CreateConVar("sm_redbots_manager_bot_use_upgrades", "1", "Enable bots to buy upgrades.", FCVAR_NOTIFY);
 	redbots_manager_bot_buyback_chance = CreateConVar("sm_redbots_manager_bot_buyback_chance", "5", "Chance for bots to buyback into the game.", FCVAR_NOTIFY);
 	redbots_manager_bot_buy_upgrades_chance = CreateConVar("sm_redbots_manager_bot_buy_upgrades_chance", "50", "Chance for bots to buy upgrades in the middle of a game.", FCVAR_NOTIFY);
 	redbots_manager_bot_max_tank_attackers = CreateConVar("sm_redbots_manager_bot_max_tank_attackers", "3", _, FCVAR_NOTIFY);
 	redbots_manager_bot_aim_skill = CreateConVar("sm_redbots_manager_bot_aim_skill", "0", _, FCVAR_NOTIFY);
 	redbots_manager_bot_reflect_skill = CreateConVar("sm_redbots_manager_bot_reflect_skill", "1", _, FCVAR_NOTIFY);
-	redbots_manager_bot_reflect_chance = CreateConVar("redbots_manager_bot_reflect_chance", "100.0", _, FCVAR_NOTIFY);
+	redbots_manager_bot_reflect_chance = CreateConVar("sm_redbots_manager_bot_reflect_chance", "100.0", _, FCVAR_NOTIFY);
+	redbots_manager_bot_backstab_skill = CreateConVar("sm_redbots_manager_bot_backstab_skill", "0", _, FCVAR_NOTIFY);
 	redbots_manager_bot_hear_spy_range = CreateConVar("sm_redbots_manager_bot_hear_spy_range", "3000.0", _, FCVAR_NOTIFY);
 	redbots_manager_bot_notice_spy_time = CreateConVar("sm_redbots_manager_bot_notice_spy_time", "0.0", _, FCVAR_NOTIFY);
 	redbots_manager_extra_bots = CreateConVar("sm_redbots_manager_extra_bots", "1", "How many more bots we are allowed to request beyond the team size", FCVAR_NOTIFY);
@@ -302,6 +305,8 @@ public void OnPluginStart()
 #if defined IDLEBOT_AIMING
 	InitTFBotAim();
 #endif
+	
+	FindGameConsoleVariables();
 }
 
 public void OnPluginEnd()
@@ -319,6 +324,7 @@ public APLRes AskPluginLoad2(Handle myself, bool late, char[] error, int err_max
 public void OnMapStart()
 {
 	g_bBotsEnabled = false;
+	g_flAddingBotTime = 0.0;
 	g_flNextReadyTime = 0.0;
 	g_bBotClassesLocked = false;
 	g_bAllowBotTeamRedo = false;
@@ -326,30 +332,6 @@ public void OnMapStart()
 	Config_LoadMap();
 	Config_LoadBotNames();
 	CreateBotPreferenceMenu();
-}
-
-public void OnConfigsExecuted()
-{
-	if (!tf_bot_path_lookahead_range)
-		tf_bot_path_lookahead_range = FindConVar("tf_bot_path_lookahead_range");
-	
-	if (!tf_bot_health_critical_ratio)
-		tf_bot_health_critical_ratio = FindConVar("tf_bot_health_critical_ratio");
-	
-	if (!tf_bot_health_ok_ratio)
-		tf_bot_health_ok_ratio = FindConVar("tf_bot_health_ok_ratio");
-	
-	if (!tf_bot_ammo_search_range)
-		tf_bot_ammo_search_range = FindConVar("tf_bot_ammo_search_range");
-	
-	if (!tf_bot_health_search_far_range)
-		tf_bot_health_search_far_range = FindConVar("tf_bot_health_search_far_range");
-	
-	if (!tf_bot_health_search_near_range)
-		tf_bot_health_search_near_range = FindConVar("tf_bot_health_search_near_range");
-	
-	if (!tf_bot_suicide_bomb_range)
-		tf_bot_suicide_bomb_range = FindConVar("tf_bot_suicide_bomb_range");
 }
 
 /* public void OnMapEnd()
@@ -539,7 +521,7 @@ public Action OnPlayerRunCmd(int client, int &buttons, int &impulse, float vel[3
 					if (redbots_manager_bot_aim_skill.IntValue >= 1)
 					{
 						//TODO: this needs to be more precise with actually getting our current m_lookAtSubject in PlayerBody as this can cause jittery aim
-						if (threat && TF2_IsLineOfFireClear4(client, threat.GetEntity()))
+						if (threat && IsLineOfFireClearEntity(client, GetEyePosition(client), threat.GetEntity()))
 						{
 							//Help aim towards the desired target point
 							float aimPos[3]; myBot.GetIntentionInterface().SelectTargetPoint(threat.GetEntity(), aimPos);
@@ -594,7 +576,7 @@ public Action OnPlayerRunCmd(int client, int &buttons, int &impulse, float vel[3
 								SnapViewToPosition(client, aimPos);
 								buttons |= IN_ATTACK;
 							}
-							else if (!threat.IsVisibleInFOVNow() && TF2_IsLineOfFireClear4(client, iThreat))
+							else if (!threat.IsVisibleInFOVNow() && IsLineOfFireClearEntity(client, GetEyePosition(client), iThreat))
 							{
 								//We're not currently facing our threat, so let's quickly turn towards them
 								float aimPos[3]; myBot.GetIntentionInterface().SelectTargetPoint(iThreat, aimPos);
@@ -609,7 +591,7 @@ public Action OnPlayerRunCmd(int client, int &buttons, int &impulse, float vel[3
 								SnapViewToPosition(client, aimPos);
 								buttons |= IN_ATTACK;
 							}
-							else if (!threat.IsVisibleRecently() && TF2_IsLineOfFireClear4(client, iThreat))
+							else if (!threat.IsVisibleRecently() && IsLineOfFireClearEntity(client, GetEyePosition(client), iThreat))
 							{
 								float aimPos[3]; myBot.GetIntentionInterface().SelectTargetPoint(iThreat, aimPos);
 								SnapViewToPosition(client, aimPos);
@@ -633,7 +615,7 @@ public Action OnPlayerRunCmd(int client, int &buttons, int &impulse, float vel[3
 #if defined MOD_ROLL_THE_DICE_REVAMPED
 			if (redbots_manager_bot_rtd_variance.FloatValue >= COMMAND_MAX_RATE)
 			{
-				if (m_flNextRollTime[client] <= GetGameTime())
+				if (threat && m_flNextRollTime[client] <= GetGameTime())
 				{
 					m_flNextRollTime[client] = GetGameTime() + GetRandomFloat(COMMAND_MAX_RATE, redbots_manager_bot_rtd_variance.FloatValue);
 					FakeClientCommand(client, "sm_rtd");
@@ -870,7 +852,7 @@ public Action Command_RequestExtraBot(int client, int args)
 		return Plugin_Handled;
 	}
 	
-	if (!ShouldProcessCommand(client))
+	if (g_flAddingBotTime > GetGameTime())
 	{
 		return Plugin_Handled;
 	}
@@ -892,6 +874,31 @@ public Action Command_RequestExtraBot(int client, int args)
 	if (GetHumanAndDefenderBotCount(TFTeam_Red) >= defenderLimit)
 	{
 		ReplyToCommand(client, "%s You already have an additional bot.", PLUGIN_PREFIX);
+		return Plugin_Handled;
+	}
+	
+	g_flAddingBotTime = GetGameTime() + 0.1;
+	
+	if (args > 0)
+	{
+		char arg1[TF2_CLASS_MAX_NAME_LENGTH]; GetCmdArg(1, arg1, sizeof(arg1));
+		
+		if (strcmp(arg1, "random", false) == 0)
+		{
+			AddRandomDefenderBots(1);
+			return Plugin_Handled;
+		}
+		
+		TFClassType class = TF2_GetClassIndexFromString(arg1);
+		
+		if (class == TFClass_Unknown)
+		{
+			ReplyToCommand(client, "%s Invalid class specified: %s.", PLUGIN_PREFIX, arg1);
+			return Plugin_Handled;
+		}
+		
+		AddDefenderTFBot(1, arg1);
+		
 		return Plugin_Handled;
 	}
 	
@@ -1064,6 +1071,14 @@ public Action Command_AddBots(int client, int args)
 
 public Action Command_RemoveAllBots(int client, int args)
 {
+	if (args > 0)
+	{
+		char arg1[3]; GetCmdArg(1, arg1, sizeof(arg1));
+		
+		if (StringToInt(arg1) == 1)
+			ManageDefenderBots(false);
+	}
+	
 	RemoveAllDefenderBots("Admin request");
 	ShowActivity2(client, "[SM] ", "%N purged all bots", client);
 	
@@ -1349,7 +1364,7 @@ public Action SoundHook_General(int clients[MAXPLAYERS], int &numClients, char s
 					if (GetVectorDistance(GetAbsOrigin(i), WorldSpaceCenter(entity)) > redbots_manager_bot_hear_spy_range.FloatValue)
 						continue;
 					
-					if (TF2_IsLineOfFireClear4(i, entity))
+					if (IsLineOfFireClearEntity(i, GetEyePosition(i), entity))
 					{
 						DataPack pack;
 						CreateDataTimer(redbots_manager_bot_notice_spy_time.FloatValue, Timer_RealizeSpy, pack, TIMER_FLAG_NO_MAPCHANGE);
@@ -1455,6 +1470,17 @@ public void DefenderBot_TouchPost(int entity, int other)
 		TFBot_NoticeThreat(entity, other);
 #endif
 	}
+}
+
+void FindGameConsoleVariables()
+{
+	tf_bot_path_lookahead_range = FindConVar("tf_bot_path_lookahead_range");
+	tf_bot_health_critical_ratio = FindConVar("tf_bot_health_critical_ratio");
+	tf_bot_health_ok_ratio = FindConVar("tf_bot_health_ok_ratio");
+	tf_bot_ammo_search_range = FindConVar("tf_bot_ammo_search_range");
+	tf_bot_health_search_far_range = FindConVar("tf_bot_health_search_far_range");
+	tf_bot_health_search_near_range = FindConVar("tf_bot_health_search_near_range");
+	tf_bot_suicide_bomb_range = FindConVar("tf_bot_suicide_bomb_range");
 }
 
 bool FakeClientCommandThrottled(int client, const char[] command)
@@ -1753,9 +1779,9 @@ void HandleTeamPlayerCountChanged(TFTeam team, int iWhoChanging = -1)
 		PrintToChatTeam(team, "%s Use command !redobots to repick your bot team lineup.", PLUGIN_PREFIX);
 	}
 	
-	int whoToUnready = -1;
-	int readyCount = 0;
-	int memberCount = 0;
+	int iWhoToUnready = -1;
+	int iReadyCount = 0;
+	int iMemberCount = 0;
 	
 	for (int i = 1; i <= MaxClients; i++)
 	{
@@ -1771,41 +1797,41 @@ void HandleTeamPlayerCountChanged(TFTeam team, int iWhoChanging = -1)
 		
 		if (IsPlayerReady(i))
 		{
-			if (whoToUnready != -1)
+			if (iWhoToUnready != -1)
 			{
-				if (g_bIsDefenderBot[whoToUnready])
+				if (g_bIsDefenderBot[iWhoToUnready])
 				{
 					//Always prefer to unready human players first
 					if (!g_bIsDefenderBot[i])
-						whoToUnready = i;
+						iWhoToUnready = i;
 				}
 			}
 			else
 			{
-				whoToUnready = i;
+				iWhoToUnready = i;
 			}
 			
-			readyCount++;
+			iReadyCount++;
 		}
 		
-		memberCount++;
+		iMemberCount++;
 	}
 	
 	//Are all remaining members of the team ready?
-	if (readyCount == memberCount)
+	if (iReadyCount == iMemberCount)
 	{
 		//Unready one member to prevent starting the game and allow another bot to enter
-		SetPlayerReady(whoToUnready, false);
+		SetPlayerReady(iWhoToUnready, false);
 		
-		if (g_bIsDefenderBot[whoToUnready])
+		if (g_bIsDefenderBot[iWhoToUnready])
 		{
 			//Ready up the bot again after some time
-			CreateTimer(0.2, Timer_ReadyPlayer, whoToUnready, TIMER_FLAG_NO_MAPCHANGE);
+			CreateTimer(0.2, Timer_ReadyPlayer, iWhoToUnready, TIMER_FLAG_NO_MAPCHANGE);
 		}
 	}
 }
 
-void AddDefenderTFBot(int count, char[] class, char[] team, char[] difficulty, bool quotaManaged = false)
+void AddDefenderTFBot(int count, char[] class, char[] team = "red", char[] difficulty = "expert", bool quotaManaged = false)
 {
 	//Send command as many times as needed because custom names aren't supported when adding multiple
 	for (int i = 0; i < count; i++)

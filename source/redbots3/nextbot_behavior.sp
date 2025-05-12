@@ -15,28 +15,28 @@ float pb_vecPathGoal[MAXPLAYERS + 1][3];
 int pb_iPathGoalEntity[MAXPLAYERS + 1];
 #endif
 
-#include "redbots3/behavior/defenderattack.sp"
-#include "redbots3/behavior/markgiant.sp"
-#include "redbots3/behavior/collectmoney.sp"
-#include "redbots3/behavior/gotoupgrade.sp"
-#include "redbots3/behavior/upgrade.sp"
-#include "redbots3/behavior/getammo.sp"
-#include "redbots3/behavior/movetofront.sp"
-#include "redbots3/behavior/gethealth.sp"
-#include "redbots3/behavior/engineeridle.sp"
-#include "redbots3/behavior/engineerbuildsentrygun.sp"
-#include "redbots3/behavior/engineerbuilddispenser.sp"
-#include "redbots3/behavior/spylurk.sp"
-#include "redbots3/behavior/spysap.sp"
-#include "redbots3/behavior/spysapplayer.sp"
-#include "redbots3/behavior/medicrevive.sp"
-#include "redbots3/behavior/attackforuber.sp"
-#include "redbots3/behavior/evadebuster.sp"
-#include "redbots3/behavior/campbomb.sp"
-#include "redbots3/behavior/attacktank.sp"
-#include "redbots3/behavior/destroyteleporter.sp"
-#include "redbots3/behavior/guardpoint.sp"
-#include "redbots3/behavior/collectnearmoney.sp"
+#include "behavior/defenderattack.sp"
+#include "behavior/markgiant.sp"
+#include "behavior/collectmoney.sp"
+#include "behavior/gotoupgrade.sp"
+#include "behavior/upgrade.sp"
+#include "behavior/getammo.sp"
+#include "behavior/movetofront.sp"
+#include "behavior/gethealth.sp"
+#include "behavior/engineeridle.sp"
+#include "behavior/engineerbuildsentrygun.sp"
+#include "behavior/engineerbuilddispenser.sp"
+#include "behavior/spylurk.sp"
+#include "behavior/spysap.sp"
+#include "behavior/spysapplayer.sp"
+#include "behavior/medicrevive.sp"
+#include "behavior/attackforuber.sp"
+#include "behavior/evadebuster.sp"
+#include "behavior/campbomb.sp"
+#include "behavior/attacktank.sp"
+#include "behavior/destroyteleporter.sp"
+#include "behavior/guardpoint.sp"
+#include "behavior/collectnearmoney.sp"
 
 void InitNextBotPathing()
 {
@@ -70,7 +70,6 @@ void ResetNextBot(int client)
 	m_vecNestArea[client] = NULL_VECTOR;
 	m_iSapTarget[client] = -1;
 	m_iPlayerSapTarget[client] = -1;
-	m_flSapperCooldown[client] = 0.0;
 	m_vecStartArea[client] = NULL_VECTOR;
 	m_iTankTarget[client] = -1;
 	m_iTeleporterTarget[client] = -1;
@@ -126,6 +125,7 @@ public void OnActionCreated(BehaviorAction action, int actor, const char[] name)
 		{
 			// action.SelectMoreDangerousThreat = CTFBotMainAction_SelectMoreDangerousThreat;
 			action.SelectTargetPoint = CTFBotMainAction_SelectTargetPoint;
+			action.ShouldAttack = CTFBotMainAction_ShouldAttack;
 		}
 		else if (StrEqual(name, "TacticalMonitor"))
 		{
@@ -251,9 +251,9 @@ public Action CTFBotMainAction_SelectTargetPoint(BehaviorAction action, INextBot
 	{
 		switch (TF2Util_GetWeaponID(myWeapon))
 		{
-			//TFBots can't compensate their arc if projectile speed differs, so we do our own calculation here
 			case TF_WEAPON_GRENADELAUNCHER, TF_WEAPON_PIPEBOMBLAUNCHER:
 			{
+				//TFBots can't compensate their arc if projectile speed differs, so we do our own calculation here
 				float target_point[3];
 				
 				target_point = WorldSpaceCenter(entity);
@@ -298,9 +298,9 @@ public Action CTFBotMainAction_SelectTargetPoint(BehaviorAction action, INextBot
 				
 				return Plugin_Changed;
 			}
-			//TFBots won't do projectile prediciton with cow mangler 5000 since it's left out of the code, so we'll do it ourselves
 			case TF_WEAPON_PARTICLE_CANNON:
 			{
+				//TFBots won't do projectile prediciton with cow mangler 5000 since it's left out of the code, so we'll do it ourselves
 				float target_point[3];
 				
 				float vecTarget[3], vecActor[3];
@@ -319,7 +319,7 @@ public Action CTFBotMainAction_SelectTargetPoint(BehaviorAction action, INextBot
 					target_point[1] = vecTarget[1] + absVelocity[1] * distance;
 					target_point[2] = vecTarget[2] + absVelocity[2] * distance;
 					
-					if (!TF2_IsLineOfFireClear2(me, target_point))
+					if (!IsLineOfFireClearPosition(me, GetEyePosition(me), target_point))
 					{
 						vecTarget = WorldSpaceCenter(entity);
 						
@@ -344,8 +344,8 @@ public Action CTFBotMainAction_SelectTargetPoint(BehaviorAction action, INextBot
 				
 				if (bone != -1)
 				{
-					float vecEmpty[3];
-					GetBonePosition(entity, bone, vec, vecEmpty);
+					float vEmpty[3];
+					GetBonePosition(entity, bone, vec, vEmpty);
 					vec[2] += 3.0;
 					
 					return Plugin_Changed;
@@ -362,8 +362,8 @@ public Action CTFBotMainAction_SelectTargetPoint(BehaviorAction action, INextBot
 					
 					if (bone != -1)
 					{
-						float vecEmpty[3];
-						GetBonePosition(entity, bone, vec, vecEmpty);
+						float vEmpty[3];
+						GetBonePosition(entity, bone, vec, vEmpty);
 						vec[2] += 3.0;
 						
 						return Plugin_Changed;
@@ -389,6 +389,18 @@ public Action CTFBotMainAction_SelectTargetPoint(BehaviorAction action, INextBot
 	
 	//Let the game do its default aiming
 	return Plugin_Continue;
+}
+
+static Action CTFBotMainAction_ShouldAttack(BehaviorAction action, INextBot nextbot, CKnownEntity knownEntity, QueryResultType& result)
+{
+	int me = action.Actor;
+	
+	if (g_bIsDefenderBot[me] == false)
+		return Plugin_Continue;
+	
+	//Always attack even in spawn room because we are not the invaders
+	result = ANSWER_YES;
+	return Plugin_Changed;
 }
 
 public Action CTFBotTacticalMonitor_Update(BehaviorAction action, int actor, float interval, ActionResult result)
@@ -534,7 +546,7 @@ public Action CTFBotSniperLurk_SelectMoreDangerousThreat(BehaviorAction action, 
 	
 	int iThreat1 = threat1.GetEntity();
 	
-	if (BaseEntity_IsPlayer(iThreat1) && TF2_IsLineOfFireClear4(me, iThreat1))
+	if (BaseEntity_IsPlayer(iThreat1) && IsLineOfFireClearEntity(me, GetEyePosition(me), iThreat1))
 	{
 		int enemyWeapon = BaseCombatCharacter_GetActiveWeapon(iThreat1);
 		
@@ -562,7 +574,7 @@ public Action CTFBotSniperLurk_SelectMoreDangerousThreat(BehaviorAction action, 
 	
 	int iThreat2 = threat2.GetEntity();
 	
-	if (BaseEntity_IsPlayer(iThreat2) && TF2_IsLineOfFireClear4(me, iThreat2))
+	if (BaseEntity_IsPlayer(iThreat2) && IsLineOfFireClearEntity(me, GetEyePosition(me), iThreat2))
 	{
 		int enemyWeapon = BaseCombatCharacter_GetActiveWeapon(iThreat2);
 		
@@ -1035,7 +1047,7 @@ bool OpportunisticallyUsePowerupBottle(int client, int activeWeapon, INextBot bo
 			
 			int iThreat = threat.GetEntity();
 			
-			if (!TF2_IsLineOfFireClear4(client, iThreat))
+			if (!IsLineOfFireClearEntity(client, GetEyePosition(client), iThreat))
 				return false;
 			
 			int weaponID = TF2Util_GetWeaponID(activeWeapon);
@@ -1389,7 +1401,7 @@ void MonitorKnownEntities(int client, IVision vision)
 		When the known entity leaves the bot's FOV, it would eventually become obsolete after 10 seconds
 		And when it becomes obsolete, it gets removed from the list of known entities
 		So here we are basically expanding the functionality using our own line-of-sight of check */
-		if (TF2_IsLineOfFireClear4(client, i))
+		if (IsLineOfFireClearEntity(client, GetEyePosition(client), i))
 		{
 			CKnownEntity known = vision.GetKnown(i);
 			
@@ -1640,6 +1652,10 @@ bool ShouldBuybackIntoGame(int client)
 
 bool ShouldUpgradeMidRound(int client)
 {
+	//If we were revived, we should not bother
+	if (!TF2Util_IsPointInRespawnRoom(WorldSpaceCenter(client), client))
+		return false;
+	
 	//Based on our rolled number from spawn, decide to buy upgrades now
 	return g_iBuyUpgradesNumber[client] > 0 && g_iBuyUpgradesNumber[client] <= redbots_manager_bot_buy_upgrades_chance.IntValue;
 }

@@ -8,8 +8,6 @@ void InitGameEventHooks()
 	HookEvent("revive_player_notify", Event_RevivePlayerNotify);
 	HookEvent("mvm_begin_wave", Event_MvmWaveBegin);
 	HookEvent("player_team", Event_PlayerTeam);
-	HookEvent("player_used_powerup_bottle", Event_PlayerUsedPowerupBottle);
-	HookEvent("post_inventory_application", Event_PostInventoryApplication);
 	HookEvent("mvm_mission_update", Event_MvmMissionUpdate, EventHookMode_Pre);
 	HookEvent("teamplay_round_start", Event_TeamplayRoundStart);
 }
@@ -159,29 +157,6 @@ static void Event_PlayerTeam(Event event, const char[] name, bool dontBroadcast)
 	}
 }
 
-static void Event_PlayerUsedPowerupBottle(Event event, const char[] name, bool dontBroadcast)
-{
-	int client = event.GetInt("player");
-	
-	if (g_bIsDefenderBot[client])
-	{
-		int powerupType = event.GetInt("type");
-		
-		if (powerupType == POWERUP_BOTTLE_REFILL_AMMO)
-			SetSapperCooldown(client, 0.0);
-	}
-}
-
-static void Event_PostInventoryApplication(Event event, const char[] name, bool dontBroadcast)
-{
-	//If this event happened, someone regenereated and thus refilled their ammo
-	
-	int client = GetClientOfUserId(event.GetInt("userid"));
-	
-	if (g_bIsDefenderBot[client])
-		SetSapperCooldown(client, 0.0);
-}
-
 static Action Event_MvmMissionUpdate(Event event, const char[] name, bool dontBroadcast)
 {
 	//TFBot spies fire this event on death, so block it when a defender bot dies
@@ -200,7 +175,7 @@ static void Event_TeamplayRoundStart(Event event, const char[] name, bool dontBr
 	}
 }
 
-static Action Timer_PlayerSpawn(Handle timer, any data)
+static Action Timer_PlayerSpawn(Handle timer, int data)
 {
 	if (!IsClientInGame(data) || !IsTFBotPlayer(data) || TF2_GetClientTeam(data) != TFTeam_Red)
 		return Plugin_Stop;
