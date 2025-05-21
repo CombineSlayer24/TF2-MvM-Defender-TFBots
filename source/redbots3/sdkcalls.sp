@@ -111,7 +111,7 @@ bool InitSDKCalls(GameData hGamedata)
 	if ( ( m_hPlayTauntSceneFromItem = EndPrepSDKCall() ) == null )
 	{
 		LogError( "Failed to create SDKCall for CTFPlayer::PlayTauntSceneFromItem!" );
-		failCount++;
+		iFailCount++;
 	}
 	
 	StartPrepSDKCall(SDKCall_Raw);
