@@ -200,6 +200,22 @@ public Action CTFBotMainAction_SelectMoreDangerousThreat(BehaviorAction action, 
 	
 	if (myWeapon != -1 && TF2Util_GetWeaponID(myWeapon) == TF_WEAPON_MINIGUN)
 	{
+		if (TF2_IsRageDraining(me))
+		{
+			//When using knockback rage, focus only on particular threats
+			if (BaseEntity_IsPlayer(iThreat1) && (TF2_HasTheFlag(iThreat1) || TF2_IsMiniBoss(iThreat1)))
+			{
+				knownEntity = threat1;
+				return Plugin_Changed;
+			}
+			
+			if (BaseEntity_IsPlayer(iThreat2) && (TF2_HasTheFlag(iThreat2) || TF2_IsMiniBoss(iThreat2)))
+			{
+				knownEntity = threat2;
+				return Plugin_Changed;
+			}
+		}
+		
 		//Minigun deals 75% less damage against tanks so prioritize them least
 		if (IsBaseBoss(iThreat1) && !IsBaseBoss(iThreat2))
 		{
@@ -412,7 +428,7 @@ public Action CTFBotTacticalMonitor_Update(BehaviorAction action, int actor, flo
 	{
 		bool low_health = false;
 		
-		float health_ratio = float(GetClientHealth(actor)) / float(BaseEntity_GetMaxHealth(actor));
+		float health_ratio = float(GetClientHealth(actor)) / float(TEMP_GetPlayerMaxHealth(actor));
 		
 		if ((GetTimeSinceWeaponFired(actor) > 2.0 || TF2_GetPlayerClass(actor) == TFClass_Sniper) && health_ratio < tf_bot_health_critical_ratio.FloatValue)
 			low_health = true;
@@ -493,11 +509,11 @@ public Action CTFBotMedicHeal_UpdatePost(BehaviorAction action, int actor, float
 			int iLastDmgType = GetLastDamageType(myPatient);
 			
 			if (iLastDmgType & DMG_BULLET && iResistType != MEDIGUN_BULLET_RESIST)
-				g_iAdditionalButtons[actor] |= IN_RELOAD;
+				g_arrExtraButtons[actor].PressButtons(IN_RELOAD);
 			else if (iLastDmgType & DMG_BLAST && iResistType != MEDIGUN_BLAST_RESIST)
-				g_iAdditionalButtons[actor] |= IN_RELOAD;
+				g_arrExtraButtons[actor].PressButtons(IN_RELOAD);
 			else if (iLastDmgType & DMG_BURN && iResistType != MEDIGUN_FIRE_RESIST)
-				g_iAdditionalButtons[actor] |= IN_RELOAD;
+				g_arrExtraButtons[actor].PressButtons(IN_RELOAD);
 		}
 	}
 	
@@ -875,25 +891,25 @@ bool IsAmmoLow(int client)
 	{
 		if (!IsMeleeWeapon(myWeapon))
 		{
-			float flAmmoRation = float(GetAmmoCount(client, TF_AMMO_PRIMARY)) / float(GetMaxAmmo(client, TF_AMMO_PRIMARY));
+			float flAmmoRation = float(BaseCombatCharacter_GetAmmoCount(client, TF_AMMO_PRIMARY)) / float(TF2Util_GetPlayerMaxAmmo(client, TF_AMMO_PRIMARY));
 			return flAmmoRation < 0.2;
 		}
 		
 		return false;
 	}
 	
-	return GetAmmoCount(client, TF_AMMO_METAL) <= 0;
+	return BaseCombatCharacter_GetAmmoCount(client, TF_AMMO_METAL) <= 0;
 }
 
 bool IsAmmoFull(int client)
 {
-	bool isPrimaryFull = GetAmmoCount(client, TF_AMMO_PRIMARY) >= GetMaxAmmo(client, TF_AMMO_PRIMARY);
-	bool isSecondaryFull = GetAmmoCount(client, TF_AMMO_SECONDARY) >= GetMaxAmmo(client, TF_AMMO_SECONDARY);
+	bool isPrimaryFull = BaseCombatCharacter_GetAmmoCount(client, TF_AMMO_PRIMARY) >= TF2Util_GetPlayerMaxAmmo(client, TF_AMMO_PRIMARY);
+	bool isSecondaryFull = BaseCombatCharacter_GetAmmoCount(client, TF_AMMO_SECONDARY) >= TF2Util_GetPlayerMaxAmmo(client, TF_AMMO_SECONDARY);
 	
 	if (TF2_GetPlayerClass(client) == TFClass_Engineer)
 	{
 		//In addition, I want some metal as well
-		return GetAmmoCount(client, TF_AMMO_METAL) >= 200 && isPrimaryFull && isSecondaryFull;
+		return BaseCombatCharacter_GetAmmoCount(client, TF_AMMO_METAL) >= 200 && isPrimaryFull && isSecondaryFull;
 	}
 	
 	return isPrimaryFull && isSecondaryFull;
@@ -994,18 +1010,34 @@ bool OpportunisticallyUseWeaponAbilities(int client, int activeWeapon, INextBot 
 	{
 		if (TF2_GetRageMeter(client) >= 0.0 && !TF2_IsRageDraining(client))
 		{
-			g_iAdditionalButtons[client] |= IN_RELOAD;
+			g_arrExtraButtons[client].PressButtons(IN_RELOAD);
 			return true;
 		}
 	}
 	
+	int iThreat = threat.GetEntity();
+	
 	//Phlogistinator
-	if (weaponID == TF_WEAPON_FLAMETHROWER && bot.IsRangeLessThan(threat.GetEntity(), FLAMETHROWER_REACH_RANGE) && !TF2_IsCritBoosted(client))
+	if (weaponID == TF_WEAPON_FLAMETHROWER && bot.IsRangeLessThan(iThreat, FLAMETHROWER_REACH_RANGE) && !TF2_IsCritBoosted(client))
 	{
 		if (TF2_GetRageMeter(client) >= 100.0 && !TF2_IsRageDraining(client))
 		{
 			VS_PressAltFireButton(client);
 			return true;
+		}
+	}
+	
+	if (weaponID == TF_WEAPON_MINIGUN && BaseEntity_IsPlayer(iThreat) && TF2_GetRageMeter(client) >= 100.0)
+	{
+		if (TF2_HasTheFlag(iThreat))
+		{
+			float vThreatOrigin[3]; GetClientAbsOrigin(iThreat, vThreatOrigin);
+			
+			if (GetVectorDistance(vThreatOrigin, GetBombHatchPosition()) <= 100.0)
+			{
+				g_arrExtraButtons[client].PressButtons(IN_ATTACK3);
+				return true;
+			}
 		}
 	}
 	
@@ -1090,7 +1122,7 @@ bool OpportunisticallyUsePowerupBottle(int client, int activeWeapon, INextBot bo
 			if (!threat || !threat.IsVisibleRecently())
 				return false;
 			
-			float healthRatio = float(GetClientHealth(client)) / float(BaseEntity_GetMaxHealth(client));
+			float healthRatio = float(GetClientHealth(client)) / float(TEMP_GetPlayerMaxHealth(client));
 			
 			if (healthRatio < tf_bot_health_critical_ratio.FloatValue)
 			{
@@ -1232,10 +1264,10 @@ void EquipBestWeaponForThreat(int client, const CKnownEntity threat)
 		return;
 	}
 	
-	if (GetAmmoCount(client, TF_AMMO_PRIMARY) <= 0)
+	if (BaseCombatCharacter_GetAmmoCount(client, TF_AMMO_PRIMARY) <= 0)
 		primary = -1;
 	
-	if (GetAmmoCount(client, TFWeaponSlot_Secondary) <= 0)
+	if (BaseCombatCharacter_GetAmmoCount(client, TFWeaponSlot_Secondary) <= 0)
 		secondary = -1;
 	
 	INextBot myBot = CBaseNPC_GetNextBotOfEntity(client);
@@ -1253,7 +1285,7 @@ void EquipBestWeaponForThreat(int client, const CKnownEntity threat)
 			{
 				int weaponID = TF2Util_GetWeaponID(secondary);
 				
-				if ((weaponID == TF_WEAPON_JAR_MILK || weaponID == TF_WEAPON_CLEAVER) && HasAmmo(secondary) && BaseEntity_IsPlayer(threatEnt))
+				if ((weaponID == TF_WEAPON_JAR_MILK || weaponID == TF_WEAPON_CLEAVER) && HasAmmo(secondary) && BaseEntity_IsPlayer(threatEnt) && !TF2_IsInvulnerable(threatEnt))
 				{
 					//Always throw milk at them if we can
 					gun = secondary;
@@ -1283,7 +1315,7 @@ void EquipBestWeaponForThreat(int client, const CKnownEntity threat)
 		}
 		case TFClass_Sniper:
 		{
-			if (secondary != -1 && TF2Util_GetWeaponID(secondary) == TF_WEAPON_JAR && HasAmmo(secondary) && BaseEntity_IsPlayer(threatEnt))
+			if (secondary != -1 && TF2Util_GetWeaponID(secondary) == TF_WEAPON_JAR && HasAmmo(secondary) && BaseEntity_IsPlayer(threatEnt) && !TF2_IsInvulnerable(threatEnt))
 			{
 				//Always throw pee at them if we can
 				gun = secondary;
@@ -1305,7 +1337,7 @@ void EquipBestWeaponForThreat(int client, const CKnownEntity threat)
 		}
 		case TFClass_Pyro:
 		{
-			if (secondary != -1 && TF2Util_GetWeaponID(secondary) == TF_WEAPON_JAR_GAS && HasAmmo(secondary) && BaseEntity_IsPlayer(threatEnt))
+			if (secondary != -1 && TF2Util_GetWeaponID(secondary) == TF_WEAPON_JAR_GAS && HasAmmo(secondary) && BaseEntity_IsPlayer(threatEnt) && !TF2_IsInvulnerable(threatEnt))
 			{
 				//Always throw gas
 				gun = secondary;
@@ -1372,6 +1404,9 @@ CKnownEntity SelectCloserThreat(INextBot bot, const CKnownEntity threat1, const 
 
 void MonitorKnownEntities(int client, IVision vision)
 {
+	if (nb_blind.BoolValue)
+		return;
+	
 	static int maxEntCount = -1;
 	
 	if (maxEntCount == -1)
@@ -1450,7 +1485,7 @@ void UtilizeCompressionBlast(int client, INextBot bot, const CKnownEntity threat
 			if (TF2_IsInvulnerable(iThreat))
 			{
 				//Shove ubers away from us
-				g_iSubtractiveButtons[client] |= IN_ATTACK;
+				g_arrExtraButtons[client].ReleaseButtons(IN_ATTACK);
 				VS_PressAltFireButton(client);
 				return;
 			}
@@ -1458,7 +1493,7 @@ void UtilizeCompressionBlast(int client, INextBot bot, const CKnownEntity threat
 			if (TF2_IsPlayerInCondition(iThreat, TFCond_Charging))
 			{
 				//Shove chargers away from us
-				g_iSubtractiveButtons[client] |= IN_ATTACK;
+				g_arrExtraButtons[client].ReleaseButtons(IN_ATTACK);
 				VS_PressAltFireButton(client);
 				return;
 			}
@@ -1466,7 +1501,7 @@ void UtilizeCompressionBlast(int client, INextBot bot, const CKnownEntity threat
 			if (TF2_HasTheFlag(iThreat) && GetVectorDistance(threatOrigin, GetBombHatchPosition()) <= 100.0)
 			{
 				//Shove the bomb carrier off the hatch
-				g_iSubtractiveButtons[client] |= IN_ATTACK;
+				g_arrExtraButtons[client].ReleaseButtons(IN_ATTACK);
 				VS_PressAltFireButton(client);
 				return;
 			}
@@ -1498,7 +1533,7 @@ void UtilizeCompressionBlast(int client, INextBot bot, const CKnownEntity threat
 		//Airblast the projectile if we are actually facing towards it
 		if (GetVectorLength(vec) < 150.0)
 		{
-			g_iSubtractiveButtons[client] |= IN_ATTACK;
+			g_arrExtraButtons[client].ReleaseButtons(IN_ATTACK);
 			VS_PressAltFireButton(client);
 			return;
 		}
