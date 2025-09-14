@@ -26,8 +26,8 @@
 			}
 			"CObjectSentrygun_BaseOffset"
 			{
-				"windows"	"m_iKills"
-				"linux"		"m_iKills"
+				"windows"	"m_iAmmoShells"
+				"linux"		"m_iAmmoShells"
 			}
 			"CTFBot_BaseOffset"
 			{
@@ -40,6 +40,11 @@
 				"linux"		"m_vecOrigin"
 			}
 			"CTFBuffItem_BaseOffset"
+			{
+				"windows"	"m_nInspectStage"
+				"linux"		"m_nInspectStage"
+			}
+			"CTFRevolver_BaseOffset"
 			{
 				"windows"	"m_nInspectStage"
 				"linux"		"m_nInspectStage"
@@ -65,11 +70,6 @@
 			{
 				"windows"	"\x55\x8B\xEC\x83\xEC\x20\x80\x7D\x2A\x00"
 				"linux"		"@_ZN6CTFBot10SetMissionENS_11MissionTypeEb"
-			}
-			"CBaseEntity::GetNextThink"
-			{
-				"windows"	"\x55\x8B\xEC\x8B\x45\x08\x56\x8B\xF1\x85\xC0\x75\x2A\x8B\x86\xD0\x00\x00\x00\x89\x45\x08"
-				"linux"		"@_ZN11CBaseEntity12GetNextThinkEPKc"
 			}
 			"CBaseAnimating::LookupBone"
 			{
@@ -200,23 +200,33 @@
 			//The calculation formula is base offset + this number
 			"CTFPlayer::m_LastDamageType"
 			{
-				"windows"	"20" //build 9543365: 8988
-				"linux"		"20" //build 9543365: 8992
+				"windows"	"20" //build 9742990: 8996
+				"linux"		"20" //build 9742990: 9004
 			}
 			"CObjectSentrygun::m_bPlacementOK"
 			{
-				"windows"	"-4" //build 9543365: 2888
-				"linux"		"-4" //build 9543365: 2912
+				"windows"	"-132" //build 9742990: 2688
+				"linux"		"-132" //build 9742990: 2712
+			}
+			"CObjectSentrygun::m_vecCurAngles"
+			{
+				"windows"	"-28" //build 9742990: 2792
+				"linux"		"-28" //build 9742990: 2816
 			}
 			"CTFBot::m_isLookingAroundForEnemies"
 			{
-				"windows"	"612" //build 8835751: 10336
-				"linux"		"604" //build 8835751: 10332
+				"windows"	"612" //build 9742990: 10344
+				"linux"		"604" //build 9742990: 10344
 			}
 			"CTFBot::m_mission"
 			{
-				"windows"	"664" //build 8835751: 10388
-				"linux"		"656" //build 8835751: 10384
+				"windows"	"664" //build 9742990: 10396
+				"linux"		"656" //build 9742990: 10396
+			}
+			"CTFBot::m_opportunisticTimer"
+			{
+				"windows"	"736" //build 9742990: 10468
+				"linux"		"728" //build 9742990: 10468
 			}
 			"CPopulationManager::m_nStartingCurrency"
 			{
@@ -227,6 +237,11 @@
 			{
 				"windows"	"40" //build 8835751: 2080
 				"linux"		"40" //build 8835751: 2092
+			}
+			"CTFRevolver::m_flLastAccuracyCheck"
+			{
+				"windows"	"8" //build 9742990: 2048
+				"linux"		"8" //build 9742990: 2060
 			}
 			//These numbers are raw offsets and are not used for any calculations
 			"CTFNavArea::m_distanceToBombTarget"

@@ -1,3 +1,6 @@
+//CTFBotMedicHeal::m_patient
+#define ACTION_HEAL_PATIENT_OFFSET	0x4850
+
 #define FLAMETHROWER_REACH_RANGE	350.0
 #define FLAMEBALL_REACH_RANGE	526.0
 
@@ -10,12 +13,47 @@ static float m_flNextBottleUseTime[MAXPLAYERS + 1];
 
 #if defined EXTRA_PLUGINBOT
 //Replicate behavior of PathFollower's PluginBot
-bool pb_bPath[MAXPLAYERS + 1];
-float pb_vecPathGoal[MAXPLAYERS + 1][3];
-int pb_iPathGoalEntity[MAXPLAYERS + 1];
+enum struct esPluginBot
+{
+	bool bPathing;
+	float vecPathGoal[3];
+	int iPathGoalEntity;
+	
+	void Reset()
+	{
+		this.bPathing = false;
+		this.vecPathGoal = NULL_VECTOR;
+		this.iPathGoalEntity = -1;
+	}
+	
+	bool HasPathGoalVector()
+	{
+		return !Vector_IsZero(this.vecPathGoal);
+	}
+	
+	bool HasPathGoalEntity()
+	{
+		return this.iPathGoalEntity != -1;
+	}
+	
+	void SetPathGoalVector(const float vec[3])
+	{
+		//You can only set one or the other, not both
+		this.iPathGoalEntity = -1;
+		this.vecPathGoal = vec;
+	}
+	
+	void SetPathGoalEntity(int entity)
+	{
+		this.vecPathGoal = NULL_VECTOR;
+		this.iPathGoalEntity = entity;
+	}
+}
+
+esPluginBot g_arrPluginBot[MAXPLAYERS + 1];
 #endif
 
-#include "behavior/defenderattack.sp"
+#include "behavior/attack.sp"
 #include "behavior/markgiant.sp"
 #include "behavior/collectmoney.sp"
 #include "behavior/gotoupgrade.sp"
@@ -67,7 +105,7 @@ void ResetNextBot(int client)
 	m_vecGoalArea[client] = NULL_VECTOR;
 	m_ctMoveTimeout[client] = 0.0;
 	m_iHealthPack[client] = -1;
-	m_vecNestArea[client] = NULL_VECTOR;
+	//NOTE: engineer-specific behavior stuff is reset in the action itself
 	m_iSapTarget[client] = -1;
 	m_iPlayerSapTarget[client] = -1;
 	m_vecStartArea[client] = NULL_VECTOR;
@@ -76,9 +114,7 @@ void ResetNextBot(int client)
 	m_vecPointDefendArea[client] = NULL_VECTOR;
 	
 #if defined EXTRA_PLUGINBOT
-	pb_bPath[client] = false;
-	pb_vecPathGoal[client] = NULL_VECTOR;
-	pb_iPathGoalEntity[client] = -1;
+	g_arrPluginBot[client].Reset();
 #endif
 }
 
@@ -87,10 +123,17 @@ void PluginBot_SimulateFrame(int client)
 {
 	//SimulateFrame > PFContext::RecalculatePath
 	//This is used whenever we want to path somewhere constantly
-	if (pb_bPath[client])
+	if (g_arrPluginBot[client].bPathing)
 	{
-		bool shouldPathToVec = !IsZeroVector(pb_vecPathGoal[client]);
-		bool shouldPathToEntity = pb_iPathGoalEntity[client] > 0;
+		if (TF2_GetPlayerClass(client) == TFClass_Engineer)
+		{
+			//Dumb hack for engineer so pathing does not conflict
+			if (ActionsManager.LookupEntityActionByName(client, "DefenderGetAmmo") != INVALID_ACTION || ActionsManager.LookupEntityActionByName(client, "DefenderGetHealth") != INVALID_ACTION)
+				return;
+		}
+		
+		bool shouldPathToVec = g_arrPluginBot[client].HasPathGoalVector();
+		bool shouldPathToEntity = g_arrPluginBot[client].HasPathGoalEntity();
 		
 		if (shouldPathToVec || shouldPathToEntity)
 		{
@@ -101,9 +144,9 @@ void PluginBot_SimulateFrame(int client)
 				CBaseCombatCharacter(client).UpdateLastKnownArea();
 				
 				if (shouldPathToVec)
-					m_pPath[client].ComputeToPos(myBot, pb_vecPathGoal[client]);
+					m_pPath[client].ComputeToPos(myBot, g_arrPluginBot[client].vecPathGoal);
 				else if (shouldPathToEntity)
-					m_pPath[client].ComputeToTarget(myBot, pb_iPathGoalEntity[client]);
+					m_pPath[client].ComputeToTarget(myBot, g_arrPluginBot[client].iPathGoalEntity);
 				
 				m_flRepathTime[client] = GetGameTime() + 0.2;
 			}
@@ -424,6 +467,36 @@ public Action CTFBotTacticalMonitor_Update(BehaviorAction action, int actor, flo
 	if (g_bIsDefenderBot[actor] == false)
 		return Plugin_Continue;
 	
+	if (TF2_IsInUpgradeZone(actor) && ActionsManager.LookupEntityActionByName(actor, "DefenderUpgrade") != INVALID_ACTION)
+	{
+		TFClassType iClass = TF2_GetPlayerClass(actor);
+		
+		if (iClass == TFClass_DemoMan || iClass == TFClass_Scout)
+		{
+			CountdownTimer pOpportunisticTimer = CountdownTimer(GetOpportunisticTimer(actor));
+			
+			if (pOpportunisticTimer.Address)
+			{
+				//We don't do any of these things while upgrading
+				pOpportunisticTimer.Start(interval);
+			}
+		}
+		
+		return Plugin_Continue;
+	}
+	
+	if (!ShouldUseTeleporter(actor))
+	{
+		CountdownTimer pFindTeleporterTimer = CountdownTimer(action + 0x70);
+		
+		if (pFindTeleporterTimer.Address)
+		{
+			//Don't look for any nearby teleporters to use
+			//This forces CTFBotTacticalMonitor::FindNearbyTeleporter to return NULL
+			pFindTeleporterTimer.Start(interval);
+		}
+	}
+	
 	if (GameRules_GetRoundState() == RoundState_RoundRunning)
 	{
 		bool low_health = false;
@@ -500,12 +573,11 @@ public Action CTFBotMedicHeal_UpdatePost(BehaviorAction action, int actor, float
 	
 	if (myWeapon != -1 && TF2Util_GetWeaponID(myWeapon) == TF_WEAPON_MEDIGUN && GetMedigunType(myWeapon) == MEDIGUN_RESIST)
 	{
-		//TODO: get the value of m_patient instead
-		int myPatient = GetEntPropEnt(myWeapon, Prop_Send, "m_hHealingTarget");
+		int myPatient = action.GetHandleEntity(ACTION_HEAL_PATIENT_OFFSET);
 		
 		if (myPatient > 0)
 		{
-			int iResistType = GetResistType(actor);
+			int iResistType = GetResistType(myWeapon);
 			int iLastDmgType = GetLastDamageType(myPatient);
 			
 			if (iLastDmgType & DMG_BULLET && iResistType != MEDIGUN_BULLET_RESIST)
@@ -636,7 +708,7 @@ Action GetDesiredBotAction(int client, BehaviorAction action)
 			//Collect any leftover money that my team didn't collect
 			return action.SuspendFor(CTFBotCollectMoney(), "Is possible");
 		}
-		else if (!TF2_IsInUpgradeZone(client) && !IsPlayerReady(client) && ActionsManager.GetAction(client, "DefenderMoveToFront") == INVALID_ACTION)
+		else if (!TF2_IsInUpgradeZone(client) && !IsPlayerReady(client) && ActionsManager.LookupEntityActionByName(client, "DefenderMoveToFront") == INVALID_ACTION)
 		{
 			if (redbots_manager_bot_use_upgrades.BoolValue)
 			{
@@ -644,7 +716,7 @@ Action GetDesiredBotAction(int client, BehaviorAction action)
 			}
 			else
 			{
-				FakeClientCommand(client, "tournament_player_readystate 1");
+				SetPlayerReady(client, true);
 				return action.SuspendFor(CTFBotMoveToFront(), "Skip upgrading");
 			}
 		}
@@ -693,7 +765,7 @@ Action GetDesiredBotAction(int client, BehaviorAction action)
 			}
 			case TFClass_Engineer:
 			{
-				return action.SuspendFor(CTFBotEngineerIdle(), "Engineer Start building");
+				return action.SuspendFor(CTFBotMvMEngineerIdle(), "Engineer Start building");
 			}
 			case TFClass_Spy:
 			{
@@ -728,7 +800,7 @@ Action GetUpgradePostAction(int client, BehaviorAction action)
 	if (GameRules_GetRoundState() == RoundState_BetweenRounds)
 	{
 		if (TF2_GetPlayerClass(client) == TFClass_Engineer)
-			return action.ChangeTo(CTFBotEngineerIdle(), "Start building");
+			return action.ChangeTo(CTFBotMvMEngineerIdle(), "Start building");
 		else if (TF2_GetPlayerClass(client) == TFClass_Medic)
 			return action.Done("Start heal mission");
 		else if (TF2_GetPlayerClass(client) == TFClass_Spy)
@@ -769,20 +841,6 @@ public bool NextBotTraceFilterIgnoreActors(int entity, int contentsMask, any iEx
 float GetDesiredPathLookAheadRange(int client)
 {
 	return tf_bot_path_lookahead_range.FloatValue * BaseAnimating_GetModelScale(client);
-}
-
-//CNavArea::GetRandomPoint
-void CNavArea_GetRandomPoint(CNavArea area, float buffer[3])
-{
-	float eLo[3], eHi[3];
-	area.GetExtent(eLo, eHi);
-	
-	float spot[3];
-	spot[0] = GetRandomFloat(eLo[0], eHi[0]);
-	spot[1] = GetRandomFloat(eLo[1], eHi[1]);
-	spot[2] = area.GetZ(spot[0], spot[1]);
-	
-	buffer = spot;
 }
 
 bool IsPathToVectorPossible(int bot_entidx, const float vec[3], float &length = -1.0)
@@ -864,20 +922,6 @@ bool IsPathToEntityPossible(int bot_entidx, int goal_entidx, float &length = -1.
 	return false;
 } */
 
-#if defined EXTRA_PLUGINBOT
-void SetGoalVector(int bot_entidx, float vec[3])
-{
-	pb_iPathGoalEntity[bot_entidx] = -1; //Can't have both
-	pb_vecPathGoal[bot_entidx] = vec;
-}
-
-void SetGoalEntity(int bot_entidx, int goal_entidx)
-{
-	pb_vecPathGoal[bot_entidx] = NULL_VECTOR;
-	pb_iPathGoalEntity[bot_entidx] = goal_entidx;
-}
-#endif
-
 bool IsAmmoLow(int client)
 {
 	int primary = GetPlayerWeaponSlot(client, TFWeaponSlot_Primary);
@@ -917,8 +961,7 @@ bool IsAmmoFull(int client)
 
 void ResetIntentionInterface(int bot_entidx)
 {
-	INextBot bot = CBaseNPC_GetNextBotOfEntity(bot_entidx);
-	bot.GetIntentionInterface().Reset();
+	CBaseNPC_GetNextBotOfEntity(bot_entidx).GetIntentionInterface().Reset();
 }
 
 void UpdateLookAroundForEnemies(int client, bool bVal)
@@ -990,7 +1033,7 @@ float GetDesiredAttackRange(int client)
 	IVision vis = bot.GetVisionInterface();
 		
 	for (int i = 1; i <= MaxClients; i++)
-		if (IsClientInGame(i) && IsPlayerAlive(i) && TF2_GetClientTeam(i) == GetEnemyTeamOfPlayer(bot_entidx))
+		if (IsClientInGame(i) && IsPlayerAlive(i) && TF2_GetClientTeam(i) == GetPlayerEnemyTeam(bot_entidx))
 			vis.ForgetEntity(i);
 } */
 
@@ -1035,7 +1078,7 @@ bool OpportunisticallyUseWeaponAbilities(int client, int activeWeapon, INextBot 
 			
 			if (GetVectorDistance(vThreatOrigin, GetBombHatchPosition()) <= 100.0)
 			{
-				g_arrExtraButtons[client].PressButtons(IN_ATTACK3);
+				VS_PressSpecialFireButton(client);
 				return true;
 			}
 		}
@@ -1151,7 +1194,7 @@ bool OpportunisticallyUsePowerupBottle(int client, int activeWeapon, INextBot bo
 				return false;
 			
 			//We're busy going for the tank
-			if (ActionsManager.GetAction(client, "DefenderAttackTank") != INVALID_ACTION)
+			if (ActionsManager.LookupEntityActionByName(client, "DefenderAttackTank") != INVALID_ACTION)
 				return false;
 			
 			float myPosition[3]; myPosition = WorldSpaceCenter(client);
@@ -1459,7 +1502,7 @@ int GetCountOfBotsWithNamedAction(const char[] name, int ignore = -1)
 	int count = 0;
 	
 	for (int i = 1; i <= MaxClients; i++)
-		if (i != ignore && IsClientInGame(i) && g_bIsDefenderBot[i] && ActionsManager.GetAction(i, name) != INVALID_ACTION)
+		if (i != ignore && IsClientInGame(i) && g_bIsDefenderBot[i] && ActionsManager.LookupEntityActionByName(i, name) != INVALID_ACTION)
 			count++;
 	
 	return count;
@@ -1751,4 +1794,18 @@ void GetFlameThrowerAimForTank(int tank, float aimPos[3])
 {
 	aimPos = WorldSpaceCenter(tank);
 	aimPos[2] += 90.0;
+}
+
+static bool ShouldUseTeleporter(int client)
+{
+	switch (TF2_GetPlayerClass(client))
+	{
+		case TFClass_Medic, TFClass_Engineer:
+		{
+			//These classes have their own logic
+			return true;
+		}
+	}
+	
+	return true;
 }

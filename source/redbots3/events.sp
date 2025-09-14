@@ -105,8 +105,7 @@ static void Event_MvmWaveBegin(Event event, const char[] name, bool dontBroadcas
 	{
 		if (IsClientInGame(i) && g_bIsDefenderBot[i] && IsPlayerAlive(i))
 		{
-			//Looking for sniping spots, don't disturb
-			if (ActionsManager.GetAction(i, "SniperLurk") != INVALID_ACTION)
+			if (!ShouldResetBehavior(i))
 				continue;
 			
 			//Rethink what we're supposed to do
@@ -219,6 +218,8 @@ static Action Timer_PlayerSpawn(Handle timer, int data)
 		//Let medic bots use their shields
 		VS_AddBotAttribute(data, CTFBot_PROJECTILE_SHIELD);
 		
+		BaseEntity_MarkNeedsNamePurge(data);
+		
 		//Bots don't get their credits set when joining red because CTFGameRules::GetTeamAssignmentOverride ignores bot players
 		//Set their credits manually to what they should have like human players
 		TF2_SetCurrency(data, GetStartingCurrency(g_iPopulationManager) + GetAcquiredCreditsOfAllWaves());
@@ -275,7 +276,7 @@ static Action Timer_WaveFailure(Handle timer)
 			if (g_bHasUpgraded[i])
 			{
 				g_bHasBoughtUpgrades[i] = false;
-				RefundPlayerUpgrades(i);
+				VS_GrantOrRemoveAllUpgrades(i, true, true);
 				g_bHasUpgraded[i] = false;
 			}
 		}
@@ -293,4 +294,21 @@ static Action Timer_UpdateChosenBotTeamComposition(Handle timer)
 	UpdateChosenBotTeamComposition();
 	
 	return Plugin_Stop;
+}
+
+static bool ShouldResetBehavior(int client)
+{
+	//Looking for sniping spots, don't disturb
+	if (ActionsManager.LookupEntityActionByName(client, "SniperLurk") != INVALID_ACTION)
+		return false;
+	
+	//I'm healing people
+	if (ActionsManager.LookupEntityActionByName(client, "Heal") != INVALID_ACTION)
+		return false;
+	
+	//I am building shit
+	if (ActionsManager.LookupEntityActionByName(client, "DefenderEngineerIdle") != INVALID_ACTION)
+		return false;
+	
+	return true;
 }

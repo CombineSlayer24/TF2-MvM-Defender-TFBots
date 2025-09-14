@@ -24,12 +24,6 @@ BehaviorAction CTFBotGetAmmo()
 
 public Action CTFBotGetAmmo_OnStart(BehaviorAction action, int actor, BehaviorAction priorAction, ActionResult result)
 {
-#if defined EXTRA_PLUGINBOT
-	//Disable constant pathing cause we don't need it here
-	//Will cause conflcting pathing issues otherwise
-	pb_bPath[actor] = false;
-#endif
-	
 	m_pPath[actor].SetMinLookAheadDistance(GetDesiredPathLookAheadRange(actor));
 	
 	JSONArray ammo = new JSONArray();
@@ -150,7 +144,7 @@ void ComputeHealthAndAmmoVectors(int client, JSONArray array, float max_range)
 		int ammo = -1;
 		while ((ammo = FindEntityByClassname(ammo, g_strHealthAndAmmoEntities[i])) != -1)
 		{
-			if (BaseEntity_GetTeamNumber(ammo) == view_as<int>(GetEnemyTeamOfPlayer(client)))
+			if (BaseEntity_GetTeamNumber(ammo) == view_as<int>(GetPlayerEnemyTeam(client)))
 				continue;
 		
 			if (GetVectorDistance(WorldSpaceCenter(client), WorldSpaceCenter(ammo)) > max_range)

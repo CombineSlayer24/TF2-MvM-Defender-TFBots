@@ -36,7 +36,9 @@ Author: ★ Officer Spy ★
 
 // #define TFBOT_CUSTOM_SPY_CONTACT
 
-// #define EXTRA_PLUGINBOT
+#define EXTRA_PLUGINBOT
+
+// #define VALIDATE_ENTITY_TANKBOSS
 
 // #define IDLEBOT_AIMING
 
@@ -58,12 +60,30 @@ enum
 	BOT_LINEUP_MODE_PREFERENCE_CHOOSE
 }
 
+enum struct esMapConfiguration
+{
+	ArrayList adtSniperSpot;
+	ArrayList adtEngineerNestLocation;
+	ArrayList adtTeleporterEntranceLocation;
+	ArrayList adtTeleporterExitLocation;
+	
+	void Initialize()
+	{
+		this.adtSniperSpot = new ArrayList(3);
+	}
+	void Reset()
+	{
+		this.adtSniperSpot.Clear();
+	}
+}
+
 enum struct esButtonInput
 {
 	int iPress;
 	float flPressTime;
 	int iRelease;
 	float flReleaseTime;
+	float flKeySpeed;
 	
 	void Reset()
 	{
@@ -71,6 +91,7 @@ enum struct esButtonInput
 		this.flPressTime = 0.0;
 		this.iRelease = 0;
 		this.flReleaseTime = 0.0;
+		this.flKeySpeed = 0.0;
 	}
 	
 	void PressButtons(int buttons, float duration = -1.0)
@@ -125,8 +146,8 @@ static float m_flLastCommandTime[MAXPLAYERS + 1];
 static float m_flLastReadyInputTime[MAXPLAYERS + 1];
 
 //Config
+esMapConfiguration g_arrMapConfig;
 static ArrayList m_adtBotNames;
-static ArrayList m_adtSniperSpots;
 
 //Global entities
 int g_iPopulationManager = -1;
@@ -196,7 +217,7 @@ public Plugin myinfo =
 	name = "Defender TFBots",
 	author = "Officer Spy",
 	description = "TFBots that play Mann vs. Machine",
-	version = "1.5.0",
+	version = "1.5.4",
 	url = "https://github.com/OfficerSpy/TF2-MvM-Defender-TFBots"
 };
 
@@ -324,7 +345,7 @@ public void OnPluginStart()
 	
 	g_adtChosenBotClasses = new ArrayList(TF2_CLASS_MAX_NAME_LENGTH);
 	m_adtBotNames = new ArrayList(MAX_NAME_LENGTH);
-	m_adtSniperSpots = new ArrayList(3);
+	g_arrMapConfig.Initialize();
 	
 	InitNextBotPathing();
 	
@@ -437,6 +458,12 @@ public Action OnPlayerRunCmd(int client, int &buttons, int &impulse, float vel[3
 			if (g_arrExtraButtons[client].iPress & IN_MOVERIGHT)
 				vel[1] += PLAYER_SIDESPEED;
 			
+			if (g_arrExtraButtons[client].iPress & IN_LEFT)
+				angles[1] -= g_arrExtraButtons[client].flKeySpeed;
+			
+			if (g_arrExtraButtons[client].iPress & IN_RIGHT)
+				angles[1] += g_arrExtraButtons[client].flKeySpeed;
+			
 			buttons |= g_arrExtraButtons[client].iPress;
 			
 			//We are told to hold these inputs down for a specific time, don't clear until it expires
@@ -507,12 +534,8 @@ public Action OnPlayerRunCmd(int client, int &buttons, int &impulse, float vel[3
 						if (CanRevolverHeadshot(myWeapon))
 						{
 							//Don;t fire if our shot won't be very accurate
-							//TODO: use the offset of m_flLastAccuracyCheck?
-							if (m_flNextSnipeFireTime[client] > GetGameTime())
+							if (!(GetGameTime() - GetLastAccuracyCheck(myWeapon) > 1.0))
 								buttons &= ~IN_ATTACK;
-							
-							if (buttons & IN_ATTACK)
-								m_flNextSnipeFireTime[client] = GetGameTime() + REVOLVER_ACCURACY_CHECK_COOLDOWN;
 						}
 					}
 				}
@@ -640,13 +663,39 @@ public Action OnPlayerRunCmd(int client, int &buttons, int &impulse, float vel[3
 #if defined MOD_ROLL_THE_DICE_REVAMPED
 			if (redbots_manager_bot_rtd_variance.FloatValue >= COMMAND_MAX_RATE)
 			{
-				if (threat && m_flNextRollTime[client] <= GetGameTime())
+				if (threat && threat.IsVisibleInFOVNow() && m_flNextRollTime[client] <= GetGameTime())
 				{
 					m_flNextRollTime[client] = GetGameTime() + GetRandomFloat(COMMAND_MAX_RATE, redbots_manager_bot_rtd_variance.FloatValue);
 					FakeClientCommand(client, "sm_rtd");
 				}
 			}
 #endif
+			
+#if defined TESTING_ONLY
+			if (GetEntityFlags(client) & FL_ONGROUND == 0 && !TF2_IsJumping(client))
+			{
+				//TFBots have no air control in mvm, keep us moving
+				PathFollower myPath = myBot.GetCurrentPath();
+				
+				if (myPath)
+				{
+					Segment pGoal = myPath.GetCurrentGoal();
+					
+					if (pGoal)
+					{
+						float vGoal[3]; pGoal.GetPosition(vGoal);
+						MovePlayerTowardsGoal(client, vGoal, vel);
+					}
+				}
+			}
+#endif
+		}
+		
+		//TODO: is this too expensive? use global per-player variable otherwise
+		if (TF2_IsInUpgradeZone(client) && ActionsManager.LookupEntityActionByName(client, "DefenderUpgrade") != INVALID_ACTION)
+		{
+			//Because of CTFBot::AvoidPlayers, do not let ourselves move away from other players while upgrading
+			vel = NULL_VECTOR;
 		}
 		
 #if defined IDLEBOT_AIMING
@@ -751,7 +800,7 @@ public Action Command_Votebots(int client, int args)
 				return Plugin_Handled;
 			}
 			
-			ReplyToCommand(client, "%s Choose your bot team lineup first! Use command !choosebotteam/!cbt", PLUGIN_PREFIX);
+			ReplyToCommand(client, "%s Choose your bot team lineup first! Use command !choosebotteam or !cbt", PLUGIN_PREFIX);
 			return Plugin_BadLoad;
 		}
 	}
@@ -805,8 +854,13 @@ public Action Command_ShowBotChances(int client, int args)
 
 public Action Command_ShowNewBotTeamComposition(int client, int args)
 {
-	if (CreateDisplayPanelBotTeamComposition(client))
-		ReplyToCommand(client, "Use command !rerollbotclasses to reshuffle the bot class lineup.");
+	if (!CreateDisplayPanelBotTeamComposition(client))
+	{
+		ReplyToCommand(client, "%s There is no bot lineup currently active.", PLUGIN_PREFIX);
+		return Plugin_Handled;
+	}
+	
+	ReplyToCommand(client, "Use command !rerollbotclasses to reshuffle the bot class lineup.");
 	
 	return Plugin_Handled;
 }
@@ -988,6 +1042,7 @@ public Action Command_ChooseBotClasses(int client, int args)
 	
 	//Should only be able to call this while solo, so current team count should always be 1
 	ShowDefenderBotTeamSetupMenu(client, _, true, defenderTeamSize - redTeamCount);
+	PrintToChatAll("%N is choosing the current bot team lineup.", client);
 	
 	return Plugin_Handled;
 }
@@ -1893,11 +1948,11 @@ void AddBotsWithPresetTeamComp(int count = 6, int teamType = 0)
 
 void SetupSniperSpotHints()
 {
-	if (m_adtSniperSpots.Length > 0)
+	if (g_arrMapConfig.adtSniperSpot.Length > 0)
 	{
-		for (int i = 0; i < m_adtSniperSpots.Length; i++)
+		for (int i = 0; i < g_arrMapConfig.adtSniperSpot.Length; i++)
 		{
-			float vec[3]; m_adtSniperSpots.GetArray(i, vec);
+			float vec[3]; g_arrMapConfig.adtSniperSpot.GetArray(i, vec);
 			int ent = CreateEntityByName("func_tfbot_hint");
 			
 			if (ent != -1)
@@ -1927,6 +1982,10 @@ bool HavePlayersChosenBotTeam()
 	//If someone is choosing the lineup right now, we're not ready yet
 	if (GetCountOfPlayersChoosingBotClasses() > 0)
 		return false;
+	
+	//Always ready if our team is full
+	if (GetTeamClientCount(TFTeam_Red) >= redbots_manager_defender_team_size.IntValue)
+		return true;
 	
 	/* If strictly requiring a chosen lineup, the list will only ever be made up of classes picked by a player
 	If it is empty, no one chose anything yet */
@@ -2085,7 +2144,7 @@ eMissionDifficulty GetMissionDifficulty()
 
 void Config_LoadMap()
 {
-	m_adtSniperSpots.Clear();
+	g_arrMapConfig.Reset();
 	
 	char mapName[PLATFORM_MAX_PATH]; GetCurrentMap(mapName, sizeof(mapName));
 	char filePath[PLATFORM_MAX_PATH]; BuildPath(Path_SM, filePath, sizeof(filePath), "configs/defenderbots/map/%s.cfg", mapName);
@@ -2106,7 +2165,7 @@ void Config_LoadMap()
 			do
 			{
 				float vec[3]; kv.GetVector("origin", vec);
-				m_adtSniperSpots.PushArray(vec);
+				g_arrMapConfig.adtSniperSpot.PushArray(vec);
 			} while (kv.GotoNextKey(false));
 		}
 		
@@ -2116,7 +2175,7 @@ void Config_LoadMap()
 	CloseHandle(kv);
 	
 #if defined TESTING_ONLY
-	LogMessage("Config_LoadMap: Found %d locations for SniperSpot", m_adtSniperSpots.Length);
+	LogMessage("Config_LoadMap: Found %d locations for SniperSpot", g_arrMapConfig.adtSniperSpot.Length);
 #endif
 }
 

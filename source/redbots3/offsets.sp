@@ -8,20 +8,26 @@ void InitOffsets(GameData hGamedata)
 	
 	SetOffset(hGamedata, "CTFPlayer", "m_LastDamageType");
 	SetOffset(hGamedata, "CObjectSentrygun", "m_bPlacementOK");
+	SetOffset(hGamedata, "CObjectSentrygun", "m_vecCurAngles");
 	SetOffset(hGamedata, "CTFBot", "m_isLookingAroundForEnemies");
 	SetOffset(hGamedata, "CTFBot", "m_mission");
+	SetOffset(hGamedata, "CTFBot", "m_opportunisticTimer");
 	SetOffset(hGamedata, "CPopulationManager", "m_nStartingCurrency");
 	SetOffset(hGamedata, "CTFBuffItem", "m_bPlayingHorn");
+	SetOffset(hGamedata, "CTFRevolver", "m_flLastAccuracyCheck");
 	SetOffset(hGamedata, "CTFNavArea", "m_distanceToBombTarget");
 	
 #if defined TESTING_ONLY
 	//Dump offsets
 	LogMessage("InitOffsets: CTFPlayer->m_LastDamageType = %d", GetOffset("CTFPlayer", "m_LastDamageType"));
 	LogMessage("InitOffsets: CObjectSentrygun->m_bPlacementOK = %d", GetOffset("CObjectSentrygun", "m_bPlacementOK"));
+	LogMessage("InitOffsets: CObjectSentrygun->m_vecCurAngles = %d", GetOffset("CObjectSentrygun", "m_vecCurAngles"));
 	LogMessage("InitOffsets: CTFBot->m_isLookingAroundForEnemies = %d", GetOffset("CTFBot", "m_isLookingAroundForEnemies"));
 	LogMessage("InitOffsets: CTFBot->m_mission = %d", GetOffset("CTFBot", "m_mission"));
+	LogMessage("InitOffsets: CTFBot->m_opportunisticTimer = %d", GetOffset("CTFBot", "m_opportunisticTimer"));
 	LogMessage("InitOffsets: CPopulationManager->m_nStartingCurrency = %d", GetOffset("CPopulationManager", "m_nStartingCurrency"));
 	LogMessage("InitOffsets: CTFBuffItem->m_bPlayingHorn = %d", GetOffset("CTFBuffItem", "m_bPlayingHorn"));
+	LogMessage("InitOffsets: CTFRevolver->m_flLastAccuracyCheck = %d", GetOffset("CTFRevolver", "m_flLastAccuracyCheck"));
 	LogMessage("InitOffsets: CTFNavArea->m_distanceToBombTarget = %d", GetOffset("CTFNavArea", "m_distanceToBombTarget"));
 #endif
 }
@@ -91,7 +97,12 @@ int GetLastDamageType(int client)
 
 bool IsPlacementOK(int iObject)
 {
-	return view_as<bool>(GetEntData(iObject, GetOffset("CObjectSentrygun", "m_bPlacementOK"), 1));
+	return GetEntData(iObject, GetOffset("CObjectSentrygun", "m_bPlacementOK"), 1);
+}
+
+void GetTurretAngles(int sentry, float buffer[3])
+{
+	GetEntDataVector(sentry, GetOffset("CObjectSentrygun", "m_vecCurAngles"), buffer);
 }
 
 void SetLookingAroundForEnemies(int client, bool shouldLook)
@@ -104,6 +115,11 @@ int GetTFBotMission(int client)
 	return GetEntData(client, GetOffset("CTFBot", "m_mission"));
 }
 
+Address GetOpportunisticTimer(int client)
+{
+	return GetEntityAddress(client) + GetOffset("CTFBot", "m_opportunisticTimer");
+}
+
 int GetStartingCurrency(int populator)
 {
 	//NOTE: the actual starting currecny is determined by two variables, but the other one doesn't seem to matter
@@ -113,6 +129,11 @@ int GetStartingCurrency(int populator)
 bool IsPlayingHorn(int weapon)
 {
 	return view_as<bool>(GetEntData(weapon, GetOffset("CTFBuffItem", "m_bPlayingHorn"), 1));
+}
+
+float GetLastAccuracyCheck(int weapon)
+{
+	return GetEntDataFloat(weapon, GetOffset("CTFRevolver", "m_flLastAccuracyCheck"));
 }
 
 float GetTravelDistanceToBombTarget(CTFNavArea area)
