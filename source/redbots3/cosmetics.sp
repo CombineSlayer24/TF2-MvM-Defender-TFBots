@@ -1,3 +1,6 @@
+#define MAX_CATEGORIES 15
+#define MAX_CONFLICTS 5
+
 public const int QUALITY_GENUINE = 1;
 public const int QUALITY_VINTAGE = 3;
 public const int QUALITY_UNUSUAL = 5;
@@ -262,6 +265,7 @@ public const int ALLCLASS_HATS[] = {
 	31470,
 	31494,
 	31495,
+	31522,
 	// Unreleased Hats
 	1193,	// Never Forget Cap
 	1192,	// Mannanas Cap
@@ -1004,11 +1008,11 @@ public const CosmeticSet CS_PRESET_GENERIC[] = {
 // SCOUT
 //-----------------------------------------------
 public const int SPECIFIC_SCOUT_HEAD[] = { 31406, 30867, 31023, 30573, 30394, 30735, 30733, 31282 };
-public const int SPECIFIC_SCOUT_HATS[] = { 31505, 52, 30767, 30718, 617, 111, 30059, 652, 30977, 249, 31437, 106, 30030, 31284, 31042, 31366, 31117, 853, 765, 30686, 539, 780, 30636, 31197, 760, 30078, 858, 31000, 30769, 633, 453, 219, 30811, 30428, 30993, 846, 30332, 30326, 31056, 31283, 346, 30479, 150, 30930, 788, 174, 1012, 30809, 30019, 107, 31459, 31480 };
+public const int SPECIFIC_SCOUT_HATS[] = { 31505, 31536, 52, 30767, 30718, 617, 111, 30059, 652, 30977, 249, 31437, 106, 30030, 31284, 31042, 31366, 31117, 853, 765, 30686, 539, 780, 30636, 31197, 760, 30078, 858, 31000, 30769, 633, 453, 219, 30811, 30428, 30993, 846, 30332, 30326, 31056, 31283, 346, 30479, 150, 30930, 788, 174, 1012, 30809, 30019, 107, 31459, 31480 };
 public const int SPECIFIC_SCOUT_GLASSES[] = { 30027, 451, 30661, 30085, 31303, 468, 30831, 31116, 630 };
 public const int SPECIFIC_SCOUT_BEARD[] = { 31081, 986, 31163 };
-public const int SPECIFIC_SCOUT_TORSO[] = { 31506, 30736, 30076, 30884, 30873, 30077, 30770, 30134, 722, 30637, 30185, 30189, 31302, 31436, 30888, 31022, 30325, 31196, 31339, 30426, 31043, 31118, 31367, 31281, 31258, 30395, 30875, 925, 30552, 30685, 30376, 1026, 827, 814, 30178, 30990, 31460, 815, 31479 };
-public const int SPECIFIC_SCOUT_BACK[] = { 30751, 707, 30083, 781, 30824, 31195, 30084, 491, 30869, 859, 30849, 1075, 30820, 31119 };
+public const int SPECIFIC_SCOUT_TORSO[] = { 31506, 31537, 30736, 30076, 30884, 30873, 30077, 30770, 30134, 722, 30637, 30185, 30189, 31302, 31436, 30888, 31022, 30325, 31196, 31339, 30426, 31043, 31118, 31367, 31281, 31258, 30395, 30875, 925, 30552, 30685, 30376, 1026, 827, 814, 30178, 30990, 31460, 815, 31479 };
+public const int SPECIFIC_SCOUT_BACK[] = { 30751, 31538, 707, 30083, 781, 30824, 31195, 30084, 491, 30869, 859, 30849, 1075, 30820, 31119 };
 public const int SPECIFIC_SCOUT_BELT[] = { 30167, 30728, 30564 };
 public const int SPECIFIC_SCOUT_PANTS[] = { 30991, 30719, 30060, 31285, 30889 };
 public const int SPECIFIC_SCOUT_FEET[] = { 540, 30561, 653, 30551, 1016, 490, 30890, 30575, 30754, 1032, 30999, 30358, 924, 857, 30771, 734, 347 };
@@ -1020,7 +1024,7 @@ public const int SPECIFIC_SCOUT_FEET[] = { 540, 30561, 653, 30551, 1016, 490, 30
 //121		// Web Easteregg Medal (medal)
 public const int SPECIFIC_SOLDIER_HEAD[] = { 1090, 1091, 30969, 31335, 31449, 31312, 349, 391, 575, 30733 };
 public const int SPECIFIC_SOLDIER_HATS[] = { 31507, 445, 719, 31112, 31057, 434, 31113, 31146, 30116, 945, 250, 31025, 31378, 30071, 30553, 721, 31024, 853, 30899, 764, 31045, 31277, 1021, 31035, 31069, 31256, 339, 31310, 30026, 395, 1093, 227, 30338, 631, 31111, 30978, 30708, 732, 417, 152, 439, 701, 30885, 30390, 31199, 31147, 31095, 31044, 30811, 30069, 31071, 30120, 31198, 30548, 183, 30897, 30578, 30984, 30314, 980, 54, 31106, 616, 98, 30017, 251, 31002, 378, 31200, 844, 30316, 99, 30014, 30114, 31003, 30887, 829, 1073, 30118, 1063 };
-public const int SPECIFIC_SOLDIER_GLASSES[] = { 360, 30085, 30831 };
+public const int SPECIFIC_SOLDIER_GLASSES[] = { 360, 30085, 30831, 31539 };
 public const int SPECIFIC_SOLDIER_BEARD[] = { 647, 30165, 30477, 440, 30335, 875, 30554, 986, 31163, 30033, 852, 30164 };
 public const int SPECIFIC_SOLDIER_COAT[] = { 31508, 30331, 30131, 30727, 30388, 31276, 30126, 30601, 31450, 30744, 30747, 30129, 650, 31070, 30898, 31418, 30983 };
 public const int SPECIFIC_SOLDIER_SHIRT[] = { 936, 446, 30142, 30870 };
@@ -1047,15 +1051,16 @@ public const int SPECIFIC_SOLDIER_FEET[] = { 30558, 30117, 734 };
 30305,	// Sub Zero Suit (conflicts with pants)
 761,	// Triclops (full head)
 31221,	// Wandering Wraith (full head)
+31531, 	// Frogmann's Fittings
 */
 public const int SPECIFIC_PYRO_HEAD_REPLACE[] = { 30163, 30859, 5759, 31007, 30717, 30582, 30304, 1038, 30799, 30367, 31389, 30724, 30036, 31144, 30721, 335, 783, 31065, 570, 30075, 31431, 30475, 31006, 1124, 30684, 950, 30652, 31076, 30835, 30032, 31222, 30538, 976 };
-public const int SPECIFIC_PYRO_HATS[] = { 31497, 30662, 854, 213, 615, 30057, 30162, 105, 31185, 597, 30091, 30936, 30987, 30937, 30063, 30418, 394, 30800, 435, 949, 30025, 31253, 30903, 31108, 31462, 31359, 30038, 627, 31357, 31107, 377, 31432, 612, 321, 31041, 30028, 248, 1031, 247, 30139, 31329, 30811, 30022, 318, 31296, 51, 30040, 30580, 31186, 30039, 102, 31143, 31066, 30399, 30555, 31390, 481, 30327, 151, 31064, 182, 753, 31094, 937, 31472, 31477 };
+public const int SPECIFIC_PYRO_HATS[] = { 31497, 31530, 30662, 854, 213, 615, 30057, 30162, 105, 31185, 597, 30091, 30936, 30987, 30937, 30063, 30418, 394, 30800, 435, 949, 30025, 31253, 30903, 31108, 31462, 31359, 30038, 627, 31357, 31107, 377, 31432, 612, 321, 31041, 30028, 248, 1031, 247, 30139, 31329, 30811, 30022, 318, 31296, 51, 30040, 30580, 31186, 30039, 102, 31143, 31066, 30399, 30555, 31390, 481, 30327, 151, 31064, 182, 753, 31094, 937, 31472, 31477 };
 public const int SPECIFIC_PYRO_GLASSES[] = { 30901, 31096, 30053, 30176, 31004, 30831, 387, 30168 };
 public const int SPECIFIC_PYRO_NECKLESS[] = { 336, 787 };
 public const int SPECIFIC_PYRO_BEARD[] = { 316, 175 };
 public const int SPECIFIC_PYRO_SHIRT[] = {31498, 30716, 936, 31328, 30986, 31463, 31263, 30400, 30544, 30581, 31358, 30092, 30062, 30826, 30583, 31433, 30169, 31051, 31188 };
 public const int SPECIFIC_PYRO_GRENADES[] = { 30886, 922, 746, 632, 948, 30822, 651, 641, 768, 30818, 31220, 31478 };
-public const int SPECIFIC_PYRO_BACK[] = { 30090, 938, 30900, 30819, 30417, 30398, 31187, 745, 30663, 596, 1072, 842, 856, 820, 30904, 754, 30020, 31050, 30321, 30308 };
+public const int SPECIFIC_PYRO_BACK[] = { 30090, 31532, 938, 30900, 30819, 30417, 30398, 31187, 745, 30663, 596, 1072, 842, 856, 820, 30904, 754, 30020, 31050, 30321, 30308 };
 public const int SPECIFIC_PYRO_BELT[] = { 30167, 30728, 30902, 31047, 31026 };
 public const int SPECIFIC_PYRO_PANTS[] = { 30819, 31464, 31464 };
 public const int SPECIFIC_PYRO_FEET[] = { 30905 };
@@ -1068,7 +1073,7 @@ public const int SPECIFIC_PYRO_FEET[] = { 30905 };
 31392,	// Stunt Suit
 */
 public const int SPECIFIC_DEMO_HEAD[] = { 514, 30733, 30863, 30979, 703, 30082, 30723, 30733, 30863, 30979, 31307 };
-public const int SPECIFIC_DEMO_HATS[] = { 31511, 47, 100, 120, 146, 179, 216, 255, 259, 306, 342, 359, 388, 390, 403, 465, 604, 607, 631, 786, 876, 935, 1012, 30016, 30021, 30024, 30029, 30034, 30037, 30064, 30105, 30106, 30112, 30180, 30334, 30340, 30393, 30429, 30547, 30586, 30604, 30627, 30807, 30823, 30830, 30836, 30887, 30421, 30628, 30779, 30977, 31038, 31057, 31100, 31106, 31115, 31182, 31273, 31308, 31309, 31341, 31371, 31391, 31422, 31461, 31488, 31489 };
+public const int SPECIFIC_DEMO_HATS[] = { 31511, 31533, 47, 100, 120, 146, 179, 216, 255, 259, 306, 342, 359, 388, 390, 403, 465, 604, 607, 631, 786, 876, 935, 1012, 30016, 30021, 30024, 30029, 30034, 30037, 30064, 30105, 30106, 30112, 30180, 30334, 30340, 30393, 30429, 30547, 30586, 30604, 30627, 30807, 30823, 30830, 30836, 30887, 30421, 30628, 30779, 30977, 31038, 31057, 31100, 31106, 31115, 31182, 31273, 31308, 31309, 31341, 31371, 31391, 31422, 31461, 31488, 31489 };
 public const int SPECIFIC_DEMO_GLASSES[] = { 295, 709, 1019, 30010, 30085, 30430, 30831, 30945 };
 public const int SPECIFIC_DEMO_BEARD[] = { 647, 830, 875, 986, 30011, 31017, 31040, 31163 };
 public const int SPECIFIC_DEMO_SHIRT[] = { 31512, 925, 30110, 30124, 30178, 30179, 30348, 30366, 30373, 30480, 30550, 31037, 31274, 31342, 31423 };
@@ -1087,13 +1092,13 @@ public const int SPECIFIC_DEMO_FEET[] = { 31513, 734, 1016, 30333, 30358, 30587 
 */
 public const int SPECIFIC_HEAVY_HEAD[] = { 145, 1187, 30645, 30733, 30815, 30866, 30885, 31305, 31368, 31481, 31482 };
 public const int SPECIFIC_HEAVY_HEADSKIN[] = { 31510, 380, 585, 31191 };
-public const int SPECIFIC_HEAVY_HATS[] = { 49, 96, 97, 185, 246, 254, 290, 292, 309, 313, 330, 358, 378, 427, 478, 515, 517, 535, 601, 603, 613, 635, 821, 840, 853, 866, 876, 952, 985, 989, 1012, 1018, 1087, 30013, 30049, 30054, 30081, 30094, 30122, 30315, 30344, 30346, 30369, 30374, 30545, 30588, 30589, 30644, 30653, 30811, 30812, 30887, 30911, 30912, 30959, 30981, 31008, 31029, 31052, 31080, 31106, 31178, 31190, 31255, 31267, 31304, 31345, 31402, 31403, 31434, 31452 };
+public const int SPECIFIC_HEAVY_HATS[] = { 49, 31525, 31527, 96, 97, 185, 246, 254, 290, 292, 309, 313, 330, 358, 378, 427, 478, 515, 517, 535, 601, 603, 613, 635, 821, 840, 853, 866, 876, 952, 985, 989, 1012, 1018, 1087, 30013, 30049, 30054, 30081, 30094, 30122, 30315, 30344, 30346, 30369, 30374, 30545, 30588, 30589, 30644, 30653, 30811, 30812, 30887, 30911, 30912, 30959, 30981, 31008, 31029, 31052, 31080, 31106, 31178, 31190, 31255, 31267, 31304, 31345, 31402, 31403, 31434, 31452 };
 public const int SPECIFIC_HEAVY_GLASSES[] = { 479, 30085, 30141, 30368, 30831 };
 public const int SPECIFIC_HEAVY_BEARD[] = { 485, 647, 986, 30164, 30165, 30345, 30401, 30482, 30960, 31163 };
-public const int SPECIFIC_HEAVY_SHIRT[] = { 31509, 777, 814, 925, 946, 30074, 30138, 30178, 30342, 30364, 30550, 30556, 30557, 30633, 30745, 30747, 30803, 30873, 30913, 30914, 30980, 31030, 31053, 31179, 31268, 31346, 31369, 31435, 31453, 31483 };
+public const int SPECIFIC_HEAVY_SHIRT[] = { 31509, 31526, 31528, 777, 814, 925, 946, 30074, 30138, 30178, 30342, 30364, 30550, 30556, 30557, 30633, 30745, 30747, 30803, 30873, 30913, 30914, 30980, 31030, 31053, 31179, 31268, 31346, 31369, 31435, 31453, 31483 };
 public const int SPECIFIC_HEAVY_MISC[] = { 524, 757, 643, 815, 1088, 30080, 30012, 30910, 1189, 30108, 31079, 31306 };
 public const int SPECIFIC_HEAVY_BELT[] = { 392, 1028, 1097, 30079, 30728, 31123	};
-public const int SPECIFIC_HEAVY_PANTS[] = { 1188, 30319, 30343, 30372, 31180, 31370 };
+public const int SPECIFIC_HEAVY_PANTS[] = { 1188, 30319, 31529, 30343, 30372, 31180, 31370 };
 public const int SPECIFIC_HEAVY_FEET[] = { 990, 30354 };
 //-----------------------------------------------
 // ENGINEER
@@ -1104,10 +1109,10 @@ public const int SPECIFIC_HEAVY_FEET[] = { 990, 30354 };
 */
 public const int SPECIFIC_ENGY_HEADMISC[] = { 30707, 30806, 31394, 31150 };
 public const int SPECIFIC_ENGY_HEAD[] = { 31333, 30420, 533, 30592, 30099, 384, 30733 };
-public const int SPECIFIC_ENGY_HATS[] = { 31514, 30884, 988, 382, 31175, 31049, 590, 322, 31425, 853, 31375, 31445, 30051, 31011, 31297, 31074, 95, 30871, 631, 31374, 31114, 436, 148, 338, 1010, 31272, 48, 31298, 399, 30406, 605, 30031, 30846, 31097, 178, 30682, 31331, 31106, 31098, 118, 94, 30044, 31046, 30035, 848, 31254, 30336, 31064, 30930, 628, 1017, 31148, 379, 30805, 1012, 31094, 31484 };
+public const int SPECIFIC_ENGY_HATS[] = { 31514, 31523, 30884, 988, 382, 31175, 31049, 590, 322, 31425, 853, 31375, 31445, 30051, 31011, 31297, 31074, 95, 30871, 631, 31374, 31114, 436, 148, 338, 1010, 31272, 48, 31298, 399, 30406, 605, 30031, 30846, 31097, 178, 30682, 31331, 31106, 31098, 118, 94, 30044, 31046, 30035, 848, 31254, 30336, 31064, 30930, 628, 1017, 31148, 379, 30805, 1012, 31094, 31484 };
 public const int SPECIFIC_ENGY_GLASSES[] = { 591, 389, 30872, 30085, 30831, 31189, 30168 };
 public const int SPECIFIC_ENGY_BEARD[] = { 647, 30165, 30681, 30322, 30172, 1009, 30407, 986, 31163, 30347, 30164, 31031 };
-public const int SPECIFIC_ENGY_SHIRT[] = { 31515, 30884, 30377, 31446, 31373, 815, 31395, 31332, 30367, 30785, 31444, 30330, 30408, 30804, 30412, 30590, 30539, 30698, 30655, 31426, 925, 30605, 30402, 30337, 814, 31334, 31264, 30635, 31485 };
+public const int SPECIFIC_ENGY_SHIRT[] = { 31515, 31524, 30884, 30377, 31446, 31373, 815, 31395, 31332, 30367, 30785, 31444, 30330, 30408, 30804, 30412, 30590, 30539, 30698, 30655, 31426, 925, 30605, 30402, 30337, 814, 31334, 31264, 30635, 31485 };
 public const int SPECIFIC_ENGY_BACK[] = { 30992, 31151, 784, 30403, 30821, 31032, 30749, 31486 };
 public const int SPECIFIC_ENGY_PANTS[] = { 30113, 755 };
 public const int SPECIFIC_ENGY_BELT[] = { 31012, 30167, 606, 30728, 30593, 30908, 948, 30087, 30056, 30341, 30680, 30481, 646, 30654, 31013, 1089, 519, 823, 30070, 1008, 670, 386, 30023, 30086, 30909, 520, 31487 };
@@ -1125,10 +1130,10 @@ public const int SPECIFIC_ENGY_FEET[] = { 30409, 484, 30675, 30543, 30629, 734 }
 31400,	// Main Cast (Feet)
 */
 public const int SPECIFIC_MEDIC_HEAD[] = { 303, 30095, 30733, 30786, 30939, 31475, 31122, 31421 };
-public const int SPECIFIC_MEDIC_HATS[] = { 31502, 31503, 50, 101, 104, 177, 184, 323, 363, 378, 381, 383, 388, 398, 616, 778, 853, 867, 1012, 1039, 30041, 30042, 30043, 30045, 30069, 30097, 30109, 30121, 30136, 30187, 30311, 30318, 30351, 30378, 30595, 30596, 30625, 30755, 30862, 30907, 31028, 31034, 31472, 31476, 31176, 31224, 31265, 31300, 31344, 31399, 31401 };
+public const int SPECIFIC_MEDIC_HATS[] = { 31502, 31503, 31543, 50, 101, 104, 177, 184, 323, 363, 378, 381, 383, 388, 398, 616, 778, 853, 867, 1012, 1039, 30041, 30042, 30043, 30045, 30069, 30097, 30109, 30121, 30136, 30187, 30311, 30318, 30351, 30378, 30595, 30596, 30625, 30755, 30862, 30907, 31028, 31034, 31472, 31476, 31176, 31224, 31265, 31300, 31344, 31399, 31401 };
 public const int SPECIFIC_MEDIC_GLASSES[] = { 657, 30050, 30085, 30792, 31121, 31454 };
 public const int SPECIFIC_MEDIC_BEARD[] = { 144, 647, 826, 986, 30046, 30186, 30323, 30349, 30410, 31027, 31077, 31163 };
-public const int SPECIFIC_MEDIC_SHIRT[] = { 31504, 621, 639, 769, 878, 936, 978, 982, 30098, 30137, 30171, 30190, 30312, 30350, 30356, 30361, 30365, 30419, 30626, 30750, 30756, 30817, 30906, 30940, 30982, 31078, 31266, 31299, 31343, 31364, 31420, 31455, 31456 };
+public const int SPECIFIC_MEDIC_SHIRT[] = { 31504, 31544, 621, 639, 769, 878, 936, 978, 982, 30098, 30137, 30171, 30190, 30312, 30350, 30356, 30361, 30365, 30419, 30626, 30750, 30756, 30817, 30906, 30940, 30982, 31078, 31266, 31299, 31343, 31364, 31420, 31455, 31456 };
 public const int SPECIFIC_MEDIC_PANTS[] = { 30773, 31177 };
 public const int SPECIFIC_MEDIC_BELT[] = { 770, 828, 30048, 30096, 30415, 30728, 30813, 30825, 31033, 31099, 31365 };
 public const int SPECIFIC_MEDIC_FEET[] = { 30379 };
@@ -1154,1405 +1159,29 @@ public const int SPECIFIC_SNIPER_FEET[] = { }; */
 // Returns the ellgible cosmetics that has multiple styles
 int GetCosmeticStyles( int iEntity )
 {
-	int iIndex = GetEntProp( iEntity, Prop_Send, "m_iItemDefinitionIndex" );
-	switch ( iIndex )
+	int iStyles = 0;
+	
+	// Loop up to 10 times to check for valid styles
+	for ( int i = 0; i < 10; i++ )
 	{
-		case 14261:	return 1;
-		case 14262:	return 1;
-		case 14263:	return 1;
-		case 14265:	return 1;
-		case 31504:	return 1;
-		case 31510:	return 1;
-		case 31509:	return 1;
-		case 31512:	return 1;
-		case 31511:	return 1;
-		case 31508:	return 1;
-		case 31496:	return 1;
-		case 31495:	return 1;
-		case 600:	return 1;
-		case 31456:	return 1;
-		case 31421:	return 1;
-		case 31401:	return 1;
-		case 31399:	return 1;
-		case 31266:	return 1;
-		case 31265:	return 1;
-		case 31099:	return 1;
-		case 31177:	return 1;
-		case 31489:	return 1;
-		case 31488:	return 1;
-		case 31469:	return 1;
-		case 657:	return 1;
-		case 315:	return 1;
-		case 31031:	return 1;
-		case 30336:	return 1;
-		case 31254:	return 1;
-		case 755:	return 1;
-		case 30634:	return 1;
-		case 31272:	return 1;
-		case 31114:	return 1;
-		case 389:	return 1;
-		case 31150:	return 1;
-		case 31332:	return 1;
-		case 590:	return 1;
-		case 382:	return 1;
-		case 31012:	return 1;
-		case 31304:	return 1;
-		case 31268:	return 1;
-		case 31267:	return 1;
-		case 31191:	return 1;
-		case 31123:	return 1;
-		case 31052:	return 1;
-		case 30981:	return 1;
-		case 31029:	return 1;
-		case 30369:	return 1;
-		case 1028:	return 1;
-		case 821:	return 1;
-		case 610:	return 1;
-		case 478:	return 1;
-		case 31422:	return 1;
-		case 31393:	return 1;
-		case 31372:	return 1;
-		case 31307:	return 1;
-		case 31100:	return 1;
-		case 31037:	return 1;
-		case 30373:	return 1;
-		case 830:	return 1;
-		case 120:	return 1;
-		case 976:	return 1;
-		case 761:	return 1;
-		case 30168:	return 1;
-		case 31143:	return 1;
-		case 31464:	return 1;
-		case 31004:	return 1;
-		case 31026:	return 1;
-		case 950:	return 1;
-		case 31463:	return 1;
-		case 31432:	return 1;
-		case 31065:	return 1;
-		case 31357:	return 1;
-		case 31108:	return 1;
-		case 30724:	return 1;
-		case 31253:	return 1;
-		case 30367:	return 1;
-		case 30162:	return 1;
-		case 1073:	return 1;
-		case 829:	return 1;
-		case 31220:	return 1;
-		case 31200:	return 1;
-		case 844:	return 1;
-		case 980:	return 1;
-		case 31387:	return 1;
-		case 31147:	return 1;
-		case 30069:	return 1;
-		case 30870:	return 1;
-		case 440:	return 1;
-		case 1021:	return 1;
-		case 31277:	return 1;
-		case 948:	return 1;
-		case 31312:	return 1;
-		case 31450:	return 1;
-		case 31451:	return 1;
-		case 31449:	return 1;
-		case 13742:	return 1;
-		case 13739:	return 1;
-		case 13741:	return 1;
-		case 13743:	return 1;
-		case 31442:	return 1;
-		case 30727:	return 1;
-		case 31146:	return 1;
-		case 31335:	return 1;
-		case 719:	return 1;
-		case 647:	return 1;
-		case 31211:	return 1;
-		case 31294:	return 1;
-		case 785:	return 1;
-		case 31276:	return 1;
-		case 30746:	return 1;
-		case 420:	return 1;
-		case 617:	return 1;
-		case 760:	return 1;
-		case 722:	return 1;
-		case 31437:	return 1;
-		case 31116:	return 1;
-		case 30339:	return 1;
-		case 31379:	return 1;
-		case 1040:	return 1;
-		case 652:	return 1;
-		case 30027:	return 1;
-		case 451:	return 1;
-		case 653:	return 1;
-		case 31042:	return 1;
-		case 853:	return 1;
-		case 30189:	return 1;
-		case 30078:	return 1;
-		case 31129:	return 1;
-		case 858:	return 1;
-		case 453:	return 1;
-		case 31406:	return 1;
-		case 31303:	return 1;
-		case 31258:	return 1;
-		case 31282:	return 1;
-		case 814:	return 1;
-		case 1012:	return 1;
-		case 12988:	return 1;
-		case 12990:	return 1;
-		case 12989:	return 1;
-		case 12987:	return 1;
-		case 31060:	return 1;
-		case 12706:	return 1;
-		case 12707:	return 1;
-		case 31218:	return 1;
-		case 30571:	return 1;
-		case 671:	return 1;
-		case 1014:	return 1;
-		case 31164:	return 1;
-		case 125:	return 1;
-		case 31091:	return 1;
-		case 31386:	return 1;
-		case 942:	return 1;
-		case 1034:	return 1;
-		case 30175:	return 1;
-		case 31208:	return 1;
-		case 30058:	return 1;
-		case 31417:	return 1;
-		case 30357:	return 1;
-		case 30997:	return 1;
-		case 31134:	return 1;
-		case 31172:	return 1;
-		case 31327:	return 1;
-		case 31088:	return 1;
-		case 31090:	return 1;
-		case 31135:	return 1;
-		case 868:	return 1;
-		case 12660:	return 1;
-		case 12661:	return 1;
-		case 31103:	return 1;
-		case 31125:	return 1;
-		case 31105:	return 1;
-		case 10448:	return 1;
-		case 10442:	return 1;
-		case 10443:	return 1;
-		case 10444:	return 1;
-		case 10445:	return 1;
-		case 10446:	return 1;
-		case 10447:	return 1;
-		case 10449:	return 1;
-		case 816:	return 1;
-		case 11430:	return 1;
-		case 11431:	return 1;
-		case 11432:	return 1;
-		case 10653:	return 1;
-		case 10654:	return 1;
-		case 30352:	return 1;
-		case 31245:	return 1;
-		case 13566:	return 1;
-		case 13493:	return 1;
-		case 13494:	return 1;
-		case 13495:	return 1;
-		case 13337:	return 1;
-		case 13339:	return 1;
-		case 13335:	return 1;
-		case 13336:	return 1;
-		case 30743:	return 1;
-		case 12827:	return 1;
-		case 12828:	return 1;
-		case 12829:	return 1;
-		case 13322:	return 1;
-		case 1035:	return 1;
-		case 12888:	return 1;
-		case 12884:	return 1;
-		case 12887:	return 1;
-		case 30623:	return 1;
-		case 611:	return 1;
-		case 31219:	return 1;
-		case 31214:	return 1;
-		case 12249:	return 1;
-		case 12250:	return 1;
-		case 12251:	return 1;
-		case 492:	return 1;
-		case 9228:	return 1;
-		case 9592:	return 1;
-		case 9322:	return 1;
-		case 10015:	return 1;
-		case 10977:	return 1;
-		case 11803:	return 1;
-		case 12992:	return 1;
-		case 10046:	return 1;
-		case 10996:	return 1;
-		case 12991:	return 1;
-		case 11802:	return 1;
-		case 12791:	return 1;
-		case 13509:	return 1;
-		case 9613:	return 1;
-		case 12790:	return 1;
-		case 13508:	return 1;
-		case 1033:	return 1;
-		case 11612:	return 1;
-		case 11611:	return 1;
-		case 31323:	return 1;
-		case 31132:	return 1;
-		case 31371:	return 1;
-		case 31080:	return 1;
-		case 988:	return 1;
-		case 31478:	return 1;
-		case 31483:	return 1;
-		case 878:	return 1;
-		case 978:	return 1;
-		case 30750:	return 1;
-
-		case 393:	return 2;
-		case 31454:	return 2;
-		case 31344:	return 2;
-		case 31343:	return 2;
-		case 982:	return 2;
-		case 31300:	return 2;
-		case 31487:	return 2;
-		case 31482:	return 2;
-		case 31334:	return 2;
-		case 31425:	return 2;
-		case 31333:	return 2;
-		case 31079:	return 2;
-		case 31392:	return 2;
-		case 30104:	return 2;
-		case 30397:	return 2;
-		case 31022:	return 2;
-		case 31184:	return 2;
-		case 52:	return 2;
-		case 30083:	return 2;
-		case 31415:	return 2;
-		case 31416:	return 2;
-		case 31261:	return 2;
-		case 279:	return 2;
-		case 31216:	return 2;
-		case 334:	return 2;
-		case 817:	return 2;
-		case 31295:	return 2;
-		case 576:	return 2;
-		case 31209:	return 2;
-		case 31431:	return 2;
-		case 316:	return 2;
-		case 776:	return 2;
-		case 31309:	return 2;
-		case 31341:	return 2;
-		case 31342:	return 2;
-		case 31391:	return 2;
-		case 380:	return 2;
-		case 31345:	return 2;
-		case 31346:	return 2;
-		case 31368:	return 2;
-		case 31033:	return 2;
-		case 31515:	return 2;
-
-		case 31514:	return 3;
-		case 31400:	return 3;
-		case 31426:	return 3;
-		case 31374:	return 3;
-		case 31444:	return 3;
-		case 777:	return 3;
-		case 30309:	return 3;
-		case 31217:	return 3;
-		case 983:	return 3;
-		case 150:	return 3;
-		case 31378:	return 3;
-		case 31023:	return 3;
-		case 30735:	return 3;
-		case 31056:	return 3;
-		case 927:	return 3;
-		case 31213:	return 3;
-		case 31252:	return 3;
-		case 116:	return 3;
-		case 31242:	return 3;
-		case 31061:	return 3;
-		case 30607:	return 3;
-		case 984:	return 3;
-		case 1011:	return 3;
-		case 949:	return 3;
-		case 783:	return 3;
-		case 390:	return 3;
-		case 701:	return 3;
-		case 31445:	return 3;
-		case 31298:	return 3;
-		case 31477:	return 3;
-		case 31476:	return 3;
-		case 31507:	return 3;
-
-		case 31284:	return 4;
-		case 31285:	return 4;
-		case 31293:	return 4;
-		case 875:	return 4;
-		
-		case 31419:	return 5;
-		case 31081:	return 5;
-
-		case 1126:	return 10;
-		default:	return false;
+		TF2Attrib_SetByName( iEntity, "item style override", float( i ) );
+		Address pAttrib = TF2Attrib_GetByName( iEntity, "item style override" );
+		if ( pAttrib != Address_Null && TF2Attrib_GetValue( pAttrib ) == float( i ) )
+		{
+			iStyles = i + 1; // We found some valid styles
+		}
+		else
+		{
+			break; // Stop if no more valid styles
+		}
 	}
+	
+	// Clean up the test attribute
+	TF2Attrib_RemoveByName( iEntity, "item style override" );
+	
+	return iStyles;
 }
 
-/* Returns the ellgible cosmetics that can be painted.
-Yes, this is dumb as well, but oh well. What else
-can ya do? */
-bool IsPaintableHat( int iEntity )
-{
-	int iIndex = GetEntProp( iEntity, Prop_Send, "m_iItemDefinitionIndex" );
-	switch ( iIndex )
-	{
-		case 14261:	return true;
-		case 14262:	return true;
-		case 14264:	return true;
-		case 14265:	return true;
-		case 31502:	return true;
-		case 31503:	return true;
-		case 31504:	return true;
-		case 31515:	return true;
-		case 31514:	return true;
-		case 31510:	return true;
-		case 31509:	return true;
-		case 31513:	return true;
-		case 31512:	return true;
-		case 31511:	return true;
-		case 31497:	return true;
-		case 31508:	return true;
-		case 31507:	return true;
-		case 31506:	return true;
-		case 31505:	return true;
-		case 31496:	return true;
-		case 31495:	return true;
-		case 31494:	return true;
-		case 932:	return true;
-		case 931:	return true;
-		case 930:	return true;
-		case 30217:	return true;
-		case 626:	return true;
-		case 600:	return true;
-		case 518:	return true;
-		case 400:	return true;
-		case 393:	return true;
-		case 344:	return true;
-		case 181:	return true;
-		case 158:	return true;
-		case 110:	return true;
-		case 53:	return true;
-		case 31456:	return true;
-		case 31455:	return true;
-		case 31454:	return true;
-		case 31421:	return true;
-		case 31420:	return true;
-		case 31401:	return true;
-		case 31400:	return true;
-		case 31399:	return true;
-		case 31364:	return true;
-		case 31344:	return true;
-		case 31343:	return true;
-		case 31300:	return true;
-		case 31299:	return true;
-		case 31266:	return true;
-		case 31265:	return true;
-		case 31177:	return true;
-		case 31176:	return true;
-		case 31122:	return true;
-		case 31121:	return true;
-		case 31099:	return true;
-		case 31078:	return true;
-		case 31077:	return true;
-		case 31034:	return true;
-		case 31033:	return true;
-		case 31028:	return true;
-		case 31027:	return true;
-		case 30982:	return true;
-		case 30939:	return true;
-		case 30940:	return true;
-		case 30906:	return true;
-		case 30907:	return true;
-		case 30862:	return true;
-		case 30825:	return true;
-		case 30813:	return true;
-		case 30792:	return true;
-		case 30786:	return true;
-		case 30773:	return true;
-		case 30755:	return true;
-		case 30756:	return true;
-		case 30750:	return true;
-		case 30595:	return true;
-		case 30596:	return true;
-		case 30625:	return true;
-		case 30415:	return true;
-		case 30410:	return true;
-		case 30379:	return true;
-		case 30378:	return true;
-		case 30365:	return true;
-		case 30361:	return true;
-		case 30356:	return true;
-		case 30351:	return true;
-		case 30350:	return true;
-		case 30349:	return true;
-		case 30323:	return true;
-		case 30318:	return true;
-		case 30311:	return true;
-		case 30190:	return true;
-		case 30187:	return true;
-		case 30186:	return true;
-		case 30137:	return true;
-		case 30136:	return true;
-		case 30121:	return true;
-		case 30097:	return true;
-		case 30096:	return true;
-		case 30095:	return true;
-		case 30052:	return true;
-		case 30042:	return true;
-		case 30043:	return true;
-		case 30045:	return true;
-		case 30046:	return true;
-		case 30048:	return true;
-		case 878:	return true;
-		case 978:	return true;
-		case 982:	return true;
-		case 826:	return true;
-		case 31486:	return true;
-		case 31485:	return true;
-		case 31484:	return true;
-		case 31476:	return true;
-		case 31475:	return true;
-		case 31483:	return true;
-		case 31481:	return true;
-		case 31482:	return true;
-		case 31488:	return true;
-		case 31478:	return true;
-		case 31477:	return true;
-		case 31480:	return true;
-		case 31471:	return true;
-		case 31479:	return true;
-		case 31470:	return true;
-		case 31469:	return true;
-		case 778:	return true;
-		case 770:	return true;
-		case 657:	return true;
-		case 639:	return true;
-		case 621:	return true;
-		case 616:	return true;
-		case 383:	return true;
-		case 381:	return true;
-		case 323:	return true;
-		case 315:	return true;
-		case 184:	return true;
-		case 144:	return true;
-		case 50:	return true;
-		case 101:	return true;
-		case 31031:	return true;
-		case 30749:	return true;
-		case 30635:	return true;
-		case 30805:	return true;
-		case 31264:	return true;
-		case 31148:	return true;
-		case 1017:	return true;
-		case 628:	return true;
-		case 31334:	return true;
-		case 30909:	return true;
-		case 30336:	return true;
-		case 30086:	return true;
-		case 94:	return true;
-		case 30044:	return true;
-		case 31046:	return true;
-		case 30035:	return true;
-		case 31254:	return true;
-		case 31098:	return true;
-		case 755:	return true;
-		case 386:	return true;
-		case 30023:	return true;
-		case 30629:	return true;
-		case 31331:	return true;
-		case 30543:	return true;
-		case 30682:	return true;
-		case 31426:	return true;
-		case 31189:	return true;
-		case 30634:	return true;
-		case 30347:	return true;
-		case 30655:	return true;
-		case 30675:	return true;
-		case 31032:	return true;
-		case 31097:	return true;
-		case 178:	return true;
-		case 384:	return true;
-		case 1008:	return true;
-		case 30070:	return true;
-		case 30846:	return true;
-		case 30406:	return true;
-		case 30099:	return true;
-		case 484:	return true;
-		case 399:	return true;
-		case 823:	return true;
-		case 31298:	return true;
-		case 31013:	return true;
-		case 30409:	return true;
-		case 30403:	return true;
-		case 30539:	return true;
-		case 31272:	return true;
-		case 784:	return true;
-		case 1010:	return true;
-		case 30590:	return true;
-		case 30481:	return true;
-		case 436:	return true;
-		case 31114:	return true;
-		case 30872:	return true;
-		case 31374:	return true;
-		case 1009:	return true;
-		case 389:	return true;
-		case 30172:	return true;
-		case 31151:	return true;
-		case 30871:	return true;
-		case 30322:	return true;
-		case 95:	return true;
-		case 30412:	return true;
-		case 30681:	return true;
-		case 30804:	return true;
-		case 31074:	return true;
-		case 30680:	return true;
-		case 31297:	return true;
-		case 30087:	return true;
-		case 30330:	return true;
-		case 31444:	return true;
-		case 31394:	return true;
-		case 31011:	return true;
-		case 31445:	return true;
-		case 30806:	return true;
-		case 31375:	return true;
-		case 31332:	return true;
-		case 30908:	return true;
-		case 30592:	return true;
-		case 31425:	return true;
-		case 31373:	return true;
-		case 606:	return true;
-		case 30420:	return true;
-		case 322:	return true;
-		case 31049:	return true;
-		case 31175:	return true;
-		case 31446:	return true;
-		case 382:	return true;
-		case 31333:	return true;
-		case 988:	return true;
-		case 31012:	return true;
-		case 31453:	return true;
-		case 31452:	return true;
-		case 31435:	return true;
-		case 31402:	return true;
-		case 31369:	return true;
-		case 31368:	return true;
-		case 31346:	return true;
-		case 31345:	return true;
-		case 31306:	return true;
-		case 31305:	return true;
-		case 31304:	return true;
-		case 31268:	return true;
-		case 31267:	return true;
-		case 31255:	return true;
-		case 31191:	return true;
-		case 31190:	return true;
-		case 31180:	return true;
-		case 31179:	return true;
-		case 31178:	return true;
-		case 31080:	return true;
-		case 31079:	return true;
-		case 31053:	return true;
-		case 31052:	return true;
-		case 31030:	return true;
-		case 30981:	return true;
-		case 31008:	return true;
-		case 31029:	return true;
-		case 30980:	return true;
-		case 30960:	return true;
-		case 30959:	return true;
-		case 30914:	return true;
-		case 30913:	return true;
-		case 30911:	return true;
-		case 30912:	return true;
-		case 30866:	return true;
-		case 30815:	return true;
-		case 30812:	return true;
-		case 30803:	return true;
-		case 30745:	return true;
-		case 30653:	return true;
-		case 30645:	return true;
-		case 30644:	return true;
-		case 30589:	return true;
-		case 30588:	return true;
-		case 30557:	return true;
-		case 30545:	return true;
-		case 30401:	return true;
-		case 30374:	return true;
-		case 30372:	return true;
-		case 30369:	return true;
-		case 30368:	return true;
-		case 30344:	return true;
-		case 30346:	return true;
-		case 30345:	return true;
-		case 30315:	return true;
-		case 30108:	return true;
-		case 30094:	return true;
-		case 30013:	return true;
-		case 30049:	return true;
-		case 30054:	return true;
-		case 30081:	return true;
-		case 1018:	return true;
-		case 990:	return true;
-		case 952:	return true;
-		case 985:	return true;
-		case 989:	return true;
-		case 946:	return true;
-		case 840:	return true;
-		case 821:	return true;
-		//case 777:	return true;
-		case 757:	return true;
-		case 30012:	return true;
-		case 603:	return true;
-		case 613:	return true;
-		case 610:	return true;
-		case 585:	return true;
-		case 515:	return true;
-		case 427:	return true;
-		case 380:	return true;
-		case 330:	return true;
-		case 313:	return true;
-		case 292:	return true;
-		case 185:	return true;
-		case 246:	return true;
-		case 254:	return true;
-		case 145:	return true;
-		case 49:	return true;
-		case 96:	return true;
-		case 97:	return true;
-		case 31424:	return true;
-		case 31423:	return true;
-		case 31422:	return true;
-		case 31393:	return true;
-		case 31392:	return true;
-		case 31391:	return true;
-		case 31372:	return true;
-		case 31342:	return true;
-		case 31309:	return true;
-		case 31341:	return true;
-		case 31371:	return true;
-		case 31307:	return true;
-		case 31275:	return true;
-		case 31274:	return true;
-		case 31273:	return true;
-		case 31182:	return true;
-		case 31115:	return true;
-		case 31100:	return true;
-		case 31040:	return true;
-		case 31039:	return true;
-		case 31038:	return true;
-		case 30973:	return true;
-		case 30954:	return true;
-		case 30945:	return true;
-		case 30823:	return true;
-		case 30830:	return true;
-		case 30836:	return true;
-		case 30788:	return true;
-		case 30779:	return true;
-		case 30723:	return true;
-		case 30628:	return true;
-		case 30627:	return true;
-		case 30604:	return true;
-		case 30587:	return true;
-		case 30586:	return true;
-		case 30555:	return true;
-		case 30550:	return true;
-		case 30556:	return true;
-		case 30547:	return true;
-		case 30541:	return true;
-		case 30480:	return true;
-		case 30421:	return true;
-		case 30393:	return true;
-		case 30373:	return true;
-		case 30366:	return true;
-		case 30363:	return true;
-		case 30334:	return true;
-		case 30340:	return true;
-		case 30333:	return true;
-		case 30180:	return true;
-		case 30179:	return true;
-		case 30124:	return true;
-		case 30112:	return true;
-		case 30110:	return true;
-		case 30107:	return true;
-		case 30106:	return true;
-		case 30105:	return true;
-		case 30055:	return true;
-		case 30029:	return true;
-		case 30034:	return true;
-		case 30024:	return true;
-		case 30021:	return true;
-		case 30016:	return true;
-		case 30011:	return true;
-		case 1019:	return true;
-		case 935:	return true;
-		case 876:	return true;
-		case 830:	return true;
-		case 776:	return true;
-		case 701:	return true;
-		case 703:	return true;
-		case 607:	return true;
-		case 604:	return true;
-		case 514:	return true;
-		case 30863:	return true;
-		case 30979:	return true;
-		case 390:	return true;
-		case 342:	return true;
-		case 295:	return true;
-		case 255:	return true;
-		case 216:	return true;
-		case 146:	return true;
-		case 179:	return true;
-		case 120:	return true;
-		case 100:	return true;
-		case 47:	return true;
-		case 31318:	return true;
-		case 31094:	return true;
-		case 976:	return true;
-		case 175:	return true;
-		case 753:	return true;
-		case 31188:	return true;
-		case 30538:	return true;
-		case 31221:	return true;
-		case 182:	return true;
-		case 761:	return true;
-		case 151:	return true;
-		case 31064:	return true;
-		case 31433:	return true;
-		case 30321:	return true;
-		case 30305:	return true;
-		case 787:	return true;
-		case 30168:	return true;
-		case 31050:	return true;
-		case 30664:	return true;
-		case 30092:	return true;
-		case 30355:	return true;
-		case 31358:	return true;
-		case 30399:	return true;
-		case 31222:	return true;
-		case 31066:	return true;
-		case 30391:	return true;
-		case 31143:	return true;
-		case 30020:	return true;
-		case 754:	return true;
-		case 30904:	return true;
-		case 30032:	return true;
-		case 102:	return true;
-		case 30039:	return true;
-		case 31186:	return true;
-		case 951:	return true;
-		case 856:	return true;
-		case 30581:	return true;
-		case 316:	return true;
-		case 30580:	return true;
-		case 30040:	return true;
-		case 51:	return true;
-		case 30835:	return true;
-		case 31004:	return true;
-		case 31076:	return true;
-		case 31296:	return true;
-		case 30176:	return true;
-		case 31026:	return true;
-		case 30022:	return true;
-		case 30652:	return true;
-		case 31329:	return true;
-		case 30139:	return true;
-		case 247:	return true;
-		case 950:	return true;
-		case 30544:	return true;
-		case 248:	return true;
-		case 31006:	return true;
-		case 30475:	return true;
-		case 30028:	return true;
-		case 31041:	return true;
-		case 31431:	return true;
-		case 30075:	return true;
-		case 321:	return true;
-		case 30400:	return true;
-		case 612:	return true;
-		case 31263:	return true;
-		case 30663:	return true;
-		case 31463:	return true;
-		case 31432:	return true;
-		case 377:	return true;
-		case 30905:	return true;
-		case 30986:	return true;
-		case 30093:	return true;
-		case 31065:	return true;
-		case 644:	return true;
-		case 783:	return true;
-		case 30398:	return true;
-		case 30819:	return true;
-		case 31107:	return true;
-		case 31357:	return true;
-		case 627:	return true;
-		case 30038:	return true;
-		case 31359:	return true;
-		case 30900:	return true;
-		case 30721:	return true;
-		case 31328:	return true;
-		case 31144:	return true;
-		case 31462:	return true;
-		case 31108:	return true;
-		case 30036:	return true;
-		case 30903:	return true;
-		case 30724:	return true;
-		case 30416:	return true;
-		case 31253:	return true;
-		case 30025:	return true;
-		case 30089:	return true;
-		case 31096:	return true;
-		case 949:	return true;
-		case 30902:	return true;
-		case 31389:	return true;
-		case 30901:	return true;
-		case 30367:	return true;
-		case 30716:	return true;
-		case 632:	return true;
-		case 30800:	return true;
-		case 30418:	return true;
-		case 394:	return true;
-		case 30799:	return true;
-		case 30063:	return true;
-		case 30937:	return true;
-		case 31067:	return true;
-		case 30987:	return true;
-		case 30091:	return true;
-		case 31185:	return true;
-		case 105:	return true;
-		case 1038:	return true;
-		case 30162:	return true;
-		case 30057:	return true;
-		case 30304:	return true;
-		case 615:	return true;
-		case 30090:	return true;
-		case 30717:	return true;
-		case 30859:	return true;
-		case 5759:	return true;
-		case 31007:	return true;
-		case 30163:	return true;
-		case 30662:	return true;
-		case 30118:	return true;
-		case 829:	return true;
-		case 31419:	return true;
-		case 30164:	return true;
-		case 99:	return true;
-		case 30014:	return true;
-		case 30114:	return true;
-		case 31003:	return true;
-		case 31220:	return true;
-		case 30316:	return true;
-		case 31200:	return true;
-		case 30017:	return true;
-		case 251:	return true;
-		case 31002:	return true;
-		case 31379:	return true;
-		case 31106:	return true;
-		case 54:	return true;
-		case 980:	return true;
-		case 30818:	return true;
-		case 30314:	return true;
-		case 30984:	return true;
-		case 31387:	return true;
-		case 30126:	return true;
-		case 30897:	return true;
-		case 30898:	return true;
-		case 183:	return true;
-		case 31147:	return true;
-		case 30548:	return true;
-		case 31198:	return true;
-		case 30120:	return true;
-		case 31071:	return true;
-		case 31095:	return true;
-		case 768:	return true;
-		case 30985:	return true;
-		case 30069:	return true;
-		case 31044:	return true;
-		case 30870:	return true;
-		case 31070:	return true;
-		case 641:	return true;
-		case 30885:	return true;
-		case 30554:	return true;
-		case 875:	return true;
-		case 30335:	return true;
-		case 439:	return true;
-		case 440:	return true;
-		case 152:	return true;
-		case 575:	return true;
-		case 391:	return true;
-		case 360:	return true;
-		case 732:	return true;
-		case 30708:	return true;
-		case 30978:	return true;
-		case 31111:	return true;
-		case 631:	return true;
-		case 30338:	return true;
-		case 30747:	return true;
-		case 395:	return true;
-		case 30026:	return true;
-		case 339:	return true;
-		case 936:	return true;
-		case 31256:	return true;
-		case 31069:	return true;
-		case 31035:	return true;
-		case 30744:	return true;
-		case 31277:	return true;
-		case 340:	return true;
-		case 948:	return true;
-		case 764:	return true;
-		case 30899:	return true;
-		case 31312:	return true;
-		case 31024:	return true;
-		case 31450:	return true;
-		case 31451:	return true;
-		case 31449:	return true;
-		case 14043:	return true;
-		case 14055:	return true;
-		case 14041:	return true;
-		case 14040:	return true;
-		case 14042:	return true;
-		case 31459:	return true;
-		case 31460:	return true;
-		case 31442:	return true;
-		case 30129:	return true;
-		case 30268:	return true;
-		case 31388:	return true;
-		case 30294:	return true;
-		case 31045:	return true;
-		case 30522:	return true;
-		case 30536:	return true;
-		case 30497:	return true;
-		case 30214:	return true;
-		case 30297:	return true;
-		case 31232:	return true;
-		case 30231:	return true;
-		case 30491:	return true;
-		case 30492:	return true;
-		case 31229:	return true;
-		case 30300:	return true;
-		case 31311:	return true;
-		case 446:	return true;
-		case 31310:	return true;
-		case 30165:	return true;
-		case 30553:	return true;
-		case 30558:	return true;
-		case 30601:	return true;
-		case 30071:	return true;
-		case 31378:	return true;
-		case 31025:	return true;
-		case 250:	return true;
-		case 30116:	return true;
-		case 30727:	return true;
-		case 31146:	return true;
-		case 31335:	return true;
-		case 31113:	return true;
-		case 30131:	return true;
-		case 30969:	return true;
-		case 922:	return true;
-		case 31057:	return true;
-		case 31112:	return true;
-		case 30886:	return true;
-		case 647: 	return true;
-		case 30331: return true;
-		case 30549:	return true;
-		case 30833:	return true;
-		case 1899:	return true;
-		case 31132:	return true;
-		case 260:	return true;
-		case 30067:	return true;
-		case 702:	return true;
-		case 289:	return true;
-		case 30422:	return true;
-		case 30140:	return true;
-		case 1173:	return true;
-		case 31262:	return true;
-		case 30658:	return true;
-		case 31211:	return true;
-		case 30976:	return true;
-		case 31323:	return true;
-		case 31168:	return true;
-		case 31173:	return true;
-		case 31210:	return true;
-		case 984:	return true;
-		case 30569:	return true;
-		case 30796:	return true;
-		case 9720:	return true;
-		case 11612:	return true;
-		case 11611:	return true;
-		case 30425:	return true;
-		case 8584:	return true;
-		case 944:	return true;
-		case 30996:	return true;
-		case 486:	return true;
-		case 492:	return true;
-		case 31294:	return true;
-		case 12249:	return true;
-		case 12250:	return true;
-		case 12251:	return true;
-		case 31036:	return true;
-		case 31209:	return true;
-		case 30801:	return true;
-		case 287:	return true;
-		case 576:	return true;
-		case 578:	return true;
-		case 579:	return true;
-		case 580:	return true;
-		case 9074:	return true;
-		case 9307:	return true;
-		case 9732:	return true;
-		case 30669:	return true;
-		case 30829:	return true;
-		case 31166:	return true;
-		case 31089:	return true;
-		case 30883:	return true;
-		case 30923:	return true;
-		case 31131:	return true;
-		case 31169:	return true;
-		case 31214:	return true;
-		case 31244:	return true;
-		case 611:	return true;
-		case 869:	return true;
-		case 30623:	return true;
-		case 31418:	return true;
-		case 30578:	return true;
-		case 30983:	return true;
-		case 30390:	return true;
-		case 30477:	return true;
-		case 30975:	return true;
-		case 785:	return true;
-		case 733:	return true;
-		case 12884:	return true;
-		case 12885:	return true;
-		case 12886:	return true;
-		case 12888:	return true;
-		case 11610:	return true;
-		case 31249:	return true;
-		case 31171:	return true;
-		case 10028:	return true;
-		case 10029:	return true;
-		case 30878:	return true;
-		case 1035:	return true;
-		case 31170:	return true;
-		case 30757:	return true;
-		case 30759:	return true;
-		case 30704:	return true;
-		case 13322:	return true;
-		case 30643:	return true;
-		case 30329:	return true;
-		case 31018:	return true;
-		case 30929:	return true;
-		case 30972:	return true;
-		case 30880:	return true;
-		case 31061:	return true;
-		case 31019:	return true;
-		case 30915:	return true;
-		case 713:	return true;
-		case 9731:	return true;
-		case 31086:	return true;
-		case 30743:	return true;
-		case 537:	return true;
-		case 13381:	return true;
-		case 13380:	return true;
-		case 13337:	return true;
-		case 13493:	return true;
-		case 13494:	return true;
-		case 13495:	return true;
-		case 31295:	return true;
-		case 31251:	return true;
-		case 31245:	return true;
-		case 30307:	return true;
-		case 30810:	return true;
-		case 30352:	return true;
-		case 31059:	return true;
-		case 31136:	return true;
-		case 31247:	return true;
-		case 987:	return true;
-		case 30413:	return true;
-		case 10653:	return true;
-		case 10654:	return true;
-		case 31385:	return true;
-		case 162:	return true;
-		case 11430:	return true;
-		case 11431:	return true;
-		case 11432:	return true;
-		case 816:	return true;
-		case 9510:	return true;
-		case 717:	return true;
-		case 31184:	return true;
-		case 994:	return true;
-		case 261:	return true;
-		case 10448:	return true;
-		case 10442:	return true;
-		case 10443:	return true;
-		case 10444:	return true;
-		case 10445:	return true;
-		case 10446:	return true;
-		case 10447:	return true;
-		case 10449:	return true;
-		case 31326:	return true;
-		case 31383:	return true;
-		case 30998:	return true;
-		case 31105:	return true;
-		case 470:	return true;
-		case 30814:	return true;
-		case 30868:	return true;
-		case 30362:	return true;
-		case 30313:	return true;
-		case 31130:	return true;
-		case 538:	return true;
-		case 30882:	return true;
-		case 31165:	return true;
-		case 31243:	return true;
-		case 10265:	return true;
-		case 10264:	return true;
-		case 10266:	return true;
-		case 31125:	return true;
-		case 31103:	return true;
-		case 30877:	return true;
-		case 614:	return true;
-		case 291:	return true;
-		case 31063:	return true;
-		case 30469:	return true;
-		case 30177:	return true;
-		case 13216:	return true;
-		case 13217:	return true;
-		case 13218:	return true;
-		case 13215:	return true;
-		case 12661:	return true;
-		case 9515:	return true;
-		case 13459:	return true;
-		case 9941:	return true;
-		case 13460:	return true;
-		case 8367:	return true;
-		case 9733:	return true;
-		case 9734:	return true;
-		case 9735:	return true;
-		case 9736:	return true;
-		case 9737:	return true;
-		case 30838:	return true;
-		case 334:	return true;
-		case 31216:	return true;
-		case 31259:	return true;
-		case 31135:	return true;
-		case 30693:	return true;
-		case 30104:	return true;
-		case 31127:	return true;
-		case 31217:	return true;
-		case 31242:	return true;
-		case 31093:	return true;
-		case 31246:	return true;
-		case 9048:	return true;
-		case 9308:	return true;
-		case 584:	return true;
-		case 116:	return true;
-		case 279:	return true;
-		case 30003:	return true;
-		case 31355:	return true;
-		case 1025:	return true;
-		case 9830:	return true;
-		case 9831:	return true;
-		case 9832:	return true;
-		case 30551:	return true;
-		case 31327:	return true;
-		case 31252:	return true;
-		case 31167:	return true;
-		case 30119:	return true;
-		case 30414:	return true;
-		case 921:	return true;
-		case 263:	return true;
-		case 31260:	return true;
-		case 31241:	return true;
-		case 675:	return true;
-		case 711:	return true;
-		case 30700:	return true;
-		case 252:	return true;
-		case 30306:	return true;
-		case 31384:	return true;
-		case 31261:	return true;
-		case 30997:	return true;
-		case 30309:	return true;
-		case 30357:	return true;
-		case 31417:	return true;
-		case 30567:	return true;
-		case 920:	return true;
-		case 30881:	return true;
-		case 31208:	return true;
-		case 31416:	return true;
-		case 30175:	return true;
-		case 1034:	return true;
-		case 31325:	return true;
-		case 30542:	return true;
-		case 942:	return true;
-		case 30576:	return true;
-		case 31386:	return true;
-		case 30808:	return true;
-		case 31091:	return true;
-		case 30748:	return true;
-		case 30706:	return true;
-		case 30974:	return true;
-		case 30640:	return true;
-		case 31092:	return true;
-		case 31164:	return true;
-		case 31085:	return true;
-		case 1014:	return true;
-		case 30397:	return true;
-		case 671:	return true;
-		case 30066:	return true;
-		case 30068:	return true;
-		case 30546:	return true;
-		case 31248:	return true;
-		case 945:	return true;
-		case 30018:	return true;
-		case 927:	return true;
-		case 31276:	return true;
-		case 31218:	return true;
-		case 756:	return true;
-		case 30388:	return true;
-		case 31415:	return true;
-		case 12706:	return true;
-		case 12707:	return true;
-		case 126:	return true;
-		case 30768:	return true;
-		case 31293:	return true;
-		case 31212:	return true;
-		case 30738:	return true;
-		case 31058:	return true;
-		case 30928:	return true;
-		case 31183:	return true;
-		case 420:	return true;
-		case 31060:	return true;
-		case 30879:	return true;
-		case 666:	return true;
-		case 30746:	return true;
-		case 31215:	return true;
-		case 189:	return true;
-		case 31152:	return true;
-		case 30767:	return true;
-		case 31001:	return true;
-		case 30718:	return true;
-		case 617:	return true;
-		case 1040:	return true;
-		case 540:	return true;
-		case 30736:	return true;
-		case 52:	return true;
-		case 30059:	return true;
-		case 652:	return true;
-		case 30076:	return true;
-		case 30873:	return true;
-		case 30977:	return true;
-		case 30991:	return true;
-		case 30027:	return true;
-		case 249:	return true;
-		case 30751:	return true;
-		case 31437:	return true;
-		case 451:	return true;
-		case 106:	return true;
-		case 30030:	return true;
-		case 653:	return true;
-		case 31042:	return true;
-		case 31366:	return true;
-		case 30540:	return true;
-		case 1016:	return true;
-		case 30661:	return true;
-		case 30083:	return true;
-		case 31117:	return true;
-		case 815:	return true;
-		case 30060:	return true;
-		case 30077:	return true;
-		case 30574:	return true;
-		case 853:	return true;
-		case 30737:	return true;
-		case 765:	return true;
-		case 30686:	return true;
-		case 30134:	return true;
-		case 983:	return true;
-		case 781:	return true;
-		case 539:	return true;
-		case 30824:	return true;
-		case 31195:	return true;
-		case 722:	return true;
-		case 780:	return true;
-		case 30185:	return true;
-		case 490:	return true;
-		case 324:	return true;
-		case 30890:	return true;
-		case 30189:	return true;
-		case 31197:	return true;
-		case 30394:	return true;
-		case 760:	return true;
-		case 31081:	return true;
-		case 30078:	return true;
-		case 30084:	return true;
-		case 30575:	return true;
-		case 31000:	return true;
-		case 30769:	return true;
-		case 633:	return true;
-		case 453:	return true;
-		case 30754:	return true;
-		case 31302:	return true;
-		case 31436:	return true;
-		case 31407:	return true;
-		case 30888:	return true;
-		case 31022:	return true;
-		case 31406:	return true;
-		case 30867:	return true;
-		case 30325:	return true;
-		case 491:	return true;
-		case 30085:	return true;
-		case 31303:	return true;
-		case 31196:	return true;
-		case 31023:	return true;
-		case 30573:	return true;
-		case 986:	return true;
-		case 30999:	return true;
-		case 31163:	return true;
-		case 31285:	return true;
-		case 30811:	return true;
-		case 468:	return true;
-		case 31118:	return true;
-		case 31367:	return true;
-		case 30993:	return true;
-		case 30831:	return true;
-		case 30396:	return true;
-		case 31281:	return true;
-		case 30395:	return true;
-		case 30332:	return true;
-		case 30326:	return true;
-		case 31258:	return true;
-		case 30735:	return true;
-		case 30820:	return true;
-		case 31116:	return true;
-		case 30875:	return true;
-		case 31056:	return true;
-		case 924:	return true;
-		case 925:	return true;
-		case 630:	return true;
-		case 31283:	return true;
-		case 734:	return true;
-		case 346:	return true;
-		case 347:	return true;
-		case 30552:	return true;
-		case 30479:	return true;
-		case 31282:	return true;
-		case 30376:	return true;
-		case 31119:	return true;
-		case 827:	return true;
-		case 30889:	return true;
-		case 150:	return true;
-		case 30930:	return true;
-		case 788:	return true;
-		case 30178:	return true;
-		case 174:	return true;
-		case 1012:	return true;
-		case 30809:	return true;
-		case 30990:	return true;
-		case 30019:	return true;
-		case 107:	return true;
-		case 12708:	return true;
-		case 31128:	return true;
-		default:	return false;
-	}
-}
 //-----------------------------------------------
 // SNIPER
 //-----------------------------------------------
@@ -2571,523 +1200,271 @@ public Action Timer_ApplyCosmetics( Handle timer, int client )
 }
 
 // Sets up the random cosmetics for the bots to spawn with.
-void GiveBotCosmetics( int iClient )
+void EquipRandomFromCategories( int client, int [] cosmetics, int numCats, int headCat, const int [] conflictCats, int numConflicts, int hatCat, char [] className, char [] clientName )
 {
-	int iRandom = GetRandomInt( 1, 100 );
-	char clientName[ MAX_NAME_LENGTH ]; GetClientName( iClient, clientName, sizeof( clientName ) ) ;
+	if ( numCats < 3 ) return;
 
-	// ALL CLASS
-	int iRandHat 				= ALLCLASS_HATS[ GetRandomInt( 0, sizeof( ALLCLASS_HATS ) - 1 ) ];
-	int iRandGlasses 			= ALLCLASS_GLASSES[ GetRandomInt( 0, sizeof( ALLCLASS_GLASSES ) - 1 ) ];
-	int iRandBeard 				= ALLCLASS_BEARD[ GetRandomInt( 0, sizeof( ALLCLASS_BEARD ) - 1 ) ];
-	int iRandMedal 				= ALLCLASS_MEDAL[ GetRandomInt( 0, sizeof( ALLCLASS_MEDAL ) - 1 ) ];
-	int iRandTorso 				= ALLCLASS_TORSO[ GetRandomInt( 0, sizeof( ALLCLASS_TORSO ) - 1 ) ];
-	int iRandBelt 				= ALLCLASS_BELT[ GetRandomInt( 0, sizeof( ALLCLASS_BELT ) - 1 ) ];
-	int iRandPants 				= ALLCLASS_PANTS[ GetRandomInt( 0, sizeof( ALLCLASS_PANTS ) - 1 ) ];
-	int iRandFeet 				= ALLCLASS_FEET[ GetRandomInt( 0, sizeof( ALLCLASS_FEET ) - 1 ) ];
-	int iRandHatMisc 			= ALLCLASS_HATMISC[ GetRandomInt( 0, sizeof( ALLCLASS_HATMISC ) - 1 ) ];
-	int iRandHead 				= ALLCLASS_HEAD[ GetRandomInt( 0, sizeof( ALLCLASS_HEAD ) - 1 ) ];
-	int iRandFace 				= ALLCLASS_FACE[ GetRandomInt( 0, sizeof( ALLCLASS_FACE ) - 1 ) ];
-
-	// SCOUT
-	int iRandScout_Head 		= SPECIFIC_SCOUT_HEAD[ GetRandomInt( 0, sizeof( SPECIFIC_SCOUT_HEAD ) - 1 ) ];
-	int iRandScout_Hats 		= SPECIFIC_SCOUT_HATS[ GetRandomInt( 0, sizeof( SPECIFIC_SCOUT_HATS ) - 1 ) ];
-	int iRandScout_Glasses 		= SPECIFIC_SCOUT_GLASSES[ GetRandomInt( 0, sizeof( SPECIFIC_SCOUT_GLASSES ) - 1 ) ];
-	int iRandScout_Beard 		= SPECIFIC_SCOUT_BEARD[ GetRandomInt( 0, sizeof( SPECIFIC_SCOUT_BEARD ) - 1 ) ];
-	int iRandScout_Torso 		= SPECIFIC_SCOUT_TORSO[ GetRandomInt( 0, sizeof( SPECIFIC_SCOUT_TORSO ) - 1 ) ];
-	int iRandScout_Back 		= SPECIFIC_SCOUT_BACK[ GetRandomInt( 0, sizeof( SPECIFIC_SCOUT_BACK ) - 1 ) ];
-	int iRandScout_Belt 		= SPECIFIC_SCOUT_BELT[ GetRandomInt( 0, sizeof( SPECIFIC_SCOUT_BELT ) - 1 ) ];
-	int iRandScout_Pants 		= SPECIFIC_SCOUT_PANTS[ GetRandomInt( 0, sizeof( SPECIFIC_SCOUT_PANTS ) - 1 ) ];
-	int iRandScout_Feet 		= SPECIFIC_SCOUT_FEET[ GetRandomInt( 0, sizeof( SPECIFIC_SCOUT_FEET ) - 1 ) ];
-	
-	// SOLDIER
-	int iRandSoldier_Head 		= SPECIFIC_SOLDIER_HEAD[ GetRandomInt( 0, sizeof( SPECIFIC_SOLDIER_HEAD ) - 1 ) ];
-	int iRandSoldier_Hats 		= SPECIFIC_SOLDIER_HATS[ GetRandomInt( 0, sizeof( SPECIFIC_SOLDIER_HATS ) - 1 ) ];
-	int iRandSoldier_Glasses 	= SPECIFIC_SOLDIER_GLASSES[ GetRandomInt( 0, sizeof( SPECIFIC_SOLDIER_GLASSES ) - 1 ) ];
-	int iRandSoldier_Beard 		= SPECIFIC_SOLDIER_BEARD[ GetRandomInt( 0, sizeof( SPECIFIC_SOLDIER_BEARD ) - 1 ) ];
-	int iRandSoldier_Coat 		= SPECIFIC_SOLDIER_COAT[ GetRandomInt( 0, sizeof( SPECIFIC_SOLDIER_COAT ) - 1 ) ];
-	int iRandSoldier_Shirt 		= SPECIFIC_SOLDIER_SHIRT[ GetRandomInt( 0, sizeof( SPECIFIC_SOLDIER_SHIRT ) - 1 ) ];
-	int iRandSoldier_Grenades 	= SPECIFIC_SOLDIER_GRENADES[ GetRandomInt( 0, sizeof( SPECIFIC_SOLDIER_GRENADES ) - 1 ) ];
-	int iRandSoldier_Belt 		= SPECIFIC_SOLDIER_BELT[ GetRandomInt( 0, sizeof( SPECIFIC_SOLDIER_BELT ) - 1 ) ];
-	int iRandSoldier_Pants 		= SPECIFIC_SOLDIER_PANTS[ GetRandomInt( 0, sizeof( SPECIFIC_SOLDIER_PANTS ) - 1 ) ];
-	int iRandSoldier_Pocket 	= SPECIFIC_SOLDIER_POCKET[ GetRandomInt( 0, sizeof( SPECIFIC_SOLDIER_POCKET ) - 1 ) ];
-	int iRandSoldier_Feet 		= SPECIFIC_SOLDIER_FEET[ GetRandomInt( 0, sizeof( SPECIFIC_SOLDIER_FEET ) - 1 ) ];
-
-	// PYRO
-	int iRandPyro_HeadReplace 	= SPECIFIC_PYRO_HEAD_REPLACE[ GetRandomInt( 0, sizeof( SPECIFIC_PYRO_HEAD_REPLACE ) - 1 ) ];
-	int iRandPyro_Hats 			= SPECIFIC_PYRO_HATS[ GetRandomInt( 0, sizeof( SPECIFIC_PYRO_HATS ) - 1 ) ];
-	int iRandPyro_Glasses 		= SPECIFIC_PYRO_GLASSES[ GetRandomInt( 0, sizeof( SPECIFIC_PYRO_GLASSES ) - 1 ) ];
-	int iRandPyro_Neckless 		= SPECIFIC_PYRO_NECKLESS[ GetRandomInt( 0, sizeof( SPECIFIC_PYRO_NECKLESS ) - 1 ) ];
-	int iRandPyro_Beard 		= SPECIFIC_PYRO_BEARD[ GetRandomInt( 0, sizeof( SPECIFIC_PYRO_BEARD ) - 1 ) ];
-	int iRandPyro_Shirt 		= SPECIFIC_PYRO_SHIRT[ GetRandomInt( 0, sizeof( SPECIFIC_PYRO_SHIRT ) - 1 ) ];
-	int iRandPyro_Grenades 		= SPECIFIC_PYRO_GRENADES[ GetRandomInt( 0, sizeof( SPECIFIC_PYRO_GRENADES ) - 1 ) ];
-	int iRandPyro_Back 			= SPECIFIC_PYRO_BACK[ GetRandomInt( 0, sizeof( SPECIFIC_PYRO_BACK ) - 1 ) ];
-	int iRandPyro_Belt 			= SPECIFIC_PYRO_BELT[ GetRandomInt( 0, sizeof( SPECIFIC_PYRO_BELT ) - 1 ) ];
-	int iRandPyro_Pants 		= SPECIFIC_PYRO_PANTS[ GetRandomInt( 0, sizeof( SPECIFIC_PYRO_PANTS ) - 1 ) ];
-	int iRandPyro_Feet 			= SPECIFIC_PYRO_FEET[ GetRandomInt( 0, sizeof( SPECIFIC_PYRO_FEET ) - 1 ) ];
-
-	// DEMOMAN
-	int iRandDemo_HeadReplace 	= SPECIFIC_DEMO_HEAD[ GetRandomInt( 0, sizeof( SPECIFIC_DEMO_HEAD ) - 1 ) ];
-	int iRandDemo_Hats		 	= SPECIFIC_DEMO_HATS[ GetRandomInt( 0, sizeof( SPECIFIC_DEMO_HATS ) - 1 ) ];
-	int iRandDemo_Glasses		= SPECIFIC_DEMO_GLASSES[ GetRandomInt( 0, sizeof( SPECIFIC_DEMO_GLASSES ) - 1 ) ];
-	int iRandDemo_Beard			= SPECIFIC_DEMO_BEARD[ GetRandomInt( 0, sizeof( SPECIFIC_DEMO_BEARD ) - 1 ) ];
-	int iRandDemo_Shirt			= SPECIFIC_DEMO_SHIRT[ GetRandomInt( 0, sizeof( SPECIFIC_DEMO_SHIRT ) - 1 ) ];
-	int iRandDemo_Grenades		= SPECIFIC_DEMO_GRENADES[ GetRandomInt( 0, sizeof( SPECIFIC_DEMO_GRENADES ) - 1 ) ];
-	int iRandDemo_Back			= SPECIFIC_DEMO_BACK[ GetRandomInt( 0, sizeof( SPECIFIC_DEMO_BACK ) - 1 ) ];
-	int iRandDemo_Belt			= SPECIFIC_DEMO_BELT[ GetRandomInt( 0, sizeof( SPECIFIC_DEMO_BELT ) - 1 ) ];
-	int iRandDemo_Pants			= SPECIFIC_DEMO_PANTS[ GetRandomInt( 0, sizeof( SPECIFIC_DEMO_PANTS ) - 1 ) ];
-	int iRandDemo_Feet			= SPECIFIC_DEMO_FEET[ GetRandomInt( 0, sizeof( SPECIFIC_DEMO_FEET ) - 1 ) ];
-
-	// HEAVYWEAPONS
-	int iRandHeavy_Head 		= SPECIFIC_HEAVY_HEAD[ GetRandomInt( 0, sizeof( SPECIFIC_HEAVY_HEAD ) - 1 ) ];
-	int iRandHeavy_HeadSkin 	= SPECIFIC_HEAVY_HEADSKIN[ GetRandomInt( 0, sizeof( SPECIFIC_HEAVY_HEADSKIN ) - 1 ) ];
-	int iRandHeavy_Hats 		= SPECIFIC_HEAVY_HATS[ GetRandomInt( 0, sizeof( SPECIFIC_HEAVY_HATS ) - 1 ) ];
-	int iRandHeavy_Glasses 		= SPECIFIC_HEAVY_GLASSES[ GetRandomInt( 0, sizeof( SPECIFIC_HEAVY_GLASSES ) - 1 ) ];
-	int iRandHeavy_Beard 		= SPECIFIC_HEAVY_BEARD[ GetRandomInt( 0, sizeof( SPECIFIC_HEAVY_BEARD ) - 1 ) ];
-	int iRandHeavy_Shirt 		= SPECIFIC_HEAVY_SHIRT[ GetRandomInt( 0, sizeof( SPECIFIC_HEAVY_SHIRT ) - 1 ) ];
-	int iRandHeavy_Misc 		= SPECIFIC_HEAVY_MISC[ GetRandomInt( 0, sizeof( SPECIFIC_HEAVY_MISC ) - 1 ) ];
-	int iRandHeavy_Belt 		= SPECIFIC_HEAVY_BELT[ GetRandomInt( 0, sizeof( SPECIFIC_HEAVY_BELT ) - 1 ) ];
-	int iRandHeavy_Pants 		= SPECIFIC_HEAVY_PANTS[ GetRandomInt( 0, sizeof( SPECIFIC_HEAVY_PANTS ) - 1 ) ];
-	int iRandHeavy_Feets 		= SPECIFIC_HEAVY_FEET[ GetRandomInt( 0, sizeof( SPECIFIC_HEAVY_FEET ) - 1 ) ];
-
-	// ENGINEER
-	int iRandEngy_HeadMisc		= SPECIFIC_ENGY_HEADMISC[ GetRandomInt( 0, sizeof( SPECIFIC_ENGY_HEADMISC ) - 1 ) ];
-	int iRandEngy_Head 			= SPECIFIC_ENGY_HEAD[ GetRandomInt( 0, sizeof( SPECIFIC_ENGY_HEAD ) - 1 ) ];
-	int iRandEngy_Hats		 	= SPECIFIC_ENGY_HATS[ GetRandomInt( 0, sizeof( SPECIFIC_ENGY_HATS ) - 1 ) ];
-	int iRandEngy_Glasses		= SPECIFIC_ENGY_GLASSES[ GetRandomInt( 0, sizeof( SPECIFIC_ENGY_GLASSES ) - 1 ) ];
-	int iRandEngy_Beard			= SPECIFIC_ENGY_BEARD[ GetRandomInt( 0, sizeof( SPECIFIC_ENGY_BEARD ) - 1 ) ];
-	int iRandEngy_Shirt			= SPECIFIC_ENGY_SHIRT[ GetRandomInt( 0, sizeof( SPECIFIC_ENGY_SHIRT ) - 1 ) ];
-	int iRandEngy_Back			= SPECIFIC_ENGY_BACK[ GetRandomInt( 0, sizeof( SPECIFIC_ENGY_BACK ) - 1 ) ];
-	int iRandEngy_Belt			= SPECIFIC_ENGY_BELT[ GetRandomInt( 0, sizeof( SPECIFIC_ENGY_BELT ) - 1 ) ];
-	int iRandEngy_Pants			= SPECIFIC_ENGY_PANTS[ GetRandomInt( 0, sizeof( SPECIFIC_ENGY_PANTS ) - 1 ) ];
-	int iRandEngy_Feet			= SPECIFIC_ENGY_FEET[ GetRandomInt( 0, sizeof( SPECIFIC_ENGY_FEET ) - 1 ) ];
-
-	// MEDIC
-	int iRandMedic_Head			= SPECIFIC_MEDIC_HEAD[ GetRandomInt( 0, sizeof( SPECIFIC_MEDIC_HEAD ) - 1 ) ];
-	int iRandMedic_Hats			= SPECIFIC_MEDIC_HATS[ GetRandomInt( 0, sizeof( SPECIFIC_MEDIC_HATS ) - 1 ) ];
-	int iRandMedic_Glasses		= SPECIFIC_MEDIC_GLASSES[ GetRandomInt( 0, sizeof( SPECIFIC_MEDIC_GLASSES ) - 1 ) ];
-	int iRandMedic_Beard		= SPECIFIC_MEDIC_BEARD[ GetRandomInt( 0, sizeof( SPECIFIC_MEDIC_BEARD ) - 1 ) ];
-	int iRandMedic_Shirt		= SPECIFIC_MEDIC_SHIRT[ GetRandomInt( 0, sizeof( SPECIFIC_MEDIC_SHIRT ) - 1 ) ];
-	int iRandMedic_Pants		= SPECIFIC_MEDIC_PANTS[ GetRandomInt( 0, sizeof( SPECIFIC_MEDIC_PANTS ) - 1 ) ];
-	int iRandMedic_Belt			= SPECIFIC_MEDIC_BELT[ GetRandomInt( 0, sizeof( SPECIFIC_MEDIC_BELT ) - 1 ) ];
-	int iRandMedic_Feet			= SPECIFIC_MEDIC_FEET[ GetRandomInt( 0, sizeof( SPECIFIC_MEDIC_FEET ) - 1 ) ];
-
-	int iSelectedCosmetics[ 3 ];
-	int iSharedCosmetics[ 12 ];		// All class
-	int iScoutCosmetics[ 13 ];
-	int iSoldierCosmetics[ 15 ];
-	int iPyroCosmetics[ 14 ];
-	int iDemoManCosmetics[ 14 ];
-	int iHeavyCosmetics[ 13 ];
-	int iEngineerCosmetics[ 13 ];
-	int iMedicCosmetics[ 12 ];
-
-	TFClassType TFClass = TF2_GetPlayerClass( iClient );
-
-	// 40% chance to pick Randomized Cosmetic Sets
-	if ( iRandom <= 40 )
+	int indices [ MAX_CATEGORIES ];
+	for ( int i = 0; i < numCats; i++ )
 	{
-		if ( redbots_manager_allow_random_cosmetics.BoolValue )
+		indices [ i ] = i + 1; // 1-based categories
+	}
+	ShuffleArray( indices, numCats );
+
+	// Select up to 3 categories
+	int pickedCats [ 3 ];
+	int numPicked = 0;
+	for ( int i = 0; i < 3 && i < numCats; i++ )
+	{
+		pickedCats [ numPicked++ ] = indices [ i ];
+	}
+
+	// Check if head is among picked
+	bool hasHead = false;
+	for ( int i = 0; i < numPicked; i++ )
+	{
+		if ( pickedCats [ i ] == headCat )
 		{
-			if ( TFClass == TFClass_Scout || TFClass == TFClass_Soldier || TFClass == TFClass_Pyro 
-			|| TFClass == TFClass_DemoMan || TFClass == TFClass_Heavy || TFClass == TFClass_Engineer
-			|| TFClass == TFClass_Medic || TFClass == TFClass_Sniper || TFClass == TFClass_Spy )
+			hasHead = true;
+			break;
+		}
+	}
+
+	int equipped = 0;
+	for ( int i = 0; i < numPicked; i++ )
+	{
+		int cat = pickedCats [ i ];
+		int item = cosmetics [ cat ];
+		if ( item <= 0 ) continue;
+
+		// Check for conflict
+		bool isConflict = false;
+		if ( hasHead && cat != headCat )
+		{
+			for ( int j = 0; j < numConflicts; j++ )
 			{
-				// All Class
-				if ( iRandom <= 25 )
+				if ( cat == conflictCats [ j ] )
 				{
-					iSharedCosmetics[ 1 ] = iRandHat;
-					iSharedCosmetics[ 2 ] = iRandGlasses;
-					iSharedCosmetics[ 3 ] = iRandBeard;
-					iSharedCosmetics[ 4 ] = iRandMedal;
-					iSharedCosmetics[ 5 ] = iRandTorso;
-					iSharedCosmetics[ 6 ] = iRandBelt;
-					iSharedCosmetics[ 7 ] = iRandPants;
-					iSharedCosmetics[ 8 ] = iRandFeet;
-					iSharedCosmetics[ 9 ] = iRandHatMisc;
-					iSharedCosmetics[ 10 ] = iRandHead;
-					iSharedCosmetics[ 11 ] = iRandFace;
-
-					int iIndex[ 11 ] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 };
-					ShuffleArray( iIndex, sizeof( iIndex ) );
-
-					for ( int i = 0; i < 3; ++i )
-					{
-						iSelectedCosmetics[ i ] = iSharedCosmetics[ iIndex[ i ] ];
-					/* 	
-						Check if head is selected, don't select hat, glasses, or beard
-						TODO: Instead of doing this
-						let's just check to see if there's no cosmetic conflicts.
-						This will save a lot of headache of cosmetic arrangement
-						Like hats with glasses... 
-					*/
-						if ( iSelectedCosmetics[ i ] )
-						{
-							if ( iIndex[ i ] == 10 ) 
-							{
-								iSharedCosmetics[ 1 ] = 0;
-								iSharedCosmetics[ 2 ] = 0;
-								iSharedCosmetics[ 11 ] = 0;
-							}
-							// If hat, glasses, beard or face is selected, don't select head
-							else if ( iIndex[ i ] == 1 || iIndex[ i ] == 2 || iIndex[ i ] == 3 || iIndex[ i ] == 11 ) 
-							{
-								iSharedCosmetics[ 10 ] = 0;
-							}
-						}
-
-						if ( iSelectedCosmetics[ i ] && iSharedCosmetics[ i ] != 1 ) // Make sure it's not invalid
-						{
-							TF2_CreateHat( iClient, iSelectedCosmetics[ i ], QUALITY_UNIQUE, iIndex[ i ] == 1 || iIndex[ i ] == 10 );
-						}
-					}
-
-					#if defined TESTING_ONLY
-						CPrintToChatAll( "BOT: {fuchsia}%s{default}, Selected {green}All-Class {default}specific cosmetics.", clientName )
-					#endif
-				}
-				else
-				{
-					if ( TFClass == TFClass_Scout )
-					{
-						iScoutCosmetics[ 1 ] = IsChance( 75 ) ? iRandScout_Head : iRandHead;
-						iScoutCosmetics[ 2 ] = IsChance( 75 ) ? iRandScout_Hats : iRandHat;
-						iScoutCosmetics[ 3 ] = IsChance( 75 ) ? iRandScout_Glasses : iRandGlasses;
-						iScoutCosmetics[ 4 ] = IsChance( 75 ) ? iRandScout_Beard: iRandBeard;
-						iScoutCosmetics[ 5 ] = iRandMedal;
-						iScoutCosmetics[ 6 ] = IsChance( 75 ) ? iRandScout_Torso : iRandTorso;
-						iScoutCosmetics[ 7 ] = iRandScout_Back;
-						iScoutCosmetics[ 8 ] = IsChance( 75 ) ? iRandScout_Belt : iRandBelt;
-						iScoutCosmetics[ 9 ] = IsChance( 75 ) ? iRandScout_Pants : iRandPants;
-						iScoutCosmetics[ 10 ] = IsChance( 75 ) ? iRandScout_Feet : iRandFeet;
-						iScoutCosmetics[ 11 ] = iRandHatMisc;
-						iScoutCosmetics[ 12 ] = iRandFace;
-
-						int iIndex[ 12 ] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 };
-						ShuffleArray( iIndex, sizeof( iIndex ) );
-
-						for ( int i = 0; i < 3; ++i )
-						{
-							iSelectedCosmetics[ i ] = iScoutCosmetics[ iIndex[ i ] ];
-
-							// If head is selected, do not equip Hats, Glasses, Beard, Hat Misc, Face
-							if ( iSelectedCosmetics[ i ] )
-							{
-								if ( iIndex[ i ] == 1 ) 
-								{
-									iScoutCosmetics[ 2 ] = 0;
-									iScoutCosmetics[ 3 ] = 0;
-									iScoutCosmetics[ 4 ] = 0;
-									//iScoutCosmetics[ 11 ] = 0;
-									iScoutCosmetics[ 12 ] = 0;
-								}
-								// If hat(2), glasses(3), beard(4), face(12) is selected, don't select head
-								else if ( iIndex[ i ] == 2 || iIndex[ i ] == 3 || iIndex[ i ] == 4 || iIndex[ i ] == 12 ) 
-								{
-									iScoutCosmetics[ 1 ] = 0;
-								}
-							}
-								
-							if ( iSelectedCosmetics[ i ] && iScoutCosmetics[ i ] != 1 )
-							{
-								TF2_CreateHat( iClient, iSelectedCosmetics[ i ], QUALITY_UNIQUE, iIndex[ i ] == 2 );
-							}
-						}
-
-						#if defined TESTING_ONLY
-							CPrintToChatAll( "BOT: {fuchsia}%s{default}, Selected {green}Scout {default}specific cosmetics.", clientName )
-						#endif
-					}
-					
-					if ( TFClass == TFClass_Soldier )
-					{
-						iSoldierCosmetics[ 1 ] = IsChance( 75 ) ? iRandSoldier_Head : iRandHead;
-						iSoldierCosmetics[ 2 ] = IsChance( 75 ) ? iRandSoldier_Hats : iRandHat;
-						iSoldierCosmetics[ 3 ] = IsChance( 75 ) ? iRandSoldier_Glasses : iRandGlasses;
-						iSoldierCosmetics[ 4 ] = IsChance( 75 ) ? iRandSoldier_Beard: iRandBeard;
-						iSoldierCosmetics[ 5 ] = iRandMedal;
-						iSoldierCosmetics[ 6 ] = IsChance( 75 ) ? iRandSoldier_Coat : iRandTorso;
-						iSoldierCosmetics[ 7 ] = iRandSoldier_Shirt
-						iSoldierCosmetics[ 8 ] = iRandSoldier_Grenades;
-						iSoldierCosmetics[ 9 ] = IsChance( 75 ) ? iRandSoldier_Belt : iRandBelt;
-						iSoldierCosmetics[ 10 ] = IsChance( 75 ) ? iRandSoldier_Pants : iRandPants;
-						iSoldierCosmetics[ 11 ] = IsChance( 75 ) ? iRandSoldier_Feet : iRandFeet;
-						iSoldierCosmetics[ 12 ] = iRandSoldier_Pocket;
-						iSoldierCosmetics[ 13 ] = iRandHatMisc;
-						iSoldierCosmetics[ 14 ] = iRandFace;
-
-						int iIndex[ 14 ] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14 };
-						ShuffleArray( iIndex, sizeof( iIndex ) );
-
-						for ( int i = 0; i < 3; ++i )
-						{
-							iSelectedCosmetics[ i ] = iSoldierCosmetics[ iIndex[ i ] ];
-
-							if ( iSelectedCosmetics[ i ] )
-							{
-								if ( iIndex[ i ] == 1 ) 
-								{
-									iSoldierCosmetics[ 2 ] = 0;
-									iSoldierCosmetics[ 3 ] = 0;
-									iSoldierCosmetics[ 4 ] = 0;
-									iSoldierCosmetics[ 14 ] = 0;
-								}
-								// If hat(2), glasses(3), beard(4) or face(14) is selected, don't select head
-								else if ( iIndex[ i ] == 2 || iIndex[ i ] == 3 || iIndex[ i ] == 4 || iIndex[ i ] == 14 ) 
-								{
-									iSoldierCosmetics[ 1 ] = 0;
-								}
-							}
-
-							if ( iSelectedCosmetics[ i ] && iSoldierCosmetics[ i ] != 1 )
-							{
-								TF2_CreateHat( iClient, iSelectedCosmetics[ i ], QUALITY_UNIQUE, iIndex[ i ] == 2 );
-							}
-						}
-
-						#if defined TESTING_ONLY
-							CPrintToChatAll( "BOT: {fuchsia}%s{default}, Selected {green}Soldier {default}specific cosmetics.", clientName )
-						#endif
-					}
-					
-					if ( TFClass == TFClass_Pyro )
-					{
-						iPyroCosmetics[ 1 ] = IsChance( 75 ) ? iRandPyro_HeadReplace : iRandHead;
-						iPyroCosmetics[ 2 ] = IsChance( 75 ) ? iRandPyro_Hats : iRandHat;
-						iPyroCosmetics[ 3 ] = IsChance( 75 ) ? iRandPyro_Glasses : iRandGlasses;
-						iPyroCosmetics[ 4 ] = IsChance( 75 ) ? iRandPyro_Beard: iRandBeard;
-						iPyroCosmetics[ 5 ] = iRandMedal;
-						iPyroCosmetics[ 6 ] = IsChance( 75 ) ? iRandPyro_Shirt : iRandTorso;
-						iPyroCosmetics[ 7 ] = iRandPyro_Back;
-						iPyroCosmetics[ 8 ] = iRandPyro_Grenades;
-						iPyroCosmetics[ 9 ] = IsChance( 75 ) ? iRandPyro_Belt : iRandBelt;
-						iPyroCosmetics[ 10 ] = IsChance( 75 ) ? iRandPyro_Pants : iRandPants;
-						iPyroCosmetics[ 11 ] = IsChance( 75 ) ? iRandPyro_Feet : iRandFeet;
-						iPyroCosmetics[ 12 ] = IsChance( 75 ) ? iRandPyro_Neckless : iRandHatMisc;
-						iPyroCosmetics[ 13 ] = iRandFace;
-
-						int iIndex[ 13 ] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13 };
-						ShuffleArray( iIndex, sizeof( iIndex ) );
-
-						for ( int i = 0; i < 3; ++i )
-						{
-							iSelectedCosmetics[ i ] = iPyroCosmetics[ iIndex[ i ] ];
-							if ( iSelectedCosmetics[ i ] && iPyroCosmetics[ i ] != 1 )
-							{
-								TF2_CreateHat( iClient, iSelectedCosmetics[ i ], QUALITY_UNIQUE, iIndex[ i ] == 2 );
-							}
-						}
-
-						#if defined TESTING_ONLY
-							CPrintToChatAll( "BOT: {fuchsia}%s{default}, Selected {green}Pyro {default}specific cosmetics.", clientName )
-						#endif
-					}
-					
-					if ( TFClass == TFClass_DemoMan )
-					{
-						iDemoManCosmetics[ 1 ] = IsChance( 75 ) ? iRandDemo_HeadReplace : iRandHead;
-						iDemoManCosmetics[ 2 ] = IsChance( 75 ) ? iRandDemo_Hats : iRandHat;
-						iDemoManCosmetics[ 3 ] = IsChance( 75 ) ? iRandDemo_Glasses : iRandGlasses;
-						iDemoManCosmetics[ 4 ] = IsChance( 75 ) ? iRandDemo_Beard: iRandBeard;
-						iDemoManCosmetics[ 5 ] = iRandMedal;
-						iDemoManCosmetics[ 6 ] = IsChance( 75 ) ? iRandDemo_Shirt : iRandTorso;
-						iDemoManCosmetics[ 7 ] = iRandDemo_Back;
-						iDemoManCosmetics[ 8 ] = iRandDemo_Grenades;
-						iDemoManCosmetics[ 9 ] = IsChance( 75 ) ? iRandDemo_Belt : iRandBelt;
-						iDemoManCosmetics[ 10 ] = IsChance( 75 ) ? iRandDemo_Pants : iRandPants;
-						iDemoManCosmetics[ 11 ] = IsChance( 75 ) ? iRandDemo_Feet : iRandFeet;
-						iDemoManCosmetics[ 12 ] = iRandHatMisc;
-						iDemoManCosmetics[ 13 ] = iRandFace;
-
-						int iIndex[ 12 ] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 };
-						ShuffleArray( iIndex, sizeof( iIndex ) );
-
-						for ( int i = 0; i < 3; ++i )
-						{
-							iSelectedCosmetics[ i ] = iDemoManCosmetics[ iIndex[ i ] ];
-							if ( iSelectedCosmetics[ i ] )
-							{
-								if ( iIndex[ i ] == 1 ) 
-								{
-									iDemoManCosmetics[ 2 ] = 0;
-									iDemoManCosmetics[ 3 ] = 0;
-									iDemoManCosmetics[ 4 ] = 0;
-									iDemoManCosmetics[ 13 ] = 0;
-								}
-								// If hat(2), glasses(3), beard(4) or face(13) is selected, don't select head
-								else if ( iIndex[ i ] == 2 || iIndex[ i ] == 3 || iIndex[ i ] == 4 || iIndex[ i ] == 13) 
-								{
-									iDemoManCosmetics[ 1 ] = 0;
-								}
-							}
-
-							if ( iSelectedCosmetics[ i ] && iDemoManCosmetics[ i ] != 1 )
-							{
-								TF2_CreateHat( iClient, iSelectedCosmetics[ i ], QUALITY_UNIQUE, iIndex[ i ] == 2 );
-							}
-						}
-
-						#if defined TESTING_ONLY
-							CPrintToChatAll( "BOT: {fuchsia}%s{default}, Selected {green}DemoMan {default}specific cosmetics.", clientName )
-						#endif
-					}
-
-					if ( TFClass == TFClass_Heavy )
-					{
-						iHeavyCosmetics[ 1 ] = IsChance( 75 ) ? iRandHeavy_Head : iRandHead;
-						iHeavyCosmetics[ 2 ] = IsChance( 75 ) ? iRandHeavy_Hats : iRandHat;
-						iHeavyCosmetics[ 3 ] = IsChance( 75 ) ? iRandHeavy_Glasses : iRandGlasses;
-						iHeavyCosmetics[ 4 ] = IsChance( 75 ) ? iRandHeavy_Beard: iRandBeard;
-						iHeavyCosmetics[ 5 ] = iRandMedal;
-						iHeavyCosmetics[ 6 ] = IsChance( 75 ) ? iRandHeavy_Shirt : iRandTorso;
-						iHeavyCosmetics[ 7 ] = iRandHeavy_Misc;
-						iHeavyCosmetics[ 8 ] = IsChance( 75 ) ? iRandHeavy_Belt : iRandBelt;
-						iHeavyCosmetics[ 9 ] = IsChance( 75 ) ? iRandHeavy_Pants : iRandPants;
-						iHeavyCosmetics[ 10 ] = IsChance( 75 ) ? iRandHeavy_Feets : iRandFeet;
-						iHeavyCosmetics[ 11 ] = iRandHatMisc;
-						iHeavyCosmetics[ 12 ] = IsChance( 25 ) ? iRandHeavy_HeadSkin : iRandFace;
-
-						int iIndex[ 12 ] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 };
-						ShuffleArray( iIndex, sizeof( iIndex ) );
-
-						for ( int i = 0; i < 3; ++i )
-						{
-							iSelectedCosmetics[ i ] = iHeavyCosmetics[ iIndex[ i ] ];
-							if ( iSelectedCosmetics[ i ] )
-							{
-								if ( iIndex[ i ] == 1 ) 
-								{
-									iHeavyCosmetics[ 2 ] = 0;
-									iHeavyCosmetics[ 3 ] = 0;
-									iHeavyCosmetics[ 4 ] = 0;
-									iHeavyCosmetics[ 12 ] = 0;
-								}
-								// If hat(2), glasses(3), beard(4) or face(12) is selected, don't select head
-								else if ( iIndex[ i ] == 2 || iIndex[ i ] == 3 || iIndex[ i ] == 4 || iIndex[ i ] == 12 ) 
-								{
-									iHeavyCosmetics[ 1 ] = 0;
-								}
-							}
-
-							if ( iSelectedCosmetics[ i ] && iHeavyCosmetics[ i ] != 1 )
-							{
-								TF2_CreateHat( iClient, iSelectedCosmetics[ i ], QUALITY_UNIQUE, iIndex[ i ] == 2 );
-							}
-						}
-
-						#if defined TESTING_ONLY
-							CPrintToChatAll( "BOT: {fuchsia}%s{default}, Selected {green}Heavy {default}specific cosmetics.", clientName )
-						#endif
-					}
-
-					if ( TFClass == TFClass_Engineer )
-					{
-						iEngineerCosmetics[ 1 ] = IsChance( 75 ) ? iRandEngy_Head : iRandHead;
-						iEngineerCosmetics[ 2 ] = IsChance( 75 ) ? iRandEngy_Hats : iRandHat;
-						iEngineerCosmetics[ 3 ] = IsChance( 75 ) ? iRandEngy_Glasses : iRandGlasses;
-						iEngineerCosmetics[ 4 ] = IsChance( 75 ) ? iRandEngy_Beard: iRandBeard;
-						iEngineerCosmetics[ 5 ] = iRandMedal;
-						iEngineerCosmetics[ 6 ] = IsChance( 75 ) ? iRandEngy_Shirt : iRandTorso;
-						iEngineerCosmetics[ 7 ] = IsChance( 75 ) ? iRandEngy_Belt : iRandBelt;
-						iEngineerCosmetics[ 8 ] = IsChance( 75 ) ? iRandEngy_Pants : iRandPants;
-						iEngineerCosmetics[ 9 ] = IsChance( 75 ) ? iRandEngy_Feet : iRandFeet;
-						iEngineerCosmetics[ 10 ] = iRandHatMisc;
-						iEngineerCosmetics[ 11 ] = IsChance( 25 ) ? iRandEngy_HeadMisc : iRandFace;
-						iEngineerCosmetics[ 12 ] = iRandEngy_Back;
-
-						int iIndex[ 12 ] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 };
-						ShuffleArray( iIndex, sizeof( iIndex ) );
-
-						for ( int i = 0; i < 3; ++i )
-						{
-							iSelectedCosmetics[ i ] = iEngineerCosmetics[ iIndex[ i ] ];
-							if ( iSelectedCosmetics[ i ] )
-							{
-								if ( iIndex[ i ] == 1 ) 
-								{
-									iEngineerCosmetics[ 2 ] = 0;
-									iEngineerCosmetics[ 3 ] = 0;
-									iEngineerCosmetics[ 4 ] = 0;
-									iEngineerCosmetics[ 11 ] = 0;
-								}
-								// If hat(2), glasses(3), beard(4) or face(11) is selected, don't select head
-								else if ( iIndex[ i ] == 2 || iIndex[ i ] == 3 || iIndex[ i ] == 4 || iIndex[ i ] == 11 ) 
-								{
-									iEngineerCosmetics[ 1 ] = 0;
-								}
-							}
-
-							if ( iSelectedCosmetics[ i ] && iEngineerCosmetics[ i ] != 1 )
-							{
-								TF2_CreateHat( iClient, iSelectedCosmetics[ i ], QUALITY_UNIQUE, iIndex[ i ] == 2 );
-							}
-						}
-
-						#if defined TESTING_ONLY
-							CPrintToChatAll( "BOT: {fuchsia}%s{default}, Selected {green}Engineer {default}specific cosmetics.", clientName )
-						#endif
-					}
-
-					if ( TFClass == TFClass_Medic )
-					{
-						iMedicCosmetics[ 1 ] = IsChance( 75 ) ? iRandMedic_Head : iRandHead;
-						iMedicCosmetics[ 2 ] = IsChance( 75 ) ? iRandMedic_Hats : iRandHat;
-						iMedicCosmetics[ 3 ] = IsChance( 75 ) ? iRandMedic_Glasses : iRandGlasses;
-						iMedicCosmetics[ 4 ] = IsChance( 75 ) ? iRandMedic_Beard: iRandBeard;
-						iMedicCosmetics[ 5 ] = iRandMedal;
-						iMedicCosmetics[ 6 ] = IsChance( 75 ) ? iRandMedic_Shirt : iRandTorso;
-						iMedicCosmetics[ 7 ] = IsChance( 75 ) ? iRandMedic_Belt : iRandBelt;
-						iMedicCosmetics[ 8 ] = IsChance( 75 ) ? iRandMedic_Pants : iRandPants;
-						iMedicCosmetics[ 9 ] = IsChance( 75 ) ? iRandMedic_Feet : iRandFeet;
-						iMedicCosmetics[ 10 ] = iRandHatMisc;
-						iMedicCosmetics[ 11 ] = iRandFace;
-
-						int iIndex[ 11 ] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 };
-						ShuffleArray( iIndex, sizeof( iIndex ) );
-
-						for ( int i = 0; i < 3; ++i )
-						{
-							iSelectedCosmetics[ i ] = iMedicCosmetics[ iIndex[ i ] ];
-							if ( iSelectedCosmetics[ i ] )
-							{
-								if ( iIndex[ i ] == 1 ) 
-								{
-									iMedicCosmetics[ 2 ] = 0;
-									iMedicCosmetics[ 3 ] = 0;
-									iMedicCosmetics[ 4 ] = 0;
-									iMedicCosmetics[ 11 ] = 0;
-								}
-								// If hat(2), glasses(3), beard(4) or face(11) is selected, don't select head
-								else if ( iIndex[ i ] == 2 || iIndex[ i ] == 3 || iIndex[ i ] == 4 || iIndex[ i ] == 11 ) 
-								{
-									iMedicCosmetics[ 1 ] = 0;
-								}
-							}
-
-							if ( iSelectedCosmetics[ i ] && iMedicCosmetics[ i ] != 1 )
-							{
-								TF2_CreateHat( iClient, iSelectedCosmetics[ i ], QUALITY_UNIQUE, iIndex[ i ] == 2 );
-							}
-						}
-
-						#if defined TESTING_ONLY
-							CPrintToChatAll( "BOT: {fuchsia}%s{default}, Selected {green}Medic {default}specific cosmetics.", clientName )
-						#endif
-					}
+					isConflict = true;
+					break;
 				}
 			}
 		}
-		else
-		{
-			PickCosmeticSet( iClient, iRandom );
-		}
+
+		if ( isConflict ) continue;
+
+		bool isUnusual = ( cat == hatCat );
+		TF2_CreateHat( client, item, QUALITY_UNIQUE, isUnusual );
+		equipped++;
+
+		if ( equipped >= 3 ) break;
 	}
-	else // Pick Premade sets
+
+#if defined TESTING_ONLY
+	if ( equipped > 0 )
 	{
-		PickCosmeticSet( iClient, iRandom );
+		CPrintToChatAll( "BOT: {fuchsia}%s{default}, Selected {green}%s{default} specific cosmetics. Equipped %d.", clientName, className, equipped );
 	}
+#endif
 }
 
+void GiveBotCosmetics( int iClient )
+{
+    int iRandom = GetRandomInt( 1, 100 );
+    char clientName [ MAX_NAME_LENGTH ];
+    GetClientName( iClient, clientName, sizeof( clientName ) );
+
+    TFClassType tfClass = TF2_GetPlayerClass( iClient );
+
+    bool doRandom = ( iRandom <= 40 && redbots_manager_allow_random_cosmetics.BoolValue );
+
+    if ( doRandom )
+    {
+#if defined TESTING_ONLY
+        PrintToServer( "DEBUG: Applying random cosmetics for client %d (iRandom=%d)", iClient, iRandom );
+#endif
+        int cosmetics [ MAX_CATEGORIES + 1 ]; // 1-based
+
+        if ( iRandom <= 25 )
+        {
+            // All-Class random
+            cosmetics [ 1 ] = ALLCLASS_HATS [ GetRandomInt( 0, sizeof( ALLCLASS_HATS ) - 1 ) ];      // hat
+            cosmetics [ 2 ] = ALLCLASS_GLASSES [ GetRandomInt( 0, sizeof( ALLCLASS_GLASSES ) - 1 ) ]; // glasses
+            cosmetics [ 3 ] = ALLCLASS_BEARD [ GetRandomInt( 0, sizeof( ALLCLASS_BEARD ) - 1 ) ];     // beard
+            cosmetics [ 4 ] = ALLCLASS_MEDAL [ GetRandomInt( 0, sizeof( ALLCLASS_MEDAL ) - 1 ) ];     // medal
+            cosmetics [ 5 ] = ALLCLASS_TORSO [ GetRandomInt( 0, sizeof( ALLCLASS_TORSO ) - 1 ) ];     // torso
+            cosmetics [ 6 ] = ALLCLASS_BELT [ GetRandomInt( 0, sizeof( ALLCLASS_BELT ) - 1 ) ];       // belt
+            cosmetics [ 7 ] = ALLCLASS_PANTS [ GetRandomInt( 0, sizeof( ALLCLASS_PANTS ) - 1 ) ];     // pants
+            cosmetics [ 8 ] = ALLCLASS_FEET [ GetRandomInt( 0, sizeof( ALLCLASS_FEET ) - 1 ) ];       // feet
+            cosmetics [ 9 ] = ALLCLASS_HATMISC [ GetRandomInt( 0, sizeof( ALLCLASS_HATMISC ) - 1 ) ]; // hat misc
+            cosmetics [ 10 ] = ALLCLASS_HEAD [ GetRandomInt( 0, sizeof( ALLCLASS_HEAD ) - 1 ) ];      // head
+            cosmetics [ 11 ] = ALLCLASS_FACE [ GetRandomInt( 0, sizeof( ALLCLASS_FACE ) - 1 ) ];      // face
+
+            int conflictCats [ MAX_CONFLICTS ] = { 1, 2, 3, 11 }; // hat, glasses, beard, face
+            EquipRandomFromCategories( iClient, cosmetics, 11, 10 /*head*/, conflictCats, 4, 1 /*hat*/, "All-Class", clientName );
+        }
+        else
+        {
+            switch ( tfClass )
+            {
+                case TFClass_Scout:
+                {
+                    cosmetics [ 1 ] = IsChance( 75 ) ? SPECIFIC_SCOUT_HEAD [ GetRandomInt( 0, sizeof( SPECIFIC_SCOUT_HEAD ) - 1 ) ] : ALLCLASS_HEAD [ GetRandomInt( 0, sizeof( ALLCLASS_HEAD ) - 1 ) ]; // head
+                    cosmetics [ 2 ] = SPECIFIC_SCOUT_HATS [ GetRandomInt( 0, sizeof( SPECIFIC_SCOUT_HATS ) - 1 ) ]; // hat
+                    cosmetics [ 3 ] = IsChance( 75 ) ? SPECIFIC_SCOUT_GLASSES [ GetRandomInt( 0, sizeof( SPECIFIC_SCOUT_GLASSES ) - 1 ) ] : ALLCLASS_GLASSES [ GetRandomInt( 0, sizeof( ALLCLASS_GLASSES ) - 1 ) ]; // glasses
+                    cosmetics [ 4 ] = IsChance( 75 ) ? SPECIFIC_SCOUT_BEARD [ GetRandomInt( 0, sizeof( SPECIFIC_SCOUT_BEARD ) - 1 ) ] : ALLCLASS_BEARD [ GetRandomInt( 0, sizeof( ALLCLASS_BEARD ) - 1 ) ]; // beard
+                    cosmetics [ 5 ] = ALLCLASS_MEDAL [ GetRandomInt( 0, sizeof( ALLCLASS_MEDAL ) - 1 ) ]; // medal
+                    cosmetics [ 6 ] = IsChance( 75 ) ? SPECIFIC_SCOUT_TORSO [ GetRandomInt( 0, sizeof( SPECIFIC_SCOUT_TORSO ) - 1 ) ] : ALLCLASS_TORSO [ GetRandomInt( 0, sizeof( ALLCLASS_TORSO ) - 1 ) ]; // torso
+                    cosmetics [ 7 ] = SPECIFIC_SCOUT_BACK [ GetRandomInt( 0, sizeof( SPECIFIC_SCOUT_BACK ) - 1 ) ]; // back
+                    cosmetics [ 8 ] = IsChance( 75 ) ? SPECIFIC_SCOUT_BELT [ GetRandomInt( 0, sizeof( SPECIFIC_SCOUT_BELT ) - 1 ) ] : ALLCLASS_BELT [ GetRandomInt( 0, sizeof( ALLCLASS_BELT ) - 1 ) ]; // belt
+                    cosmetics [ 9 ] = IsChance( 75 ) ? SPECIFIC_SCOUT_PANTS [ GetRandomInt( 0, sizeof( SPECIFIC_SCOUT_PANTS ) - 1 ) ] : ALLCLASS_PANTS [ GetRandomInt( 0, sizeof( ALLCLASS_PANTS ) - 1 ) ]; // pants
+                    cosmetics [ 10 ] = IsChance( 75 ) ? SPECIFIC_SCOUT_FEET [ GetRandomInt( 0, sizeof( SPECIFIC_SCOUT_FEET ) - 1 ) ] : ALLCLASS_FEET [ GetRandomInt( 0, sizeof( ALLCLASS_FEET ) - 1 ) ]; // feet
+                    cosmetics [ 11 ] = ALLCLASS_HATMISC [ GetRandomInt( 0, sizeof( ALLCLASS_HATMISC ) - 1 ) ]; // hat misc
+                    cosmetics [ 12 ] = ALLCLASS_FACE [ GetRandomInt( 0, sizeof( ALLCLASS_FACE ) - 1 ) ]; // face
+
+                    int conflictCats [ MAX_CONFLICTS ] = { 2, 3, 4, 12 }; // hat, glasses, beard, face
+                    EquipRandomFromCategories( iClient, cosmetics, 12, 1 /*head*/, conflictCats, 4, 2 /*hat*/, "Scout", clientName );
+                }
+                case TFClass_Soldier:
+                {
+                    cosmetics [ 1 ] = IsChance( 75 ) ? SPECIFIC_SOLDIER_HEAD [ GetRandomInt( 0, sizeof( SPECIFIC_SOLDIER_HEAD ) - 1 ) ] : ALLCLASS_HEAD [ GetRandomInt( 0, sizeof( ALLCLASS_HEAD ) - 1 ) ]; // head
+                    cosmetics [ 2 ] = SPECIFIC_SOLDIER_HATS [ GetRandomInt( 0, sizeof( SPECIFIC_SOLDIER_HATS ) - 1 ) ]; // hat
+                    cosmetics [ 3 ] = IsChance( 75 ) ? SPECIFIC_SOLDIER_GLASSES [ GetRandomInt( 0, sizeof( SPECIFIC_SOLDIER_GLASSES ) - 1 ) ] : ALLCLASS_GLASSES [ GetRandomInt( 0, sizeof( ALLCLASS_GLASSES ) - 1 ) ]; // glasses
+                    cosmetics [ 4 ] = IsChance( 75 ) ? SPECIFIC_SOLDIER_BEARD [ GetRandomInt( 0, sizeof( SPECIFIC_SOLDIER_BEARD ) - 1 ) ] : ALLCLASS_BEARD [ GetRandomInt( 0, sizeof( ALLCLASS_BEARD ) - 1 ) ]; // beard
+                    cosmetics [ 5 ] = ALLCLASS_MEDAL [ GetRandomInt( 0, sizeof( ALLCLASS_MEDAL ) - 1 ) ]; // medal
+                    cosmetics [ 6 ] = IsChance( 75 ) ? SPECIFIC_SOLDIER_COAT [ GetRandomInt( 0, sizeof( SPECIFIC_SOLDIER_COAT ) - 1 ) ] : ALLCLASS_TORSO [ GetRandomInt( 0, sizeof( ALLCLASS_TORSO ) - 1 ) ]; // coat/torso
+                    cosmetics [ 7 ] = SPECIFIC_SOLDIER_SHIRT [ GetRandomInt( 0, sizeof( SPECIFIC_SOLDIER_SHIRT ) - 1 ) ]; // shirt
+                    cosmetics [ 8 ] = SPECIFIC_SOLDIER_GRENADES [ GetRandomInt( 0, sizeof( SPECIFIC_SOLDIER_GRENADES ) - 1 ) ]; // grenades
+                    cosmetics [ 9 ] = IsChance( 75 ) ? SPECIFIC_SOLDIER_BELT [ GetRandomInt( 0, sizeof( SPECIFIC_SOLDIER_BELT ) - 1 ) ] : ALLCLASS_BELT [ GetRandomInt( 0, sizeof( ALLCLASS_BELT ) - 1 ) ]; // belt
+                    cosmetics [ 10 ] = IsChance( 75 ) ? SPECIFIC_SOLDIER_PANTS [ GetRandomInt( 0, sizeof( SPECIFIC_SOLDIER_PANTS ) - 1 ) ] : ALLCLASS_PANTS [ GetRandomInt( 0, sizeof( ALLCLASS_PANTS ) - 1 ) ]; // pants
+                    cosmetics [ 11 ] = IsChance( 75 ) ? SPECIFIC_SOLDIER_FEET [ GetRandomInt( 0, sizeof( SPECIFIC_SOLDIER_FEET ) - 1 ) ] : ALLCLASS_FEET [ GetRandomInt( 0, sizeof( ALLCLASS_FEET ) - 1 ) ]; // feet
+                    cosmetics [ 12 ] = SPECIFIC_SOLDIER_POCKET [ GetRandomInt( 0, sizeof( SPECIFIC_SOLDIER_POCKET ) - 1 ) ]; // pocket
+                    cosmetics [ 13 ] = ALLCLASS_HATMISC [ GetRandomInt( 0, sizeof( ALLCLASS_HATMISC ) - 1 ) ]; // hat misc
+                    cosmetics [ 14 ] = ALLCLASS_FACE [ GetRandomInt( 0, sizeof( ALLCLASS_FACE ) - 1 ) ]; // face
+
+                    int conflictCats [ MAX_CONFLICTS ] = { 2, 3, 4, 14 }; // hat, glasses, beard, face
+                    EquipRandomFromCategories( iClient, cosmetics, 14, 1 /*head*/, conflictCats, 4, 2 /*hat*/, "Soldier", clientName );
+                }
+                case TFClass_Pyro:
+                {
+                    cosmetics [ 1 ] = IsChance( 75 ) ? SPECIFIC_PYRO_HEAD_REPLACE [ GetRandomInt( 0, sizeof( SPECIFIC_PYRO_HEAD_REPLACE ) - 1 ) ] : ALLCLASS_HEAD [ GetRandomInt( 0, sizeof( ALLCLASS_HEAD ) - 1 ) ]; // head replace
+                    cosmetics [ 2 ] = SPECIFIC_PYRO_HATS [ GetRandomInt( 0, sizeof( SPECIFIC_PYRO_HATS ) - 1 ) ]; // hat
+                    cosmetics [ 3 ] = IsChance( 75 ) ? SPECIFIC_PYRO_GLASSES [ GetRandomInt( 0, sizeof( SPECIFIC_PYRO_GLASSES ) - 1 ) ] : ALLCLASS_GLASSES [ GetRandomInt( 0, sizeof( ALLCLASS_GLASSES ) - 1 ) ]; // glasses
+                    cosmetics [ 4 ] = IsChance( 75 ) ? SPECIFIC_PYRO_BEARD [ GetRandomInt( 0, sizeof( SPECIFIC_PYRO_BEARD ) - 1 ) ] : ALLCLASS_BEARD [ GetRandomInt( 0, sizeof( ALLCLASS_BEARD ) - 1 ) ]; // beard
+                    cosmetics [ 5 ] = ALLCLASS_MEDAL [ GetRandomInt( 0, sizeof( ALLCLASS_MEDAL ) - 1 ) ]; // medal
+                    cosmetics [ 6 ] = IsChance( 75 ) ? SPECIFIC_PYRO_SHIRT [ GetRandomInt( 0, sizeof( SPECIFIC_PYRO_SHIRT ) - 1 ) ] : ALLCLASS_TORSO [ GetRandomInt( 0, sizeof( ALLCLASS_TORSO ) - 1 ) ]; // shirt/torso
+                    cosmetics [ 7 ] = SPECIFIC_PYRO_BACK [ GetRandomInt( 0, sizeof( SPECIFIC_PYRO_BACK ) - 1 ) ]; // back
+                    cosmetics [ 8 ] = SPECIFIC_PYRO_GRENADES [ GetRandomInt( 0, sizeof( SPECIFIC_PYRO_GRENADES ) - 1 ) ]; // grenades
+                    cosmetics [ 9 ] = IsChance( 75 ) ? SPECIFIC_PYRO_BELT [ GetRandomInt( 0, sizeof( SPECIFIC_PYRO_BELT ) - 1 ) ] : ALLCLASS_BELT [ GetRandomInt( 0, sizeof( ALLCLASS_BELT ) - 1 ) ]; // belt
+                    cosmetics [ 10 ] = IsChance( 75 ) ? SPECIFIC_PYRO_PANTS [ GetRandomInt( 0, sizeof( SPECIFIC_PYRO_PANTS ) - 1 ) ] : ALLCLASS_PANTS [ GetRandomInt( 0, sizeof( ALLCLASS_PANTS ) - 1 ) ]; // pants
+                    cosmetics [ 11 ] = IsChance( 75 ) ? SPECIFIC_PYRO_FEET [ GetRandomInt( 0, sizeof( SPECIFIC_PYRO_FEET ) - 1 ) ] : ALLCLASS_FEET [ GetRandomInt( 0, sizeof( ALLCLASS_FEET ) - 1 ) ]; // feet
+                    cosmetics [ 12 ] = IsChance( 75 ) ? SPECIFIC_PYRO_NECKLESS [ GetRandomInt( 0, sizeof( SPECIFIC_PYRO_NECKLESS ) - 1 ) ] : ALLCLASS_HATMISC [ GetRandomInt( 0, sizeof( ALLCLASS_HATMISC ) - 1 ) ]; // neckless/hatmisc
+                    cosmetics [ 13 ] = ALLCLASS_FACE [ GetRandomInt( 0, sizeof( ALLCLASS_FACE ) - 1 ) ]; // face
+
+                    int conflictCats [ MAX_CONFLICTS ] = { 2, 3, 4, 13 }; // hat, glasses, beard, face
+                    EquipRandomFromCategories( iClient, cosmetics, 13, 1 /*head*/, conflictCats, 4, 2 /*hat*/, "Pyro", clientName );
+                }
+                case TFClass_DemoMan:
+                {
+                    cosmetics [ 1 ] = IsChance( 75 ) ? SPECIFIC_DEMO_HEAD [ GetRandomInt( 0, sizeof( SPECIFIC_DEMO_HEAD ) - 1 ) ] : ALLCLASS_HEAD [ GetRandomInt( 0, sizeof( ALLCLASS_HEAD ) - 1 ) ]; // head
+                    cosmetics [ 2 ] = SPECIFIC_DEMO_HATS [ GetRandomInt( 0, sizeof( SPECIFIC_DEMO_HATS ) - 1 ) ]; // hat
+                    cosmetics [ 3 ] = IsChance( 75 ) ? SPECIFIC_DEMO_GLASSES [ GetRandomInt( 0, sizeof( SPECIFIC_DEMO_GLASSES ) - 1 ) ] : ALLCLASS_GLASSES [ GetRandomInt( 0, sizeof( ALLCLASS_GLASSES ) - 1 ) ]; // glasses
+                    cosmetics [ 4 ] = IsChance( 75 ) ? SPECIFIC_DEMO_BEARD [ GetRandomInt( 0, sizeof( SPECIFIC_DEMO_BEARD ) - 1 ) ] : ALLCLASS_BEARD [ GetRandomInt( 0, sizeof( ALLCLASS_BEARD ) - 1 ) ]; // beard
+                    cosmetics [ 5 ] = ALLCLASS_MEDAL [ GetRandomInt( 0, sizeof( ALLCLASS_MEDAL ) - 1 ) ]; // medal
+                    cosmetics [ 6 ] = IsChance( 75 ) ? SPECIFIC_DEMO_SHIRT [ GetRandomInt( 0, sizeof( SPECIFIC_DEMO_SHIRT ) - 1 ) ] : ALLCLASS_TORSO [ GetRandomInt( 0, sizeof( ALLCLASS_TORSO ) - 1 ) ]; // shirt/torso
+                    cosmetics [ 7 ] = SPECIFIC_DEMO_BACK [ GetRandomInt( 0, sizeof( SPECIFIC_DEMO_BACK ) - 1 ) ]; // back
+                    cosmetics [ 8 ] = SPECIFIC_DEMO_GRENADES [ GetRandomInt( 0, sizeof( SPECIFIC_DEMO_GRENADES ) - 1 ) ]; // grenades
+                    cosmetics [ 9 ] = IsChance( 75 ) ? SPECIFIC_DEMO_BELT [ GetRandomInt( 0, sizeof( SPECIFIC_DEMO_BELT ) - 1 ) ] : ALLCLASS_BELT [ GetRandomInt( 0, sizeof( ALLCLASS_BELT ) - 1 ) ]; // belt
+                    cosmetics [ 10 ] = IsChance( 75 ) ? SPECIFIC_DEMO_PANTS [ GetRandomInt( 0, sizeof( SPECIFIC_DEMO_PANTS ) - 1 ) ] : ALLCLASS_PANTS [ GetRandomInt( 0, sizeof( ALLCLASS_PANTS ) - 1 ) ]; // pants
+                    cosmetics [ 11 ] = IsChance( 75 ) ? SPECIFIC_DEMO_FEET [ GetRandomInt( 0, sizeof( SPECIFIC_DEMO_FEET ) - 1 ) ] : ALLCLASS_FEET [ GetRandomInt( 0, sizeof( ALLCLASS_FEET ) - 1 ) ]; // feet
+                    cosmetics [ 12 ] = ALLCLASS_HATMISC [ GetRandomInt( 0, sizeof( ALLCLASS_HATMISC ) - 1 ) ]; // hat misc
+                    cosmetics [ 13 ] = ALLCLASS_FACE [ GetRandomInt( 0, sizeof( ALLCLASS_FACE ) - 1 ) ]; // face
+
+                    int conflictCats [ MAX_CONFLICTS ] = { 2, 3, 4, 13 }; // hat, glasses, beard, face
+                    EquipRandomFromCategories( iClient, cosmetics, 13, 1 /*head*/, conflictCats, 4, 2 /*hat*/, "DemoMan", clientName );
+                }
+                case TFClass_Heavy:
+                {
+                    cosmetics [ 1 ] = IsChance( 75 ) ? SPECIFIC_HEAVY_HEAD [ GetRandomInt( 0, sizeof( SPECIFIC_HEAVY_HEAD ) - 1 ) ] : ALLCLASS_HEAD [ GetRandomInt( 0, sizeof( ALLCLASS_HEAD ) - 1 ) ]; // head
+                    cosmetics [ 2 ] = SPECIFIC_HEAVY_HATS [ GetRandomInt( 0, sizeof( SPECIFIC_HEAVY_HATS ) - 1 ) ]; // hat
+                    cosmetics [ 3 ] = IsChance( 75 ) ? SPECIFIC_HEAVY_GLASSES [ GetRandomInt( 0, sizeof( SPECIFIC_HEAVY_GLASSES ) - 1 ) ] : ALLCLASS_GLASSES [ GetRandomInt( 0, sizeof( ALLCLASS_GLASSES ) - 1 ) ]; // glasses
+                    cosmetics [ 4 ] = IsChance( 75 ) ? SPECIFIC_HEAVY_BEARD [ GetRandomInt( 0, sizeof( SPECIFIC_HEAVY_BEARD ) - 1 ) ] : ALLCLASS_BEARD [ GetRandomInt( 0, sizeof( ALLCLASS_BEARD ) - 1 ) ]; // beard
+                    cosmetics [ 5 ] = ALLCLASS_MEDAL [ GetRandomInt( 0, sizeof( ALLCLASS_MEDAL ) - 1 ) ]; // medal
+                    cosmetics [ 6 ] = IsChance( 75 ) ? SPECIFIC_HEAVY_SHIRT [ GetRandomInt( 0, sizeof( SPECIFIC_HEAVY_SHIRT ) - 1 ) ] : ALLCLASS_TORSO [ GetRandomInt( 0, sizeof( ALLCLASS_TORSO ) - 1 ) ]; // shirt/torso
+                    cosmetics [ 7 ] = SPECIFIC_HEAVY_MISC [ GetRandomInt( 0, sizeof( SPECIFIC_HEAVY_MISC ) - 1 ) ]; // misc
+                    cosmetics [ 8 ] = IsChance( 75 ) ? SPECIFIC_HEAVY_BELT [ GetRandomInt( 0, sizeof( SPECIFIC_HEAVY_BELT ) - 1 ) ] : ALLCLASS_BELT [ GetRandomInt( 0, sizeof( ALLCLASS_BELT ) - 1 ) ]; // belt
+                    cosmetics [ 9 ] = IsChance( 75 ) ? SPECIFIC_HEAVY_PANTS [ GetRandomInt( 0, sizeof( SPECIFIC_HEAVY_PANTS ) - 1 ) ] : ALLCLASS_PANTS [ GetRandomInt( 0, sizeof( ALLCLASS_PANTS ) - 1 ) ]; // pants
+                    cosmetics [ 10 ] = IsChance( 75 ) ? SPECIFIC_HEAVY_FEET [ GetRandomInt( 0, sizeof( SPECIFIC_HEAVY_FEET ) - 1 ) ] : ALLCLASS_FEET [ GetRandomInt( 0, sizeof( ALLCLASS_FEET ) - 1 ) ]; // feet
+                    cosmetics [ 11 ] = ALLCLASS_HATMISC [ GetRandomInt( 0, sizeof( ALLCLASS_HATMISC ) - 1 ) ]; // hat misc
+                    cosmetics [ 12 ] = IsChance( 25 ) ? SPECIFIC_HEAVY_HEADSKIN [ GetRandomInt( 0, sizeof( SPECIFIC_HEAVY_HEADSKIN ) - 1 ) ] : ALLCLASS_FACE [ GetRandomInt( 0, sizeof( ALLCLASS_FACE ) - 1 ) ]; // headskin/face
+
+                    int conflictCats [ MAX_CONFLICTS ] = { 2, 3, 4, 12 }; // hat, glasses, beard, face/headskin
+                    EquipRandomFromCategories( iClient, cosmetics, 12, 1 /*head*/, conflictCats, 4, 2 /*hat*/, "Heavy", clientName );
+                }
+                case TFClass_Engineer:
+                {
+                    cosmetics [ 1 ] = IsChance( 75 ) ? SPECIFIC_ENGY_HEAD [ GetRandomInt( 0, sizeof( SPECIFIC_ENGY_HEAD ) - 1 ) ] : ALLCLASS_HEAD [ GetRandomInt( 0, sizeof( ALLCLASS_HEAD ) - 1 ) ]; // head
+                    cosmetics [ 2 ] = SPECIFIC_ENGY_HATS [ GetRandomInt( 0, sizeof( SPECIFIC_ENGY_HATS ) - 1 ) ]; // hat
+                    cosmetics [ 3 ] = IsChance( 75 ) ? SPECIFIC_ENGY_GLASSES [ GetRandomInt( 0, sizeof( SPECIFIC_ENGY_GLASSES ) - 1 ) ] : ALLCLASS_GLASSES [ GetRandomInt( 0, sizeof( ALLCLASS_GLASSES ) - 1 ) ]; // glasses
+                    cosmetics [ 4 ] = IsChance( 75 ) ? SPECIFIC_ENGY_BEARD [ GetRandomInt( 0, sizeof( SPECIFIC_ENGY_BEARD ) - 1 ) ] : ALLCLASS_BEARD [ GetRandomInt( 0, sizeof( ALLCLASS_BEARD ) - 1 ) ]; // beard
+                    cosmetics [ 5 ] = ALLCLASS_MEDAL [ GetRandomInt( 0, sizeof( ALLCLASS_MEDAL ) - 1 ) ]; // medal
+                    cosmetics [ 6 ] = IsChance( 75 ) ? SPECIFIC_ENGY_SHIRT [ GetRandomInt( 0, sizeof( SPECIFIC_ENGY_SHIRT ) - 1 ) ] : ALLCLASS_TORSO [ GetRandomInt( 0, sizeof( ALLCLASS_TORSO ) - 1 ) ]; // shirt/torso
+                    cosmetics [ 7 ] = IsChance( 75 ) ? SPECIFIC_ENGY_BELT [ GetRandomInt( 0, sizeof( SPECIFIC_ENGY_BELT ) - 1 ) ] : ALLCLASS_BELT [ GetRandomInt( 0, sizeof( ALLCLASS_BELT ) - 1 ) ]; // belt
+                    cosmetics [ 8 ] = IsChance( 75 ) ? SPECIFIC_ENGY_PANTS [ GetRandomInt( 0, sizeof( SPECIFIC_ENGY_PANTS ) - 1 ) ] : ALLCLASS_PANTS [ GetRandomInt( 0, sizeof( ALLCLASS_PANTS ) - 1 ) ]; // pants
+                    cosmetics [ 9 ] = IsChance( 75 ) ? SPECIFIC_ENGY_FEET [ GetRandomInt( 0, sizeof( SPECIFIC_ENGY_FEET ) - 1 ) ] : ALLCLASS_FEET [ GetRandomInt( 0, sizeof( ALLCLASS_FEET ) - 1 ) ]; // feet
+                    cosmetics [ 10 ] = ALLCLASS_HATMISC [ GetRandomInt( 0, sizeof( ALLCLASS_HATMISC ) - 1 ) ]; // hat misc
+                    cosmetics [ 11 ] = IsChance( 25 ) ? SPECIFIC_ENGY_HEADMISC [ GetRandomInt( 0, sizeof( SPECIFIC_ENGY_HEADMISC ) - 1 ) ] : ALLCLASS_FACE [ GetRandomInt( 0, sizeof( ALLCLASS_FACE ) - 1 ) ]; // head misc/face
+                    cosmetics [ 12 ] = SPECIFIC_ENGY_BACK [ GetRandomInt( 0, sizeof( SPECIFIC_ENGY_BACK ) - 1 ) ]; // back
+
+                    int conflictCats [ MAX_CONFLICTS ] = { 2, 3, 4, 11 }; // hat, glasses, beard, face/headmisc
+                    EquipRandomFromCategories( iClient, cosmetics, 12, 1 /*head*/, conflictCats, 4, 2 /*hat*/, "Engineer", clientName );
+                }
+                case TFClass_Medic:
+                {
+                    cosmetics [ 1 ] = IsChance( 75 ) ? SPECIFIC_MEDIC_HEAD [ GetRandomInt( 0, sizeof( SPECIFIC_MEDIC_HEAD ) - 1 ) ] : ALLCLASS_HEAD [ GetRandomInt( 0, sizeof( ALLCLASS_HEAD ) - 1 ) ]; // head
+                    cosmetics [ 2 ] = SPECIFIC_MEDIC_HATS [ GetRandomInt( 0, sizeof( SPECIFIC_MEDIC_HATS ) - 1 ) ]; // hat
+                    cosmetics [ 3 ] = IsChance( 75 ) ? SPECIFIC_MEDIC_GLASSES [ GetRandomInt( 0, sizeof( SPECIFIC_MEDIC_GLASSES ) - 1 ) ] : ALLCLASS_GLASSES [ GetRandomInt( 0, sizeof( ALLCLASS_GLASSES ) - 1 ) ]; // glasses
+                    cosmetics [ 4 ] = IsChance( 75 ) ? SPECIFIC_MEDIC_BEARD [ GetRandomInt( 0, sizeof( SPECIFIC_MEDIC_BEARD ) - 1 ) ] : ALLCLASS_BEARD [ GetRandomInt( 0, sizeof( ALLCLASS_BEARD ) - 1 ) ]; // beard
+                    cosmetics [ 5 ] = ALLCLASS_MEDAL [ GetRandomInt( 0, sizeof( ALLCLASS_MEDAL ) - 1 ) ]; // medal
+                    cosmetics [ 6 ] = IsChance( 75 ) ? SPECIFIC_MEDIC_SHIRT [ GetRandomInt( 0, sizeof( SPECIFIC_MEDIC_SHIRT ) - 1 ) ] : ALLCLASS_TORSO [ GetRandomInt( 0, sizeof( ALLCLASS_TORSO ) - 1 ) ]; // shirt/torso
+                    cosmetics [ 7 ] = IsChance( 75 ) ? SPECIFIC_MEDIC_BELT [ GetRandomInt( 0, sizeof( SPECIFIC_MEDIC_BELT ) - 1 ) ] : ALLCLASS_BELT [ GetRandomInt( 0, sizeof( ALLCLASS_BELT ) - 1 ) ]; // belt
+                    cosmetics [ 8 ] = IsChance( 75 ) ? SPECIFIC_MEDIC_PANTS [ GetRandomInt( 0, sizeof( SPECIFIC_MEDIC_PANTS ) - 1 ) ] : ALLCLASS_PANTS [ GetRandomInt( 0, sizeof( ALLCLASS_PANTS ) - 1 ) ]; // pants
+                    cosmetics [ 9 ] = IsChance( 75 ) ? SPECIFIC_MEDIC_FEET [ GetRandomInt( 0, sizeof( SPECIFIC_MEDIC_FEET ) - 1 ) ] : ALLCLASS_FEET [ GetRandomInt( 0, sizeof( ALLCLASS_FEET ) - 1 ) ]; // feet
+                    cosmetics [ 10 ] = ALLCLASS_HATMISC [ GetRandomInt( 0, sizeof( ALLCLASS_HATMISC ) - 1 ) ]; // hat misc
+                    cosmetics [ 11 ] = ALLCLASS_FACE [ GetRandomInt( 0, sizeof( ALLCLASS_FACE ) - 1 ) ]; // face
+
+                    int conflictCats [ MAX_CONFLICTS ] = { 2, 3, 4, 11 }; // hat, glasses, beard, face
+                    EquipRandomFromCategories( iClient, cosmetics, 11, 1 /*head*/, conflictCats, 4, 2 /*hat*/, "Medic", clientName );
+                }
+                case TFClass_Sniper, TFClass_Spy:
+                {
+                    // Fallback to all-class items to ensure valid cosmetics
+                    cosmetics [ 1 ] = ALLCLASS_HATS [ GetRandomInt( 0, sizeof( ALLCLASS_HATS ) - 1 ) ];      // hat
+                    cosmetics [ 2 ] = ALLCLASS_GLASSES [ GetRandomInt( 0, sizeof( ALLCLASS_GLASSES ) - 1 ) ]; // glasses
+                    cosmetics [ 3 ] = ALLCLASS_BEARD [ GetRandomInt( 0, sizeof( ALLCLASS_BEARD ) - 1 ) ];     // beard
+                    cosmetics [ 4 ] = ALLCLASS_MEDAL [ GetRandomInt( 0, sizeof( ALLCLASS_MEDAL ) - 1 ) ];     // medal
+                    cosmetics [ 5 ] = ALLCLASS_TORSO [ GetRandomInt( 0, sizeof( ALLCLASS_TORSO ) - 1 ) ];     // torso
+                    cosmetics [ 6 ] = ALLCLASS_BELT [ GetRandomInt( 0, sizeof( ALLCLASS_BELT ) - 1 ) ];       // belt
+                    cosmetics [ 7 ] = ALLCLASS_PANTS [ GetRandomInt( 0, sizeof( ALLCLASS_PANTS ) - 1 ) ];     // pants
+                    cosmetics [ 8 ] = ALLCLASS_FEET [ GetRandomInt( 0, sizeof( ALLCLASS_FEET ) - 1 ) ];       // feet
+                    cosmetics [ 9 ] = ALLCLASS_HATMISC [ GetRandomInt( 0, sizeof( ALLCLASS_HATMISC ) - 1 ) ]; // hat misc
+                    cosmetics [ 10 ] = ALLCLASS_HEAD [ GetRandomInt( 0, sizeof( ALLCLASS_HEAD ) - 1 ) ];      // head
+                    cosmetics [ 11 ] = ALLCLASS_FACE [ GetRandomInt( 0, sizeof( ALLCLASS_FACE ) - 1 ) ];      // face
+
+                    int conflictCats [ MAX_CONFLICTS ] = { 1, 2, 3, 11 }; // hat, glasses, beard, face
+                    EquipRandomFromCategories( iClient, cosmetics, 11, 10 /*head*/, conflictCats, 4, 1 /*hat*/, tfClass == TFClass_Sniper ? "Sniper" : "Spy", clientName );
+                }
+            }
+        }
+    }
+    else
+    {
+#if defined TESTING_ONLY
+        PrintToServer( "DEBUG: Applying preset cosmetics for client %d (iRandom=%d)", iClient, iRandom );
+#endif
+        PickCosmeticSet( iClient, iRandom );
+    }
+}
 // Function to handle Cosmetic Presets
 void PickCosmeticSet( int iClient, int iRandom )
 {
@@ -3320,7 +1697,6 @@ int TF2_CreateHat( int iClient, int iIndex, int iQuality, bool bIsUnusual = fals
 		int iPropInfoQuality = FindSendPropInfo( netClass, "m_iEntityQuality" );
 		int iPropInfoLevel = FindSendPropInfo( netClass, "m_iEntityLevel" );
 		int iNumStyles = GetCosmeticStyles( iHat );
-		bool bPaintable = IsPaintableHat( iHat );
 		bool bHatCannotBeUnusual = CannotBeUnusual( iHat );
 		bool bCantBeUnusual = false;
 		bool bIsHalloween = TF2_IsHolidayActive( TFHoliday_HalloweenOrFullMoon )
@@ -3426,7 +1802,7 @@ int TF2_CreateHat( int iClient, int iIndex, int iQuality, bool bIsUnusual = fals
 		}
 
 		// Random Chance to color cosmetics
-		if ( bPaintable && IsChance( 25 ) )
+		if ( IsChance( 25 ) )
 		{
 			int randomPaint = GetRandomInt( 0, 28 );
 			TF2Attrib_SetByName( iHat, "set item tint RGB", g_paintValues[ randomPaint ][ 0 ] );	// Primary color
