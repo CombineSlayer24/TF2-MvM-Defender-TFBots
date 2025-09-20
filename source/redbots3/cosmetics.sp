@@ -90,435 +90,102 @@ public const int ALLCLASS_HEAD[] = { 31356, 30640, 30646, 31091, 30357, 31242, 6
 // Don't equip with GLASSES, BEARD
 public const int ALLCLASS_FACE[] = { 31386, 31217, 31135, 31219 };
 
-public const int ALLCLASS_HATS[] = {
-	30829,
-	31169,
-	30329,
-	341,
-	30746,
-	31215,
-	189,
-	31152,
-	420,
-	30740,
-	1177,
-	666,
-	30928,
-	31183,
-	31058,
-	31129,
-	31212,
-	30768,
-	1164,
-	1169,
-	1034,
-	31250,
-	126,
-	31415,
-	756,
-	31218,
-	332,
-	333,
-	30546,
-	31020,
-	31104,
-	30066,
-	671,
-	1014,
-	31085,
-	31092,
-	30974,
-	125,
-	30748,
-	30808,
-	30576,
-	942,
-	30542,
-	31325,
-	523,
-	30175,
-	920,
-	30058,
-	30567,
-	31417,
-	31261,
-	31384,
-	252,
-	30700,
-	675,
-	31241,
-	263,
-	410,
-	921,
-	30119,
-	31327,
-	1158,
-	302,
-	668,
-	31355,
-	30003,
-	774,
-	116,
-	279,
-	584,
-	940,
-	31246,
-	31090,
-	1067,
-	30065,
-	31259,
-	31216,
-	334,
-	30838,
-	30177,
-	30469,
-	291,
-	30704,
-	614,
-	817,
-	408,
-	30877,
-	134,
-	136,
-	138,
-	31165,
-	30882,
-	538,
-	31130,
-	30313,
-	30362,
-	30868,
-	30814,
-	470,
-	30998,
-	31383,
-	31326,
-	261,
-	994,
-	598,
-	162,
-	31385,
-	30413,
-	31247,
-	31136,
-	31059,
-	139,
-	30001,
-	1186,
-	30810,
-	30307,
-	137,
-	30006,
-	537,
-	30743,
-	30647,
-	30915,
-	637,
-	30643,
-	30759,
-	31170,
-	471,
-	1035,
-	31171,
-	31249,
-	785,
-	30623,
-	611,
-	1185,
-	31244,
-	31214,
-	31131,
-	941,
-	31089,
-	31209,
-	287,
-	576,
-	578,
-	579,
-	580,
-	492,
-	345,
-	30425,
-	30796,
-	984,
-	31210,
-	31173,
-	31168,
-	135,
-	1122,
-	30008,
-	31323,
-	30976,
-	31211,
-	31262,
-	30658,
-	1173,
-	289,
-	30067,
-	260,
-	30549,
-	30833,
-	1899,
-	31132,
-	31443,
-	31469,
-	31470,
-	31494,
-	31495,
-	31522,
-	// Unreleased Hats
-	1193,	// Never Forget Cap
-	1192,	// Mannanas Cap
-	1191,	// Mercenary Park Cap
-	1194,	// Yeti Park Hardhat
-	// Weird hats
-	711,	// Daily Duel Winner Reward Hat
-	712,	// Daily Gift Giver Reward Hat
-	713,	// Daily Map Stamp Reward Hat
-	// Move these later.
-	31294,	// Starlight Sorcerer
-	944,	// That '70s Chapeau
-	640		// Top Notch
+public const int ALLCLASS_HATS[] = { 30829, 31169, 30329, 341, 30746, 31215, 189, 31152, 420, 30740, 1177, 666, 30928, 31183, 31058, 31129, 31212, 30768, 
+									1164, 1169, 1034, 31250, 126, 31415, 756, 31218, 332, 333, 30546, 31020, 31104, 30066, 671, 1014, 31085, 31092, 30974, 
+									125, 30748, 30808, 30576, 942, 30542, 31325, 523, 30175, 920, 30058, 30567, 31417, 31261, 31384, 252, 30700, 675, 31241,
+									263, 410, 921, 30119, 31327, 1158, 302, 668, 31355, 30003, 774, 116, 279, 584, 940, 31246, 31090, 1067, 30065, 31259, 31216,
+									334, 30838, 30177, 30469, 291, 30704, 614, 817, 408, 30877, 134, 136, 138, 31165, 30882, 538, 31130, 30313, 30362, 30868, 30814,
+									470, 30998, 31383, 31326, 261, 994, 598, 162, 31385, 30413, 31247, 31136, 31059, 139, 30001, 1186, 30810, 30307, 137, 30006, 537,
+									30743, 30647, 30915, 637, 30643, 30759, 31170, 471, 1035, 31171, 31249, 785, 30623, 611, 1185, 31244, 31214, 31131, 941, 31089, 31209,
+									287, 576, 578, 579, 580, 492, 345, 30425, 30796, 984, 31210, 31173, 31168, 135, 1122, 30008, 31323, 30976, 31211, 31262, 30658, 1173, 289,
+									30067, 260, 30549, 30833, 1899, 31132, 31443, 31469, 31470, 31494, 31495, 31522,
+									// Unreleased Hats
+									1193,	// Never Forget Cap
+									1192,	// Mannanas Cap
+									1191,	// Mercenary Park Cap
+									1194,	// Yeti Park Hardhat
+									// Weird hats
+									711,	// Daily Duel Winner Reward Hat
+									712,	// Daily Gift Giver Reward Hat
+									713,	// Daily Map Stamp Reward Hat
+									// Move these later.
+									31294,	// Starlight Sorcerer
+									944,	// That '70s Chapeau
+									640		// Top Notch
 };
 public const int ALLCLASS_GLASSES[] = { 816, 31060, 522, 30414, 31134, 31213, 31252, 30104, 31103, 343, 744, 30801, 31036, 486, 1033, 30569, 30140, 31471 };
 public const int ALLCLASS_BEARD[] = { 31062, 30397, 30306, 31260, 31127, 30352 };
-public const int ALLCLASS_MEDAL[] = {
-	865,
-	262,
-	718,
-	296,
-	586,
-	868,
-	943,
-	956, 	
-	164,
-	165,
-	166,
-	242,
-	243,
-	244,
-	245,
-	299,
-	583,
-	818,
-	12708,
-	1096,
-	704,
-	953,
-	432,
-	9074,
-	9307,
-	9732,
-	655,
-	13571,
-	8584,
-	9591,
-	10012,
-	10011,
-	10974,
-	12657,
-	12993,
-	10013,
-	10976,
-	12659,
-	12995,
-	10975,
-	12658,
-	12994,
-	12996,
-	8633,
-	767,
-	1024,
-	592,
-	443,
-	636,
-	30559,
-	956,
-	864,
-	9048,
-	9308,
-	9737,
-	9733,
-	9734,
-	9735,
-	9736,
-	9228,
-	9592,
-	9322,
-	10015,
-	10977,
-	11803,
-	12992,
-	10046,
-	10996,
-	12991,
-	11802,
-	12791,
-	13509,
-	9613,
-	12790,
-	13508,
-	8367,
-	9941,
-	13460,
-	9515,
-	13459,
-	855,
-	// MvM Medals
-	726,
-	975,
-	1066,
-	870,
-	871,
-	12988,
-	12990,
-	12986,
-	12989,
-	12985,
-	12987,
-	12705,
-	12703,
-	12706,
-	12707,
-	12704,
-	9907,
-	9908,
-	9909,
-	9910,
-	9911,
-	9912,
-	12660,
-	12661,
-	13215,
-	13218,
-	13217,
-	13216,
-	10448,
-	10442,
-	10443,
-	10444,
-	10445,
-	10446,
-	10447,
-	10449,
-	9510,
-	717,
-	11430,
-	11431,
-	11432,
-	10653,
-	10654,
-	13566,
-	13567,
-	13568,
-	13569,
-	13570,
-	13493,
-	13494,
-	13495,
-	13496,
-	13335,
-	13336,
-	13337,
-	13338,
-	13339,
-	13380,
-	13381,
-	13382,
-	12826,
-	12827,
-	12828,
-	12829,
-	13322,
-	11610,
-	422,
-	12884,
-	12885,
-	12886,
-	12887,
-	12888,
-	12249,
-	12250,
-	12251,
-	9720,
-	11612,
-	11611,
-	14043,
-	14055,
-	14041,
-	14040,
-	14042,
-	13740,
-	13742,
-	13739,
-	13741,
-	13743,
-	14261,
-	14262,
-	14263,
-	14264,
-	14265
+public const int ALLCLASS_MEDAL[] = { 865, 262, 718, 296, 586, 868, 943, 956, 164, 165, 166, 242, 243, 244, 245, 299, 583, 818, 12708, 1096, 704, 953,
+									432, 9074, 9307, 9732, 655, 13571, 8584, 9591, 10012, 10011, 10974, 12657, 12993, 10013, 10976, 12659, 12995, 10975, 855,
+									12658, 12994, 12996, 8633, 767, 1024, 592, 443, 636, 30559, 956, 864, 9048, 9308, 9737, 9733, 9734, 9735, 9736, 9228, 13459,
+									9592, 9322, 10015, 10977, 11803, 12992, 10046, 10996, 12991, 11802, 12791, 13509, 9613, 12790, 13508, 8367, 9941, 13460, 9515,
+									// MvM Medals
+									726, 975, 1066, 870, 871, 12988, 12990, 12986, 12989, 12985, 12987, 12705, 12703, 12706, 12707, 12704, 9907, 9908, 9909,
+									9910, 9911, 9912, 12660, 12661, 13215, 13218, 13217, 13216, 10448, 10442, 10443, 10444, 10445, 10446, 10447, 10449, 9510, 717,
+									11430, 11431, 11432, 10653, 10654, 13566, 13567, 13568, 13569, 13570, 13493, 13494, 13495, 13496, 13335, 13336, 13337, 13338,
+									13339, 13380, 13381, 13382, 12826, 12827, 12828, 12829, 13322, 11610, 422, 12884, 12885, 12886, 12887, 12888, 12249, 12250,
+									12251, 9720, 11612, 11611, 14043, 14055, 14041, 14040, 14042, 13740, 13742, 13739, 13741, 13743, 14261, 14262, 14263, 14264, 14265
 
-/* 	
-	873,	 //Whale Bone Charm
-	992,	// Smissmas Wreath
-	10028,	// Rally Call 2018 Whale
-	10029,	// Rally Call 2018 Whale Donar
-	9731,	// Philanthropist's Indulgence
-	1171,	// PASS Time Early Participation Pin
-	1170,	// PASS Time Miniature Half JACK
-	9632,	// Jaunty Adventurer
-	8779,	// Tip of the Hats 2015 Medal (Jaunty Pin 2015)
-	9231	// Jaunty Camper 2016
-	9233,	// Jaunty Trailblazer 2016
-	9232	// Jaunty Benefactor 2016
-	10266,	// Jaunty Explorer
-	9630,	// Jaunty Globetrotter 2017
-	10264,	// Jaunty Mountaineer 2018
-	9631,	// Jaunty Voyager 2017
-	11068,	// Jaunty Philanthropist
-	10265,	// Jaunty Ranger
-	11066,	// Jaunty Tipper 2019
-	9849,	// Journey to the East 1st Place
-	9850,	// Journey to the East 2nd Place
-	9851,	// Journey to the East 3rd Place
-	9852,	// Journey to the East Participant
-	8396,	// InfoShow LAN Party 2014 Participant
-	625,	// Clan Pride
-	9297,	// Duncan's Kindhearted Kisser
-	30000,	// Electric Badge-aloo
-	9296,	// Hannah's Altruistic Aspect
-	9046,	// Honeydew's Charitable Countenance
-	9722,	// Israphel's Eleemosynary Expression
-	9721,	// Mandrew's Munificent Mug
-	9298,	// Sips' Selfless Simulacrum
-	9299,	// Sjin's Generous Guise
-	9045,	// Xephos' Philanthropic Physiognomy
-	8831,	// Arms Race 1st Place Medal
-	8832,	// Arms Race 2nd Place Medal
-	8833,	// Arms Race 3rd Place Medal
-	8834,	// Arms Race Participant Medal
-	8583,	// Florida LAN Medal 2014
-	8674,	// Florida LAN Medal 2015
-	9230,	// Florida LAN Medal 2016
-	9830,	// Florida LAN 2018 Donator Medal
-	9831,	// Florida LAN 2018 Participant Medal
-	9832,	// Florida LAN 2018 Contributor Medal
-	10511,	// Australian Hightower Highjinx Champion 2019
-	10512,	// Australian Hightower Highjinx Participant 2019
-	10513,	// Australian Hightower Highjinx Donar 2019
-	10513,	// Australian Hightower Highjinx Donar 2019
-	10514,	// Australian Hightower Highjinx Helper 2019
-	12786,	// Australian Hightower Highjinx Royalty 2022
-	12787,	// Australian Hightower Highjinx Participant 2022
-	12788,	// Australian Hightower Highjinx Donor 2022
-	12789,	// Australian Hightower Highjinx Helper 2022
-	9323,	// Rally Call 2017 - 1st place Medal
-	9324,	// Rally Call 2017 - 2nd place Medal
-	9325,	// Rally Call 2017 - Participant/Helper Medal
-	9326,	// Rally Call 2017 - Donator Medal
-	623,	// Photo Badge
-*/
+								/* 	
+									873,	 //Whale Bone Charm
+									992,	// Smissmas Wreath
+									10028,	// Rally Call 2018 Whale
+									10029,	// Rally Call 2018 Whale Donar
+									9731,	// Philanthropist's Indulgence
+									1171,	// PASS Time Early Participation Pin
+									1170,	// PASS Time Miniature Half JACK
+									9632,	// Jaunty Adventurer
+									8779,	// Tip of the Hats 2015 Medal (Jaunty Pin 2015)
+									9231	// Jaunty Camper 2016
+									9233,	// Jaunty Trailblazer 2016
+									9232	// Jaunty Benefactor 2016
+									10266,	// Jaunty Explorer
+									9630,	// Jaunty Globetrotter 2017
+									10264,	// Jaunty Mountaineer 2018
+									9631,	// Jaunty Voyager 2017
+									11068,	// Jaunty Philanthropist
+									10265,	// Jaunty Ranger
+									11066,	// Jaunty Tipper 2019
+									9849,	// Journey to the East 1st Place
+									9850,	// Journey to the East 2nd Place
+									9851,	// Journey to the East 3rd Place
+									9852,	// Journey to the East Participant
+									8396,	// InfoShow LAN Party 2014 Participant
+									625,	// Clan Pride
+									9297,	// Duncan's Kindhearted Kisser
+									30000,	// Electric Badge-aloo
+									9296,	// Hannah's Altruistic Aspect
+									9046,	// Honeydew's Charitable Countenance
+									9722,	// Israphel's Eleemosynary Expression
+									9721,	// Mandrew's Munificent Mug
+									9298,	// Sips' Selfless Simulacrum
+									9299,	// Sjin's Generous Guise
+									9045,	// Xephos' Philanthropic Physiognomy
+									8831,	// Arms Race 1st Place Medal
+									8832,	// Arms Race 2nd Place Medal
+									8833,	// Arms Race 3rd Place Medal
+									8834,	// Arms Race Participant Medal
+									8583,	// Florida LAN Medal 2014
+									8674,	// Florida LAN Medal 2015
+									9230,	// Florida LAN Medal 2016
+									9830,	// Florida LAN 2018 Donator Medal
+									9831,	// Florida LAN 2018 Participant Medal
+									9832,	// Florida LAN 2018 Contributor Medal
+									10511,	// Australian Hightower Highjinx Champion 2019
+									10512,	// Australian Hightower Highjinx Participant 2019
+									10513,	// Australian Hightower Highjinx Donar 2019
+									10513,	// Australian Hightower Highjinx Donar 2019
+									10514,	// Australian Hightower Highjinx Helper 2019
+									12786,	// Australian Hightower Highjinx Royalty 2022
+									12787,	// Australian Hightower Highjinx Participant 2022
+									12788,	// Australian Hightower Highjinx Donor 2022
+									12789,	// Australian Hightower Highjinx Helper 2022
+									9323,	// Rally Call 2017 - 1st place Medal
+									9324,	// Rally Call 2017 - 2nd place Medal
+									9325,	// Rally Call 2017 - Participant/Helper Medal
+									9326,	// Rally Call 2017 - Donator Medal
+									623,	// Photo Badge
+								*/
 };
 public const int ALLCLASS_TORSO[] = { 30309, 955 };
 public const int ALLCLASS_BELT[] = { 30738, 30706, 1025, 31019, 31061, 30607, 30972, 30880, 30726, 30929, 30757, 31208, 30881, 30693, 31251, 31086, 31018, 30878, 30923, 30996, 869, 1011 };
@@ -1618,53 +1285,6 @@ void FetchClassForPreSet( int iClient, char[] cClass )
 		ApplyCosmetics( iClient, bIsHalloween ? CS_PRESET_F2P_HALLOWEEN : CS_PRESET_F2P, randIndex );
 	}
 }
-
-// WIP !!!!!!!!!!!!!!!!!!!!!
-/* void FetchClassForPreSet( int iClient, char[] iClass )
-{
-	bool bIsHalloween = TF2_IsHolidayActive( TFHoliday_HalloweenOrFullMoon );
-	CosmeticSet selectedPreset;
-
-	if ( StrEqual( iClass, "Scout", false ) ) 
-	{
-		selectedPreset = bIsHalloween ? CS_PRESET_SCOUT_HALLOWEEN[ GetRandomInt( 0, sizeof( CS_PRESET_SCOUT_HALLOWEEN ) - 1 ) ] :
-									CS_PRESET_SCOUT[ GetRandomInt( 0, sizeof( CS_PRESET_SCOUT ) - 1 ) ];
-	}
-	else if ( StrEqual( iClass, "Soldier", false ) ) 
-	{
-		selectedPreset = bIsHalloween ? CS_PRESET_SOLDIER_HALLOWEEN[ GetRandomInt( 0, sizeof( CS_PRESET_SOLDIER_HALLOWEEN ) - 1 ) ] :
-									CS_PRESET_SOLDIER[ GetRandomInt( 0, sizeof( CS_PRESET_SOLDIER ) - 1 ) ];
-	}
-	else if ( StrEqual( iClass, "Pyro", false ) ) 
-	{
-		selectedPreset = bIsHalloween ? CS_PRESET_PYRO_HALLOWEEN[ GetRandomInt( 0, sizeof( CS_PRESET_PYRO_HALLOWEEN ) - 1 ) ] :
-									CS_PRESET_PYRO[ GetRandomInt( 0, sizeof( CS_PRESET_PYRO ) - 1 ) ];
-	}
-	else if ( StrEqual( iClass, "Demoman", false ) ) 
-	{
-		selectedPreset = CS_PRESET_DEMOMAN[ GetRandomInt( 0, sizeof( CS_PRESET_DEMOMAN ) - 1 ) ];
-	}
-	else if ( StrEqual( iClass, "HeavyWeapons", false ) ) 
-	{
-		selectedPreset = CS_PRESET_HEAVY[ GetRandomInt( 0, sizeof( CS_PRESET_HEAVY ) - 1 ) ];
-	}
-	else if ( StrEqual( iClass, "Generic", false ) ) 
-	{
-		selectedPreset = CS_PRESET_GENERIC[ GetRandomInt( 0, sizeof( CS_PRESET_GENERIC ) - 1 ) ];
-	}
-	else if ( StrEqual( iClass, "Medic", false ) ) 
-	{
-		selectedPreset = bIsHalloween ? CS_PRESET_MEDIC_HALLOWEEN[ GetRandomInt( 0, sizeof( CS_PRESET_MEDIC_HALLOWEEN ) - 1 ) ] :
-									CS_PRESET_MEDIC[ GetRandomInt( 0, sizeof( CS_PRESET_MEDIC ) - 1 ) ];
-	}
-	else if ( StrEqual( iClass, "F2P", false ) ) 
-	{
-		selectedPreset = bIsHalloween ? CS_PRESET_F2P_HALLOWEEN[ GetRandomInt( 0, sizeof( CS_PRESET_F2P_HALLOWEEN ) - 1 ) ] :
-									CS_PRESET_F2P[ GetRandomInt( 0, sizeof( CS_PRESET_F2P ) - 1 ) ];
-	}
-
-	ApplyCosmetics( iClient, selectedPreset, selectedPreset );
-} */
 
 //	Qualities //
 // Normal = 0
