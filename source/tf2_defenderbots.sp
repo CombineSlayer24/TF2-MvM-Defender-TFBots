@@ -217,7 +217,7 @@ public Plugin myinfo =
 	name = "Defender TFBots",
 	author = "Officer Spy",
 	description = "TFBots that play Mann vs. Machine",
-	version = "1.5.4",
+	version = "1.5.5",
 	url = "https://github.com/OfficerSpy/TF2-MvM-Defender-TFBots"
 };
 
@@ -388,6 +388,9 @@ public void OnMapStart()
 
 public void OnClientDisconnect(int client)
 {
+	if (client == g_iPlayerForcedPref)
+		g_iPlayerForcedPref = -1;
+	
 	g_bIsDefenderBot[client] = false;
 	
 	g_bChoosingBotClasses[client] = false;
@@ -977,6 +980,7 @@ public Action Command_RequestExtraBot(int client, int args)
 		}
 		
 		AddDefenderTFBot(1, arg1);
+		PrintToChatAll("%s %N requested an additional \"%s\" bot.", PLUGIN_PREFIX, client, arg1);
 		
 		return Plugin_Handled;
 	}
@@ -1160,7 +1164,7 @@ public Action Command_RemoveAllBots(int client, int args)
 	}
 	
 	RemoveAllDefenderBots("Admin request");
-	ShowActivity2(client, "[SM] ", "%N purged all bots", client);
+	ShowActivity2(client, "[SM] ", "Purged all bots.");
 	
 	return Plugin_Handled;
 }
@@ -1212,6 +1216,29 @@ public Action Command_ViewBotUpgrades(int client, int args)
 	
 	for (int i = 0; i < target_count; i++)
 		ShowPlayerUpgrades(client, target_list[i], slot);
+	
+	return Plugin_Handled;
+}
+
+public Action Command_ForcePlayerPreference(int client, int args)
+{
+	if (args < 1)
+	{
+		ReplyToCommand(client, "[SM] Usage: sm_db_use_pref_of_player <#userid|name>");
+		return Plugin_Handled;
+	}
+	
+	char arg[4]; GetCmdArg(1, arg, sizeof(arg));
+	
+	//TODO: this is a terrible mockup, please change this
+	//We only want one target at a time here
+	if (!strcmp(arg, "@me"))
+	{
+		g_iPlayerForcedPref = client;
+		return Plugin_Handled;
+	}
+	
+	//TODO: for admin to force use someone else's instead
 	
 	return Plugin_Handled;
 }
@@ -1391,7 +1418,7 @@ public Action Listener_TournamentPlayerReadystate(int client, const char[] comma
 							return Plugin_Handled;
 						}
 						
-						PrintToChat(client, "%s Choose your bot team lineup first! Use command !choosebotteam/!cbt", PLUGIN_PREFIX);
+						PrintToChat(client, "%s Choose your bot team lineup first! Use command !choosebotteam or !cbt", PLUGIN_PREFIX);
 						return Plugin_BadLoad;
 					}
 				}
